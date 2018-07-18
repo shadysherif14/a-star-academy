@@ -1,0 +1,15 @@
+ul.side-nav,
+.navbar,
+.background {
+  background: url(/images/sidebar.jpg?3330d470993359b4b364840aa670ebae) !important;
+  color: #d1d1d1;
+}
+
+body {
+  background: #fdfdfd;
+}
+
+main {
+  margin-top: 7rem;
+}
+

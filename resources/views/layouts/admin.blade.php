@@ -12,9 +12,11 @@
         
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
-        <title> A Star Academy yield('title') </title>
+        <title> A Star Academy @yield('title') </title>
 
         @include('includes.stylesheets')
+        
+        <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 
         @yield('css')
         
@@ -22,9 +24,13 @@
 
     <body>
             
+        @include('includes.sidebar')
+
         @include('includes.navbar')
 
-        @yield('content')
+        <main class="container">
+            @yield('content')
+        </main>
 
         @include('includes.scripts')
 

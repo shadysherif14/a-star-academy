@@ -141,6 +141,8 @@ class CourseController extends Controller
 
         $course->description = $request->description;
 
-        return $course->save();
+        $course->save();
+
+        return $course;
     }
 }

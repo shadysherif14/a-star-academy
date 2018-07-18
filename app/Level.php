@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Level extends Model
 {
+
+    public $with = ['courses'];
     
     public function getRouteKeyName()
     {

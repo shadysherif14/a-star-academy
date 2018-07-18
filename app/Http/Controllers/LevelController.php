@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Level;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class LevelController extends Controller
 {
@@ -14,7 +15,16 @@ class LevelController extends Controller
      */
     public function index()
     {
-        //
+
+        $levels = Level::all();
+
+        if (\Request::is('admin/levels')) {
+
+            return view('levels.index', compact('levels'));
+        }
+
+        return view('levels.index', compact('levels'));
+
     }
 
     /**
@@ -24,7 +34,7 @@ class LevelController extends Controller
      */
     public function create()
     {
-        //
+        return view('levels.create');
     }
 
     /**
@@ -35,7 +45,42 @@ class LevelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validator = $this->validateData($request);
+
+        if ($validator->fails()) {
+
+            if ($request->ajax()) {
+                return response()->json([
+
+                    'status' => false,
+                ]);
+
+            }
+
+            return redirect('/levels/create')
+
+                ->withErrors($validator)
+
+                ->withInput();
+        }
+
+        $level = new Level();
+
+        $level = $this->saveOrUpdate($request, $level);
+
+        if ($request->ajax()) {
+
+            return response()->json([
+
+                'status' => true,
+
+                'level' => $level,
+            ]);
+        }
+
+        return redirect('levels');
+
     }
 
     /**
@@ -46,7 +91,7 @@ class LevelController extends Controller
      */
     public function show(Level $level)
     {
-        //
+        return view('levels.show', compact('level'));        
     }
 
     /**
@@ -57,7 +102,7 @@ class LevelController extends Controller
      */
     public function edit(Level $level)
     {
-        //
+        return view('levels.edit', compact('level'));
     }
 
     /**
@@ -69,7 +114,39 @@ class LevelController extends Controller
      */
     public function update(Request $request, Level $level)
     {
-        //
+
+        $validator = $this->validateData($request);
+
+        if ($validator->fails()) {
+
+            if ($request->ajax()) {
+                return response()->json([
+
+                    'status' => false,
+                ]);
+
+            }
+
+            return redirect('/levels/edit')
+
+                ->withErrors($validator)
+
+                ->withInput();
+        }
+
+        $level = $this->saveOrUpdate($request, $level);
+
+        if ($request->ajax()) {
+
+            return response()->json([
+
+                'status' => true,
+
+                'level' => $level,
+            ]);
+        }
+
+        return redirect('levels');
     }
 
     /**
@@ -80,6 +157,28 @@ class LevelController extends Controller
      */
     public function destroy(Level $level)
     {
-        //
+        $level->delete();
+    }
+
+    private function validateData(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ]);
+
+        return $validator;
+    }
+
+    private function saveOrUpdate(Request $request, Level $level)
+    {
+        $level->name = $request->name;
+
+        $level->slug = str_slug($request->name);
+
+        $level->description = $request->description;
+
+        $level->save();
+
+        return $level;
     }
 }
