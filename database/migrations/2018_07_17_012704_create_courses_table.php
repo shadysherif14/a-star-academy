@@ -18,9 +18,12 @@ class CreateCoursesTable extends Migration
             $table->unsignedInteger('level_id');
             $table->unsignedInteger('instructor_id');
             $table->string('name');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->string('image_path')->nullable();
+            $table->enum('school', ['ig', 'ad']);
+            $table->enum('system', ['cambridge', 'edxcel'])->nullable();
+            $table->enum('subsystem', ['a2', 'as', 'al', 'ol'])->nullable();
             $table->timestamps();
         });
     }

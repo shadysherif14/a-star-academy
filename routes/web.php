@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 
 Route::resource('levels', 'LevelController');
+Route::resource('courses', 'CourseController');
 
 Route::prefix('admin')->group(function () {
 

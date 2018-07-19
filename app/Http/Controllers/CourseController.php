@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use Faker\Generator as Faker;
+use App\Level;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -14,9 +16,10 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
 
-        return view('courses.index');
+        $levels = Level::all();
+        
+        return view('courses.index', compact('levels'));
     }
 
     /**
@@ -38,12 +41,15 @@ class CourseController extends Controller
     public function store(Request $request)
     {
 
-        if ($this->validateDate($request) === false) {
+        $validator = $this->validateDate($request);
+
+
+        if ($validator->fails()) {
 
             return response()->json([
                 'status' => false,
+                'errors' => $validator->errors()
             ]);
-
         }
 
         $course = new Course();
@@ -65,6 +71,8 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
+
+        return $course;
         return view('courses.show', compact('course'));
     }
 
@@ -121,25 +129,40 @@ class CourseController extends Controller
         $validator = Validator::make($request->all(), [
             'level_id' => 'required|exists:levels,id',
             'name' => 'required',
+            'school' => ['required', Rule::in(['ad', 'ig'])],
+            'system' => ['required_if:school,ig', Rule::in(['cambridge', 'edxcel'])],
+            'subsystem' => ['required_if:school,ig', Rule::in(['a2', 'as', 'al', 'ol'])],
         ]);
 
-        if ($validator->fails()) {
+        return $validator;
 
-            return false;
-        }
-
-        return true;
     }
 
     private function saveOrUpdate(Request $request, Course $course)
     {
+
+        $postSlug = Faker::numerify('###');
+        
         $course->level_id = $request->level_id;
-
+        
         $course->name = $request->name;
-
-        $course->slug = str_slug($request->name);
-
+                
         $course->description = $request->description;
+
+        $course->school = $request->school;
+
+        $course->system = $request->system;
+
+        $course->subsystem = $request->subsystem;
+
+        do {
+            
+            // Unique slug
+            $course->slug = str_slug($request->name) . '-' . $postSlug;
+
+            $exist = Course::find($course->slug);
+
+        } while(!$exists);
 
         $course->save();
 

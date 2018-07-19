@@ -1,0 +1,59 @@
+$gold2: #ffda8a;
+$gold1: #dcba66;
+$black5: #101413;
+$black4: #222;
+$black3: #111;
+$black2: #0e1111;
+$black1: #000;
+body {
+    background: $black4;
+    max-height: 100vh;
+}
+
+main.content {
+    display: grid;
+    grid-template-columns: auto 300px;
+    height: calc(100vh - 5rem);
+    gap: 0.5rem;
+}
+
+nav.navbar {
+    background: $black3;
+    height: 4rem;
+}
+
+aside.sidebar {
+    background: $black5;
+    border-left: 1px solid #ddd;
+    overflow-y: scroll;
+    max-height: 100%;
+    padding-bottom: 1rem;
+    animation-duration: 1s;
+    div {
+        display: grid;
+        grid-template-columns: 1rem auto 5rem;
+        padding: 0.5rem;
+        background: #333;
+        ;
+        border-bottom: 1px solid #ddd;
+        align-items: center;
+        * {
+            color: #ddd;
+            font-size: 14px;
+        }
+        &:hover {
+            background-image: linear-gradient(to left, #434343 0%, black 100%);
+        }
+        a {
+            margin: 0px 1rem;
+        }
+    }
+    &::-webkit-scrollbar {
+        width: 0px;
+    }
+}
+
+.video-fluid {
+    width: 100%;
+    overflow-y: hidden;
+}
