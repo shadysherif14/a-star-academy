@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Video extends Model
 {
 
+    public $guarded = [];
+    
     public function course()
     {
         return $this->belongsTo(Course::class);

@@ -1,0 +1,12 @@
+Admin Panel
+    - Levels
+        * Create    (Done)
+        * Edit
+        * Show
+        * Delete
+    - Courses
+        * Create    (Done)
+        * Edit
+        * Show
+        * Delete
+        

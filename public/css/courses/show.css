@@ -1,13 +1,12 @@
 body {
-  background: #222;
+  background: #000;
   max-height: 100vh;
 }
 
 main.content {
   display: grid;
   grid-template-columns: auto 300px;
-  height: calc(100vh - 5rem);
-  gap: 0.5rem;
+  height: calc(100vh - 7rem);
 }
 
 nav.navbar {
@@ -16,11 +15,10 @@ nav.navbar {
 }
 
 aside.sidebar {
-  background: #101413;
+  background: #181818;
   border-left: 1px solid #ddd;
-  overflow-y: scroll;
-  max-height: 100%;
-  padding-bottom: 1rem;
+  /*  overflow-y: scroll;
+    max-height: 100%; */
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
 }
@@ -29,7 +27,7 @@ aside.sidebar div {
   display: grid;
   grid-template-columns: 1rem auto 5rem;
   padding: 0.5rem;
-  background: #333;
+  cursor: pointer;
   border-bottom: 1px solid #ddd;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -42,20 +40,26 @@ aside.sidebar div * {
 }
 
 aside.sidebar div:hover {
-  background-image: -webkit-gradient(linear, right top, left top, from(#434343), to(black));
-  background-image: linear-gradient(to left, #434343 0%, black 100%);
+  background-image: -webkit-gradient(linear, right top, left top, from(#111), to(#0e1111));
+  background-image: linear-gradient(to left, #111 0%, #0e1111 100%);
 }
 
 aside.sidebar div a {
   margin: 0px 1rem;
 }
 
-aside.sidebar::-webkit-scrollbar {
-  width: 0px;
+.video-fluid {
+  background: #444;
+  border-right: 10px solid #000;
+  margin: 0px;
 }
 
-.video-fluid {
-  width: 100%;
-  overflow-y: hidden;
+.information {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  padding: 2rem 4rem;
+  background: #212223;
+  color: #ddd;
+  font-size: 15px;
 }
 

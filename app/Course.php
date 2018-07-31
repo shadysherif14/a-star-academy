@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Course extends Model
 {
+
+    use Sluggable;
+
     public function getRouteKeyName()
     {
         return 'slug';
@@ -14,6 +18,11 @@ class Course extends Model
     public function level()
     {
         return $this->belongsTo(Level::class);    
+    }
+
+    public function instructor()
+    {
+        return $this->belongsTo(Instructor::class);
     }
 
     public function videos()
@@ -33,6 +42,14 @@ class Course extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
-    
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 
 }

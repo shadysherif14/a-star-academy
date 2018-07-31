@@ -26,10 +26,17 @@
             
         @include('includes.sidebar')
 
-        @include('includes.navbar')
+        
+        <main>
 
-        <main class="container">
-            @yield('content')
+            @include('includes.navbar')
+        
+            <section class="container my-3">
+
+                @yield('content')
+            
+            </section>
+            
         </main>
 
         @include('includes.scripts')

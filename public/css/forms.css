@@ -1,0 +1,11 @@
+.md-form input:focus:not([readonly]),
+.md-form textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #222 !important;
+  -webkit-box-shadow: 0 1px 0 0 #222 !important;
+          box-shadow: 0 1px 0 0 #222 !important;
+}
+
+.md-form label.active {
+  color: #222 !important;
+}
+

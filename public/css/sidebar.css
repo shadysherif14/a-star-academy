@@ -1,11 +1,3 @@
-ul.side-nav,
-.navbar,
-.background {
-  background: url(/images/sidebar.jpg?3330d470993359b4b364840aa670ebae) !important;
-  color: #d1d1d1;
+#sidebar a {
+    display: block;
 }
-
-body {
-  background: #fdfdfd;
-}
-

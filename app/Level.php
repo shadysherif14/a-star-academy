@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+
 
 class Level extends Model
 {
+
+    use Sluggable;
 
     public $with = ['courses'];
     
@@ -17,5 +21,14 @@ class Level extends Model
     public function courses()
     {
         return $this->hasMany(Course::class);
+    }
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Video;
+use App\Course;
 use Illuminate\Http\Request;
+use App\Http\Requests\VideoRequest;
+use Illuminate\Support\Facades\Validator;
 
 class VideoController extends Controller
 {
@@ -12,9 +15,12 @@ class VideoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Course $course)
     {
-        //
+        
+        $videos = $course->videos;
+
+        return view('admin.videos.index', compact('videos', 'course'));
     }
 
     /**
@@ -33,9 +39,32 @@ class VideoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VideoRequest $request, Course $course)
     {
-        //
+        
+        $request->validated();
+
+        $videos = array();
+
+        foreach($request->videos as $video) {
+
+            $title = $video->getClientOriginalName();
+
+            $video = $video->store('public/videos/'. $course->slug);
+
+            $video = str_replace_first('public/', '', $video);
+
+            array_push($videos, [
+                'course_id' => $course->id,
+                'path' => $video,
+                'title' => $title
+            ]);
+        }    
+        
+        Video::insert($videos);
+
+        return back();
+        
     }
 
     /**

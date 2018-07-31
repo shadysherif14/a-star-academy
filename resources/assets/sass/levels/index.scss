@@ -1,0 +1,55 @@
+.card-body {
+    padding: 0px;
+}
+
+table {
+    min-width: 100%;
+    margin-bottom: 0px !important;
+    tr {
+
+        padding: 0.5rem 0px;
+
+        th {
+            &.name {
+                width: 150px;
+            }
+            &.description {
+                width: 600px;
+            }
+            &.image {
+                width: 200px;
+            }
+            &.actions {
+                width: 120px;
+            }
+        }
+
+        td {
+            img {
+                width: 100px;
+                height: auto;
+                display: block;
+                margin: auto;
+            }
+            a {
+                display: grid;
+                grid-template-columns: 20px auto;
+                align-items: center;
+                width: 90%;
+                border-radius: 1px;
+                padding: 0.5rem 0.7rem;
+                margin: 0px auto 1rem !important;
+                justify-items: center;
+                * {
+                    color: white;
+                    font-size: 10px;
+                }
+                i {                
+                }
+                span {
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                }
+            }
+        }
+    }
+}

@@ -4,66 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Level;
 use Illuminate\Http\Request;
+use App\Http\Requests\LevelRequest;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
 class LevelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
 
         $levels = Level::all();
 
-        if (\Request::is('admin/levels')) {
+        if (request()->is('admin/*')) {
 
-            return view('levels.index', compact('levels'));
+            return view('admin.levels.index', compact('levels'));
         }
 
-        return view('levels.index', compact('levels'));
+        return view('app.levels.index', compact('levels'));
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('levels.create');
+        return view('admin.levels.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(LevelRequest $request)
     {
 
-        $validator = $this->validateData($request);
-
-        if ($validator->fails()) {
-
-            if ($request->ajax()) {
-                return response()->json([
-
-                    'status' => false,
-                ]);
-
-            }
-
-            return redirect('/levels/create')
-
-                ->withErrors($validator)
-
-                ->withInput();
-        }
+        $validator = $request->validated();
 
         $level = new Level();
 
@@ -83,56 +53,30 @@ class LevelController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Level  $level
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Level $level)
     {
+
+        if(request()->is('admin/*')) {
+
+            return view('admin.levels.show', compact('level'));        
+        }
+
         return view('levels.show', compact('level'));        
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Level  $level
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Level $level)
     {
-        return view('levels.edit', compact('level'));
+            
+        return view('admin.levels.edit', compact('level'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Level  $level
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Level $level)
+    public function update(LevelRequest $request, Level $level)
     {
 
-        $validator = $this->validateData($request);
-
-        if ($validator->fails()) {
-
-            if ($request->ajax()) {
-                return response()->json([
-
-                    'status' => false,
-                ]);
-
-            }
-
-            return redirect('/levels/edit')
-
-                ->withErrors($validator)
-
-                ->withInput();
-        }
+        $request->validated();
 
         $level = $this->saveOrUpdate($request, $level);
 
@@ -146,37 +90,29 @@ class LevelController extends Controller
             ]);
         }
 
-        return redirect('levels');
+        return redirect('/admin/levels');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Level  $level
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Level $level)
     {
         $level->delete();
     }
 
-    private function validateData(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-        ]);
-
-        return $validator;
-    }
 
     private function saveOrUpdate(Request $request, Level $level)
     {
         $level->name = $request->name;
 
-        $level->slug = str_slug($request->name);
-
         $level->description = $request->description;
 
+        if($request->file('image')) {
+        
+            $image = $request->image->store('public/images/levels');
+
+            $level->image = str_replace_first('public/', '', $image);
+        }
+        
         $level->save();
 
         return $level;
