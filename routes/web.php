@@ -2,23 +2,6 @@
 
 use Illuminate\Support\Facades\Storage;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
- */
-
-Route::get('/', function () {
-    return view('homepage.app');
-});
-
-/* Route::resource('levels', 'LevelController');
-Route::resource('courses', 'CourseController'); */
 
 
 Route::prefix('admin')->group(function () {
@@ -31,4 +14,23 @@ Route::prefix('admin')->group(function () {
     Route::resource('/courses', 'CourseController');
     Route::resource('/{course}/videos', 'VideoController');
     Route::resource('/instructors', 'InstructorController');
+});
+
+
+Route::get('/', function () {
+    return view('test2');
+});
+
+
+Route::get('/school/{type}',function($type){
+    
+    return view('grades');
+});
+
+Route::get('/grades',function(){
+    return view('grades');
+});
+
+Route::get('/video',function(){
+    return view('video');
 });
