@@ -1,52 +1,5 @@
-.card-body {
-    padding: 0px;
-}
+@import "../variables";
+@import "../mixins/index";
 
-table {
-    min-width: 100%;
-    margin-bottom: 0px !important;
-    tr {
-        padding: 0.5rem 0px;
-        th {
-            &.name {
-                width: 150px;
-            }
-            &.description {
-                width: 300px;
-            }
-            &.school, &.system, &.sub_system {
-                width: 100px;
-            }
-            &.image {
-                width: 200px;
-            }
-            &.actions {
-                width: 120px;
-            }
-        }
-        td {
-            img {
-                width: 100px;
-                height: auto;
-            }
-            a {
-                display: grid;
-                grid-template-columns: 20px auto;
-                align-items: center;
-                width: 90%;
-                border-radius: 1px;
-                padding: 0.5rem 0.7rem;
-                margin: 0px auto 1rem !important;
-                justify-items: center;
-                * {
-                    color: white;
-                    font-size: 10px;
-                }
-                i {}
-                span {
-                    font-family: Verdana, Geneva, Tahoma, sans-serif;
-                }
-            }
-        }
-    }
-}
+$gtc: repeat(7, 2fr);
+@include index($gtc);

@@ -1,3 +1,101 @@
-#sidebar a {
-    display: block;
+body {
+  display: grid;
+  grid-template-columns: 230px auto;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  background: transparent;
 }
+
+body * > {
+  margin-bottom: 0px !important;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    grid-template-columns: 1fr;
+  }
+}
+
+body ul#sidenav {
+  margin-bottom: 0px;
+  min-height: 100vh;
+  overflow-y: scroll;
+  background: #222;
+}
+
+@media screen and (max-width: 768px) {
+  body ul#sidenav {
+    display: none;
+  }
+}
+
+body ul#sidenav::-webkit-scrollbar {
+  display: none;
+}
+
+body ul#sidenav * {
+  color: #f3b715;
+}
+
+body ul#sidenav img {
+  max-width: 90%;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+
+body ul#sidenav a:hover {
+  background: #f3b715;
+  color: #fff;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+body ul#sidenav a:hover i {
+  color: #fff;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+body ul#sidenav a.collapsible-header {
+  padding: 0.4rem;
+  display: grid;
+  grid-template-columns: 3rem auto 3rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body ul#sidenav a.collapsible-header i {
+  justify-self: center;
+}
+
+body ul#sidenav div.collapsible-body ul {
+  list-style-type: none;
+}
+
+body ul#sidenav div.collapsible-body a {
+  padding: 0.25rem;
+  padding-left: 1.5rem;
+  display: grid;
+  grid-template-columns: 3rem auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body ul#sidenav div.collapsible-body a i {
+  justify-self: center;
+}
+
+body main {
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow-y: scroll;
+}
+
+body main::-webkit-scrollbar {
+  display: none;
+}
+

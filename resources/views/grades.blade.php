@@ -1,4 +1,4 @@
-@extends('demo')
+@extends('layouts.app')
 
 @section('content')
 <div class="parent w-100 h-100">
@@ -102,13 +102,8 @@
         </form>
     </div>
 
-
-
-
-
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="/js/grades.js"></script>
-
+    <script type="text/javascript" src="/js/grades.js"></script>
 @endsection

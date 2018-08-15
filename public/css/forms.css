@@ -1,3 +1,7 @@
+.md-form {
+  margin: 2rem auto;
+}
+
 .md-form input:focus:not([readonly]),
 .md-form textarea:focus:not([readonly]) {
   border-bottom: 1px solid #222 !important;
@@ -7,5 +11,23 @@
 
 .md-form label.active {
   color: #222 !important;
+}
+
+.form-group .form-control {
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.form-group .form-control:focus {
+  border-color: #f3b715;
+}
+
+.switch label input[type=checkbox]:checked + .lever {
+  background-color: #f3b715;
+}
+
+.switch label input[type=checkbox]:checked + .lever:after {
+  background-color: #f5c646;
 }
 

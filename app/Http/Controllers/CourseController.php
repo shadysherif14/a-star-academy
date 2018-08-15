@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Course;
-use App\Http\Requests\CourseRequest;
 use Illuminate\Http\Request;
+use App\Filters\CoursesFilter;
+use App\Http\Requests\CourseRequest;
 
 class CourseController extends Controller
 {
@@ -17,10 +18,17 @@ class CourseController extends Controller
 
         $this->subSystems = array('Al', 'Ol', 'A2', 'AS');
     }
-    public function index()
+
+    public function index(CoursesFilter $filters)
     {
 
-        $courses = Course::all();
+        $query = Course::join('levels', 'levels.id', 'courses.level_id')
+
+        ->join('instructors', 'instructors.id', 'courses.instructor_id')
+
+        ->select('levels.name as level', 'courses.*', 'instructors.name as instructor');
+
+        $courses = $query->filter($filters)->get();
 
         if (request()->is('admin/*')) {
 
@@ -39,8 +47,10 @@ class CourseController extends Controller
         $systems = $this->systems;
 
         $subSystems = $this->subSystems;
+
+        $course = new Course;
         
-        return view('admin.courses.create', compact('schools', 'systems', 'subSystems'));
+        return view('admin.courses.create', compact('schools', 'systems', 'subSystems', 'course'));
     }
 
     public function store(CourseRequest $request)
@@ -58,7 +68,7 @@ class CourseController extends Controller
 
                 'status' => true,
 
-                'course' => $course,
+                'redirect' => '/admin/courses/' . $course->slug,
             ]);
         }
 

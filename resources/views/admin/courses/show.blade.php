@@ -6,7 +6,7 @@
 
 <div class="card w-75 mx-auto">
 
-    <div class="card-header elegant-color-dark white-text">
+    <div class="card-header">
 
         <h4> <i class="fas fa-list"></i> Course Details </h4>
 
@@ -24,24 +24,22 @@
 
         <div>
             <h2> Course Description </h2>
-            @if(is_null($course->description))
-            <p> No description </p>
-            @else
-            <p> {{ $course->description }} </p>
-            @endif
+            <p> {!! $course->description !!} </p>
         </div>
 
         <div>
             <h2> School System </h2>
             <p> {{ $course->school }} </p>
+            @if($course->school === 'IGCSE')
             <p> {{ $course->sytem }} </p>
             <p> {{ $course->sub_system }} </p>
+            @endif
 
         </div>
 
         <div>
             <h2> Cover Image </h2>
-            <img class="img-fluid" src="{{ asset('storage') }}/{{ $course->image }}" alt="Course Image">
+            <img class="img-fluid" src="{{ $course->image }}" alt="Course Image">
         </div>
 
     </div>
@@ -53,5 +51,5 @@
 @endsection
  
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/courses/show.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/courses/create.css') }}">
 @endsection

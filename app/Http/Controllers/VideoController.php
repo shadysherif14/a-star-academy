@@ -4,111 +4,137 @@ namespace App\Http\Controllers;
 
 use App\Video;
 use App\Course;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\VideoRequest;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\OrderVideoRequest;
+use App\Http\Requests\UpdateVideoRequest;
 
 class VideoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Course $course)
     {
-        
-        $videos = $course->videos;
+
+        $videos = Video::videos($course->id);;
 
         return view('admin.videos.index', compact('videos', 'course'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Course $course)
     {
-        //
+
+        return view('admin.videos.create', compact('course'));
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(VideoRequest $request, Course $course)
+    {
+
+        $request->validated();
+
+        $order = Video::order($course->id);
+
+        foreach ($request->videos as $video) {
+
+            $video = (object) $video;
+            
+            foreach ($request->file('files') as $file) {
+                
+                if ($file->getClientOriginalName() === $video->original_name) {
+
+                    $path = $file->store('public/videos/' . $course->slug);
+                    
+                    $path = str_replace_first('public/', '', $path);
+    
+                    $videoModel = new Video;
+
+                    $videoModel->course_id = $course->id;
+
+                    $videoModel->path = $path;
+
+                    $videoModel->title = $video->title;
+
+                    $videoModel->free = isset($video->free);
+
+                    $videoModel->order = $order++;
+
+                    $videoModel->save();
+    
+                    break;
+                }
+            }
+        }
+
+        return route('admin.videos.index', ['course' => $course]);
+
+    }
+
+    public function edit(Video $video)
+    {
+        return view('admin.videos.edit', compact('video'));
+    }
+
+    public function update(UpdateVideoRequest $request, Video $video)
     {
         
         $request->validated();
 
-        $videos = array();
+        $video->title = $request->title;
 
-        foreach($request->videos as $video) {
+        $video->free = $this->free($request);
 
-            $title = $video->getClientOriginalName();
+        $courseSlug = Course::select('slug')->where('id', $video->id)->first()->slug;
 
-            $video = $video->store('public/videos/'. $course->slug);
+        if($request->has('path_changed') && $request->file('video'))
+        {
+            $path = $request->video->store('public/videos/' . $courseSlug);
 
-            $video = str_replace_first('public/', '', $video);
+            $video->path = str_replace_first('public/', '', $path);
+        }
 
-            array_push($videos, [
-                'course_id' => $course->id,
-                'path' => $video,
-                'title' => $title
+        $video->save();
+
+        return jsonResponse(true);
+    }
+
+    public function order(OrderVideoRequest $request)
+    {
+
+        $request->validated();
+        
+        $order = 1;
+
+        foreach($request->videos as $video)
+        {
+
+            $video = (object) $video;
+
+            $free = isset($video->free);
+            
+            Video::where('id', $video->id)->update([
+                'order' => $order,
+                'free' => $free
             ]);
-        }    
-        
-        Video::insert($videos);
 
-        return back();
-        
+            $order++;
+        }
+
+        return jsonResponse(true);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Video  $video
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Video $video)
+
+    protected function free(Request $request)
     {
-        //
+        return $request->filled('free') ? true : false;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Video  $video
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Video $video)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Video  $video
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Video $video)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Video  $video
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Video $video)
     {
         //
     }
+
+
 }
+

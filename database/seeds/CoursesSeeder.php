@@ -33,7 +33,7 @@ class CoursesSeeder extends Seeder
 
                 $data = [
                     'level_id' => $level->id,
-                    'instructor_id' => 1,
+                    'instructor_id' => random_int(1, 10),
                     'name' => $course,
                     'slug' => str_slug($course) . $level->id,
                     'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae doloribus impedit incidunt. Et, repudiandae itaque hic tenetur incidunt eius deserunt sit nostrum architecto laborum sint molestias, nobis neque mollitia soluta?',

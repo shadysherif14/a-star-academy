@@ -1,23 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Pathway+Gothic+One|Permanent+Marker|Ubuntu+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed|Open+Sans');
 
 body {
-    /* background: #222 !important; */
-    font-family: 'Ubuntu Condensed', sans-serif;
-    font-weight: 300;
-	height: 100vh;
     background-color: #222;
+    font-size: 0.8em;
 }
 
 * {
-    font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
 }
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+button.btn {
     font-family: 'Ubuntu Condensed', sans-serif;
     font-style: italic;
 }
@@ -112,12 +109,11 @@ img:not('#navbar-brand') {
       background-color: #002;
       background-image: radial-gradient(circle at center, #222, #000);
       color: #fff;
-      font: 1em "Open Sans", sans-serif;
       height: 100vh;
       line-height: 1.5;
   }
   :root {
-    font-size: calc(16px + (20 - 16) * (100vw - 320px)/(980 - 320));
+    /* font-size: calc(16px + (20 - 16) * (100vw - 320px)/(980 - 320)); */
     --rotateTimes: 0;
   }
   

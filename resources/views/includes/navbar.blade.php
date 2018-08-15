@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-toggleable-md navbar-expand-lg py-2">
-    <!-- SideNav slide-out button --> 
-    
+    <!-- SideNav slide-out button -->
+
     <a href="#" data-activates="sidebar" class="p-3 button-collapse"><i class="fas fa-bars yellow-text"></i></a>
 
     <a class="ml-5" href="#">

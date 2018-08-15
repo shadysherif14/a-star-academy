@@ -1,9 +1,75 @@
-ul.side-nav,
-.navbar,
-.background {
-    color: #d1d1d1;
-}
-
+@import 'variables';
 body {
-    background: #fdfdfd;
+    display: grid;
+    *> {
+        margin-bottom: 0px !important;
+    }
+    grid-template-columns: 230px auto;
+    @media screen and (max-width: $md) {
+        grid-template-columns: 1fr;
+    }
+    align-items: start;
+    background: transparent;
+    ul#sidenav {
+        @media screen and (max-width: $md) {
+            display: none;
+        }
+        margin-bottom: 0px;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        min-height: 100vh;
+        overflow-y: scroll;
+        background: $light-black;
+        * {
+            color: $gold;
+        }
+        img {
+            max-width: 90%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+        a:hover {
+            background: $gold;
+            color: $white;
+            i {
+                color: $white;
+                transition-duration: 0.5s;
+            }
+            transition-duration: 0.5s;
+        }
+        a.collapsible-header {
+            padding: 0.4rem;
+            display: grid;
+            grid-template-columns: 3rem auto 3rem;
+            align-items: center;
+            i {
+                justify-self: center;
+            }
+        }
+        div.collapsible-body {
+            ul {
+                list-style-type: none;
+            }
+            a {
+                padding: 0.25rem;
+                padding-left: 1.5rem;
+                display: grid;
+                grid-template-columns: 3rem auto;
+                align-items: center;
+                i {
+                    justify-self: center;
+                }
+            }
+        }
+    }
+    main {
+        min-height: 100vh;
+        max-height: 100vh;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
 }

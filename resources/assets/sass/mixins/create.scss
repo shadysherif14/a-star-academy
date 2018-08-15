@@ -1,0 +1,63 @@
+@mixin create {
+    .card {
+        width: 800px;
+        max-width: 90%;
+        margin: auto;
+        div.card-header {
+            height: $header-height;
+            background: $light-black;
+            * {
+                font-size: 1.25em;
+            }
+        }
+        div.card-body {
+            overflow-y: scroll;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            #image-wrapper {
+                * {
+                    &.hidden {
+                        display: none !important;
+                    }
+                    display: block;
+                    width: 400px;
+                    height: auto;
+                    max-width: 90%;
+                    margin: 0px auto !important;
+                }
+                button.btn {
+                    padding: $action-btns-padding;
+                    background: transparent;
+                    transition-duration: 1s;
+                    color: $btn-delete-background;
+                    border: 1px solid $btn-delete-background;
+                    &:hover {
+                        background: $btn-delete-background;
+                        color: $white;
+                    }
+                }
+            }
+            .btn-group {
+                &.grid {
+                    display: grid !important;
+                }
+                margin: auto;
+                grid-template-columns: 1fr 1fr;
+                justify-content: center;
+                width: 80%;
+                min-width: 450px;
+                &#sub_system {
+                    grid-template-columns: repeat(4, 1fr);
+                }
+            }
+        }
+        button.btn-submit {
+            margin-bottom: 0px !important;
+            background: $light-black;
+            * {
+                font-size: 1.25em;
+            }
+        }
+    }
+}

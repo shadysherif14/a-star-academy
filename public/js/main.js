@@ -15,10 +15,6 @@ $(document).ready(function () {
         this.attr('src', url)
 
     }); */
-
-
-
-
 });
 
 // Tooltips Initialization

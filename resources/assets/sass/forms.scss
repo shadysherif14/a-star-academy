@@ -1,14 +1,32 @@
+@import 'variables';
 .md-form {
+    margin: 2rem auto;
     input,
     textarea {
         &:focus:not([readonly]),
-        {
-            border-bottom: 1px solid #222 !important;
-            box-shadow: 0 1px 0 0 #222 !important;
+            {
+            border-bottom: 1px solid $light-black !important;
+            box-shadow: 0 1px 0 0 $light-black !important;
         }
     }
-
     label.active {
-        color: #222 !important;
+        color: $light-black !important;
+    }
+}
+
+.form-group {
+    .form-control {
+        border-radius: 0px;
+        box-shadow: none;
+        &:focus {
+            border-color: $gold;
+        }
+    }
+}
+
+.switch label input[type=checkbox]:checked + .lever {
+    background-color: $gold;
+    &:after {
+        background-color: lighten($gold, 10);
     }
 }
