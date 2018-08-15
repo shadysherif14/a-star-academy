@@ -1,60 +1,62 @@
 @extends('layouts.admin') 
-@section('title', 'Admin Dashboard') 
-@section('content')
 
+@section('title', '| Levels') 
+
+@section('content')
 
 <div class="card">
 
+    <div class="card-header grid">
+        <div> Name </div>
+        <div> Description </div>
+        <div> Image </div>
+        <div>  </div>
+    </div>
+
     <div class="card-body">
+        
+        @foreach ($levels as $level)
+                
+        <div id="level-{{ $level->id }}" level="{{ $level->id }}" class="grid">
+        
+            <div>
+                <p class="link">
+                    <a href="{{ $level->adminPath() }}"> {{ $level->name }} </a>
+                </p>
+            </div>
+        
+            <div>
+                <div>
+                    <p class="content"> Description </p>
+                </div>
+                <p class="text-left"> {!! $level->description !!} </p>
+            </div>
 
-        @if(count($levels))
+            <div>
+                <div>
+                    <p class="content"> Image </p>
+                </div>
+                
+                <img src="{{ $level->image }}" alt="Level">
+            </div>
+        
+            <div class="actions">
+                <a href="{{ $level->adminPath() }}" class="btn show">
+                    <i class="fas fa-eye"></i> <span> Show </span> 
+                </a>
+            </div>
+        </div>
 
-        <table class="table table-fixed" datatable>
-
-            <thead class="elegant-color align-items-center text-white">
-                <tr>
-                    <th scope="col" class="name"> Name </th>
-                    <th scope="col" class="description"> Description </th>
-                    <th scope="col" class="image"> Image </th>
-                    <th scope="col" class="actions"> Actions </th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                @foreach($levels as $level)
-
-                <tr id="level-{{ $level->id }}" level="{{ $level->id }}" class="">
-
-                    <td>
-                        <p> {{ $level->name }} </p>
-                    </td>
-
-                    <td>
-                        <p> {{ $level->description }} </p>
-                    </td>
-
-                    <td> <img src="{{ asset('storage') }}/{{ $level->image }}" alt="Level Image"> </td>
-
-                    <td>
-                        <a href="/admin/levels/{{ $level->slug }}" class="blue"><i class="fas fa-eye"></i> <span> Show </span> </a>
-                        <a href="/admin/levels/{{ $level->slug }}/edit" class="green"><i class="fas fa-pen"></i> <span> Edit </span> </a>
-                        <a class="red delete"><i class="fas fa-trash"></i> <span> Delete </span></a>
-                    </td>
-                </tr>
-
-                @endforeach
-            </tbody>
-
-        </table>
-        @endif
+        @endforeach
+  
     </div>
 </div>
+
 @endsection
  
 @section('scripts')
 @endsection
  
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/levels/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/levels/index.css') }}">
 @endsection

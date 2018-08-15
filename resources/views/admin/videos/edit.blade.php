@@ -1,89 +1,75 @@
 @extends('layouts.admin') 
-@section('title', 'Admin Dashboard') 
+@section('title', '| Videos - Edit') 
 @section('content')
 
 
-<div class="card w-75 mx-auto">
+<form action="{{ route('admin.videos.update', ['video' => $video]) }}" method="post" class="card ajax" enctype="multipart/form-data">
 
-    <div class="card-header elegant-color-dark white-text">
+    @csrf @method('put')
 
-        <h4> <i class="fas fa-list"></i> Edit Level </h4>
+    <div class="card-header">
+
+        <h4> <i class="fas fa-video"></i> Edit Video </h4>
 
     </div>
 
     <div class="card-body">
 
-        <form action="/admin/levels/{{ $level->slug }}" method="post" class="p-3" enctype="multipart/form-data">
+        <div class="md-form">
 
-            @csrf
+            <div class="file-field">
 
-            @method('put')
+                <a class="btn-floating elegant-color-dark mt-0 float-left">
+                    <i class="fas fa-video" aria-hidden="true"></i> <input name="video" type="file">
+                </a>
 
-            <div class="md-form">
-
-                <input type="text" name="name" id="name" class="form-control" value="{{ $level->name }}">
-
-                <label for="name"> Level Name </label>
-
-                <small class="text-danger d-block font-weight-bold"> {{ $errors->first('name') }} </small>
-
-            </div>
-
-            <div class="md-form">
-
-                <textarea type="text" rows="8" name="description" id="description" class="form-control md-textarea">{{ $level->description }}</textarea>
-
-                <label for="description"> Level Description </label>
-
-                <small class="text-danger d-block font-weight-bold"> {{ $errors->first('description') }} </small>
-
-            </div>
-
-
-            <div class="md-form">
-
-                <div class="file-field">
-
-                    <a class="btn-floating elegant-color-dark mt-0 float-left">
-                        <i class="fas fa-image" aria-hidden="true"></i> <input type="file" name="image">
-                    </a>
-
-                    <div class="file-path-wrapper">
-
-                        <input class="file-path validate" type="text" placeholder="Upload an new image">
-                    
-                    </div>
-
+                <div class="file-path-wrapper">
+                    <input class="file-path" type="text" placeholder="Upload a new video">
                 </div>
 
-                <small class="text-danger d-block font-weight-bold"> {{ $errors->first('image') }} </small>
-
             </div>
 
-            <div class="md-form">
+        </div>
 
-                <h2> Current Image </h2>
-                
-                <img src="{{ asset('storage') }}/{{ $level->image }}" alt="Level Image" id="level-img">  
-                
-                <div>
-                    <button class="btn red darken-3"> Remove Image </button>
-                </div>
-            
-            </div>
+        <div class="md-form my-5">
+            <input class="form-control" type="text" name="title" value="{{ $video->title }}">
+            <label for=""> Title </label>
+        </div>
 
-            <button type="submit" class="btn btn-elegant btn-block w-50 mx-auto"> Edit </button>
+        <h3> Free Video? </h3>
+        <div class="switch mb-4">
+            <label>
+                Paid
+                <input type="checkbox" name="free" @if($video->free) checked @endif>
+                <span class="lever"></span>
+                Free
+            </label>
+        </div>
 
-        </form>
+        <h3> Video Changed? </h3>
+        <div class="switch">
+            <label>
+                No
+                <input type="checkbox" name="path_changed">
+                <span class="lever"></span>
+                Yes
+            </label>
+        </div>
 
+        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half my-5">
+            <iframe class="embed-responsive-item" src="{{ $video->path }}" autoplay  allowfullscreen></iframe>
+        </div>
     </div>
 
-</div>
+    <button type="submit" class="btn btn-submit"> <i class="fas fa-pen"></i> Edit </button>
+
+</form>
 @endsection
  
 @section('scripts')
-@endsection
+    <script src="{{ asset('js/videos/edit.js') }}"></script>
+@stop 
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/levels/show.css') }}">
-@endsection
+<link rel="stylesheet" href="{{ asset('css/courses/create.css') }}"> 
+@stop

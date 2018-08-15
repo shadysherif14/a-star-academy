@@ -1,5 +1,4 @@
-@extends('demo')
-
+@extends('layouts.app')
 
 @section('content')
 <span id="mute" class=""><img src="res/mute.png" alt="" style="width:24px;height:24px"></span>

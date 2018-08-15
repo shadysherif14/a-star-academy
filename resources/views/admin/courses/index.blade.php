@@ -1,60 +1,81 @@
 @extends('layouts.admin') 
-@section('title', 'Admin Dashboard') 
+
+@section('title', '| Courses') 
+
 @section('content')
 
 
-<a href="/admin/courses/create" class="btn btn-outline-dark m-0"> <i class="fas fa-graduation-cap"></i> New Course </a>
 <div class="card">
+
+    <div class="card-header grid">
+        <div> Name </div>
+        <div> School </div>
+        <div> System </div>
+        <div> Sub Sytem </div>
+        <div> Level </div>
+        <div> Instructor </div>
+
+    </div>
 
     <div class="card-body">
 
-        <table class="table table-fixed" datatable>
+        @foreach($courses as $course)
 
-            <thead class="elegant-color align-items-center text-white">
-                <tr>
-                    <th scope="col" class="name"> Name </th>
-                    <th scope="col" class="school"> School </th>
-                    <th scope="col" class="system"> System </th>
-                    <th scope="col" class="sub_system"> Sub Sytem </th>
-                    <th scope="col" class="actions" style="width: 300px;"> Actions </th>
-                </tr>
-            </thead>
+        <div id="course-{{ $course->id }}" course="{{ $course->id }}" class="grid">
 
-            <tbody>
+            <div>
+                <p class="link"> 
+                    <a href="{{ $course->adminPath() }}"> {{ $course->name }} </a>
+                </p>
+            </div>
 
-                @foreach($courses as $course)
+            <div>
+                <div>
+                    <p class="content"> School </p>
+                </div>
+                <p> {{ $course->school }} </p>
+            </div>
 
-                <tr id="course-{{ $course->id }}" course="{{ $course->id }}" class="">
+            <div>
+                <div>
+                    <p class="content"> System </p>
+                </div>
+                <p> {!! $course->system !!} </p>
+            </div>
 
-                    <td content="Name">
-                        <p> {{ $course->name }} </p>
-                    </td>
+            <div>
+                <div>
+                    <p class="content"> Sub System </p>
+                </div>
+                <p> {!! $course->sub_system !!} </p>
+            </div>
 
-                    <td content="Shcool">
-                        <p> {{ $course->school }} </p>
-                    </td>
+            <div>
+                <div>
+                    <p class="content"> Level </p>
+                </div>
+                <p> {{ $course->level }} </p>
+            </div>
 
-                    <td content="System">
-                        <p> {{ $course->system }} </p>
-                    </td>
+            <div>
+                <div>
+                    <p class="content"> Instructor </p>
+                </div>
+                <p> {{ $course->instructor }} </p>
+            </div>
 
-                    <td content="Sub System">
-                        <p> {{ $course->sub_system }} </p>
-                    </td>
+            
+            <div class="actions">
+                <a href="{{ $course->adminPath() }}" class="btn show">
+                    <i class="fas fa-eye"></i> <span> Show </span> 
+                </a>
+            </div>
+        </div>
 
-                    <td content="Actions text-white">
-                        <a href="/admin/courses/{{ $course->slug }}" class="btn bttn-fill bttn-xs bttn-primary"><i class="fas fa-eye"></i> <span> Show </span> </a>
-                        <a href="/admin/courses/{{ $course->slug }}/edit" class="btn bttn-fill bttn-xs bttn-success"><i class="fas fa-pen"></i> <span> Edit </span> </a>
-                        <a class="btn bttn-fill bttn-xs bttn-danger delete"><i class="fas fa-trash"></i> <span> Delete </span></a>
-                    </td>
-                </tr>
-
-                @endforeach
-            </tbody>
-
-        </table>
-
+        @endforeach
     </div>
+
+
 </div>
 @endsection
  
@@ -62,5 +83,5 @@
 @endsection
  
 @section('css')
-{{--  <link rel="stylesheet" href="{{ asset('css/courses/index.css') }}">
-  --}}@endsection
+    <link rel="stylesheet" href="{{ asset('css/courses/index.css') }}">
+@endsection

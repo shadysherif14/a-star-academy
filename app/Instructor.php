@@ -9,6 +9,11 @@ class Instructor extends Model
 {
     use Sluggable;
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+        'updated_at' => 'datetime:Y-m-d'
+    ];
+
     public $with = ['courses'];
 
     public function getRouteKeyName()

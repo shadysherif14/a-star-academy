@@ -1,8 +1,21 @@
+// Colors
+$gold: #f3b715;
+$dark-black: #000;
+$light-black: #222;
+$white: #fff;
 
-// Body
-$body-bg: #f5f8fa;
 
-// Typography
-$font-family-sans-serif: "Raleway", sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+$action-btns-radius: 1em;
+$action-btns-padding: 0.5em 1em;
+$btn-show-background: #013243;
+$btn-edit-background: #2574A9;
+$btn-delete-background: #CF000F;
+$header-height: 8vh;
+
+
+// Media Queries
+$xs: 400px;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;

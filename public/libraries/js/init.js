@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    /*
     // Data Picker Initialization
     $('[datepicker]').pickadate();
 
@@ -8,6 +9,6 @@ $(document).ready(function () {
     $(".button-collapse").sideNav();
     // SideNav Scrollbar Initialization
     var sideNavScrollbar = document.querySelector('.custom-scrollbar');
-    Ps.initialize(sideNavScrollbar);
+    Ps.initialize(sideNavScrollbar); */
 
 });

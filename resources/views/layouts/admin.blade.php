@@ -28,8 +28,6 @@
 
         
         <main>
-
-            @include('includes.navbar')
         
             <section class="container my-3">
 

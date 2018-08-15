@@ -1,83 +1,69 @@
 @extends('layouts.admin') 
-@section('title', 'Admin Dashboard') 
+@section('title', '| Videos') 
 @section('content')
 
+<form class="card ajax" action="{{ route('admin.videos.order') }}" method="POST">
 
-<div class="card">
+    @csrf
 
-    <div class="card-body">
+    @method('put')
 
-        <form action="/admin/{{ $course->slug }}/videos" method="post" enctype="multipart/form-data">
+    <div class="card-header grid">
+        <div> Title </div>
+        <div> Free </div>
+        <div> </div>
+        <div> </div>
+    </div>
 
-            @csrf
+    <div class="card-body" id="videos">
 
-            <div class="md-form">
+        @foreach($videos as $video)
 
-                <div class="file-field">
+        <div class="grid" id="video-{{ $video->id }}" video="{{ $video->path }}">
 
-                    <a class="btn-floating elegant-color-dark mt-0 float-left">
-                        <i class="fas fa-video" aria-hidden="true"></i> <input type="file" name="videos[]" multiple>
-                    </a>
-
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" placeholder="Upload a new video">
-                    </div>
-
-                </div>
-
-                <small class="text-danger d-block font-weight-bold"> {{ $errors->first('video') }} </small>
-
+            <div>
+                <input type="hidden" name="videos[{{ $loop->iteration }}][id]" value="{{ $video->id }}">
+                <p class="link modal-trigger">
+                    <a class=""> {{ $video->title }} </a>
+                </p>
             </div>
 
-            <button class="btn btn-dark">
-                <i class="fas fa-upload mr-3"></i> Upload
-            </button>
+            <div class="switch">
+                <label>
+                    Paid
+                    <input type="checkbox" name="videos[{{ $loop->iteration }}][free]" @if($video->free) checked @endif>
+                    <span class="lever"></span>
+                    Free
+                </label>
+            </div>
 
-        </form>
+            <div class="actions">
+                <button type="button" class="btn show modal-trigger">
+                    <i class="fas fa-eye"> Preview </i>
+                </button>
+                <a type="button" class="btn edit" href="{{ route('admin.videos.edit', ['video' => $video]) }}">
+                    <i class="fas fa-pen"> Edit </i>
+                </a>
+                <button type="button" class="btn delete">
+                    <i class="fas fa-trash"> Delete </i>
+                </button>
+            </div>
 
-        <table class="table table-fixed" datatable>
+            <div class="icons">
+                <i class="fas fa-sort handler"></i>
+            </div>
 
-            <thead class="elegant-color align-items-center text-white">
-                <tr>
-                    <th scope="col" class="name"> Name </th>
-                    <th scope="col" class="actions"> Actions </th>
-                </tr>
-            </thead>
+        </div>
 
-            <tbody>
-
-                @foreach($videos as $video)
-
-                <tr id="video-{{ $video->id }}" video="{{ $video->id }}" class="">
-
-                    <td>
-                        <p> {{ $video->title }} </p>
-                    </td>
-
-                    <td>
-                        <button class="btn bttn-fill bttn-xs bttn-primary modal-trigger" video="{{ asset('storage') . '/' . $video->path }}/"> 
-                            <i class="fas fa-eye"></i> <span> Show </span> 
-                        </button>
-
-                        <a href="/admin/videos/{{ $video->id }}/edit" class="btn bttn-fill bttn-xs bttn-success">
-                            <i class="fas fa-pen"></i> <span> Edit </span> 
-                        </a>
-                        
-                        <button class="btn bttn-fill bttn-xs bttn-danger delete">
-                            <i class="fas fa-trash"></i> <span> Delete </span>
-                        </a>
-                    </td>
-                </tr>
-
-                @endforeach
-            </tbody>
-
-        </table>
+        @endforeach
 
     </div>
 
-</div>
+    <button class="btn btn-submit" type="submit">
+        <i class="fas fa-pen"> Update </i>
+    </button>
 
+</form>
 
 <div class="modal fade" id="video-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
@@ -97,13 +83,12 @@
 
     </div>
 </div>
-    
 @endsection
  
 @section('scripts')
     <script src="{{ asset('js/videos/index.js') }}"></script>
 @endsection
  
-@section('css') {{--
-<link rel="stylesheet" href="{{ asset('css/courses/index.css') }}"> --}}
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/videos/index.css') }}">
 @endsection

@@ -1,58 +1,168 @@
-.card-body {
-  padding: 0px;
+.card div.card-header {
+  height: 8vh;
+  background: #222;
 }
 
-table {
-  min-width: 100%;
-  margin-bottom: 0px !important;
+@media screen and (max-width: 992px) {
+  .card div.card-header {
+    display: none !important;
+  }
 }
 
-table tr {
-  padding: 0.5rem 0px;
+.card div.card-header * {
+  font-size: 1.25em;
 }
 
-table tr th.name {
-  width: 150px;
-}
-
-table tr th.description {
-  width: 600px;
-}
-
-table tr th.image {
-  width: 200px;
-}
-
-table tr th.actions {
-  width: 120px;
-}
-
-table tr td img {
-  width: 100px;
-  height: auto;
-  display: block;
-  margin: auto;
-}
-
-table tr td a {
+.card div.grid {
   display: grid;
-  grid-template-columns: 20px auto;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 90%;
-  border-radius: 1px;
-  padding: 0.5rem 0.7rem;
-  margin: 0px auto 1rem !important;
-  justify-items: center;
+  grid-template-columns: 1fr 4fr 2fr 1fr;
+  text-align: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
 }
 
-table tr td a * {
-  color: white;
-  font-size: 10px;
+@media screen and (max-width: 992px) {
+  .card div.grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-table tr td a span {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+.card div.card-body {
+  padding: 0px;
+  max-height: calc(95vh - 8vh);
+  overflow-y: scroll;
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+  .card div.card-body {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+.card div.card-body::-webkit-scrollbar {
+  display: none;
+}
+
+.card div.card-body div.grid {
+  padding: 1em 0.5em;
+}
+
+.card div.card-body div.grid * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.card div.card-body div.grid:nth-child(even) {
+  background: #ededed;
+}
+
+.card div.card-body div.grid p.content {
+  display: none;
+}
+
+.card div.card-body div.grid p a {
+  color: #212529;
+}
+
+@media screen and (max-width: 992px) {
+  .card div.card-body div.grid p a {
+    color: #fff;
+  }
+}
+
+.card div.card-body div.grid img {
+  max-width: 100%;
+  width: 200px;
+  height: auto;
+}
+
+@media screen and (max-width: 992px) {
+  .card div.card-body div.grid {
+    padding: 0px;
+  }
+
+  .card div.card-body div.grid > div:first-child {
+    background: #222;
+    color: #fff;
+    font-size: 1.5em;
+    display: block !important;
+  }
+
+  .card div.card-body div.grid > div:not(:first-child),
+  .card div.card-body div.grid > div:not(:last-child) {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: start;
+    justify-items: stretch;
+    text-align: start;
+  }
+
+  .card div.card-body div.grid > div:not(:first-child) *,
+  .card div.card-body div.grid > div:not(:last-child) * {
+    padding: 0.5em;
+  }
+
+  .card div.card-body div.grid > div:not(:first-child) div p.content,
+  .card div.card-body div.grid > div:not(:last-child) div p.content {
+    display: block;
+    font-size: 1.2em;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .card div.card-body div.grid div.actions {
+    display: none;
+  }
+}
+
+.card div.card-body div.grid div.actions button.btn,
+.card div.card-body div.grid div.actions a.btn {
+  margin: 0px auto !important;
+  padding: 0.5em 1em;
+  background: transparent;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+}
+
+.card div.card-body div.grid div.actions button.btn.show,
+.card div.card-body div.grid div.actions a.btn.show {
+  color: #013243;
+  border: 1px solid #013243;
+}
+
+.card div.card-body div.grid div.actions button.btn.show:hover,
+.card div.card-body div.grid div.actions a.btn.show:hover {
+  background: #013243;
+  color: #fff;
+}
+
+.card div.card-body div.grid div.actions button.btn.edit,
+.card div.card-body div.grid div.actions a.btn.edit {
+  color: #2574A9;
+  border: 1px solid #2574A9;
+}
+
+.card div.card-body div.grid div.actions button.btn.edit:hover,
+.card div.card-body div.grid div.actions a.btn.edit:hover {
+  background: #2574A9;
+  color: #fff;
+}
+
+.card div.card-body div.grid div.actions button.btn.delete,
+.card div.card-body div.grid div.actions a.btn.delete {
+  color: #CF000F;
+  border: 1px solid #CF000F;
+}
+
+.card div.card-body div.grid div.actions button.btn.delete:hover,
+.card div.card-body div.grid div.actions a.btn.delete:hover {
+  background: #CF000F;
+  color: #fff;
 }
 

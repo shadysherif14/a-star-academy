@@ -10,6 +10,11 @@ class Course extends Model
 
     use Sluggable;
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+        'updated_at' => 'datetime:Y-m-d'
+    ];
+
     public function getRouteKeyName()
     {
         return 'slug';
@@ -34,6 +39,38 @@ class Course extends Model
     {
         return $this->hasMany(Question::class);
     }
+
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
+
+    public function adminPath()
+    {
+        return "/admin{$this->path()}";
+    }
+
+    public function path()
+    {
+        return "/courses/{$this->slug}";
+    }
+
+    
+    public function getImageAttribute($value)
+    {
+        return asset("storage/{$value}");
+    }
+
+    public function getSystemAttribute($value)
+    {
+        return $value ?? '<i class="fas fa-minus"></i>';
+    }
+
+    public function getSubSystemAttribute($value)
+    {
+        return $value ?? '<i class="fas fa-minus"></i>';
+    }
+
 
     /**
      * Get all of the course's comments.

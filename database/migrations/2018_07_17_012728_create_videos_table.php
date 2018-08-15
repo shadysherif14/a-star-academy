@@ -20,7 +20,15 @@ class CreateVideosTable extends Migration
             $table->unsignedInteger('course_id');
             
             $table->string('path');
-                        
+
+            $table->string('title');
+
+            $table->string('slug');
+
+            $table->boolean('free')->default(false);
+
+            $table->unsignedInteger('order');
+    
             $table->timestamps();
         });
     }

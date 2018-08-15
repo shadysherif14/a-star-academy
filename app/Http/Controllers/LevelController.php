@@ -27,7 +27,9 @@ class LevelController extends Controller
 
     public function create()
     {
-        return view('admin.levels.create');
+        $level = new Level();
+
+        return view('admin.levels.create', compact('level'));
     }
 
     public function store(LevelRequest $request)
