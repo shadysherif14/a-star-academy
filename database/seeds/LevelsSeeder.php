@@ -13,7 +13,7 @@ class LevelsSeeder extends Seeder
     public function run()
     {
         
-        $levels = ['7th Grade', '8th Grade', '9th Grade', '10th Grade', '11th Grade', '12th Grade'];
+        $levels = ['8th Grade', '9th Grade', 'SAT', 'IG'];
 
         foreach($levels as $level) {
 

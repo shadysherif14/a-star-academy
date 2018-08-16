@@ -18,6 +18,15 @@ class Video extends Model
         'free' => 'boolean',
     ];
 
+    public function duration(){
+        $duration = json_decode($this->duration);
+        $h = $duration->hour ? $duration->hour . 'h ' : '';
+        $m = $duration->min ? $duration->min . 'm ' : '';
+        $s = $duration->sec ? $duration->sec . 's' : '';
+
+        $str = join('',[$h,$m,$s]);
+        return $str;
+    }
     public function course()
     {
         return $this->belongsTo(Course::class);

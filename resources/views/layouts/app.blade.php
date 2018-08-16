@@ -22,8 +22,8 @@
 
     <body>
             
-        @include('includes.navbar')
-
+        {{-- @include('includes.navbar')
+ --}}
         @yield('content')
 
         @include('includes.scripts')

@@ -20,7 +20,7 @@ h5,
 h6,
 button.btn {
     font-family: 'Ubuntu Condensed', sans-serif;
-    font-style: italic;
+    
 }
 
 .hidden {
@@ -53,21 +53,28 @@ img:not('#navbar-brand') {
 
     border-top-color: #222;
 }
-
+.wrapper{
+  height: 100vh
+}
 .upper, .lower{
     background-position: center;
     background-repeat: no-repeat;
-    height: 50vh;
+    /*height: 50vh;*/
     cursor: pointer;
-    transition: all 0.5s ease-in-out;
+    position: fixed;
+
 }
 .upper{
     background-color: #d2ba36;
     background-image: url('../res/black.svg');
+    top: 0;
+    bottom: 50%
 }
 .lower{
     background-color: #222;
     background-image: url('../res/gold.svg');
+    top: 50%;
+    bottom: 0;
 }
 .guide{
     z-index: 999;
@@ -77,7 +84,33 @@ img:not('#navbar-brand') {
 
 }
 
+.holder1{
+  width: 80vw;
+  top: 65%;
+  position: absolute;
+  left: 10vw;
+}
+.holder2{
+  width: 80vw;
+  top: 65%;
+  position: absolute;
+  left: 10vw;
+}
 
+.americanCloseBtn,
+.igCloseBtn{
+    
+    position: fixed;
+    top: 2vh;
+    right: 2vw;
+    padding: 0.25em;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    opacity: .7;
+}
+.americanCloseBtn{color: #d2ba36;}
+.igCloseBtn{color: #222;}
 
 #mute{
     position: absolute;
@@ -313,10 +346,12 @@ img:not('#navbar-brand') {
       transform: translate(-48%, -50%);
     }
   }
+  
 .btn-gold{
     border: 1px solid #d2ba36!important;
     color: #d2ba36!important;
     background-color: transparent!important;
+    font-style: unset!important;
 }
 
 .btn-gold:not([disabled]):not(.disabled).active, 
@@ -324,4 +359,64 @@ img:not('#navbar-brand') {
 .show>.btn-gold.dropdown-toggle{
     background-color: #d2ba36!important;
     color: #222!important
+}
+
+.btn-black{
+    border: 1px solid #222!important;
+    color: #222!important;
+    background-color: transparent!important;
+    font-style: unset!important;
+}
+
+.btn-black:not([disabled]):not(.disabled).active, 
+.btn-black:not([disabled]):not(.disabled):active, 
+.show>.btn-black.dropdown-toggle{
+    background-color: #222!important;
+    color: #d2ba36!important
+}
+
+
+
+.upper.slideUp {
+  transform: translateY(-200%);
+  transition: all 2s ease-in-out
+}
+.lower.slideDown {
+  transform: translateY(200%);
+  transition: all 2s ease-in-out
+}
+
+
+/****************************************************/
+.fab{
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 999;
+}
+.fab:hover .config{
+  display: block;
+}
+.config{
+    display: none;
+    width: 55vw;
+    height: 70vh;
+    border-radius: 90% 0 0;
+    background-color: #fff;
+    color: #222;
+    position: fixed;
+    bottom: -140px;
+    right: -150px;
+    z-index: 999;
+}
+
+@media screen and (max-width: 600px){
+  .btn-group{
+    display: inline-block!important;
+  }
+  .btn-group label{
+    padding: 0.5em;
+    width: 70%;
+    margin: 0.5em!important
+  }
 }

@@ -29,7 +29,7 @@ class CreateCoursesTable extends Migration
             
             $table->string('image')->default('images/defaults/course.png');
             
-            $table->enum('school', ['IGCSE', 'American Diploma']);
+            $table->enum('school', ['Pre-IGCSE','IGCSE', 'SAT']);
             
             $table->enum('system', ['Cambridge', 'Edexcel'])->nullable();
             

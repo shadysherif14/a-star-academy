@@ -37,7 +37,7 @@ function initTooltip() {
     $('[data-toggle="tooltip"]').tooltip('show');
 
     // Play Audio #1
-    document.getElementById('audio-player').play();
+    //document.getElementById('audio-player').play();
 
     // Play Audio #2 after Audio #1 ends
     $("#audio-player").on('ended',function(){
@@ -52,11 +52,87 @@ function initTooltip() {
 /*************************************************/
 /*************************************************/
 /*************************************************/
-function chooseSchool(e){
 
-    let school = e.id;
-    window.location.replace("/school/"+school);
-}
+$('.upper').on('click', function(e) {
+
+    if (e.target !== this)
+    return;
+    
+    $(this).animate({
+        bottom: '0',
+        top: '-50%'
+    },750)
+
+    $('.lower').animate({
+        top: '100%',
+    },750)
+
+    $('.holder1').show();
+    $('.igCloseBtn').show(); 
+
+
+})
+
+
+
+$('.lower').on('click', function(e) {
+
+    if (e.target !== this)
+    return;
+  
+    $(this).animate({
+        top: '-50%',
+    },750)
+
+    $('.upper').animate({
+        bottom: '100%',
+    },750)
+
+    $('.holder2').show();
+    $('.americanCloseBtn').show();
+
+
+})
+
+
+
+$('.igCloseBtn').click(function(){
+
+    $('.holder1').hide();
+    $('.igCloseBtn').hide();
+
+    
+
+    $('.upper').animate({
+        bottom: '50%',
+        top: '0'
+    },750)
+
+    $('.lower').animate({
+        top: '50%',
+    },750)
+
+
+});
+
+
+$('.americanCloseBtn').click(function(){
+
+    $('.holder2').hide();
+    $('.americanCloseBtn').hide();
+    
+    $('.upper').animate({
+        bottom: '50%',
+    },750)
+
+    $('.lower').animate({
+        top: '50%',
+    },750)
+
+   
+});
+
+
 
 /*************************************************/
 /*************************************************/
@@ -82,4 +158,41 @@ $('#mute').click(function (){
         $('#mute img').attr('src','res/unmuted.png');
 
     }
+})
+
+$('#signupBtn').click(function(){
+    window.location.assign("/signup")
+})
+
+
+$('#loginBtn').click(function(){
+    console.log('test')
+    window.location.assign("/login")
+})
+
+$('#igSubmitBtn').click(function(){
+    if($("input:radio[name='grade']").is(":checked")) {
+        
+        $('#igForm').submit();
+        return;
+    }
+    else{
+        alert('Please select grade first');
+       
+    }
+    
+})
+$('#americanSubmitbtn').click(function(){
+    event.preventDefault();
+    if($("input:radio[name='course']").is(":checked")) {
+        let course = $("input:radio[name='course']:checked").val();
+        $('#satForm').attr('action',`/sat/courses/${course}`);
+        $('#satForm').submit();
+        return;
+    }
+    else{
+        alert('Please select course first');
+        
+    }
+    
 })

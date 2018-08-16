@@ -22,8 +22,15 @@ class CreateVideosTable extends Migration
             $table->string('path');
 
             $table->string('title');
+            
+            $table->string('description');
 
             $table->string('slug');
+            
+            // store json string as
+            // {hours:1, minuts:1, seconds:1}
+            $table->string('duration');
+
 
             $table->boolean('free')->default(false);
 
