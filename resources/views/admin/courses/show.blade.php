@@ -17,7 +17,7 @@
     <div class="card-body">
 
         <div>
-            <a href="/admin/{{ $course->slug }}/videos" class="btn btn-outline-elegant"> Show sessions </a>
+            <a href="{{ route('admin.videos.index', ['courses' => $course]) }}" class="btn btn-outline-elegant"> Show sessions </a>
         </div>
         <div>
             <h2> Course Name </h2>
@@ -49,9 +49,7 @@
 </div>
 @endsection
  
-@section('scripts')
-@endsection
  
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/courses/create.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/shared/cru.css') }}">
 @endsection

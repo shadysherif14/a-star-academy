@@ -16,7 +16,8 @@
 
         @include('includes.stylesheets')
         
-        <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/admin/app.css') }}">
+        
 
         @yield('css')
         

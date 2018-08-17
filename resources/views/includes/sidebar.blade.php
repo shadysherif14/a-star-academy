@@ -23,11 +23,11 @@
                     <div class="collapsible-body">
                         <ul>
                             <li>
-                                <a href="/admin/levels" class="waves-effect">
+                                <a href="/levels" class="waves-effect">
                                     <i class="fas fa-list-alt"></i> All Levels 
                                 </a>
 
-                                <a href="/admin/levels/create" class="waves-effect">
+                                <a href="/levels/create" class="waves-effect">
                                     <i class="fas fa-plus"></i> Add Level 
                                 </a>
                             </li>
@@ -46,11 +46,11 @@
                     <div class="collapsible-body">
                         <ul>
                             <li>
-                                <a href="/admin/courses" class="waves-effect">
+                                <a href="/courses" class="waves-effect">
                                     <i class="fas fa-list-alt"></i> All Course 
                                 </a>
 
-                                <a href="/admin/courses/create" class="waves-effect">
+                                <a href="/courses/create" class="waves-effect">
                                     <i class="fas fa-plus"></i> Add Course 
                                 </a>
                             </li>

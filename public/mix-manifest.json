@@ -1,21 +1,9 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/forms.css": "/css/forms.css",
-    "/css/sidebar.css": "/css/sidebar.css",
-    "/css/courses/show.css": "/css/courses/show.css",
-    "/css/courses/index.css": "/css/courses/index.css",
-    "/css/courses/create.css": "/css/courses/create.css",
-    "/css/levels/show.css": "/css/levels/show.css",
-    "/css/levels/index.css": "/css/levels/index.css",
-    "/css/levels/create.css": "/css/levels/create.css",
-    "/css/instructors/show.css": "/css/instructors/show.css",
-    "/css/instructors/index.css": "/css/instructors/index.css",
-    "/css/instructors/create.css": "/css/instructors/create.css",
-    "/css/videos/show.css": "/css/videos/show.css",
-    "/css/videos/index.css": "/css/videos/index.css",
-    "/css/videos/create.css": "/css/videos/create.css",
-    "/css/quizzes/show.css": "/css/quizzes/show.css",
-    "/css/quizzes/index.css": "/css/quizzes/index.css",
-    "/css/quizzes/create.css": "/css/quizzes/create.css"
+    "/css/admin/app.css": "/css/admin/app.css",
+    "/css/admin/shared/cru.css": "/css/admin/shared/cru.css",
+    "/css/admin/courses/index.css": "/css/admin/courses/index.css",
+    "/css/admin/levels/index.css": "/css/admin/levels/index.css",
+    "/css/admin/quizzes/index.css": "/css/admin/quizzes/index.css",
+    "/css/admin/videos/index.css": "/css/admin/videos/index.css",
+    "/css/admin/videos/create.css": "/css/admin/videos/create.css"
 }

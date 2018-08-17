@@ -102,11 +102,11 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/quizzes/index.js') }}"></script>
+    <script src="{{ asset('js/admin/quizzes/index.js') }}"></script>
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/quizzes/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/quizzes/index.css') }}">
 @endsection
 
 

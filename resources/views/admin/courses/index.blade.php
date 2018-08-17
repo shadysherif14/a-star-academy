@@ -40,7 +40,7 @@
 
             <div>
                 <p class="link">
-                    <a href="{{ $course->adminPath() }}"> {{ $course->name }} </a>
+                    <a href="{{ route('admin.courses.show', ['courses' => $course]) }}"> {{ $course->name }} </a>
                 </p>
             </div>
 
@@ -161,9 +161,10 @@
 @endsection
  
 @section('scripts')
-    <script src="{{ asset('js/courses/index.js') }}"></script>
+    <script src="{{ asset('js/admin/courses/index.js') }}"></script>
 @endsection
  
+
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/courses/index.css') }}">
-@endsection
+    <link rel="stylesheet" href="{{ asset('css/admin/courses/index.css') }}"> 
+@stop

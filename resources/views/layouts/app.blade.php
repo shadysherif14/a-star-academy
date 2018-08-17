@@ -16,6 +16,8 @@
 
         @include('includes.stylesheets')
 
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
         @yield('css')
         
     </head>

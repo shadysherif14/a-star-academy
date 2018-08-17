@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Course;
+use App\Filters\CoursesFilter;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CourseRequest;
+use App\Instructor;
 use App\Level;
 use Illuminate\Http\Request;
-use App\Filters\CoursesFilter;
-use App\Http\Requests\CourseRequest;
-use App\Http\Controllers\Controller;
 
 class CourseController extends Controller
 {
@@ -23,26 +24,20 @@ class CourseController extends Controller
 
     public function index(CoursesFilter $filters)
     {
-        // Get the current subdomain
-        $subdomain = \Route::current()->parameter('subdomain');
-
-        
 
         $query = Course::join('levels', 'levels.id', 'courses.level_id')
 
-        ->join('instructors', 'instructors.id', 'courses.instructor_id')
+            ->join('instructors', 'instructors.id', 'courses.instructor_id')
 
-        ->select('levels.name as level', 'courses.*', 'instructors.name as instructor');
+            ->select('levels.name as level', 'courses.*', 'instructors.name as instructor');
 
         $courses = $query->filter($filters)->get();
-        $levels = Level::all();
 
-        if ($subdomain === 'admin') {
-            return view('admin.courses.index', compact('courses','levels'));
-        }
+        $instructors = Instructor::select('id', 'name')->get();
 
-       return redirect()->back();
+        $levels = Level::select('id', 'name')->get();
 
+        return view('admin.courses.index', compact('courses', 'levels', 'instructors'));
     }
 
     public function create()
@@ -54,9 +49,11 @@ class CourseController extends Controller
 
         $subSystems = $this->subSystems;
 
+        $levels = Level::select('id', 'name')->get();
+
         $course = new Course;
-        
-        return view('admin.courses.create', compact('schools', 'systems', 'subSystems', 'course'));
+
+        return view('admin.courses.create', compact('schools', 'systems', 'subSystems', 'course', 'levels'));
     }
 
     public function store(CourseRequest $request)
@@ -66,35 +63,14 @@ class CourseController extends Controller
 
         $course = new Course();
 
-        $course = $this->saveOrUpdate($request, $course);
-
-        if ($request->ajax()) {
-
-            return response()->json([
-
-                'status' => true,
-
-                'redirect' => '/admin/courses/' . $course->slug,
-            ]);
-        }
-
-        return redirect('admin/courses');
-
+        return $this->saveOrUpdate($request, $course);
     }
-
 
     public function show(Course $course)
     {
-        $subdomain = \Route::current()->parameter('subdomain');
-        if ($subdomain === 'admin') {
 
-            return view('admin.courses.show', compact('course'));
-        }
-
-        return redirect()->back();
-
+        return view('admin.courses.show', compact('course'));
     }
-
 
     public function edit(Course $course)
     {
@@ -105,7 +81,9 @@ class CourseController extends Controller
 
         $subSystems = $this->subSystems;
 
-        return view('admin.courses.edit', compact('course', 'schools', 'systems', 'subSystems'));
+        $levels = Level::select('id', 'name')->get();
+
+        return view('admin.courses.edit', compact('course', 'schools', 'systems', 'subSystems', 'levels'));
     }
 
     public function update(CourseRequest $request, Course $course)
@@ -113,19 +91,8 @@ class CourseController extends Controller
 
         $request->validated();
 
-        $course = $this->saveOrUpdate($request, $course);
+        return $this->saveOrUpdate($request, $course);
 
-        if ($request->ajax()) {
-
-            return response()->json([
-
-                'status' => true,
-
-                'course' => $course,
-            ]);
-        }
-
-        return redirect('/admin/courses');
     }
     public function destroy(Course $course)
     {
@@ -150,7 +117,7 @@ class CourseController extends Controller
             $course->sub_system = $request->sub_system;
 
             $course->system = $request->system;
-        
+
         } else {
 
             $course->sub_system = null;
@@ -168,6 +135,12 @@ class CourseController extends Controller
 
         $course->save();
 
-        return $course;
+        return response()->json([
+
+            'status' => true,
+
+            'redirect' => route('admin.courses.show', ['course' => $course]),
+        ]);
+
     }
 }

@@ -45,25 +45,18 @@
 
         <div id="videos"></div>
         
-
     </div>
 
     <button type="submit" class="btn btn-submit"> <i class="fas fa-upload"></i> Upload </button>
 
 </form>
 </div>
-
-
-
-
-
 @stop 
+
 @section('scripts')
-<script src="{{ asset('js/videos/create.js') }}"></script>
-
-
-
+    <script src="{{ asset('js/admin/videos/create.js') }}"></script>
 @stop 
+
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/videos/create.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/admin/videos/create.css') }}"> 
 @stop

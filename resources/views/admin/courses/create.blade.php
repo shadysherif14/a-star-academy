@@ -27,10 +27,10 @@
         let course = @json($course);
     </script>
 
-    <script src="{{ asset('js/courses/create-edit.js') }}"></script>
-    <script src="{{ asset('js/levels-courses/create-edit.js') }}"></script>    
+    <script src="{{ asset('js/admin/courses/create-edit.js') }}"></script>
+    <script src="{{ asset('js/admin/levels-courses/create-edit.js') }}"></script>    
 @stop 
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/courses/create.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/admin/shared/cru.css') }}"> 
 @stop

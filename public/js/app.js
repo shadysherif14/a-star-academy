@@ -47398,85 +47398,85 @@ if (false) {
 /* 43 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\app.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 44 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\forms.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 45 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\sidebar.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 46 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\courses\\show.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 47 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\courses\\index.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 48 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\courses\\create.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 49 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\levels\\show.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 50 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\levels\\index.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 51 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\levels\\create.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 52 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\instructors\\show.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 53 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\instructors\\index.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 54 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\instructors\\create.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 55 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\videos\\show.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 56 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\videos\\index.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 57 */
@@ -47488,19 +47488,19 @@ if (false) {
 /* 58 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\quizzes\\show.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 59 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\quizzes\\index.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 /* 60 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\astaracademy\\resources\\assets\\sass\\quizzes\\create.scss'\n    at runLoaders (C:\\laragon\\www\\astaracademy\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\laragon\\www\\astaracademy\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at C:\\laragon\\www\\astaracademy\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:70:14\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ })
 /******/ ]);

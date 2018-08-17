@@ -24,9 +24,9 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/levels-courses/create-edit.js') }}"></script>    
+    <script src="{{ asset('js/admin/levels-courses/create-edit.js') }}"></script>    
 @stop 
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/courses/create.css') }}"> 
-@stop
+    <link rel="stylesheet" href="{{ asset('css/admin/shared/cru.css') }}">
+@endsection

@@ -26,9 +26,6 @@
 </div>
 @endsection
  
-@section('scripts')
-@endsection
-
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/courses/create.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/shared/cru.css') }}">
 @endsection

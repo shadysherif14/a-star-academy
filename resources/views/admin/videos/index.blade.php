@@ -123,9 +123,9 @@
 @endsection
  
 @section('scripts')
-    <script src="{{ asset('js/videos/index.js') }}"></script>
+    <script src="{{ asset('js/admin/videos/index.js') }}"></script>
 @endsection
  
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/videos/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/videos/index.css') }}">
 @endsection

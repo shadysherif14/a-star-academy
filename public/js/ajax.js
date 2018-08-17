@@ -90,9 +90,7 @@ const submitFileForm = function (form, successCallback, errorCallback) {
         method = 'POST'
     }
 
-    for (var pair of data.entries()) {
-        console.log(pair[0] + ', ' + pair[1]);
-    }
+    
     $.ajax({
         type: method,
         url: action,

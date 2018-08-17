@@ -79,9 +79,6 @@
 
 @endsection
  
-@section('scripts')
-@endsection
- 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/levels/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/levels/index.css') }}">
 @endsection

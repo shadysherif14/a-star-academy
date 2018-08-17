@@ -1,0 +1,56 @@
+@import "../../variables";
+
+@import "../mixins/index";
+
+@import "../mixins/create";
+
+$gtc: 3fr 2fr 0.5fr;
+
+@include index($gtc);
+
+@include create;
+
+#videos {
+    .card-header {
+        @media screen and (max-width: $lg) {
+            display: grid !important;
+        }
+    }
+    div.grid {
+        padding: 0.5em;
+        @media screen and (max-width: $lg) {
+            grid-template-columns: $gtc !important;
+        }
+        align-items: center !important;
+        @media screen and (max-width: $lg) {
+            > div {
+                display: block !important;
+            }
+        }
+        .icons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 0.5em;
+            i { font-size: 1.5em; }
+            .handler {
+                cursor: move;
+                color: $btn-edit-background;
+            }
+            .delete {
+                cursor: pointer;
+                color: $btn-delete-background;
+            }
+            .fa-times {
+                color: $btn-delete-background;
+            }
+            .fa-check {
+                color: $btn-check;
+            }
+        }
+    }
+    
+    .active {
+        background: $gold;
+        opacity: 0.5;
+    }
+}

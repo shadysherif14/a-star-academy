@@ -67,9 +67,9 @@
 @endsection
  
 @section('scripts')
-    <script src="{{ asset('js/videos/edit.js') }}"></script>
+    <script src="{{ asset('js/admin/videos/edit.js') }}"></script>
 @stop 
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/courses/create.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/admin/shared/cru.css') }}"> 
 @stop
