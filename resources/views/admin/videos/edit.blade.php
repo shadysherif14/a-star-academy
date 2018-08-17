@@ -5,7 +5,7 @@
 
 <form action="{{ route('admin.videos.update', ['video' => $video]) }}" method="post" class="card ajax" enctype="multipart/form-data">
 
-    @csrf @method('put')
+    @csrf
 
     <div class="card-header">
 
@@ -71,5 +71,5 @@
 @stop 
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/courses/create.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/courses/create.css') }}"> 
 @stop

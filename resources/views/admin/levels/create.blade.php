@@ -22,7 +22,7 @@
 </form>
 @endsection
 @section('scripts')
-    <script src="{{ asset('js/courses/create.js') }}"></script>
+    <script src="{{ asset('js/levels-courses/create-edit.js') }}"></script>
 @stop 
 
 @section('css')

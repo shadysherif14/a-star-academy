@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model
 {
@@ -27,16 +27,32 @@ class Video extends Model
         $str = join('',[$h,$m,$s]);
         return $str;
     }
+    public static function boot()
+    {
+
+        parent::boot();
+
+        static::deleting(function ($video) {
+            $video->questions->each->delete();
+        });
+
+    }
+
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
     }
 
     public function getRouteKeyName()
     {
         return 'slug';
     }
-    
+
     public function adminPath()
     {
         return "/admin{$this->path()}";
@@ -53,7 +69,7 @@ class Video extends Model
 
             ->where('course_id', $courseID)
 
-            ->orderBy('order', 'desc')
+            ->latest('order')
 
             ->first();
 
@@ -66,8 +82,8 @@ class Video extends Model
     }
 
     public static function videos($courseID)
-    {  
-       return self::where('course_id', $courseID)->oldest('order')->get();
+    {
+        return self::where('course_id', $courseID)->oldest('order')->get();
     }
     /**
      * Get all of the course's comments.
@@ -81,8 +97,8 @@ class Video extends Model
     {
         return [
             'slug' => [
-                'source' => 'title'
-            ]
+                'source' => 'title',
+            ],
         ];
     }
 }

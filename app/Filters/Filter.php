@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 abstract class Filter
 {
-    
+
     protected $query;
 
     public function apply($query)
@@ -14,19 +14,20 @@ abstract class Filter
         $this->query = $query;
 
         foreach (request()->only($this->filters) as $filter => $value) {
-            
-            if($this->exists($filter)) {
 
-                trim($value) ? $this->$filter($value) : $this->$filter();
+            if ($this->valid($filter)) {
+
+                trim($value) ? $this->$filter($value) : $this->filter();
+            
             }
         }
 
         return $query;
     }
 
-    public function exists($filter)
+    protected function valid($filter)
     {
-        return in_array($filter, $this->filters) && method_exists($this, $filter);
+        return in_array($filter, $this->filters) && method_exists($this, $filter) && request()->filled($filter);
     }
 }
 

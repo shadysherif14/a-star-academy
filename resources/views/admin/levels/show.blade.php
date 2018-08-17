@@ -30,5 +30,5 @@
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/levels/create.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/courses/create.css') }}">
 @endsection

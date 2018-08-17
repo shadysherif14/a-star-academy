@@ -1,0 +1,73 @@
+@import "../variables";
+@import "../mixins/index";
+@import "../mixins/create";
+$gtc: 4fr 2fr 2fr 1fr;
+@include index($gtc);
+button.btn-submit {
+    margin-bottom: 0px !important;
+    background: $light-black;
+    * {
+        font-size: 1.25em;
+    }
+}
+
+#modal {
+    .modal-header {
+        background: $light-black;
+        color: $white;
+        &.form-group {
+            padding: 0px;
+            .form-control {
+                background: $light-black;
+                color: $white;
+                border: 0px;
+                padding: 1em;
+                &::placeholder {
+                    color: $white;
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+    .modal-body {
+        .answers {
+            .form-group {
+                display: grid;
+                grid-template-columns: 7fr 1fr;
+                grid-gap: 1em;
+                align-items: center;
+                .icons {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    justify-items: center;
+                    grid-gap: 1em;
+                    i {
+                        cursor: pointer;
+                        font-size: 1.5em;
+                        &.fa-minus {
+                            color: $btn-delete-background;
+                        }
+                        &.fa-plus {
+                            color: $btn-edit-background;
+                            &.invisible {
+                                visibility: hidden;
+                                cursor: default;
+                            }
+                        }
+                        &.fa-check {
+                            color: $btn-check;
+                        }
+                    }
+                }
+            }
+        }
+        .correct {
+            background: $btn-check;
+            color: $white;
+        }
+    }
+}
+
+.handler {
+    cursor: move;
+}

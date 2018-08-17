@@ -9,14 +9,19 @@ Route::group(array('middleware' => 'auth', 'namespace' => 'Admin', 'domain' => '
 
     Route::view('/', 'homepage.admin');
 
-    Route::resource('/levels', 'LevelController');
-
-    Route::resource('/courses', 'CourseController');
-
+    Route::post('/levels/{level}', 'LevelController@update')->name('levels.update');
+    Route::post('/courses/{course}', 'CourseController@update')->name('courses.update');
+    Route::post('/videos/{video}', 'VideoController@update')->name('videos.update');
+    
     Route::put('/order/videos', 'VideoController@order')->name('videos.order');
+    Route::put('/order/quizzes', 'QuestionController@order')->name('quizzes.order');
+    
+    Route::resource('/levels', 'LevelController')->except('update');
+    Route::resource('/courses', 'CourseController')->except('update');
     Route::resource('/{course}/videos', 'VideoController')->only(['index', 'store', 'create']);
-    Route::resource('/videos', 'VideoController')->only(['edit', 'update', 'destroy']);
-
+    Route::resource('/videos', 'VideoController')->only(['edit', 'destroy']);
+    Route::resource('/{video}/quizzes', 'QuestionController')->only(['index', 'store', 'create']);
+    Route::resource('/quizzes', 'QuestionController')->only(['show', 'update', 'destroy']);
     Route::resource('/instructors', 'InstructorController');
 });
 /*
@@ -53,3 +58,4 @@ Route::group(array('namespace' => 'User'), function() {
 
 Auth::routes();
 
+Route::view('/test', 'file');

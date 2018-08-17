@@ -1,10 +1,12 @@
 @extends('layouts.admin') 
-@section('title', 'Admin Dashboard') 
+
+@section('title', ' | Courses') 
+
 @section('content')
 
 @include('includes.errors')
 
-<div class="card w-75 mx-auto">
+<div class="card r-crud">
 
     <div class="card-header">
 
@@ -31,7 +33,7 @@
             <h2> School System </h2>
             <p> {{ $course->school }} </p>
             @if($course->school === 'IGCSE')
-            <p> {{ $course->sytem }} </p>
+            <p> {{ $course->system }} </p>
             <p> {{ $course->sub_system }} </p>
             @endif
 

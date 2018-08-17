@@ -6,31 +6,6 @@ function CSRFToken() {
     });
 }
 
-(function ($) {
-    $.fn.serializeFormJSON = function () {
-
-        var o = {};
-        var a = this.serializeArray();
-        $.each(a, function () {
-            if (o[this.name]) {
-                if (!o[this.name].push) {
-                    o[this.name] = [o[this.name]];
-                }
-                o[this.name].push(this.value || '');
-            } else {
-                o[this.name] = this.value || '';
-            }
-        });
-        if (o.hasOwnProperty('_token')) {
-            let token = o['_token'];
-            if (Array.isArray(token)) {
-                o['_token'] = token[0];
-            }
-        }
-        return o;
-    };
-})(jQuery);
-
 function displayErrors(errors) {
 
     for (const error in errors) {
@@ -61,7 +36,7 @@ function displayErrors(errors) {
     }
 }
 
-$('input,textarea').keypress(function () {
+$('input, textarea').keypress(function () {
 
     let name = $(this).attr('name');
 
@@ -79,13 +54,10 @@ const submitForm = function (form, successCallback, errorCallback) {
 
     let action = form.attr('action');
 
-    if (!exists('loading-icon')) {
+    loadingIcon(form);
 
-        let submitButton = form.find('.btn-submit');
-
-        let loading = `<i class="ml-2 fas fa-circle-notch fa-spin" id="#loading-icon"></i>`;
-
-        submitButton.append(loading);
+    if (method.toUpperCase() !== 'GET') {
+        CSRFToken();
     }
 
     $.ajax({
@@ -97,6 +69,42 @@ const submitForm = function (form, successCallback, errorCallback) {
     });
 }
 
+const submitFileForm = function (form, successCallback, errorCallback) {
+
+    let formEl = $(form);
+
+    let hiddenMethod = formEl.find('input[name="_method"]').val();
+
+    let method = (hiddenMethod === undefined) ? formEl.attr('method') : hiddenMethod;
+
+    let data = new FormData(form);
+
+    let action = formEl.attr('action');
+
+    loadingIcon(formEl);
+
+    if (method.toUpperCase() !== 'GET') {
+        CSRFToken();
+    }
+    else if (method.toUpperCase() === 'PUT') {
+        method = 'POST'
+    }
+
+    for (var pair of data.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+    }
+    $.ajax({
+        type: method,
+        url: action,
+        data: data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: successCallback,
+        error: errorCallback,
+    });
+}
+
 const defaultSuccess = function (response) {
     if (response.status) {
 
@@ -105,11 +113,65 @@ const defaultSuccess = function (response) {
 }
 
 const defaultError = function (response, status, err) {
+
     let errors = response.responseJSON.errors;
 
     displayErrors(errors);
 }
 
-const exists = function (id) {
-    return $(`#${id}`).length > 0;
+const exists = function (selector) {
+    return $(selector).length > 0;
+}
+
+
+$(document).on('click', '.btn.delete', function () {
+
+    let action = $(this).attr('action');
+
+    let method = 'DELETE';
+
+    let btn = $(this);
+
+    swal({
+        title: 'Are you sure?',
+        text: "Once deleted, you will not be able to recover it!",
+        type: "warning",
+        customClass: 'swal-delete',
+        background: "#222",
+        showCancelButton: true,
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Keep',
+        confirmButtonColor: '#CF000F',
+        cancelButtonColor: '#f3b715',
+        focusCancel: true
+    }).then(result => {
+
+        if (result.value) {
+
+            CSRFToken();
+
+            $.ajax({
+                type: method,
+                url: action,
+                success: function (response) {
+                    if (response.status) {
+
+                        btn.parents('.grid').remove();
+                    }
+                }
+            });
+        }
+    });
+});
+
+const loadingIcon = function (form) {
+
+    if (exists('#loading-icon')) return;
+
+    let submitButton = form.find('.btn-submit');
+
+    let loading = `<i class="ml-2 fas fa-circle-notch fa-spin" id="loading-icon"></i>`;
+
+    submitButton.append(loading);
+
 }

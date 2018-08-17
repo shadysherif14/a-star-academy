@@ -1,0 +1,282 @@
+.pointer {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.card div.card-header {
+  height: 8vh;
+  background: #222;
+}
+
+@media screen and (max-width: 992px) {
+  .card div.card-header {
+    display: none !important;
+  }
+}
+
+.card div.card-header * {
+  font-size: 1.25em;
+}
+
+.card div.grid {
+  display: grid;
+  grid-template-columns: 4fr 2fr 2fr 1fr;
+  text-align: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+}
+
+@media screen and (max-width: 992px) {
+  .card div.grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card div.card-body {
+  padding: 0px;
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+  .card div.card-body {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+.card div.card-body div.grid {
+  padding: 1em 0.5em;
+}
+
+.card div.card-body div.grid * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.card div.card-body div.grid:nth-child(even) {
+  background: #ededed;
+}
+
+.card div.card-body div.grid p.content {
+  display: none;
+}
+
+.card div.card-body div.grid p a {
+  color: #212529;
+}
+
+@media screen and (max-width: 992px) {
+  .card div.card-body div.grid p a {
+    color: #fff;
+  }
+}
+
+.card div.card-body div.grid img {
+  max-width: 100%;
+  width: 200px;
+  height: auto;
+}
+
+@media screen and (max-width: 992px) {
+  .card div.card-body div.grid {
+    padding: 0px;
+  }
+
+  .card div.card-body div.grid > div:first-child {
+    background: #222;
+    color: #fff;
+    font-size: 1.5em;
+    display: block !important;
+  }
+
+  .card div.card-body div.grid > div:not(:first-child),
+  .card div.card-body div.grid > div:not(:last-child) {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    justify-items: stretch;
+    text-align: start;
+  }
+
+  .card div.card-body div.grid > div:not(:first-child) *,
+  .card div.card-body div.grid > div:not(:last-child) * {
+    padding: 0.5em;
+  }
+
+  .card div.card-body div.grid > div:not(:first-child) div p.content,
+  .card div.card-body div.grid > div:not(:last-child) div p.content {
+    display: block;
+    font-size: 1.2em;
+  }
+}
+
+.card div.card-body div.grid div.actions button.btn,
+.card div.card-body div.grid div.actions a.btn {
+  margin: 0px auto !important;
+  background: transparent;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+}
+
+.card div.card-body div.grid div.actions button.btn.show,
+.card div.card-body div.grid div.actions a.btn.show {
+  border: 1px solid #013243;
+}
+
+.card div.card-body div.grid div.actions button.btn.show i,
+.card div.card-body div.grid div.actions a.btn.show i {
+  color: #013243;
+}
+
+.card div.card-body div.grid div.actions button.btn.show:hover,
+.card div.card-body div.grid div.actions a.btn.show:hover {
+  background: #013243;
+}
+
+.card div.card-body div.grid div.actions button.btn.show:hover i,
+.card div.card-body div.grid div.actions a.btn.show:hover i {
+  color: #fff;
+}
+
+.card div.card-body div.grid div.actions button.btn.edit,
+.card div.card-body div.grid div.actions a.btn.edit {
+  border: 1px solid #2574A9;
+}
+
+.card div.card-body div.grid div.actions button.btn.edit i,
+.card div.card-body div.grid div.actions a.btn.edit i {
+  color: #2574A9;
+}
+
+.card div.card-body div.grid div.actions button.btn.edit:hover,
+.card div.card-body div.grid div.actions a.btn.edit:hover {
+  background: #2574A9;
+}
+
+.card div.card-body div.grid div.actions button.btn.edit:hover i,
+.card div.card-body div.grid div.actions a.btn.edit:hover i {
+  color: #fff;
+}
+
+.card div.card-body div.grid div.actions button.btn.delete,
+.card div.card-body div.grid div.actions a.btn.delete {
+  border: 1px solid #CF000F;
+}
+
+.card div.card-body div.grid div.actions button.btn.delete i,
+.card div.card-body div.grid div.actions a.btn.delete i {
+  color: #CF000F;
+}
+
+.card div.card-body div.grid div.actions button.btn.delete:hover,
+.card div.card-body div.grid div.actions a.btn.delete:hover {
+  background: #CF000F;
+}
+
+.card div.card-body div.grid div.actions button.btn.delete:hover i,
+.card div.card-body div.grid div.actions a.btn.delete:hover i {
+  color: #fff;
+}
+
+button.btn-submit {
+  margin-bottom: 0px !important;
+  background: #222;
+}
+
+button.btn-submit * {
+  font-size: 1.25em;
+}
+
+#modal .modal-header {
+  background: #222;
+  color: #fff;
+}
+
+#modal .modal-header.form-group {
+  padding: 0px;
+}
+
+#modal .modal-header.form-group .form-control {
+  background: #222;
+  color: #fff;
+  border: 0px;
+  padding: 1em;
+}
+
+#modal .modal-header.form-group .form-control::-webkit-input-placeholder {
+  color: #fff;
+  opacity: 0.7;
+}
+
+#modal .modal-header.form-group .form-control:-ms-input-placeholder {
+  color: #fff;
+  opacity: 0.7;
+}
+
+#modal .modal-header.form-group .form-control::-ms-input-placeholder {
+  color: #fff;
+  opacity: 0.7;
+}
+
+#modal .modal-header.form-group .form-control::placeholder {
+  color: #fff;
+  opacity: 0.7;
+}
+
+#modal .modal-body .answers .form-group {
+  display: grid;
+  grid-template-columns: 7fr 1fr;
+  grid-gap: 1em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#modal .modal-body .answers .form-group .icons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  grid-gap: 1em;
+}
+
+#modal .modal-body .answers .form-group .icons i {
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+#modal .modal-body .answers .form-group .icons i.fa-minus {
+  color: #CF000F;
+}
+
+#modal .modal-body .answers .form-group .icons i.fa-plus {
+  color: #2574A9;
+}
+
+#modal .modal-body .answers .form-group .icons i.fa-plus.invisible {
+  visibility: hidden;
+  cursor: default;
+}
+
+#modal .modal-body .answers .form-group .icons i.fa-check {
+  color: #00E640;
+}
+
+#modal .modal-body .correct {
+  background: #00E640;
+  color: #fff;
+}
+
+.handler {
+  cursor: move;
+}
+

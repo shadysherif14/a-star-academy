@@ -17,6 +17,28 @@
 
     <div class="md-form">
 
+        <select name="level" id="level" class="mdb-select">
+
+            @if(is_null($course->level_id))
+                <option value="" selected disabled> Choose Level </option>
+            @else
+                <option value="" disabled> Choose Level </option>
+            @endif
+
+            @foreach($levels as $level)
+                @if($course->level_id === $level->id)
+                    <option value="{{ $level->id }}" selected> {{ $level->name }} </option>
+                @else
+                    <option value="{{ $level->id }}"> {{ $level->name }} </option>                    
+                @endif
+            @endforeach
+        </select>
+
+        <label for="level"> Level </label>
+    </div>
+
+    <div class="md-form">
+
         <div class="file-field">
 
             <a class="btn-floating elegant-color-dark mt-0 float-left">
@@ -32,80 +54,41 @@
 
     <div class="md-form" id="image-wrapper">
 
-        @php
-            $hidden = $course->id == null ? 'hidden' : '';
-            $src = $course->id == null ? '' : $course->image; 
-        @endphp
-        <img src="{{ $src }}" alt="Course Image" class="{{ $hidden }}">
+        <img src="{{ $course->image }}" alt="Course Image">
 
-        <button type="button" class="btn {{ $hidden }}"> Remove Image </button>
+        <button type="button" class="btn"> Remove Image </button>
+
+        <input type="hidden" name="removed">
 
     </div>
 
     <div parent="school">
         <div class="btn-group grid" data-toggle="buttons" id="school">
             @foreach($schools as $school)
-                @php
-                    if($course->school === $school) {
-                        $active = 'active';
-                        $checked = true;
-                    }
-                    else {
-                        $active = '';
-                        $checked = false;
-                    }
-                @endphp
-                <label class="btn btn-rounded waves-effect btn-elegant form-check-label {{ $active }}">
-                <input class="form-check-input" type="radio" checked="{{ $checked }}" name="school" value="{{ $school }}"> {{ $school }}
+            <label class="btn btn-rounded waves-effect btn-elegant form-check-label">
+                <input class="form-check-input" type="radio" name="school" value="{{ $school }}"> {{ $school }}
             </label> 
             @endforeach
         </div>
     </div>
 
 
-    @php
-        if($course->school === "IGCSE")
-            $grid = 'grid';
-        else
-            $grid = 'hidden';
-    @endphp
 
     <div parent="system">    
-        <div class="btn-group {{ $grid }}" data-toggle="buttons" id="system">
+        <div class="btn-group hidden" data-toggle="buttons" id="system">
             @foreach($systems as $system)
-                @php
-                    if($course->system === $system) {
-                        $active = 'active';
-                        $checked = true;
-                    }
-                    else {
-                        $active = '';
-                        $checked = false;
-                    }
-                @endphp
-
-                <label class="btn btn-rounded waves-effect btn-elegant form-check-label {{ $active }}">
-                <input class="form-check-input" type="radio" name="system" checked={{ $checked }} value="{{ $system }}"> {{ $system }}
+                <label class="btn btn-rounded waves-effect btn-elegant form-check-label">
+                <input class="form-check-input" type="radio" name="system" value="{{ $system }}"> {{ $system }}
             </label> 
             @endforeach
         </div>
     </div>
 
     <div parent="sub_system">
-        <div class="btn-group {{ $grid }}" data-toggle="buttons" id="sub_system">
+        <div class="btn-group hidden" data-toggle="buttons" id="sub_system">
             @foreach($subSystems as $sub_system)
-                @php
-                    if($course->sub_system === $sub_system) {
-                        $active = 'active';
-                        $checked = true;
-                    }
-                    else {
-                        $active = '';
-                        $checked = false;
-                    }
-                @endphp
-            <label class="btn btn-rounded waves-effect btn-elegant form-check-label {{ $active }}">
-                <input class="form-check-input" type="radio" name="sub_system" checked={{ $checked }} value="{{ $sub_system }}"> {{ $sub_system }}
+            <label class="btn btn-rounded waves-effect btn-elegant form-check-label">
+                <input class="form-check-input" type="radio" name="sub_system" value="{{ $sub_system }}"> {{ $sub_system }}
             </label> 
             @endforeach
         </div>

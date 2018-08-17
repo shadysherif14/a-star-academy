@@ -24,10 +24,21 @@ class VideoRequest extends FormRequest
     public function rules()
     {
         return [
-            'videos' => 'required',
-            'videos.*.original_name' => 'required',
-            'files' => 'required',
-            'files.*' => 'required|mimes:mp4,mov,ogg,qt,flv,mkv,avi,flv,mpg,mpeg'        
+            'name' => 'required',
+            'title' => 'required',
+            'free' => 'required',
+            'video' => [
+                'bail',
+                'required',
+                'mimes:mp4,mov,ogg,qt,flv,mkv,avi,flv,mpg,mpeg',
+                function ($attribute, $value, $fail) {
+
+                    $file = request()->file('video');
+                    if ($file->getClientOriginalName() !== request()->name) {
+                        return $fail('Something went wrong please try again!');
+                    }
+                },
+            ]      
         ];
     }
 }

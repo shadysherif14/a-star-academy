@@ -1,5 +1,5 @@
 @import "../variables";
 @import "../mixins/index";
 
-$gtc: 1fr 4fr 2fr 1fr;
+$gtc: 1fr 3.5fr 2fr 1.5fr;
 @include index($gtc);
