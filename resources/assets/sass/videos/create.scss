@@ -34,10 +34,17 @@ $gtc: 3fr 2fr 0.5fr;
             i { font-size: 1.5em; }
             .handler {
                 cursor: move;
+                color: $btn-edit-background;
             }
-            
             .delete {
                 cursor: pointer;
+                color: $btn-delete-background;
+            }
+            .fa-times {
+                color: $btn-delete-background;
+            }
+            .fa-check {
+                color: $btn-check;
             }
         }
     }
@@ -45,14 +52,5 @@ $gtc: 3fr 2fr 0.5fr;
     .active {
         background: $gold;
         opacity: 0.5;
-    }
-}
-
-
-button.btn-submit {
-    margin-bottom: 0px !important;
-    background: $light-black;
-    * {
-        font-size: 1.25em;
     }
 }

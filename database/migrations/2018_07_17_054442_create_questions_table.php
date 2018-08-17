@@ -14,10 +14,17 @@ class CreateQuestionsTable extends Migration
     public function up()
     {
         Schema::create('questions', function (Blueprint $table) {
+
             $table->increments('id');
+            
             $table->unsignedInteger('video_id');
+
             $table->text('body');
+            
             $table->string('correct_answer');
+            
+            $table->unsignedInteger('order');
+            
             $table->timestamps();
         });
     }

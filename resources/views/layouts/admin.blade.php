@@ -22,14 +22,15 @@
         
     </head>
 
-    <body>
+    <body class="sidebar-show">
             
         @include('includes.sidebar')
-
         
         <main>
         
-            <section class="container my-3">
+            @include('includes.navbar')
+
+            <section class="container mt-3">
 
                 @yield('content')
             

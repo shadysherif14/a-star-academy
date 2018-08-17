@@ -1,14 +1,17 @@
 @import 'variables';
-body {
+body.sidebar-show {
     display: grid;
-    *> {
-        margin-bottom: 0px !important;
-    }
     grid-template-columns: 230px auto;
     @media screen and (max-width: $md) {
         grid-template-columns: 1fr;
     }
     align-items: start;
+}
+
+body {
+* > {
+        margin-bottom: 0px !important;
+    }
     background: transparent;
     ul#sidenav {
         @media screen and (max-width: $md) {
@@ -21,6 +24,7 @@ body {
         min-height: 100vh;
         overflow-y: scroll;
         background: $light-black;
+        
         * {
             color: $gold;
         }

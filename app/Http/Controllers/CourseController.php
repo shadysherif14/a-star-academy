@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Level;
 use App\Course;
+use App\Instructor;
 use Illuminate\Http\Request;
 use App\Filters\CoursesFilter;
 use App\Http\Requests\CourseRequest;
@@ -32,7 +34,11 @@ class CourseController extends Controller
 
         if (request()->is('admin/*')) {
 
-            return view('admin.courses.index', compact('courses'));
+            $levels = Level::select('slug', 'name')->get();
+
+            $instructors = Instructor::select('slug', 'name')->get();
+
+            return view('admin.courses.index', compact('courses', 'levels', 'instructors'));
         }
 
         return view('app.courses.index', compact('courses'));
@@ -48,9 +54,11 @@ class CourseController extends Controller
 
         $subSystems = $this->subSystems;
 
+        $levels = Level::select('id', 'name')->get();
+
         $course = new Course;
         
-        return view('admin.courses.create', compact('schools', 'systems', 'subSystems', 'course'));
+        return view('admin.courses.create', compact('schools', 'systems', 'subSystems', 'course', 'levels'));
     }
 
     public function store(CourseRequest $request)
@@ -99,7 +107,9 @@ class CourseController extends Controller
 
         $subSystems = $this->subSystems;
 
-        return view('admin.courses.edit', compact('course', 'schools', 'systems', 'subSystems'));
+        $levels = Level::select('id', 'name')->get();
+
+        return view('admin.courses.edit', compact('course', 'schools', 'systems', 'subSystems', 'levels'));
     }
 
     public function update(CourseRequest $request, Course $course)
@@ -115,21 +125,25 @@ class CourseController extends Controller
 
                 'status' => true,
 
-                'course' => $course,
+                'redirect' => '/admin/courses/' . $course->slug,
             ]);
         }
 
         return redirect('/admin/courses');
     }
+    
     public function destroy(Course $course)
     {
         $course->delete();
+
+        return jsonResponse(true);
+
     }
 
     private function saveOrUpdate(Request $request, Course $course)
     {
-
-        $course->level_id = 1;
+                
+        $course->level_id = $request->level;
 
         $course->instructor_id = 1;
 
@@ -158,6 +172,10 @@ class CourseController extends Controller
             $image = $request->image->store('public/images/courses');
 
             $course->image = str_replace_first('public/', '', $image);
+        
+        } else if($course->image && $request->removed === 'true') {
+
+            $course->image = 'images/defaults/course.png';
         }
 
         $course->save();

@@ -2,4 +2,9 @@
 @import "../mixins/index";
 
 $gtc: repeat(7, 2fr);
+
 @include index($gtc);
+
+.filter {
+    
+}

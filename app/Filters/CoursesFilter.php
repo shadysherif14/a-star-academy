@@ -30,6 +30,9 @@ class CoursesFilter extends Filter
 
     public function system($system)
     {
+
+        if(request()->school === 'ad') return $this->query;
+
         $system = ucfirst($system);
 
         return $this->query->where('system', $system);
@@ -37,6 +40,8 @@ class CoursesFilter extends Filter
 
     public function sub_system($sub_system)
     {
+        if(request()->school === 'ad') return $this->query;
+
         $sub_system = strtoupper($sub_system);
 
         return $this->query->where('sub_system', $sub_system);

@@ -42,7 +42,9 @@ class CourseRequest extends FormRequest
             
             'sub_system' => ['required_if:school,IGCSE', Rule::in($subSystems)],
 
-            'image' => 'image'
+            'image' => 'image',
+
+            'level' => 'required|exists:levels,id'
         ];
     }
 }

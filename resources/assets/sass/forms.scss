@@ -18,15 +18,99 @@
     .form-control {
         border-radius: 0px;
         box-shadow: none;
+        transition: $btn-transition;
         &:focus {
-            border-color: $gold;
+            border-color: $light-black;
         }
     }
 }
 
-.switch label input[type=checkbox]:checked + .lever {
+.switch label input[type=checkbox]:checked+.lever {
     background-color: $gold;
     &:after {
         background-color: lighten($gold, 10);
+    }
+}
+
+.dropdown-content.select-dropdown {
+    li:not(.disabled):not(.active) {
+        span {
+            color: $light-black;
+        }
+        transition: 1s;
+        &:hover {
+            background: $light-black;
+            span {
+                color: $gold;
+            }
+        }
+    }
+    li.active.selected {
+        background: $gold;
+        span {
+            color: $white
+        }
+        ;
+    }
+}
+
+.swal-delete {
+    background: $light-black;
+    * {
+        color: $white;
+    }
+    .swal2-icon {
+        .swal2-warning {
+            border-color: $gold !important;
+        }
+    }
+}
+
+button.btn-submit {
+    margin-bottom: 0px !important;
+    background: $light-black;
+    * {
+        font-size: 1.25em;
+    }
+}
+
+.create,
+.filter {
+    letter-spacing: 0.25em;
+    font-size: 1.25em;
+    border: 1px solid $gold;
+    margin: 0em auto !important;
+    display: block;
+    width: 100%;
+    transition: $btn-transition;
+}
+
+.create {
+     background: $white;
+    color: $gold;
+    i {
+        color: $gold;
+    }
+    &:hover {
+        background: $gold;
+        color: $white;
+        i {
+            color: $white;
+        }
+    }
+}
+
+.filter {
+    background: $light-black;
+    color: $gold;
+    i {
+        color: $gold;
+    }
+    &:hover {
+        background: $gold;
+        color: $light-black;
+        i {
+            color: $light-black;
+        }
     }
 }

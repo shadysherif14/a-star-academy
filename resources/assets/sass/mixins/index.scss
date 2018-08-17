@@ -27,11 +27,6 @@
                 grid-template-columns: 1fr;
             }
             padding: 0px;
-            max-height: calc(95vh - #{$header-height});
-            overflow-y: scroll;
-            &::-webkit-scrollbar {
-                display: none;
-            }
             div.grid {
                 padding: 1em 0.5em;
                 * {
@@ -64,16 +59,18 @@
                             font-size: 1.5em;
                             display: block !important;
                         }
+
                         &:not(:first-child),
                         &:not(:last-child) {
                             display: grid;
                             grid-template-columns: 2fr 3fr;
-                            align-items: start;
+                            align-items: center;
                             justify-items: stretch;
                             text-align: start;
                             * {
                                 padding: 0.5em;
                             }
+                            
                             div {
                                 p.content {
                                     display: block;
@@ -84,13 +81,10 @@
                     }
                 }
                 div.actions {
-                    @media screen and (max-width: $lg) {
-                        display: none;
-                    }
+                   
                     button.btn,
                     a.btn {
                         margin: 0px auto !important;
-                        padding: $action-btns-padding;
                         background: transparent;
                         transition-duration: 1s;
                         $actions: show edit delete;
@@ -99,11 +93,11 @@
                             $index: index($actions, $action);
                             $btn: nth($btns, $index);
                             &.#{$action} {
-                                color: #{$btn};
+                                i {color: #{$btn};}
                                 border: 1px solid #{$btn};
                                 &:hover {
                                     background: #{$btn};
-                                    color: $white;
+                                    i{color: $white;}
                                 }
                             }
                         }

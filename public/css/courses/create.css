@@ -1,3 +1,14 @@
+.pointer {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  height: auto;
+}
+
 .card {
   width: 800px;
   max-width: 90%;
@@ -53,16 +64,37 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 80%;
-  min-width: 450px;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  width: 700px;
+  max-width: 95%;
 }
 
 .card div.card-body .btn-group.grid {
   display: grid !important;
 }
 
+@media screen and (max-width: 400px) {
+  .card div.card-body .btn-group {
+    grid-template-columns: 1fr;
+    margin: 2rem auto;
+  }
+
+  .card div.card-body .btn-group label {
+    border-radius: 0 !important;
+    margin: 0px !important;
+  }
+}
+
 .card div.card-body .btn-group#sub_system {
   grid-template-columns: repeat(4, 1fr);
+}
+
+@media screen and (max-width: 400px) {
+  .card div.card-body .btn-group#sub_system {
+    grid-template-columns: 1fr 1fr;
+    margin: 2rem auto;
+  }
 }
 
 .card button.btn-submit {

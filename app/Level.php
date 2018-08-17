@@ -2,9 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
-
+use Illuminate\Database\Eloquent\Model;
 
 class Level extends Model
 {
@@ -13,11 +12,20 @@ class Level extends Model
 
     protected $casts = [
         'created_at' => 'datetime:Y-m-d',
-        'updated_at' => 'datetime:Y-m-d'
+        'updated_at' => 'datetime:Y-m-d',
     ];
 
-    public $with = ['courses'];
-    
+    public static function boot()
+    {
+
+        parent::boot();
+
+        static::deleting(function ($level) {
+            $level->courses->each->delete();
+        });
+
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
@@ -43,14 +51,12 @@ class Level extends Model
         return asset("/storage/{$value}");
     }
 
-
-
     public function sluggable()
     {
         return [
             'slug' => [
-                'source' => 'name'
-            ]
+                'source' => 'name',
+            ],
         ];
     }
 }

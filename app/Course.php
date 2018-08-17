@@ -15,6 +15,17 @@ class Course extends Model
         'updated_at' => 'datetime:Y-m-d'
     ];
 
+    public static function boot()
+    {
+
+        parent::boot();
+
+        static::deleting(function($course) {
+            $course->videos->each->delete();
+        });
+
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
@@ -35,10 +46,6 @@ class Course extends Model
         return $this->hasMany(Video::class);
     }
 
-    public function questions()
-    {
-        return $this->hasMany(Question::class);
-    }
 
     public function scopeFilter($query, $filters)
     {
@@ -58,6 +65,8 @@ class Course extends Model
     
     public function getImageAttribute($value)
     {
+        if(is_null($value)) return null;
+        
         return asset("storage/{$value}");
     }
 

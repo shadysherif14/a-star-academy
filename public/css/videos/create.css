@@ -1,3 +1,14 @@
+.pointer {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  height: auto;
+}
+
 .card div.card-header {
   height: 8vh;
   background: #222;
@@ -32,8 +43,6 @@
 
 .card div.card-body {
   padding: 0px;
-  max-height: calc(95vh - 8vh);
-  overflow-y: scroll;
 }
 
 @media screen and (max-width: 992px) and (min-width: 768px) {
@@ -41,10 +50,6 @@
     display: grid;
     grid-template-columns: 1fr;
   }
-}
-
-.card div.card-body::-webkit-scrollbar {
-  display: none;
 }
 
 .card div.card-body div.grid {
@@ -96,9 +101,9 @@
   .card div.card-body div.grid > div:not(:last-child) {
     display: grid;
     grid-template-columns: 2fr 3fr;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     justify-items: stretch;
     text-align: start;
   }
@@ -115,16 +120,9 @@
   }
 }
 
-@media screen and (max-width: 992px) {
-  .card div.card-body div.grid div.actions {
-    display: none;
-  }
-}
-
 .card div.card-body div.grid div.actions button.btn,
 .card div.card-body div.grid div.actions a.btn {
   margin: 0px auto !important;
-  padding: 0.5em 1em;
   background: transparent;
   -webkit-transition-duration: 1s;
           transition-duration: 1s;
@@ -132,37 +130,61 @@
 
 .card div.card-body div.grid div.actions button.btn.show,
 .card div.card-body div.grid div.actions a.btn.show {
-  color: #013243;
   border: 1px solid #013243;
+}
+
+.card div.card-body div.grid div.actions button.btn.show i,
+.card div.card-body div.grid div.actions a.btn.show i {
+  color: #013243;
 }
 
 .card div.card-body div.grid div.actions button.btn.show:hover,
 .card div.card-body div.grid div.actions a.btn.show:hover {
   background: #013243;
+}
+
+.card div.card-body div.grid div.actions button.btn.show:hover i,
+.card div.card-body div.grid div.actions a.btn.show:hover i {
   color: #fff;
 }
 
 .card div.card-body div.grid div.actions button.btn.edit,
 .card div.card-body div.grid div.actions a.btn.edit {
-  color: #2574A9;
   border: 1px solid #2574A9;
+}
+
+.card div.card-body div.grid div.actions button.btn.edit i,
+.card div.card-body div.grid div.actions a.btn.edit i {
+  color: #2574A9;
 }
 
 .card div.card-body div.grid div.actions button.btn.edit:hover,
 .card div.card-body div.grid div.actions a.btn.edit:hover {
   background: #2574A9;
+}
+
+.card div.card-body div.grid div.actions button.btn.edit:hover i,
+.card div.card-body div.grid div.actions a.btn.edit:hover i {
   color: #fff;
 }
 
 .card div.card-body div.grid div.actions button.btn.delete,
 .card div.card-body div.grid div.actions a.btn.delete {
-  color: #CF000F;
   border: 1px solid #CF000F;
+}
+
+.card div.card-body div.grid div.actions button.btn.delete i,
+.card div.card-body div.grid div.actions a.btn.delete i {
+  color: #CF000F;
 }
 
 .card div.card-body div.grid div.actions button.btn.delete:hover,
 .card div.card-body div.grid div.actions a.btn.delete:hover {
   background: #CF000F;
+}
+
+.card div.card-body div.grid div.actions button.btn.delete:hover i,
+.card div.card-body div.grid div.actions a.btn.delete:hover i {
   color: #fff;
 }
 
@@ -221,16 +243,37 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 80%;
-  min-width: 450px;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  width: 700px;
+  max-width: 95%;
 }
 
 .card div.card-body .btn-group.grid {
   display: grid !important;
 }
 
+@media screen and (max-width: 400px) {
+  .card div.card-body .btn-group {
+    grid-template-columns: 1fr;
+    margin: 2rem auto;
+  }
+
+  .card div.card-body .btn-group label {
+    border-radius: 0 !important;
+    margin: 0px !important;
+  }
+}
+
 .card div.card-body .btn-group#sub_system {
   grid-template-columns: repeat(4, 1fr);
+}
+
+@media screen and (max-width: 400px) {
+  .card div.card-body .btn-group#sub_system {
+    grid-template-columns: 1fr 1fr;
+    margin: 2rem auto;
+  }
 }
 
 .card button.btn-submit {
@@ -279,23 +322,24 @@
 
 #videos div.grid .icons .handler {
   cursor: move;
+  color: #2574A9;
 }
 
 #videos div.grid .icons .delete {
   cursor: pointer;
+  color: #CF000F;
+}
+
+#videos div.grid .icons .fa-times {
+  color: #CF000F;
+}
+
+#videos div.grid .icons .fa-check {
+  color: #00E640;
 }
 
 #videos .active {
   background: #f3b715;
   opacity: 0.5;
-}
-
-button.btn-submit {
-  margin-bottom: 0px !important;
-  background: #222;
-}
-
-button.btn-submit * {
-  font-size: 1.25em;
 }
 

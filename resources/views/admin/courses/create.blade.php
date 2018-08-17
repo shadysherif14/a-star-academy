@@ -1,10 +1,10 @@
 @extends('layouts.admin') 
 
-@section('title', '| Courses - Create') 
+@section('title', ' | Courses - Create') 
 
 @section('content')
 
-<form action="{{ route('admin.courses.create') }}" method="post" class="card ajax" enctype="multipart/form-data">
+<form action="{{ route('admin.courses.store') }}" method="post" class="card ajax" enctype="multipart/form-data">
 
     @csrf
 
@@ -22,7 +22,13 @@
 @stop 
 
 @section('scripts')
-    <script src="{{ asset('js/courses/create.js') }}"></script>
+
+    <script>
+        let course = @json($course);
+    </script>
+
+    <script src="{{ asset('js/courses/create-edit.js') }}"></script>
+    <script src="{{ asset('js/levels-courses/create-edit.js') }}"></script>    
 @stop 
 
 @section('css')

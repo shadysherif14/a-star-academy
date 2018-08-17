@@ -10,6 +10,8 @@ $action-btns-padding: 0.5em 1em;
 $btn-show-background: #013243;
 $btn-edit-background: #2574A9;
 $btn-delete-background: #CF000F;
+$btn-check: #00E640;
+$btn-transition: 0.5s;
 $header-height: 8vh;
 
 
@@ -19,3 +21,8 @@ $sm: 576px;
 $md: 768px;
 $lg: 992px;
 $xl: 1200px;
+
+
+.pointer {
+    cursor: pointer;
+}

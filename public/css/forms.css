@@ -1,3 +1,7 @@
+.pointer {
+  cursor: pointer;
+}
+
 .md-form {
   margin: 2rem auto;
 }
@@ -17,10 +21,12 @@
   border-radius: 0px;
   -webkit-box-shadow: none;
           box-shadow: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .form-group .form-control:focus {
-  border-color: #f3b715;
+  border-color: #222;
 }
 
 .switch label input[type=checkbox]:checked + .lever {
@@ -29,5 +35,99 @@
 
 .switch label input[type=checkbox]:checked + .lever:after {
   background-color: #f5c646;
+}
+
+.dropdown-content.select-dropdown li:not(.disabled):not(.active) {
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.dropdown-content.select-dropdown li:not(.disabled):not(.active) span {
+  color: #222;
+}
+
+.dropdown-content.select-dropdown li:not(.disabled):not(.active):hover {
+  background: #222;
+}
+
+.dropdown-content.select-dropdown li:not(.disabled):not(.active):hover span {
+  color: #f3b715;
+}
+
+.dropdown-content.select-dropdown li.active.selected {
+  background: #f3b715;
+}
+
+.dropdown-content.select-dropdown li.active.selected span {
+  color: #fff;
+}
+
+.swal-delete {
+  background: #222;
+}
+
+.swal-delete * {
+  color: #fff;
+}
+
+.swal-delete .swal2-icon .swal2-warning {
+  border-color: #f3b715 !important;
+}
+
+button.btn-submit {
+  margin-bottom: 0px !important;
+  background: #222;
+}
+
+button.btn-submit * {
+  font-size: 1.25em;
+}
+
+.create,
+.filter {
+  letter-spacing: 0.25em;
+  font-size: 1.25em;
+  border: 1px solid #f3b715;
+  margin: 0em auto !important;
+  display: block;
+  width: 100%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.create {
+  background: #fff;
+  color: #f3b715;
+}
+
+.create i {
+  color: #f3b715;
+}
+
+.create:hover {
+  background: #f3b715;
+  color: #fff;
+}
+
+.create:hover i {
+  color: #fff;
+}
+
+.filter {
+  background: #222;
+  color: #f3b715;
+}
+
+.filter i {
+  color: #f3b715;
+}
+
+.filter:hover {
+  background: #f3b715;
+  color: #222;
+}
+
+.filter:hover i {
+  color: #222;
 }
 

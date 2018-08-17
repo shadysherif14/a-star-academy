@@ -1,6 +1,22 @@
 @extends('layouts.admin') 
+
 @section('title', '| Videos') 
+
 @section('content')
+
+<a class="btn create" href="{{ route('admin.videos.create', ['course' => $course] ) }}">
+    <i class="fas fa-plus"></i> Add More Videos
+</a>
+
+@php
+    if(count($videos) === 0) 
+        $hidden = 'd-none';
+    else   
+        $hidden = '';
+@endphp
+
+@includeWhen( count($videos) == 0, 'includes.no_records', ['record' => 'video'])
+
 
 <form class="card ajax" action="{{ route('admin.videos.order') }}" method="POST">
 
@@ -8,9 +24,10 @@
 
     @method('put')
 
-    <div class="card-header grid">
+    <div class="card-header grid {{ $hidden }}">
         <div> Title </div>
         <div> Free </div>
+        <div> Quiz </div>
         <div> </div>
         <div> </div>
     </div>
@@ -29,6 +46,10 @@
             </div>
 
             <div class="switch">
+
+                <div>
+                    <p class="content"> Free </p>
+                </div>
                 <label>
                     Paid
                     <input type="checkbox" name="videos[{{ $loop->iteration }}][free]" @if($video->free) checked @endif>
@@ -37,19 +58,34 @@
                 </label>
             </div>
 
-            <div class="actions">
-                <button type="button" class="btn show modal-trigger">
-                    <i class="fas fa-eye"> Preview </i>
-                </button>
-                <a type="button" class="btn edit" href="{{ route('admin.videos.edit', ['video' => $video]) }}">
-                    <i class="fas fa-pen"> Edit </i>
+            <div>
+                <div>
+                    <p class="content">
+                        Quiz
+                    </p>
+                </div>
+                <a href="{{ route('admin.quizzes.index', ['video' => $video]) }}" class="">
+                    Quiz
                 </a>
-                <button type="button" class="btn delete">
-                    <i class="fas fa-trash"> Delete </i>
-                </button>
+            </div>
+            <div>
+                <div>
+                    <p class="content"> Actions </p>
+                </div>
+                <div class="actions">
+                    <button type="button" class="btn btn-floating show modal-trigger">
+                        <i class="fas fa-eye"> </i>
+                    </button>
+                    <a type="button" class="btn btn-floating edit" href="{{ route('admin.videos.edit', ['video' => $video]) }}">
+                        <i class="fas fa-pen"> </i>
+                    </a>
+                    <button type="button" class="btn btn-floating delete" action="{{ route('admin.videos.destroy', ['video' => $video]) }}">
+                        <i class="fas fa-trash"> </i>
+                    </button>
+                </div>
             </div>
 
-            <div class="icons">
+            <div class="icons d-none d-lg-block">
                 <i class="fas fa-sort handler"></i>
             </div>
 
@@ -59,7 +95,7 @@
 
     </div>
 
-    <button class="btn btn-submit" type="submit">
+    <button class="btn btn-submit {{ $hidden }}" type="submit">
         <i class="fas fa-pen"> Update </i>
     </button>
 
@@ -83,6 +119,7 @@
 
     </div>
 </div>
+
 @endsection
  
 @section('scripts')

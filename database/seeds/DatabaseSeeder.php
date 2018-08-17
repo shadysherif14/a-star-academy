@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
             LevelsSeeder::class,
             InstructorsSeeder::class,
             CoursesSeeder::class,
-            //VideosSeeder::class,
+            QuizzesSeeder::class,
         ]);
     }
 }

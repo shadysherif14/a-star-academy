@@ -28,6 +28,8 @@
 
         @include('includes.scripts')
 
+        @include('includes.errors')
+        
         @yield('scripts')
 
     </body>
