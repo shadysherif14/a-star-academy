@@ -6,8 +6,8 @@
     <div id="igcse" class="upper w-100">
         <span class="igCloseBtn" style="display:none;">X</span>
         <div class="holder1 text-center" style="display:none;">
-            <form action="/ig/courses" method="POST" id="igForm">
-                @csrf
+            {{-- <form action="/ig/courses" method="POST" id="igForm">
+                @csrf --}}
                 <div class="btn-group mb-5" data-toggle="buttons">
 
                     @foreach($igGrades as $grade)
@@ -22,15 +22,15 @@
                 <div class="text-center">
                     <button id="igSubmitBtn" class="btn btn-black" type="button">Explore Courses</button>
                 </div>
-            </form>
+            {{-- </form> --}}
         </div>
     </div>
 
     <div id="american" class="lower w-100">
         <span class="americanCloseBtn" style="display:none;">X</span>
         <div class="holder2 text-center" style="display:none;">
-            <form action="/sat/courses" method="POST" id="satForm">
-            @csrf
+            {{-- <form action="/sat/courses" method="POST" id="satForm">
+            @csrf --}}
                 <div class="btn-group mb-5" data-toggle="buttons">
                 @foreach($satCourses as $course)
                     <label class="btn btn-gold">
@@ -42,9 +42,9 @@
         
                 </div>
                 <div class="text-center">
-                    <button id="americanSubmitbtn" class="btn btn-gold" type="button">Explore Courses</button>
+                    <button id="americanSubmitbtn" class="btn btn-gold" type="button">Explore Sessions</button>
                 </div>
-            </form>
+            {{-- </form> --}}
         </div>
         
     </div>

@@ -1,3 +1,8 @@
+body{
+    background-color: #222!important;
+    font-size: 18px;
+}
+
 .tooltip {
     top: 60px !important;
     left: -20px !important;

@@ -45,9 +45,13 @@ class Course extends Model
     {
         return $this->hasMany(Video::class);
     }
+
     public function intro()
     {
-        $introduction = Video::where(['course_id'=>$this->id,'free'=>1])->first();
+        $introduction = Video::where([
+            'course_id' => $this->id,
+            'free'      => 1
+        ])->first();
         
         return $introduction ? $introduction : false;
     }

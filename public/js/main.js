@@ -172,9 +172,9 @@ $('#loginBtn').click(function(){
 
 $('#igSubmitBtn').click(function(){
     if($("input:radio[name='grade']").is(":checked")) {
+        let grade = $("input:radio[name='grade']:checked").val();
         
-        $('#igForm').submit();
-        return;
+        window.location.assign(`/ig/courses/${grade}`);
     }
     else{
         alert('Please select grade first');
@@ -186,9 +186,10 @@ $('#americanSubmitbtn').click(function(){
     event.preventDefault();
     if($("input:radio[name='course']").is(":checked")) {
         let course = $("input:radio[name='course']:checked").val();
-        $('#satForm').attr('action',`/sat/courses/${course}`);
-        $('#satForm').submit();
-        return;
+        //$('#satForm').attr('action',`/sat/courses/${course}`);
+        //$('#satForm').submit();
+        //return;
+        window.location.assign(`/sat/courses/${course}`);
     }
     else{
         alert('Please select course first');

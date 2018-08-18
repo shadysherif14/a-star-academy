@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function canWatch($video){
+        $result = DB::table('users_videos')->where([
+            'user_id' => $this->id,
+            'video_id' => $video->id
+        ])->get();
+
+        //dd($result);
+        if (count($result)){
+            return true;
+        }
+        return false;
+    }
 }

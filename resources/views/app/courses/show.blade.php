@@ -1,7 +1,5 @@
 @extends('layouts.app') 
-@section('css')
-<link rel="stylesheet" href="{{ asset('css/courses/show.css') }}"> 
-@stop 
+
 @section('content')
 
 <main class="showCourse">
@@ -39,11 +37,15 @@
                                     </video>
                 </div>
             </div>
-            <h3 class="text-gold mt-5 mb-2">{{ $intro->title}}</h3>
-            <div class="mb-5 w-100">
-                {{$intro->description}}
-            </div>
 
+            @if($intro)
+                <h3 class="text-gold mt-5 mb-2">{{ $intro->title}}</h3>
+                <div class="mb-5 w-100">
+                    {{$intro->description}}
+                </div>
+            @endif
+
+            @if($instructor)
             <div class="instructor p-3 my-5 position-relative">
                 <span class="tag">Instructor</span>
                 <div class="row align-items-center">
@@ -59,23 +61,32 @@
                 </div>
                 
             </div>
+            @endif
         </div>
 
         <div class="col-3">
-            <ul class="list-group h-100 w-100 p-3">
-                    <li class="list-item">
-                        <a href="#"> {{$intro->title}}</a>
-                        <span id="introDuration" class="duration ml-auto">{{ $intro->duration() }}</span>
+            @if($videos)
+                <ul class="list-group w-100">
+                    {{-- Intro video --}}
+                    <li class="list-item px-3 active">
+                        <a href="#"> {{ $intro->title }} </a>
+                        <span class="duration ml-auto"> {{ $intro->duration() }} </span>
                     </li>
+                
+                    @foreach ($videos as $video)
+                    <li class="list-item px-3" id="{{$video->id}}">
+                        @if(Auth::check() === false || Auth::user()->canWatch($video) === false )
+                            <i class="fas fa-lock mr-2 text-danger"></i>
+                        @else
+                            <i class="fas fa-unlock mr-2 text-success"></i>
 
-                @for ($i = 0; $i< 30; $i++) 
-                    <li class="list-item">
-                        <i class="fas fa-lock mr-2"></i>
-                        <a href="#"> Video - {{ $i + 1}} </a>
-                        <span class="duration ml-auto"> 1m 30s </span>
+                        @endif
+                            <a href="#"> {{ $video->title }} </a>
+                            <span class="duration ml-auto"> {{ $video->duration() }} </span>
                     </li>
-                @endfor
-            </ul>
+                    @endforeach
+                </ul>
+            @endif
         </div>
 
         
@@ -88,5 +99,13 @@
 
 @stop 
 @section('css')
-<link rel="stylesheet" href="{{ asset('courses/show.css') }}">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.4.3/plyr.css">
+    <link rel="stylesheet" href="{{ asset('css/courses/show.css') }}"> 
+
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.plyr.io/3.4.3/plyr.polyfilled.js"></script>
+    <script src="{{asset('js/courses/show.js')}}"></script>
+
 @endsection

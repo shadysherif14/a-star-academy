@@ -52,9 +52,11 @@ Route::group(array('namespace' => 'User'), function () {
 
     Route::get('/', 'HomeController@index')->name('home');
 
-    Route::post('/ig/courses/{crs}', 'IgController@courses');
+    Route::get('/ig/courses/{crs}', 'IgController@courses');
 
-    Route::post('/sat/courses/{crs}', 'SatController@courses');
+    Route::get('/sat/courses/{crs}', 'SatController@courses');
+    Route::post('/sat/video', 'SatController@fetchVideo');
+
 
 });
 
