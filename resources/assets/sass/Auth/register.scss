@@ -12,9 +12,6 @@ body {
     align-content: center;
     min-height: 100vh;
     justify-content: center;
-    &::-webkit-scrollbar {
-        display: none;
-    }
 }
 
 form {
@@ -36,13 +33,15 @@ form {
         }
     }
     div.body {
-        margin-top: 30vh;
-        margin-bottom: 5vh;
+        max-height: 95vh;
         background: $blackA;
         .content {
             padding: 2em;
         }
-        
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+            display: none;
+        }
         .btn-group-wrapper {
             margin: 1rem auto !important;
             .btn-group {
@@ -76,7 +75,7 @@ form {
                         border-bottom-right-radius: 1rem;
                     }
                     &:hover {
-                        background: $gold9;
+                        background: $gold7;
                     }
                 }
                 @media screen and (max-width: $xs) {
