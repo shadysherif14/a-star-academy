@@ -12,6 +12,9 @@ body {
     align-content: center;
     min-height: 100vh;
     justify-content: center;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 form {
@@ -33,15 +36,13 @@ form {
         }
     }
     div.body {
-        max-height: 95vh;
+        margin-top: 30vh;
+        margin-bottom: 5vh;
         background: $blackA;
         .content {
             padding: 2em;
         }
-        overflow-y: scroll;
-        &::-webkit-scrollbar {
-            display: none;
-        }
+        
         .btn-group-wrapper {
             margin: 1rem auto !important;
             .btn-group {
@@ -64,7 +65,7 @@ form {
                     background: $gold7;
                     border-radius: 0px;
                     &.active {
-                        background: $gold9;
+                        background: $gold;
                     }
                     &:first-child {
                         border-top-left-radius: 1rem;
@@ -75,7 +76,7 @@ form {
                         border-bottom-right-radius: 1rem;
                     }
                     &:hover {
-                        background: $gold;
+                        background: $gold9;
                     }
                 }
                 @media screen and (max-width: $xs) {

@@ -17,6 +17,10 @@ body {
           justify-content: center;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 form {
   width: 700px;
   max-width: 90%;
@@ -43,17 +47,13 @@ form div.header i {
 }
 
 form div.body {
-  max-height: 95vh;
+  margin-top: 30vh;
+  margin-bottom: 5vh;
   background: rgba(34, 34, 34, 0.7);
-  overflow-y: scroll;
 }
 
 form div.body .content {
   padding: 2em;
-}
-
-form div.body::-webkit-scrollbar {
-  display: none;
 }
 
 form div.body .btn-group-wrapper {
@@ -97,7 +97,7 @@ form div.body .btn-group-wrapper .btn-group label {
 }
 
 form div.body .btn-group-wrapper .btn-group label.active {
-  background: rgba(243, 183, 21, 0.9);
+  background: #f3b715;
 }
 
 form div.body .btn-group-wrapper .btn-group label:first-child {
@@ -111,7 +111,7 @@ form div.body .btn-group-wrapper .btn-group label:last-child {
 }
 
 form div.body .btn-group-wrapper .btn-group label:hover {
-  background: #f3b715;
+  background: rgba(243, 183, 21, 0.9);
 }
 
 @media screen and (max-width: 400px) {

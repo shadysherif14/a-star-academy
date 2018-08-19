@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form main_action="{{ route('config.register') }}" method="post" class="z-depth-3 ajax" enctype="multipart/form-data" id="register">
+<form main_action="{{ route('register') }}" method="post" class="z-depth-3 ajax" enctype="multipart/form-data" id="register">
 
     @csrf
 
