@@ -1,8 +1,7 @@
 <?php
 
-use App\Level;
 use App\Course;
-use Faker\Factory as Faker;
+use App\Level;
 use Illuminate\Database\Seeder;
 
 class CoursesSeeder extends Seeder
@@ -25,16 +24,17 @@ class CoursesSeeder extends Seeder
 
         $levels = Level::all();
 
-
-
         // American SAT
 
-        $courses = ['Math','English (Reading)','English (Writing)'];
-        $slugs = ['math','english-reading','english-writing'];
+        $courses = ['Math', 'English (Reading)', 'English (Writing)'];
 
-        foreach($courses as $i=>$course){
+        $slugs = ['math', 'english-reading', 'english-writing'];
+
+        $satLevel = Level::select('id')->where('name', 'SAT')->first();
+        foreach ($courses as $i => $course) {
+
             $sat = [
-                'level_id' => 7,
+                'level_id' => $satLevel->id,
                 'instructor_id' => random_int(1, 10),
                 'name' => $course,
                 'slug' => $slugs[$i],
@@ -42,25 +42,22 @@ class CoursesSeeder extends Seeder
                 'school' => 'SAT',
                 'system' => null,
                 'sub_system' => null,
-            
+
             ];
-            Course::insert($sat);
+            Course::create($sat);
         }
-        
-        
-        
 
         // IGCSE
-        
+
         foreach ($levels as $level) {
-            
-            if ($level->name === '8th Grade'){
+
+            if ($level->name === '8th Grade') {
 
                 $courses = ['Math', 'Science', 'English', 'Arabic'];
                 $data['school'] = 'Pre-IGCSE';
                 $data['system'] = null;
                 $data['sub_system'] = null;
-                foreach($courses as $course){
+                foreach ($courses as $course) {
                     $data = [
                         'level_id' => $level->id,
                         'instructor_id' => random_int(1, 10),
@@ -68,36 +65,31 @@ class CoursesSeeder extends Seeder
                         'slug' => str_slug($course) . $level->id,
                         'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae doloribus impedit incidunt. Et repudiandae itaque hic tenetur incidunt eius deserunt sit nostrum architecto laborum sint molestias nobis neque mollitia soluta?',
                     ];
-                    Course::insert($data);
+                    Course::create($data);
                 }
-                
-                
-            }
-            
-            elseif($level->name === '9th Grade'){
 
-                $courses = ['Math', 'Physics', 'English', 'Chemistry', 'Biology','Arabic'];
+            } elseif ($level->name === '9th Grade') {
+
+                $courses = ['Math', 'Physics', 'English', 'Chemistry', 'Biology', 'Arabic'];
                 $data['school'] = 'Pre-IGCSE';
                 $data['system'] = null;
                 $data['sub_system'] = null;
-                foreach($courses as $course){
+                foreach ($courses as $course) {
                     $data = [
                         'level_id' => $level->id,
                         'instructor_id' => random_int(1, 10),
                         'name' => $course,
-                        'slug' => str_slug($course) . $level->id,
+                        'slug' => str_slug($course) . '-' . $level->id,
                         'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae doloribus impedit incidunt. Et repudiandae itaque hic tenetur incidunt eius deserunt sit nostrum architecto laborum sint molestias nobis neque mollitia soluta?',
                     ];
-                    Course::insert($data);
+                    Course::create($data);
                 }
 
-            }
+            } elseif ($level->name === 'IG') {
 
-            elseif($level->name === 'IG'){
+                $courses = ['Math', 'Physics', 'English', 'Chemistry', 'Biology', 'Arabic'];
 
-                $courses = ['Math', 'Physics', 'English', 'Chemistry', 'Biology','Arabic'];
-                
-                foreach($courses as $course){
+                foreach ($courses as $course) {
                     $data = [
                         'level_id' => $level->id,
                         'instructor_id' => random_int(1, 10),
@@ -105,24 +97,20 @@ class CoursesSeeder extends Seeder
                         'school' => 'IGCSE',
                         'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae doloribus impedit incidunt. Et repudiandae itaque hic tenetur incidunt eius deserunt sit nostrum architecto laborum sint molestias nobis neque mollitia soluta?',
                     ];
-                    foreach($systems as $sys){
-                        foreach($subSystems as $sub){
-                            $data['system']      = $sys;
-                            $data['sub_system']  = $sub;
-                            $data['slug']        = str_slug($course) .'-'. $sys .'-'. $sub .'-';
+                    foreach ($systems as $sys) {
+                        foreach ($subSystems as $sub) {
+                            $data['system'] = $sys;
+                            $data['sub_system'] = $sub;
+                            $data['slug'] = str_slug($course) . '-' . $sys . '-' . $sub . '-';
 
-                            Course::insert($data);
+                            Course::create($data);
                         }
                     }
                 }
-                
-            }
-        
-            
-            }
-        
 
-        
-        
+            }
+
+        }
+
     }
 }

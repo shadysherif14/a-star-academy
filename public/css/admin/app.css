@@ -46,15 +46,7 @@ body.sidebar-show {
   }
 }
 
-body {
-  background: transparent;
-}
-
-body * > {
-  margin-bottom: 0px !important;
-}
-
-body ul#sidenav {
+body.sidebar-show ul#sidenav {
   list-style: none;
   padding-left: 0px;
   margin-bottom: 0px;
@@ -64,45 +56,45 @@ body ul#sidenav {
 }
 
 @media screen and (max-width: 768px) {
-  body ul#sidenav {
+  body.sidebar-show ul#sidenav {
     display: none;
   }
 }
 
-body ul#sidenav::-webkit-scrollbar {
+body.sidebar-show ul#sidenav::-webkit-scrollbar {
   display: none;
 }
 
-body ul#sidenav * {
+body.sidebar-show ul#sidenav * {
   color: #f3b715;
 }
 
-body ul#sidenav .logo-wrapper {
+body.sidebar-show ul#sidenav .logo-wrapper {
   padding-bottom: 1rem;
   border-bottom: 2px solid #f3b715;
 }
 
-body ul#sidenav img {
+body.sidebar-show ul#sidenav img {
   max-width: 90%;
   height: auto;
   display: block;
   margin: auto;
 }
 
-body ul#sidenav a:hover {
+body.sidebar-show ul#sidenav a:hover {
   background: #f3b715;
   color: #fff;
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s;
 }
 
-body ul#sidenav a:hover i {
+body.sidebar-show ul#sidenav a:hover i {
   color: #fff;
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s;
 }
 
-body ul#sidenav a.collapsible-header {
+body.sidebar-show ul#sidenav a.collapsible-header {
   padding: 0.4rem;
   display: grid;
   grid-template-columns: 3rem auto 3rem;
@@ -111,22 +103,22 @@ body ul#sidenav a.collapsible-header {
           align-items: center;
 }
 
-body ul#sidenav a.collapsible-header i {
+body.sidebar-show ul#sidenav a.collapsible-header i {
   justify-self: center;
 }
 
-body ul#sidenav .collapsible {
+body.sidebar-show ul#sidenav .collapsible {
   padding-top: 1rem;
   list-style-type: none;
   padding-left: 0px;
 }
 
-body ul#sidenav div.collapsible-body ul {
+body.sidebar-show ul#sidenav div.collapsible-body ul {
   list-style-type: none;
   padding-left: 0px;
 }
 
-body ul#sidenav div.collapsible-body a {
+body.sidebar-show ul#sidenav div.collapsible-body a {
   padding: 0.25rem;
   padding-left: 1.5rem;
   display: grid;
@@ -136,8 +128,20 @@ body ul#sidenav div.collapsible-body a {
           align-items: center;
 }
 
-body ul#sidenav div.collapsible-body a i {
+body.sidebar-show ul#sidenav div.collapsible-body a i {
   justify-self: center;
+}
+
+body {
+  background: transparent;
+}
+
+body * > {
+  margin-bottom: 0px !important;
+}
+
+body ul#sidenav {
+  display: none;
 }
 
 body main {
@@ -151,7 +155,7 @@ body main::-webkit-scrollbar {
 }
 
 .md-form {
-  margin: 2rem auto;
+  margin: 2em auto 0em;
 }
 
 .md-form input:focus:not([readonly]),

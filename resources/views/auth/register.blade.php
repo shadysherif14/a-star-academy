@@ -1,77 +1,156 @@
-@extends('layouts.app')
+@extends('layouts.auth') 
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
-                        @csrf
+<form main_action="{{ route('config.register') }}" method="post" class="z-depth-3 ajax" enctype="multipart/form-data" id="register">
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+    @csrf
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+    <div class="body">
 
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+        <div id="basic-info" action="{{ route('config.basic') }}" class="">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+            <div class="content">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                <div class="md-form">
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                    <input type="text" name="name" class="form-control">
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                    <label for="name"> Name </label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
+
+                <div class="md-form">
+
+                    <input type="text" name="username" class="form-control">
+
+                    <label for="username"> Username </label>
+
+                </div>
+
+                <div class="md-form">
+
+                    <input type="email" name="email" class="form-control">
+
+                    <label for="email"> Email </label>
+
+                </div>
+
+                <div class="md-form">
+
+                    <input type="password" name="password" class="form-control">
+
+                    <label for="password"> Password </label>
+
+                </div>
+
+                <div class="md-form">
+
+                    <input type="password" name="password_confirmation" class="form-control">
+
+                    <label for="password_confirmation"> Confirm Password </label>
+
+                </div>
+
+                <div class="md-form">
+
+                    <div class="file-field">
+
+                        <a class="">
+                        <i class="fas fa-image" aria-grid="true"></i> <input type="file" name="avatar">
+                    </a>
+
+                        <div class="file-path-wrapper">
+                            <input class="file-path disabled" type="text" placeholder="Upload an avatar" disabled readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div parent="gender" class="btn-group-wrapper">
+                    <div class="btn-group grid" data-toggle="buttons" id="gender">
+                        <label class="btn form-check-label">
+                        <input class="form-check-input" type="radio" name="gender" value="Male"> Male
+                    </label>
+                        <label class="btn form-check-label">
+                        <input class="form-check-input" type="radio" name="gender" value="Female"> Female
+                    </label>
+
+                    </div>
+                </div>
+
+                <div parent="school" class="btn-group-wrapper">
+                    <div class="btn-group grid" data-toggle="buttons" id="school">
+                        <label class="btn form-check-label">
+                            <input class="form-check-input" type="radio" name="school" value="American Diploma"> American Diploma
+                        </label>
+                        <label class="btn form-check-label">
+                            <input class="form-check-input" type="radio" name="school" value="IGCSE"> IGCSE
+                        </label>
+                    </div>
+                </div>
+
+                <div parent="level" class="btn-group-wrapper hidden">
+                    <div class="btn-group grid" data-toggle="buttons" id="level">
+                        <label class="btn form-check-label">
+                            <input class="form-check-input" type="radio" name="level" value="8th Grade"> 8th Grade 
+                        </label>
+                        <label class="btn form-check-label">
+                            <input class="form-check-input" type="radio" name="level" value="9th Grade"> 9th Grade
+                        </label>
+                        <label class="btn form-check-label">
+                            <input class="form-check-input" type="radio" name="level" value="IG"> IG
+                        </label>
+                    </div>
+                </div>
+
             </div>
+
+            <button type="button" id="basic-info-btn" class="btn btn-submit"> <i class="fas fa-angle-right"></i> Next </button>
+        </div>
+
+        <div id="courses-info" class="hidden">
+
+    
         </div>
     </div>
+
+
+</form>
+
+<div class="modal animated bounceIn" id="error-modal">
+    <div class="modal-dialog modal-dialog-centered modal-notify modal-danger" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+
+                <p class="heading lead"> Error </p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="white-text">&times;</span>
+            </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fas fa-times fa-4x mb-3 animated rotateIn text-danger"></i>
+                    <p id="error-msg"></p>
+                </div>
+            </div>
+
+        </div>
+        <!--/.Content-->
+    </div>
 </div>
-@endsection
+<!-- Central Modal Medium Danger-->
+
+@stop 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/auth/register.css') }}"> 
+@stop 
+    @section('scripts')
+<script src="{{ asset('js/Auth/register.js') }}"></script>
+
+
+@stop

@@ -28,6 +28,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function courses() 
+    {
+        return $this->belongsToMany(Course::class);
+    }
+
     public function canWatch($video){
         $result = DB::table('users_videos')->where([
             'user_id' => $this->id,

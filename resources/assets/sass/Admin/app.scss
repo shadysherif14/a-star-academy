@@ -39,13 +39,6 @@ body.sidebar-show {
         grid-template-columns: 1fr;
     }
     align-items: start;
-}
-
-body {
-    *> {
-        margin-bottom: 0px !important;
-    }
-    background: transparent;
     ul#sidenav {
         @media screen and (max-width: $md) {
             display: none;
@@ -112,6 +105,16 @@ body {
             }
         }
     }
+}
+
+body {
+    background: transparent;
+    * > {
+        margin-bottom: 0px !important;
+    }
+    ul#sidenav {
+        display: none;
+    }
     main {
         min-height: 100vh;
         max-height: 100vh;
@@ -124,7 +127,7 @@ body {
 
 
 .md-form {
-    margin: 2rem auto;
+    margin: 2em auto 0em;
     input,
     textarea {
         &:focus:not([readonly]),

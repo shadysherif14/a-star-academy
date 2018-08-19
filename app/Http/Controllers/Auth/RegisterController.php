@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Course;
 use App\Http\Controllers\Controller;
+use App\Level;
+use App\User;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -19,7 +22,7 @@ class RegisterController extends Controller
     | validation and creation. By default this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
-    */
+     */
 
     use RegistersUsers;
 
@@ -28,7 +31,11 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+
+        return '/';
+    }
 
     /**
      * Create a new controller instance.
@@ -48,11 +55,31 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+
+        $rules = [
             'name' => 'required|string|max:255',
+            /* 'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+            'password' => 'required|string|min:6|confirmed', */
+            'avatar' => 'image',
+            'gender' => [
+                'required',
+                Rule::in(['Male', 'Female']),
+            ],
+            'school' => [
+                'required',
+                Rule::in(['American Diploma', 'IGCSE']),
+            ],
+            'level' => [
+                'required_if:school,IGSCE',
+                Rule::in(['8th Grade', '9th Grade', 'IG']),
+            ],
+            'courses' => 'required_if:level,IG',
+            'courses.*.subsystem' => 'required_if:level,IG',
+            'courses.*.system' => 'required_if:level,IG',
+        ];
+
+        return Validator::make($data, $rules);
     }
 
     /**
@@ -63,15 +90,65 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $data = (object) $data;
+
         $user = new User;
-        $user->username = $data['name'];
-        $user->first_name = "first";
-        $user->last_name = "last";
-        $user->email = $data['email'];
-        $user->gender = "Male";
-        $user->password = Hash::make($data['password']);
+
+        $user->name = $data->name;
+
+        $user->username = $data->username;
+
+        $user->email = $data->email;
+
+        $user->gender = $data->gender;
+
+        $user->password = Hash::make($data->password);
+
+        if (isset($data->avatar)) {
+
+            $avatar = $data->avatar->store('public/images/avatars');
+        }
+
         $user->save();
 
+        $this->assignCourses($data, $user);
+        
         return $user;
     }
+
+    protected function assignCourses($data, $user)
+    {
+
+        if ($data->school === 'American Diploma') {
+
+            $level = Level::select('id')->where('name', 'SAT')->with('courses')->first();
+
+            $courses = $level->courses;
+
+        } else if ($data->school === 'IGCSE' && $data->level !== 'IG') {
+
+            $level = Level::select('id')->where('name', $data->level)->with('courses')->first();
+
+            $courses = $level->courses;
+
+        } else {
+
+            foreach ($data->courses as $course) {
+
+                $course = (object) $course;
+
+                $courses[] = Course::where([
+                    'name' => $course->name,
+                    'system' => $course->system,
+                    'sub_system' => $course->subsystem,
+
+                ])
+                    ->first();
+
+            }
+        }
+        $user->courses()->saveMany($courses);
+    }
+
 }

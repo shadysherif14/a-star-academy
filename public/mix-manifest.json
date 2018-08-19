@@ -5,5 +5,8 @@
     "/css/admin/levels/index.css": "/css/admin/levels/index.css",
     "/css/admin/quizzes/index.css": "/css/admin/quizzes/index.css",
     "/css/admin/videos/index.css": "/css/admin/videos/index.css",
-    "/css/admin/videos/create.css": "/css/admin/videos/create.css"
+    "/css/admin/videos/create.css": "/css/admin/videos/create.css",
+    "/css/auth/index.css": "/css/auth/index.css",
+    "/css/auth/login.css": "/css/auth/login.css",
+    "/css/auth/register.css": "/css/auth/register.css"
 }

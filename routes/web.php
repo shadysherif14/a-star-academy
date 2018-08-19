@@ -21,11 +21,11 @@ Route::domain('admin.astaracademy.test')
         Route::put('/order/videos', 'VideoController@order')->name('videos.order');
         Route::post('/videos/{video}', 'VideoController@update')->name('videos.update');
         Route::resource('/{course}/videos', 'VideoController')->only(['index', 'store', 'create']);
-        
+
         Route::put('/order/quizzes', 'QuestionController@order')->name('quizzes.order');
         Route::resource('/{video}/quizzes', 'QuestionController')->only(['index', 'store', 'create']);
         Route::resource('/quizzes', 'QuestionController')->only(['show', 'update', 'destroy']);
-        
+
         Route::resource('/instructors', 'InstructorController');
     });
 /*
@@ -57,9 +57,20 @@ Route::group(array('namespace' => 'User'), function () {
     Route::get('/sat/courses/{crs}', 'SatController@courses');
     Route::post('/sat/video', 'SatController@fetchVideo');
 
+});
+
+Route::namespace ('Auth')->group(function () {
+
+    Route::post('/config/basic-info', 'UsersConfigController@basicInformation')->name('config.basic');
+
+});
+
+Route::get('/out', function () {
+
+    auth()->logout();
+
+    return redirect()->route('register');
 
 });
 
 Auth::routes();
-
-Route::view('/test', 'file');

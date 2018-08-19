@@ -10,6 +10,8 @@ use App\Course;
 class HomeController extends Controller
 {
     public function index(){
+
+    
         $igGrades = Level::where('name','<>','SAT')->get();
         $satCourses = Course::where('school','SAT')->get();
 

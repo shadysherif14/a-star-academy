@@ -1,41 +1,17 @@
-<!doctype html>
+@extends('layouts.main')
 
-<html lang="{{ app()->getLocale() }}">
-
-    <head>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        
-        <title> A Star Academy @yield('title') </title>
+@section('layout_css')
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+@stop
+                
+@section('body')
+    @yield('content')
+@stop
 
-        @include('includes.stylesheets')
 
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-        @yield('css')
-        
-    </head>
 
-    <body>
-            
-        {{-- @include('includes.navbar')
- --}}
-        @yield('content')
 
-        @include('includes.scripts')
-
-        @include('includes.errors')
-        
-        @yield('scripts')
-
-    </body>
-
-</html>
 
 

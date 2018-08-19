@@ -31,6 +31,11 @@ class Course extends Model
         return 'slug';
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
     public function level()
     {
         return $this->belongsTo(Level::class);    

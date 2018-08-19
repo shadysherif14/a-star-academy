@@ -1,0 +1,243 @@
+.pointer {
+  cursor: pointer;
+}
+
+body {
+  background: url(/images/auth.jpeg?62db6fc75cccecc3d82f045449ae5395);
+  background-position: center;
+  background-origin: content-box;
+  background-attachment: fixed;
+  background-position: center;
+  display: grid;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  min-height: 100vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+form {
+  width: 700px;
+  max-width: 90%;
+}
+
+form div.header {
+  height: 8vh;
+  background: #f3b715;
+  color: #fff;
+  text-align: center;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+form div.header h4 {
+  margin: 0px;
+  font-size: 1.5em;
+}
+
+form div.header i {
+  margin-right: 2px;
+}
+
+form div.body {
+  max-height: 95vh;
+  background: rgba(34, 34, 34, 0.7);
+  overflow-y: scroll;
+}
+
+form div.body .content {
+  padding: 2em;
+}
+
+form div.body::-webkit-scrollbar {
+  display: none;
+}
+
+form div.body .btn-group-wrapper {
+  margin: 1rem auto !important;
+}
+
+form div.body .btn-group-wrapper .btn-group {
+  margin: auto;
+  grid-template-columns: 1fr 1fr;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  width: 500px;
+  max-width: 95%;
+}
+
+form div.body .btn-group-wrapper .btn-group.grid {
+  display: grid !important;
+}
+
+form div.body .btn-group-wrapper .btn-group#level {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+form div.body .btn-group-wrapper .btn-group.sub_system {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media screen and (max-width: 400px) {
+  form div.body .btn-group-wrapper .btn-group.sub_system {
+    grid-template-columns: 1fr 1fr;
+    margin: 2rem auto;
+  }
+}
+
+form div.body .btn-group-wrapper .btn-group label {
+  background: rgba(243, 183, 21, 0.7);
+  border-radius: 0px;
+}
+
+form div.body .btn-group-wrapper .btn-group label.active {
+  background: rgba(243, 183, 21, 0.9);
+}
+
+form div.body .btn-group-wrapper .btn-group label:first-child {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+form div.body .btn-group-wrapper .btn-group label:last-child {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+form div.body .btn-group-wrapper .btn-group label:hover {
+  background: #f3b715;
+}
+
+@media screen and (max-width: 400px) {
+  form div.body .btn-group-wrapper .btn-group {
+    grid-template-columns: 1fr;
+    margin: 2rem auto;
+  }
+
+  form div.body .btn-group-wrapper .btn-group label {
+    border-radius: 0 !important;
+    margin: 0px !important;
+  }
+}
+
+form div.body label {
+  color: #fff;
+}
+
+form div.body label.active {
+  color: #fff !important;
+}
+
+form div.body input.form-control,
+form div.body input.file-path {
+  background: transparent;
+  color: #fff;
+}
+
+form div.body input.form-control::-webkit-input-placeholder,
+form div.body input.file-path::-webkit-input-placeholder {
+  color: #fff;
+}
+
+form div.body input.form-control:-ms-input-placeholder,
+form div.body input.file-path:-ms-input-placeholder {
+  color: #fff;
+}
+
+form div.body input.form-control::-ms-input-placeholder,
+form div.body input.file-path::-ms-input-placeholder {
+  color: #fff;
+}
+
+form div.body input.form-control::placeholder,
+form div.body input.file-path::placeholder {
+  color: #fff;
+}
+
+form div.body input.form-control:focus:not([readonly]),
+form div.body input.file-path:focus:not([readonly]) {
+  border-bottom: 1px solid #fff !important;
+  -webkit-box-shadow: 0 1px 0 0 #fff !important;
+          box-shadow: 0 1px 0 0 #fff !important;
+}
+
+form div.body .file-field a {
+  background: rgba(243, 183, 21, 0.7);
+  float: left;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+form div.body .file-field a i {
+  font-size: 1.25em;
+  color: #fff;
+}
+
+form div.body .file-field a:hover {
+  background: #f3b715;
+}
+
+form div.body .controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 4rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+form div.body .controls button {
+  background: #222;
+  margin: 0px !important;
+  display: block;
+  width: 100%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+form div.body .controls button:hover {
+  background: black;
+}
+
+form div.body .controls button:hover i {
+  -webkit-transform: translateX(3px);
+          transform: translateX(3px);
+}
+
+form div.body .controls button i {
+  margin-right: 0.5rem;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+form button.btn-submit {
+  display: block;
+  width: 100%;
+  margin: 0px !important;
+  background: rgba(243, 183, 21, 0.7);
+}
+
+form button.btn-submit * {
+  font-size: 1.25em;
+}
+
+form button.btn-submit:hover {
+  background: #f3b715;
+}
+

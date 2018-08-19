@@ -36,13 +36,21 @@ function displayErrors(errors) {
     }
 }
 
-$('input, textarea').keypress(function () {
+$('input, textarea').attr('autocomplete', 'off');
+
+$('input, textarea').focus(function () {
 
     let name = $(this).attr('name');
 
     $(`#error-${name}`).remove();
 });
 
+$(document).on('change', 'select, input[type=radio], input[type=checkbox]', function () {
+
+    let name = $(this).attr('name');
+
+    $(`#error-${name}`).remove();
+});
 
 const submitForm = function (form, successCallback, errorCallback) {
 
@@ -114,6 +122,8 @@ const defaultError = function (response, status, err) {
 
     let errors = response.responseJSON.errors;
 
+    $('form').animateCss('shake');
+
     displayErrors(errors);
 }
 
@@ -171,5 +181,11 @@ const loadingIcon = function (form) {
     let loading = `<i class="ml-2 fas fa-circle-notch fa-spin" id="loading-icon"></i>`;
 
     submitButton.append(loading);
+}
 
+const showFormData = function (formData) {
+
+    for (var pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+    }
 }

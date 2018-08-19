@@ -56,31 +56,26 @@
     <audio id="audio-2" src="res/audio/2.mp3"></audio>
 
     <div class="fixed-action-btn" style="bottom: 15px; right: 15px;">
+        
             <a class="btn-floating btn-lg">
                 <i class="fas fa-cog"></i>
             </a>
         
-            <ul class="list-unstyled">
+            <ul class="list-unstyled" class="auth">
                 <li title="Signup" id="signupBtn">
-                    <a class="btn-floating green">
+                    <a href="{{ route('register') }}" class="btn-floating green">
                         <i class="fas fa-user-plus"></i>
                     </a>
+                    
                 </li>
                 <li title="Login" id="loginBtn">
-                    <a class="btn-floating blue">
+                    <a class="btn-floating blue" href="{{ route('login') }}">
                         <i class="fas fa-sign-in-alt"></i>
                     </a>
                 </li>
             </ul>
         </div>
 </div>
-
-
-
-
-
-
-
 
 @endsection
  

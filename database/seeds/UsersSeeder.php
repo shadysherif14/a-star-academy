@@ -14,8 +14,7 @@ class UsersSeeder extends Seeder
         
         $user = new App\User;
         $user->username = 'admin';
-        $user->first_name = "first";
-        $user->last_name = "last";
+        $user->name = "admin";
         $user->email = 'admin@admin.com';
         $user->gender = "Male";
         $user->password = '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm'; // secret

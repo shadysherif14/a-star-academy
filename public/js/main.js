@@ -160,15 +160,18 @@ $('#mute').click(function (){
     }
 })
 
-$('#signupBtn').click(function(){
-    window.location.assign("/signup")
-})
+$('#loginBtn a').click(function () {
+   
+    window.location.assign($(this).attr('href'));
 
+});
 
-$('#loginBtn').click(function(){
-    console.log('test')
-    window.location.assign("/login")
-})
+$('#signupBtn a').click(function () {
+
+    window.location.assign($(this).attr('href'));
+
+});
+
 
 $('#igSubmitBtn').click(function(){
     if($("input:radio[name='grade']").is(":checked")) {
