@@ -4,7 +4,7 @@
 
 @import "../mixins/create";
 
-$gtc: 4fr 2fr 1fr 3fr 1fr;
+$gtc: 3fr 1fr 1fr 1.5fr 0.75fr;
 
 @include index($gtc);
 
@@ -16,3 +16,7 @@ button.btn-submit {
         font-size: 1.25em;
     }
 }
+
+.btn-link {
+    margin: 0px !important;
+} 

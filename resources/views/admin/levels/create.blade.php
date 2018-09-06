@@ -23,6 +23,10 @@
 @endsection
 
 @section('scripts')
+    <script>
+        let level = @json($level);
+    </script>
+    <script src="{{ asset('js/admin/levels/create-edit.js') }}"></script>
     <script src="{{ asset('js/admin/levels-courses/create-edit.js') }}"></script>
 @stop 
 

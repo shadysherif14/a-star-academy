@@ -1,24 +1,31 @@
-@extends('layouts.app') 
+@extends('layouts.admin')
 
-
-@section('css')
-    <link rel="stylesheet" href="{{ asset('corses/show.css') }}">
-@stop
+@section('title', 'Admin Dashboard')
 
 @section('content')
+
+<div class="card r-crud">
     
-    <main class="content">
+    <div class="card-header">
 
-        <div class="video-wrapper">
-            
-        </div>
+        <h4> <i class="fas fa-list"></i>  Instructor </h4>
 
-        <aside class="sidebar">
-            
-            @for ($i = 0; $i < 30; $i++)
-                <a href="#"> Video - {{ $i }} </a> 
-            @endfor
-            
-        </aside>
-    </main>
+    </div>
+
+    <div class="card-body">
+
+        <h2> Instructor Name </h2>
+        <p> {{ $instructor->name }} </p>
+
+        <h2> Instructor About </h2>
+        <p> {{ $instructor->about }} </p>
+
+        <img src="{{ $instructor->avatar }}" alt="Instructor Image">
+    </div>
+
+</div>
+@stop
+ 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/admin/shared/cru.css') }}">
 @stop

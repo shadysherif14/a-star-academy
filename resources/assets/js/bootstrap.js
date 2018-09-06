@@ -11,8 +11,13 @@ window.Popper = require('popper.js').default;
 try {
     window.$ = window.jQuery = require('jquery');
 
+    const Card = require("card");
+
+    const Cleave = require('cleave.js');
+    
     require('bootstrap');
 } catch (e) {}
+
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

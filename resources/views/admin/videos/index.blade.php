@@ -11,14 +11,14 @@
 @php
     if(count($videos) === 0) 
         $hidden = 'd-none';
-    else   
+    else
         $hidden = '';
 @endphp
 
 @includeWhen( count($videos) == 0, 'includes.no_records', ['record' => 'video'])
 
 
-<form class="card ajax" action="{{ route('admin.videos.order') }}" method="POST">
+<form class="card ajax" action="{{ route('admin.videos.order') }}" method="POST" id="videos-form">
 
     @csrf
 
@@ -29,7 +29,7 @@
         <div> Free </div>
         <div> Quiz </div>
         <div> </div>
-        <div> </div>
+        <div></div>
     </div>
 
     <div class="card-body" id="videos">
@@ -40,22 +40,21 @@
 
             <div>
                 <input type="hidden" name="videos[{{ $loop->iteration }}][id]" value="{{ $video->id }}">
-                <p class="link modal-trigger">
-                    <a class=""> {{ $video->title }} </a>
-                </p>
+                
+                <a class="btn btn-link modal-trigger text-lg-white"> {{ $video->title }} </a>
             </div>
 
-            <div class="switch">
+
+            <div>
 
                 <div>
-                    <p class="content"> Free </p>
+                    <p class="content"> Pay  </p>
                 </div>
-                <label>
-                    Paid
-                    <input type="checkbox" name="videos[{{ $loop->iteration }}][free]" @if($video->free) checked @endif>
-                    <span class="lever"></span>
-                    Free
-                </label>
+                
+                <button type="button" price={{ $video->price }} 
+                        action="{{ route('admin.payables.show', ['payable' => $video]) }}" class="pay btn btn-link">                    
+                    Pay {{ $video->price }} L.E
+                </button>
             </div>
 
             <div>
@@ -64,27 +63,31 @@
                         Quiz
                     </p>
                 </div>
-                <a href="{{ route('admin.quizzes.index', ['video' => $video]) }}" class="">
+                <a href="{{ route('admin.quizzes.index', ['video' => $video]) }}" class="btn btn-link">
                     Quiz
                 </a>
+                                
             </div>
+
+
             <div>
                 <div>
                     <p class="content"> Actions </p>
                 </div>
                 <div class="actions">
-                    <button type="button" class="btn btn-floating show modal-trigger">
+                    <button type="button" class="btn show modal-trigger">
                         <i class="fas fa-eye"> </i>
                     </button>
-                    <a type="button" class="btn btn-floating edit" href="{{ route('admin.videos.edit', ['video' => $video]) }}">
+                    <a type="button" class="btn edit" href="{{ route('admin.videos.edit', ['video' => $video]) }}">
                         <i class="fas fa-pen"> </i>
                     </a>
-                    <button type="button" class="btn btn-floating delete" action="{{ route('admin.videos.destroy', ['video' => $video]) }}">
+                    <button type="button" class="btn delete" action="{{ route('admin.videos.destroy', ['video' => $video]) }}">
                         <i class="fas fa-trash"> </i>
                     </button>
                 </div>
             </div>
 
+    
             <div class="icons d-none d-lg-block">
                 <i class="fas fa-sort handler"></i>
             </div>
@@ -120,10 +123,14 @@
     </div>
 </div>
 
+
+@include('includes.payable_form')
+
 @endsection
  
 @section('scripts')
     <script src="{{ asset('js/admin/videos/index.js') }}"></script>
+    <script src="{{ asset('js/admin/payables/index.js') }}"></script>
 @endsection
  
 @section('css')

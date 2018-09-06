@@ -1,0 +1,18 @@
+@import "../../variables";
+
+@import "../mixins/index";
+
+$gtc: 50px auto auto 200px;
+
+@include index($gtc);
+
+.grid {
+    align-items: flex-start;
+}
+.avatar {
+
+    img {
+        max-width: 60px !important;
+        height: auto;
+    }
+}

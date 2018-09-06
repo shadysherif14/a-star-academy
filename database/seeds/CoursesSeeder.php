@@ -14,15 +14,7 @@ class CoursesSeeder extends Seeder
     public function run()
     {
 
-        //$faker = Faker::create();
-
-        //$schools = array('Pre-IGCSE','SAT', 'IGCSE');
-
-        $systems = array('Cambridge', 'Edexcel');
-
-        $subSystems = array('Al', 'Ol', 'A2', 'AS');
-
-        $levels = Level::all();
+        $description = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem minima autem enim blanditiis necessitatibus tempore. Reiciendis commodi quo earum quasi totam aut molestiae non in nam adipisci quaerat, nemo dolore sint. Esse a incidunt consequuntur quam eius officia accusantium ut expedita, fuga quaerat inventore quisquam fugit, delectus numquam harum eveniet.';
 
         // American SAT
 
@@ -30,7 +22,11 @@ class CoursesSeeder extends Seeder
 
         $slugs = ['math', 'english-reading', 'english-writing'];
 
-        $satLevel = Level::select('id')->where('name', 'SAT')->first();
+        $satLevel = Level::select('id')->where([
+            ['school', 'SAT'],
+            ['name', 'General'],
+        ])->first();
+
         foreach ($courses as $i => $course) {
 
             $sat = [
@@ -38,10 +34,8 @@ class CoursesSeeder extends Seeder
                 'instructor_id' => random_int(1, 10),
                 'name' => $course,
                 'slug' => $slugs[$i],
-                'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae doloribus impedit incidunt. Et repudiandae itaque hic tenetur incidunt eius deserunt sit nostrum architecto laborum sint molestias nobis neque mollitia soluta?',
+                'description' => $description,
                 'school' => 'SAT',
-                'system' => null,
-                'sub_system' => null,
 
             ];
             Course::create($sat);
@@ -49,21 +43,26 @@ class CoursesSeeder extends Seeder
 
         // IGCSE
 
+        $systems = array('Cambridge', 'Edexcel');
+
+        $subSystems = array('Al', 'Ol', 'A2', 'AS');
+
+        $levels = Level::all();
+
         foreach ($levels as $level) {
 
             if ($level->name === '8th Grade') {
 
                 $courses = ['Math', 'Science', 'English', 'Arabic'];
-                $data['school'] = 'Pre-IGCSE';
-                $data['system'] = null;
-                $data['sub_system'] = null;
+
                 foreach ($courses as $course) {
                     $data = [
                         'level_id' => $level->id,
                         'instructor_id' => random_int(1, 10),
                         'name' => $course,
                         'slug' => str_slug($course) . $level->id,
-                        'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae doloribus impedit incidunt. Et repudiandae itaque hic tenetur incidunt eius deserunt sit nostrum architecto laborum sint molestias nobis neque mollitia soluta?',
+                        'description' => $description,
+                        'school' => 'IGCSE',
                     ];
                     Course::create($data);
                 }
@@ -71,16 +70,15 @@ class CoursesSeeder extends Seeder
             } elseif ($level->name === '9th Grade') {
 
                 $courses = ['Math', 'Physics', 'English', 'Chemistry', 'Biology', 'Arabic'];
-                $data['school'] = 'Pre-IGCSE';
-                $data['system'] = null;
-                $data['sub_system'] = null;
+
                 foreach ($courses as $course) {
                     $data = [
                         'level_id' => $level->id,
                         'instructor_id' => random_int(1, 10),
                         'name' => $course,
                         'slug' => str_slug($course) . '-' . $level->id,
-                        'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae doloribus impedit incidunt. Et repudiandae itaque hic tenetur incidunt eius deserunt sit nostrum architecto laborum sint molestias nobis neque mollitia soluta?',
+                        'description' => $description,
+                        'school' => 'IGCSE'
                     ];
                     Course::create($data);
                 }
@@ -95,14 +93,13 @@ class CoursesSeeder extends Seeder
                         'instructor_id' => random_int(1, 10),
                         'name' => $course,
                         'school' => 'IGCSE',
-                        'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae doloribus impedit incidunt. Et repudiandae itaque hic tenetur incidunt eius deserunt sit nostrum architecto laborum sint molestias nobis neque mollitia soluta?',
+                        'description' => $description,
                     ];
                     foreach ($systems as $sys) {
                         foreach ($subSystems as $sub) {
                             $data['system'] = $sys;
                             $data['sub_system'] = $sub;
-                            $data['slug'] = str_slug($course) . '-' . $sys . '-' . $sub . '-';
-
+                            $data['slug'] = str_slug($course) . '-' . $sys . '-' . $sub;
                             Course::create($data);
                         }
                     }

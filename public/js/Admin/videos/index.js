@@ -24,7 +24,7 @@ $('#video-modal').on('hidden.bs.modal', function (e) {
     iframe.attr('src', '');
 });
 
-$('form.ajax').submit(function (e) {
+$('form#videos-form').submit(function (e) {
 
     e.preventDefault();
 
@@ -34,6 +34,7 @@ $('form.ajax').submit(function (e) {
 });
 
 const successCallback = function (response) {
+
     if (response.status) {
 
         $('i.fa-spin').remove();

@@ -22,8 +22,7 @@
 
     <div class="card-header grid">
         <div> Name </div>
-        <div> Description </div>
-        <div> Image </div>
+        <div> School </div>
         <div>  </div>
     </div>
 
@@ -35,23 +34,15 @@
         
             <div>
                 <p class="link">
-                    <a href="{{ $level->adminPath() }}"> {{ $level->name }} </a>
+                    <a href="{{ route('admin.levels.show', ['level' => $level]) }}"> {{ $level->name }} </a>
                 </p>
             </div>
         
             <div>
                 <div>
-                    <p class="content"> Description </p>
+                    <p class="content"> School </p>
                 </div>
-                <p class="text-left"> {!! $level->description !!} </p>
-            </div>
-
-            <div>
-                <div>
-                    <p class="content"> Image </p>
-                </div>
-                
-                <img src="{{ $level->image }}" alt="Level">
+                <p> {{  $level->school }} </p>
             </div>
         
             <div>
@@ -59,13 +50,13 @@
                     <p class="content"> Actions </p>
                 </div>
                 <div class="actions">
-                    <a type="button" class="btn btn-floating show" href="{{ route('admin.levels.show', ['level' => $level]) }}">
+                    <a type="button" class="btn show" href="{{ route('admin.levels.show', ['level' => $level]) }}">
                         <i class="fas fa-eye"> </i>
                     </a>
-                    <a type="button" class="btn btn-floating edit" href="{{ route('admin.levels.edit', ['level' => $level]) }}">
+                    <a type="button" class="btn edit" href="{{ route('admin.levels.edit', ['level' => $level]) }}">
                         <i class="fas fa-pen"> </i>
                     </a>
-                    <button type="button" class="btn btn-floating delete" action="{{ route('admin.levels.destroy', ['level' => $level]) }}">
+                    <button type="button" class="btn delete" action="{{ route('admin.levels.destroy', ['level' => $level]) }}">
                         <i class="fas fa-trash"> </i>
                     </button>
                 </div>

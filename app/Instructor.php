@@ -14,11 +14,19 @@ class Instructor extends Model
         'updated_at' => 'datetime:Y-m-d'
     ];
 
-    public $with = ['courses'];
-
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function getAvatarAttribute($value)
+    {
+
+        if (is_null($value)) {
+            return null;
+        }
+
+        return asset("storage/{$value}");
     }
 
     public function courses()

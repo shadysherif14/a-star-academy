@@ -15,6 +15,8 @@ class Level extends Model
         'updated_at' => 'datetime:Y-m-d',
     ];
 
+    protected $hidden = ['description', 'created_at', 'updated_at', 'image', 'slug'];
+
     public static function boot()
     {
 

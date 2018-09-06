@@ -47,7 +47,7 @@
                         <ul>
                             <li>
                                 <a href="/courses" class="waves-effect">
-                                    <i class="fas fa-list-alt"></i> All Course 
+                                    <i class="fas fa-list-alt"></i> All Courses
                                 </a>
 
                                 <a href="/courses/create" class="waves-effect">

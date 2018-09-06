@@ -25,6 +25,7 @@
 
     <script>
         let course = @json($course);
+        let levels = @json($levels);
     </script>
 
     <script src="{{ asset('js/admin/courses/create-edit.js') }}"></script>

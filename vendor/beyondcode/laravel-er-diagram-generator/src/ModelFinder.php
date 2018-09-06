@@ -2,14 +2,15 @@
 
 namespace BeyondCode\ErdGenerator;
 
-use PhpParser\NodeTraverser;
-use PhpParser\ParserFactory;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Namespace_;
-use Illuminate\Support\Collection;
-use Illuminate\Filesystem\Filesystem;
+use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitor\NameResolver;
-use Illuminate\Database\Eloquent\Model as EloquentModel;
+use PhpParser\ParserFactory;
 
 class ModelFinder
 {
@@ -28,13 +29,15 @@ class ModelFinder
             $this->filesystem->allFiles($directory) :
             $this->filesystem->files($directory);
 
-        return Collection::make($files)->map(function ($path) {
+        $ignoreModels = array_filter(config('erd-generator.ignore', []), 'is_string');
+
+        return Collection::make($files)->filter(function ($path) {
+            return Str::endsWith($path, '.php');
+        })->map(function ($path) {
             return $this->getFullyQualifiedClassNameFromFile($path);
         })->filter(function (string $className) {
-            return !empty($className);
-        })->filter(function (string $className) {
-            return is_subclass_of($className, EloquentModel::class);
-        });
+            return !empty($className) && is_subclass_of($className, EloquentModel::class);
+        })->diff($ignoreModels);
     }
 
     protected function getFullyQualifiedClassNameFromFile(string $path): string
@@ -50,9 +53,13 @@ class ModelFinder
         $statements = $traverser->traverse($statements);
 
         // get the first namespace declaration in the file
-        $root_statement = collect($statements)->filter(function ($statement) {
+        $root_statement = collect($statements)->first(function ($statement) {
             return $statement instanceof Namespace_;
-        })->first();
+        });
+
+        if (! $root_statement) {
+            return '';
+        }
 
         return collect($root_statement->stmts)
                 ->filter(function ($statement) {
@@ -63,5 +70,4 @@ class ModelFinder
                 })
                 ->first() ?? '';
     }
-
 }

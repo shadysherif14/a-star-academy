@@ -35,8 +35,8 @@
     </div>
 
     <div class="card-header grid d-none">
-        <div> Title </div>
-        <div> Free </div>
+        <div> Information </div>
+        <div> Price </div>
         <div class="status"> </div>
     </div>
 
@@ -50,6 +50,8 @@
     <button type="submit" class="btn btn-submit"> <i class="fas fa-upload"></i> Upload </button>
 
 </form>
+
+<video class="d-none" id="video"></video>
 </div>
 @stop 
 

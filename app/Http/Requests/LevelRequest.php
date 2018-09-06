@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Level;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LevelRequest extends FormRequest
@@ -24,9 +25,32 @@ class LevelRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'description' => 'required',
-            'image' => 'image'
+            'name' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    return $this->nameSchoolCombination($fail);
+                },
+            ],
+            'school' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    return $this->nameSchoolCombination($fail);
+                },
+            ],
+            'image' => 'image',
         ];
+    }
+
+    public function nameSchoolCombination($fail)
+    {
+        $exist = Level::where([
+            ['name', $this->name],
+            ['school', $this->school],
+        ])->exists();
+
+        if ($exist) {
+            return $fail('There is a level has the combination of name and school.');
+        }
+
     }
 }

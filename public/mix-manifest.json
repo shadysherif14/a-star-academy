@@ -3,10 +3,12 @@
     "/css/admin/shared/cru.css": "/css/admin/shared/cru.css",
     "/css/admin/courses/index.css": "/css/admin/courses/index.css",
     "/css/admin/levels/index.css": "/css/admin/levels/index.css",
+    "/css/admin/instructors/index.css": "/css/admin/instructors/index.css",
     "/css/admin/quizzes/index.css": "/css/admin/quizzes/index.css",
     "/css/admin/videos/index.css": "/css/admin/videos/index.css",
     "/css/admin/videos/create.css": "/css/admin/videos/create.css",
-    "/css/auth/index.css": "/css/auth/index.css",
+    "/css/auth/register.css": "/css/auth/register.css",
     "/css/auth/login.css": "/css/auth/login.css",
-    "/css/auth/register.css": "/css/auth/register.css"
+    "/css/auth/index.css": "/css/auth/index.css",
+    "/css/user/courses/index.css": "/css/user/courses/index.css"
 }

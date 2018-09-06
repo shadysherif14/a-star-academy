@@ -65,6 +65,9 @@ form {
                     border-radius: 0px;
                     &.active {
                         background: $gold;
+                        &:hover {
+                            background: $gold;
+                        }
                     }
                     &:first-child {
                         border-top-left-radius: 1rem;
@@ -75,7 +78,7 @@ form {
                         border-bottom-right-radius: 1rem;
                     }
                     &:hover {
-                        background: $gold7;
+                        background: $gold9;
                     }
                 }
                 @media screen and (max-width: $xs) {

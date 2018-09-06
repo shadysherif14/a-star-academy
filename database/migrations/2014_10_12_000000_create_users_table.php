@@ -25,6 +25,8 @@ class CreateUsersTable extends Migration
             
             $table->string('avatar')->default('images/defaults/avatar.png');
             
+            $table->string('school')->nullable();
+
             $table->enum('gender', ['Male', 'Female'])->nullable();
             
             $table->string('password');

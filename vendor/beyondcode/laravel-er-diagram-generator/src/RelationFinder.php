@@ -2,14 +2,12 @@
 
 namespace BeyondCode\ErdGenerator;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Collection;
 use ReflectionClass;
 use ReflectionMethod;
-use Illuminate\Support\Collection;
-use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class RelationFinder
 {
@@ -18,21 +16,20 @@ class RelationFinder
      *
      * @param string $model
      * @return Collection
+     * @throws \ReflectionException
      */
     public function getModelRelations(string $model)
     {
         $class = new ReflectionClass($model);
 
-        $traitMethods = Collection::make($class->getTraits())->map(function ($trait) {
+        $traitMethods = Collection::make($class->getTraits())->map(function (ReflectionClass $trait) {
             return Collection::make($trait->getMethods(ReflectionMethod::IS_PUBLIC));
         })->flatten();
 
         $methods = Collection::make($class->getMethods(ReflectionMethod::IS_PUBLIC))
             ->merge($traitMethods)
             ->reject(function (ReflectionMethod $method) use ($model) {
-                return $method->class !== $model;
-            })->reject(function (ReflectionMethod $method) use ($model) {
-                return $method->getNumberOfParameters() > 0;
+                return $method->class !== $model || $method->getNumberOfParameters() > 0;
             });
 
         $relations = Collection::make();
@@ -43,9 +40,18 @@ class RelationFinder
 
         $relations = $relations->filter();
 
+        if ($ignoreRelations = array_get(config('erd-generator.ignore', []),$model))
+        {
+            $relations = $relations->diffKeys(array_flip($ignoreRelations));
+        }
+
         return $relations;
     }
 
+    /**
+     * @param string $qualifiedKeyName
+     * @return mixed
+     */
     protected function getParentKey(string $qualifiedKeyName)
     {
         $segments = explode('.', $qualifiedKeyName);
@@ -53,6 +59,11 @@ class RelationFinder
         return end($segments);
     }
 
+    /**
+     * @param ReflectionMethod $method
+     * @param string $model
+     * @return array|null
+     */
     protected function getRelationshipFromMethodAndModel(ReflectionMethod $method, string $model)
     {
         try {

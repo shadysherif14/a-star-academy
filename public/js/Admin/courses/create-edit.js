@@ -32,27 +32,73 @@ if (course.length != 0) {
     $('#image-wrapper button').addClass('hidden');
 }
 
-let schoolRadio = $('input[type=radio][name=school]')
+let schoolSelect = $('select[name="school"]');
 
-let schoolLabels = $('#school label');
+let levelSelect = $('select[name="level"]');
 
-schoolLabels.on('click', function () {
 
-    setTimeout(() => {
+let prevSchool;
 
-        let school = $('input[name=school]:checked').val();
+schoolSelect.on('change', _ => schoolChanged());
 
-        if (school === 'IGCSE') {
+const schoolChanged = _ => {
 
-            $('#system').slideDown('slow').addClass('grid').removeClass('hidden');
+    let school = schoolSelect.val();
 
-            $('#sub_system').slideDown('slow').addClass('grid').removeClass('hidden');
+    if (prevSchool === school) return;
 
-        } else if (school === 'American Diploma') {
+    removeErrors();
 
-            $('#system').slideUp('slow').removeClass('grid').addClass('hidden');
+    prevSchool = school;
 
-            $('#sub_system').slideUp('slow').removeClass('grid').addClass('hidden');
-        }
-    }, 200);
-});
+    let schoolLevels = levels.filter(level => level.school === school);
+
+    if (schoolLevels.length === 0) return;
+
+    let options = `<option value="" disabled selected> Choose Level </option>`;
+
+    schoolLevels.forEach(level => {
+
+        options += `<option value="${level.id}"> ${level.name} </option>`;
+
+    });
+
+    levelSelect.html(options);
+
+    if (schoolLevels.length === 1) {
+
+        levelSelect.find('option').removeAttr('selected');
+
+        let selectedOption = levelSelect.find('option').eq(1);
+
+        selectedOption.prop('selected', true);
+    }
+
+    levelSelect.parents('.md-form').slideDown('slow').removeClass('hidden');
+
+    reInitializeSelect('#level');
+
+    if (school === 'IGCSE') {
+
+        show('#system');
+
+        show('#sub_system');
+
+    } else {
+
+        hide('#system');
+
+        hide('#sub_system');
+    }
+}
+
+const show = selector => $(selector).slideDown('slow').addClass('grid').removeClass('hidden');
+
+const hide = selector => $(selector).slideUp('slow').removeClass('grid').addClass('hidden');
+
+const removeErrors = _ => {
+
+    $('#system').parent().find('small').remove();
+
+    $('#sub_system').parent().find('small').remove();
+}

@@ -15,6 +15,7 @@
             @media screen and (max-width: $lg) {
                 grid-template-columns: 1fr;
             }
+            grid-gap: 0.5rem;
             display: grid;
             grid-template-columns: $gtc;
             text-align: center;
@@ -82,18 +83,34 @@
                 }
                 div.actions {
                    
+                    max-width: 200px;
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    justify-items: center;
+                    grid-gap: 0.5rem;
                     button.btn,
                     a.btn {
-                        margin: 0px auto !important;
+                        width: 50px !important;
+                        height: 50px !important;
+                        border-radius: 100%;
+                        padding: 0px;
+                        display: grid;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 0px !important;
                         background: transparent;
-                        transition-duration: 1s;
+                        i {
+                            font-size: 1.25rem;
+                        }
                         $actions: show edit delete;
                         $btns: $btn-show-background $btn-edit-background $btn-delete-background;
                         @each $action in $actions {
                             $index: index($actions, $action);
                             $btn: nth($btns, $index);
                             &.#{$action} {
-                                i {color: #{$btn};}
+                                i {
+                                    color: #{$btn};
+                                }
                                 border: 1px solid #{$btn};
                                 &:hover {
                                     background: #{$btn};

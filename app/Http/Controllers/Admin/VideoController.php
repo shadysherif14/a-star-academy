@@ -19,6 +19,8 @@ class VideoController extends Controller
 
         $videos = Video::videos($course->id);
 
+        //return($videos);
+
         return view('admin.videos.index', compact('videos', 'course'));
     }
 
@@ -50,11 +52,23 @@ class VideoController extends Controller
 
         $video->title = $request->title;
 
-        $video->free = $request->free === 'true';
+        $price = (int) $request->price;
+
+        $video->price = $price;
+
+        $video->free = $price === 0;
 
         $video->order = $order;
 
+        $video->duration = $request->duration;
+
+        $video->description = $request->description;
+
         $video->save();
+
+        Course::updatePrice($course->id);
+
+        $video->pay()->create();
 
         $status = true;
 

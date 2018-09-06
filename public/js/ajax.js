@@ -12,11 +12,9 @@ function displayErrors(errors) {
 
         let id = `error-${error}`;
 
-        if (exists(id)) continue;
+        if (exists('#' + id)) continue;
 
         let input = $(`[name="${error}"]`);
-
-        input.next('small.feedback').remove();
 
         let type = input.attr('type');
 
@@ -42,7 +40,11 @@ $('input, textarea').focus(function () {
 
     let name = $(this).attr('name');
 
-    $(`#error-${name}`).remove();
+    //if (name.includes('[]')) return;
+
+    let error = `#error-${name}`;
+    
+    $(error).remove();
 });
 
 $(document).on('change', 'select, input[type=radio], input[type=checkbox]', function () {
@@ -52,7 +54,11 @@ $(document).on('change', 'select, input[type=radio], input[type=checkbox]', func
     $(`#error-${name}`).remove();
 });
 
+let currentForm;
+
 const submitForm = function (form, successCallback, errorCallback) {
+
+    currentForm = form;
 
     let hiddenMethod = form.find('input[name="_method"]').val();
 
@@ -61,8 +67,6 @@ const submitForm = function (form, successCallback, errorCallback) {
     let data = form.serializeFormJSON();
 
     let action = form.attr('action');
-
-    loadingIcon(form);
 
     if (method.toUpperCase() !== 'GET') {
         CSRFToken();
@@ -81,6 +85,8 @@ const submitFileForm = function (form, successCallback, errorCallback) {
 
     let formEl = $(form);
 
+    currentForm = formEl;
+
     let hiddenMethod = formEl.find('input[name="_method"]').val();
 
     let method = (hiddenMethod === undefined) ? formEl.attr('method') : hiddenMethod;
@@ -94,7 +100,8 @@ const submitFileForm = function (form, successCallback, errorCallback) {
     if (method.toUpperCase() !== 'GET') {
         CSRFToken();
     }
-    else if (method.toUpperCase() === 'PUT') {
+    
+    if (method.toUpperCase() === 'PUT') {
         method = 'POST'
     }
 
@@ -112,17 +119,18 @@ const submitFileForm = function (form, successCallback, errorCallback) {
 }
 
 const defaultSuccess = function (response) {
+
     if (response.status) {
 
         window.location = response.redirect;
     }
 }
 
-const defaultError = function (response, status, err) {
+const defaultError = function (response, status, err, form) {
 
     let errors = response.responseJSON.errors;
 
-    $('form').animateCss('shake');
+    currentForm.animateCss('shake');
 
     displayErrors(errors);
 }
@@ -174,13 +182,13 @@ $(document).on('click', '.btn.delete', function () {
 
 const loadingIcon = function (form) {
 
-    if (exists('#loading-icon')) return;
+    /* if (exists('#loading-icon')) return;
 
     let submitButton = form.find('.btn-submit');
 
     let loading = `<i class="ml-2 fas fa-circle-notch fa-spin" id="loading-icon"></i>`;
 
-    submitButton.append(loading);
+    submitButton.append(loading); */
 }
 
 const showFormData = function (formData) {

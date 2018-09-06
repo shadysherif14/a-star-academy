@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateVideosTable extends Migration
 {
@@ -16,26 +16,25 @@ class CreateVideosTable extends Migration
         Schema::create('videos', function (Blueprint $table) {
 
             $table->increments('id');
-            
+
             $table->unsignedInteger('course_id');
-            
+
             $table->string('path');
 
             $table->string('title');
-            
-            $table->string('description');
+
+            $table->float('price');
+
+            $table->string('description')->nullable();
 
             $table->string('slug');
-            
-            // store json string as
-            // {hours:1, minuts:1, seconds:1}
-            $table->string('duration');
 
+            $table->string('duration');
 
             $table->boolean('free')->default(false);
 
             $table->unsignedInteger('order');
-    
+
             $table->timestamps();
         });
     }

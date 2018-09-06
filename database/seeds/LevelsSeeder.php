@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Level;
+use Illuminate\Database\Seeder;
 
 class LevelsSeeder extends Seeder
 {
@@ -12,17 +12,50 @@ class LevelsSeeder extends Seeder
      */
     public function run()
     {
-        
-        $levels = ['8th Grade', '9th Grade', 'SAT', 'IG'];
 
-        foreach($levels as $level) {
+        $levelsGeneral = ['General'];
+        $levelsSAT = ['General'];
+        $levelsIG = ['8th Grade', '9th Grade', 'IG'];
 
-            $levelsData[] = [
-                'name' => $level,
-                'slug' => str_slug($level),
-                'description' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae totam impedit et eius incidunt, exercitationem quia corporis ducimus veniam ratione nemo aperiam cupiditate quisquam repellendus illo sequi adipisci est, reiciendis dolore. Nihil blanditiis voluptate, amet quo aspernatur, non numquam excepturi temporibus cum quas corrupti, ipsam voluptates. Laborum id consectetur reiciendis?',
-            ];
+        $description = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid voluptas vero expedita similique autem saepe odio, officiis esse reiciendis porro enim quisquam incidunt quos praesentium iste officia distinctio neque, repellendus quae adipisci? Omnis, quod reiciendis a commodi, debitis enim doloribus asperiores, nulla consectetur deserunt molestiae. Ut placeat vero adipisci voluptatibus.';
+
+        foreach ($levelsGeneral as $levelGeneral) {
+
+            $level = new Level;
+
+            $level->name = $levelGeneral;
+
+            $level->school = 'General';
+
+            $level->description = $description;
+
+            $level->save();
         }
-        Level::insert($levelsData);
+
+        foreach ($levelsSAT as $levelSAT) {
+
+            $level = new Level;
+
+            $level->name = $levelSAT;
+
+            $level->school = 'SAT';
+
+            $level->description = $description;
+
+            $level->save();
+        }
+
+        foreach ($levelsIG as $levelIG) {
+
+            $level = new Level;
+
+            $level->name = $levelIG;
+
+            $level->school = 'IGCSE';
+
+            $level->description = $description;
+
+            $level->save();
+        }
     }
 }

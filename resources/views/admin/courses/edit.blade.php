@@ -1,5 +1,7 @@
 @extends('layouts.admin') 
+
 @section('title', ' | Courses - Edit') 
+
 @section('content')
 
 <form action="{{ route('admin.courses.update', ['course' => $course]) }}" method="post" class="card ajax" enctype="multipart/form-data">
@@ -22,6 +24,7 @@
 
     <script>
         let course = @json($course);
+        let levels = @json($levels);
     </script>
     
     <script src="{{ asset('js/admin/courses/create-edit.js') }}"></script>

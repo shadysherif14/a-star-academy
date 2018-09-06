@@ -2,99 +2,65 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\InstructorRequest;
 use App\Instructor;
 use Illuminate\Http\Request;
-use App\Http\Requests\InstructorRequest;
-use App\Http\Controllers\Controller;
 
 class InstructorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        
+
         $instructors = Instructor::all();
 
         return view('admin.instructors.index', compact('instructors'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        
-        return view('admin.instructors.create');
-    }
 
+        $instructor = new Instructor;
+
+        return view('admin.instructors.create', compact('instructor'));
+    }
 
     public function store(InstructorRequest $request)
     {
-        
+
         $request->validated();
 
         $instructor = new Instructor;
 
-        $instructor = $this->saveOrUpdate($request, $instructor);
-
-        if ($request->ajax()) {
-
-            return response()->json([
-
-                'status' => true,
-
-                'instructor' => $instructor,
-            ]);
-        }
-
-        return redirect('instructors');
-        
+        return $this->saveOrUpdate($request, $instructor);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Instructor  $instructor
-     * @return \Illuminate\Http\Response
-     */
     public function show(Instructor $instructor)
     {
-        //
+        
+        return view('admin.instructors.show', compact('instructor'));
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Instructor  $instructor
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Instructor $instructor)
     {
-        //
+        return view('admin.instructors.edit', compact('instructor'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Instructor  $instructor
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Instructor $instructor)
     {
-        //
+
+        $request->validated();
+
+        return $this->saveOrUpdate($request, $instructor);
+
     }
 
- 
     public function destroy(Instructor $instructor)
     {
-        
+
+        $instructor->delete();
     }
 
     private function saveOrUpdate(Request $request, Instructor $instructor)
@@ -103,12 +69,21 @@ class InstructorController extends Controller
 
         $instructor->about = $request->about;
 
-        $image = $request->avatar->store('/images/avatars');
+        if ($request->file('avatar')) {
 
-        $instructor->avatar = $image;
+            $avatar = $request->avatar->store('public/images/instructors');
+
+            $instructor->avatar = str_replace_first('public/', '', $avatar);
+        }
 
         $instructor->save();
 
-        return $instructor;
+        return response()->json([
+
+            'status' => true,
+
+            'redirect' => route('admin.instructors.show', ['instructor' => $instructor]),
+        ]);
+
     }
 }

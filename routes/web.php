@@ -9,7 +9,7 @@ Route::domain('admin.astaracademy.test')
     ->middleware('auth')
     ->group(function () {
 
-        Route::view('/', 'homepage.admin');
+        Route::view('/', 'admin.index');
 
         Route::post('/levels/{level}', 'LevelController@update')->name('levels.update');
         Route::resource('/levels', 'LevelController')->except('update');
@@ -27,6 +27,11 @@ Route::domain('admin.astaracademy.test')
         Route::resource('/quizzes', 'QuestionController')->only(['show', 'update', 'destroy']);
 
         Route::resource('/instructors', 'InstructorController');
+
+        Route::get('/payables/{payable}', 'PayMobOrderController@show')->name('payables.show');
+
+        Route::post('/payables/{payable}', 'PayMobOrderController@pay')->name('payables.pay');
+
     });
 /*
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -51,6 +56,11 @@ Route::group(array('namespace' => 'User'), function () {
     //Route::resource('/courses', 'CourseController')->only(['index', 'show']);
 
     Route::get('/', 'HomeController@index')->name('home');
+
+    Route::get('/courses', function() {
+
+        return view('app.courses.index');
+    });
 
     Route::get('/ig/courses/{crs}', 'IgController@courses');
 

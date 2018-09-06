@@ -36,7 +36,24 @@
             <p> {{ $course->system }} </p>
             <p> {{ $course->sub_system }} </p>
             @endif
+        </div>
 
+        <div>
+            <h2> Instructor </h2>
+            <p> 
+                <a href="{{ route('admin.instructors.show', ['instuctor' => $course->instructor]) }}">
+                    {{ $course->instructor->name }}
+                </a>
+            </p>
+        </div>
+
+        <div>
+            <h2> Level </h2>
+            <p> 
+                <a href="{{ route('admin.levels.show', ['level' => $course->level]) }}">
+                    {{ $course->level->name }}
+                </a>
+            </p>
         </div>
 
         <div>

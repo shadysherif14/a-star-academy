@@ -2,6 +2,6 @@
 
 @import "../mixins/index";
 
-$gtc: 1fr 3.5fr 2fr 1.5fr;
+$gtc: repeat(2, 2fr) 1fr;
 
 @include index($gtc);

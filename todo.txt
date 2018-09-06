@@ -1,12 +1,19 @@
-Admin Panel
-    - Levels
-        * Create    (Done)
-        * Edit
-        * Show
-        * Delete
-    - Courses
-        * Create    (Done)
-        * Edit
-        * Show
-        * Delete
-        
+$table->increments('id');
+
+$table->string('name');
+            
+$table->string('email')->unique()->nullable();
+
+$table->string('username')->unique()->nullable();
+
+$table->string('avatar')->default('images/defaults/avatar.png');
+
+$table->string('school');
+
+$table->enum('gender', ['Male', 'Female'])->nullable();
+
+$table->string('password');
+            
+$table->rememberToken();
+
+$table->timestamps();

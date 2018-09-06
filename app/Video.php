@@ -2,31 +2,29 @@
 
 namespace App;
 
+use App\Interfaces\PayableInterface;
+use App\Traits\Payable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
-class Video extends Model
+class Video extends Model implements PayableInterface
 {
 
-    use Sluggable;
+    use Sluggable, Payable;
 
     public $guarded = [];
 
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d',
-        'updated_at' => 'datetime:Y-m-d',
-        'free' => 'boolean',
-    ];
-
-    public function duration(){
+    public function duration()
+    {
         $duration = json_decode($this->duration);
         $h = $duration->hour ? $duration->hour . 'h ' : '';
         $m = $duration->min ? $duration->min . 'm ' : '';
         $s = $duration->sec ? $duration->sec . 's' : '';
 
-        $str = join('',[$h,$m,$s]);
+        $str = join('', [$h, $m, $s]);
         return $str;
     }
+
     public static function boot()
     {
 
@@ -53,16 +51,6 @@ class Video extends Model
         return 'slug';
     }
 
-    public function adminPath()
-    {
-        return "/admin{$this->path()}";
-    }
-
-    public function path($course)
-    {
-        return route('admin.videos.index', ['course' => $course]);
-    }
-
     public static function order($courseID)
     {
         $video = self::select('order')
@@ -83,8 +71,24 @@ class Video extends Model
 
     public static function videos($courseID)
     {
-        return self::where('course_id', $courseID)->oldest('order')->get();
+        return self::where('course_id', $courseID)
+
+            ->oldest('order')
+
+            ->get();
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function persistUser($user)
+    {
+        $this->users()->save($user);
+    }
+
+
     /**
      * Get all of the course's comments.
      */

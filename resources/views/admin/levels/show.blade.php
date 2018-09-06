@@ -1,9 +1,10 @@
 @extends('layouts.admin') 
+
 @section('title', 'Admin Dashboard') 
+
 @section('content')
 
-
-<div class="card w-75 mx-auto">
+<div class="card r-crud">
 
     <div class="card-header">
 

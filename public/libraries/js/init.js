@@ -19,7 +19,10 @@ $('#sidebar-toggle').click(function () {
 });
 $('.mdb-select').material_select();
 
-autosize(document.querySelectorAll('textarea'));
+
+let textareaElements = document.querySelectorAll('textarea');
+
+autosize(textareaElements);
 
 toastr.options = {
     "closeButton": false,
@@ -37,4 +40,11 @@ toastr.options = {
     "hideEasing": "linear",
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
+}
+
+const reInitializeSelect = selector => {
+
+    $(selector).material_select('destroy');
+
+    $(selector).material_select();
 }

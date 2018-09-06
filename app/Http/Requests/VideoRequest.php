@@ -26,13 +26,13 @@ class VideoRequest extends FormRequest
         return [
             'name' => 'required',
             'title' => 'required',
-            'free' => 'required',
+            'price' => 'required',
+            'duration' => 'required',
             'video' => [
                 'bail',
                 'required',
                 'mimes:mp4,mov,ogg,qt,flv,mkv,avi,flv,mpg,mpeg',
                 function ($attribute, $value, $fail) {
-
                     $file = request()->file('video');
                     if ($file->getClientOriginalName() !== request()->name) {
                         return $fail('Something went wrong please try again!');

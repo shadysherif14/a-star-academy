@@ -83,7 +83,6 @@ class CourseController extends Controller
         }
 
         return redirect('admin/courses');
-
     }
 
 

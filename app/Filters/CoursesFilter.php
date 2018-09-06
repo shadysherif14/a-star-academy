@@ -13,7 +13,6 @@ class CoursesFilter extends Filter
 
     public function name($name)
     {
-
         return $this->query->where('name', $name);
     }
 

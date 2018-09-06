@@ -1,62 +1,73 @@
 @extends('layouts.admin') 
-@section('title', 'Admin Dashboard') 
+
+@section('title', '| Instuctors') 
+
 @section('content')
 
 
-<a href="/admin/instructors/create" class="btn btn-outline-dark m-0"> <i class="fas fa-"></i> New Instructor </a>
+<a class="btn create" href="{{ route('admin.instructors.create' ) }}">
+    <i class="fas fa-plus"></i> Add Instructor
+</a>
+
+
 <div class="card">
 
+    <div class="card-header grid">
+        <div> </div>
+        <div> Name </div>
+        <div> About </div>
+        <div>  </div>
+    </div>
+
     <div class="card-body">
+        
+        @foreach ($instructors as $instructor)
+                
+        <div id="instructor-{{ $instructor->id }}" instructor="{{ $instructor->id }}" class="grid">
+        
+            <div class="avatar">
+                <img src="{{ $instructor->avatar }}" alt="" class="img-fluid rounded-circle">
+            </div>
 
-        <table class="table table-fixed" datatable>
-
-            <thead class="elegant-color align-items-center text-white">
-                <tr>
-                    <th scope="col" class=""> Name </th>
-                    <th scope="col" class=""> Avatar </th>
-                    <th scope="col" class=""> About </th>
-                    <th scope="col" class="actions" style="width: 300px;"> Actions </th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                @foreach($instructors as $instructor)
-
-                <tr id="instructor-{{ $instructor->id }}" instructor="{{ $instructor->id }}" class="">
-
-                    <td content="Name">
-                        <p> {{ $instructor->name }} </p>
-                    </td>
-
-                    <td content="">
-                         <img src="{{ $instructor->avatar }}" alt="">
-                    </td>
-
-                    <td content="">
-                        <p> {{ $instructor->about }} </p>
-                    </td>
-
+            <div>
+                <div>
+                    <p class="content"> Name </p>
+                </div>
+                <p> {{ $instructor->name }} </p>
+            </div>
             
-                    <td content="Actions text-white">
-                        <a href="/admin/instructors/{{ $instructor->slug }}" class="btn bttn-fill bttn-xs bttn-primary"><i class="fas fa-eye"></i> <span> Show </span> </a>
-                        <a href="/admin/instructors/{{ $instructor->slug }}/edit" class="btn bttn-fill bttn-xs bttn-success"><i class="fas fa-pen"></i> <span> Edit </span> </a>
-                        <a class="btn bttn-fill bttn-xs bttn-danger delete"><i class="fas fa-trash"></i> <span> Delete </span></a>
-                    </td>
-                </tr>
+            <div>
+               <div>
+                    <p class="content"> About </p>
+                </div>
+                <p> {{ $instructor->about }} </p>
+                
+            </div>
+            <div>
+                <div>
+                    <p class="content"> Actions </p>
+                </div>
+                <div class="actions">
+                    <a type="button" class="btn show" href="{{ route('admin.instructors.show', ['instructor' => $instructor]) }}">
+                        <i class="fas fa-eye"> </i>
+                    </a>
+                    <a type="button" class="btn edit" href="{{ route('admin.instructors.edit', ['instructor' => $instructor]) }}">
+                        <i class="fas fa-pen"> </i>
+                    </a>
+                    <button type="button" class="btn delete" action="{{ route('admin.instructors.destroy', ['instructor' => $instructor]) }}">
+                        <i class="fas fa-trash"> </i>
+                    </button>
+                </div>
+            </div>
+        </div>
 
-                @endforeach
-            </tbody>
-
-        </table>
-
+        @endforeach
+  
     </div>
 </div>
+
 @endsection
  
-@section('scripts')
-@endsection
- 
-@section('css') {{--
-<link rel="stylesheet" href="{{ asset('css/instructors/index.css') }}"> --}}
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/admin/instructors/index.css') }}">
 @endsection

@@ -15,7 +15,7 @@ class CourseController extends Controller
 
     public function __construct()
     {
-        $this->schools = array('American Diploma', 'IGCSE');
+        $this->schools = Level::select('school')->get()->unique('school')->pluck('school');
 
         $this->systems = array('Cambridge', 'Edexcel');
 
@@ -33,27 +33,29 @@ class CourseController extends Controller
 
         $courses = $query->filter($filters)->get();
 
-        $instructors = Instructor::select('id', 'name')->get();
+        $data = $this->prepareData();
+        
+        $data['courses'] = $courses;
 
-        $levels = Level::select('id', 'name')->get();
+        if(request()->ajax()) {
 
-        return view('admin.courses.index', compact('courses', 'levels', 'instructors'));
+            return response()->json(compact('courses'));
+        }
+        return view('admin.courses.index', $data);
     }
 
     public function create()
     {
 
-        $schools = $this->schools;
-
-        $systems = $this->systems;
-
-        $subSystems = $this->subSystems;
-
-        $levels = Level::select('id', 'name')->get();
-
         $course = new Course;
 
-        return view('admin.courses.create', compact('schools', 'systems', 'subSystems', 'course', 'levels'));
+        $data = $this->prepareData();
+
+        $data['course'] = $course;
+
+        //return $data;
+
+        return view('admin.courses.create', $data);
     }
 
     public function store(CourseRequest $request)
@@ -69,21 +71,23 @@ class CourseController extends Controller
     public function show(Course $course)
     {
 
+        $course = Course::where('courses.id', $course->id)
+
+            ->with(['instructor', 'level'])
+
+            ->first();
+
         return view('admin.courses.show', compact('course'));
     }
 
     public function edit(Course $course)
     {
 
-        $schools = $this->schools;
+        $data = $this->prepareData();
 
-        $systems = $this->systems;
+        $data['course'] = $course;
 
-        $subSystems = $this->subSystems;
-
-        $levels = Level::select('id', 'name')->get();
-
-        return view('admin.courses.edit', compact('course', 'schools', 'systems', 'subSystems', 'levels'));
+        return view('admin.courses.edit', $data);
     }
 
     public function update(CourseRequest $request, Course $course)
@@ -102,9 +106,9 @@ class CourseController extends Controller
     private function saveOrUpdate(Request $request, Course $course)
     {
 
-        $course->level_id = 1;
+        $course->level_id = $request->level;
 
-        $course->instructor_id = 1;
+        $course->instructor_id = $request->instructor;
 
         $course->name = $request->name;
 
@@ -123,9 +127,9 @@ class CourseController extends Controller
             $course->sub_system = null;
 
             $course->system = null;
-
         }
 
+        
         if ($request->file('image')) {
 
             $image = $request->image->store('public/images/courses');
@@ -142,5 +146,22 @@ class CourseController extends Controller
             'redirect' => route('admin.courses.show', ['course' => $course]),
         ]);
 
+    }
+
+    private function prepareData()
+    {
+        $schools = $this->schools;
+
+        $systems = $this->systems;
+
+        $subSystems = $this->subSystems;
+
+        $levels = Level::select('id', 'name', 'school')->get();
+
+        $instructors = Instructor::select('id', 'name')->get();
+
+        $data = compact('schools', 'systems', 'subSystems', 'levels', 'instructors');
+
+        return $data;
     }
 }

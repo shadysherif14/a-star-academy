@@ -25,6 +25,7 @@ img {
 }
 
 .card div.grid {
+  grid-gap: 0.5rem;
   display: grid;
   grid-template-columns: 4fr 2fr 2fr 1fr;
   text-align: center;
@@ -120,12 +121,34 @@ img {
   }
 }
 
+.card div.card-body div.grid div.actions {
+  max-width: 200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  grid-gap: 0.5rem;
+}
+
 .card div.card-body div.grid div.actions button.btn,
 .card div.card-body div.grid div.actions a.btn {
-  margin: 0px auto !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 100%;
+  padding: 0px;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0px !important;
   background: transparent;
-  -webkit-transition-duration: 1s;
-          transition-duration: 1s;
+}
+
+.card div.card-body div.grid div.actions button.btn i,
+.card div.card-body div.grid div.actions a.btn i {
+  font-size: 1.25rem;
 }
 
 .card div.card-body div.grid div.actions button.btn.show,

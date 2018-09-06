@@ -55,15 +55,15 @@
                     <p class="content"> Actions </p>
                 </div>
                 <div class="actions">
-                    <button type="button" class="btn btn-floating show modal-trigger"  method="show"
+                    <button type="button" class="btn show modal-trigger"  method="show"
                             action="{{ route('admin.quizzes.show', ['question' => $question]) }}">                            
                         <i class="fas fa-eye"> </i>
                     </button>
-                    <button type="button" class="btn btn-floating edit modal-trigger" method="edit"
+                    <button type="button" class="btn edit modal-trigger" method="edit"
                             action="{{ route('admin.quizzes.show', ['question' => $question]) }}">
                         <i class="fas fa-pen"> </i>
                     </button>
-                    <button type="button" class="btn btn-floating delete" 
+                    <button type="button" class="btn delete" 
                             action="{{ route('admin.quizzes.destroy', ['question' => $question]) }}">
                         <i class="fas fa-trash"> </i>
                     </button>

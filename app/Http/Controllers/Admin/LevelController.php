@@ -24,14 +24,16 @@ class LevelController extends Controller
     {
         $level = new Level();
 
-        return view('admin.levels.create', compact('level'));
+        $schools = Level::select('school')->distinct()->get()->pluck('school');
+
+        return view('admin.levels.create', compact('level', 'schools'));
     }
 
     public function store(LevelRequest $request)
     {
 
         $validator = $request->validated();
-
+        
         $level = new Level();
 
         return $this->saveOrUpdate($request, $level);
@@ -39,15 +41,15 @@ class LevelController extends Controller
 
     public function show(Level $level)
     {
-
         return view('admin.levels.show', compact('level'));
-
     }
 
     public function edit(Level $level)
     {
 
-        return view('admin.levels.edit', compact('level'));
+        $schools = Level::select('school')->distinct()->get()->pluck('school');
+
+        return view('admin.levels.edit', compact('level', 'schools'));
     }
 
     public function update(LevelRequest $request, Level $level)
@@ -70,6 +72,8 @@ class LevelController extends Controller
     {
         $level->name = $request->name;
 
+        $level->school = $request->school;
+        
         $level->description = $request->description;
 
         if ($request->file('image')) {

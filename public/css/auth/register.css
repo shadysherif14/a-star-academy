@@ -3,7 +3,7 @@
 }
 
 body {
-  background: url(/images/auth.jpeg?62db6fc75cccecc3d82f045449ae5395);
+  background: url(/images/auth.jpeg?3936d9d5969d75b9ca7d2a3a6d157cc6);
   background-position: center;
   background-origin: content-box;
   background-attachment: fixed;
@@ -100,6 +100,10 @@ form div.body .btn-group-wrapper .btn-group label.active {
   background: #f3b715;
 }
 
+form div.body .btn-group-wrapper .btn-group label.active:hover {
+  background: #f3b715;
+}
+
 form div.body .btn-group-wrapper .btn-group label:first-child {
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
@@ -111,7 +115,7 @@ form div.body .btn-group-wrapper .btn-group label:last-child {
 }
 
 form div.body .btn-group-wrapper .btn-group label:hover {
-  background: rgba(243, 183, 21, 0.7);
+  background: rgba(243, 183, 21, 0.9);
 }
 
 @media screen and (max-width: 400px) {

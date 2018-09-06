@@ -23,13 +23,15 @@ class CreateCoursesTable extends Migration
             
             $table->string('name');
             
+            $table->float('price')->default(0);
+
             $table->string('slug')->unique();
             
             $table->text('description')->nullable();
             
             $table->string('image')->default('images/defaults/course.png');
             
-            $table->enum('school', ['Pre-IGCSE','IGCSE', 'SAT']);
+            $table->string('school');
             
             $table->enum('system', ['Cambridge', 'Edexcel'])->nullable();
             

@@ -1,6 +1,12 @@
     <!-- jQuery -->
         <script src="{{ asset('libraries/js/jquery.js') }}"></script>
 
+        <!-- Cleave -->
+        <script src="{{ asset('libraries/js/cleave.js') }}"></script>
+
+        <!-- Card -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/card/2.4.0/jquery.card.min.js"></script>
+        
         <!-- Popper Tooltip -->
         <script src="{{ asset('libraries/js/popper.js') }}"></script>
 

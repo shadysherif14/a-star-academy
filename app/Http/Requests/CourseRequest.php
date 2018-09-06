@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Level;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +25,7 @@ class CourseRequest extends FormRequest
      */
     public function rules()
     {
-        $schools = array('American Diploma', 'IGCSE');
+        $schools = Level::select('school')->get()->unique('school')->pluck('school');
 
         $systems = array('Cambridge', 'Edexcel');
 
@@ -44,7 +45,9 @@ class CourseRequest extends FormRequest
 
             'image' => 'image',
 
-            'level' => 'required|exists:levels,id'
+            'level' => 'required|exists:levels,id',
+
+            'instructor' => 'required|exists:instructors,id'            
         ];
     }
 }
