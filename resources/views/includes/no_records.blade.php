@@ -3,6 +3,6 @@
     <div>
         <i class="fas fa-times text-danger fa-7x"></i>
     </div>
-    <h1> There are no {{ str_plural($record) }} has been added yet. </h1>
+    <h1> There are no {{ str_plural($record) }} have been added yet. </h1>
 </div>
 

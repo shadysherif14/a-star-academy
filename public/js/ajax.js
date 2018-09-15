@@ -140,7 +140,7 @@ const exists = function (selector) {
 }
 
 
-$(document).on('click', '.btn.delete', function () {
+$(document).on('click', '.delete', function () {
 
     let action = $(this).attr('action');
 

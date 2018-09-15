@@ -1,6 +1,5 @@
 <ul id="sidenav">
 
-
     <li>
         <div class="logo-wrapper waves-light">
             <a href="#">

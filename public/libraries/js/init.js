@@ -17,12 +17,13 @@ $('#sidebar-toggle').click(function () {
     }
 
 });
-$('.mdb-select').material_select();
+
+/* $('.mdb-select').material_select(); */
 
 
 let textareaElements = document.querySelectorAll('textarea');
 
-autosize(textareaElements);
+/* autosize(textareaElements); */
 
 toastr.options = {
     "closeButton": false,

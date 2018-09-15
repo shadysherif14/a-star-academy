@@ -1,6 +1,5 @@
 let selectedCourses;
 
-
 $('#school-filter').change(function () {
 
     let school = $(this).val();
@@ -8,7 +7,7 @@ $('#school-filter').change(function () {
     let selectedLevels;
 
     if (school) {
-        
+
         selectedLevels = levels.filter(level => level.school === school);
     }
 
@@ -47,7 +46,7 @@ const filterData = response => {
     if (value === 'IGCSE' || value === '') {
 
         value = $('#system-filter').val();
-        
+
         if (value) filter(value, 'system');
 
         value = $('#sub_system-filter').val();
@@ -70,8 +69,7 @@ const filterData = response => {
         selectedCourses.forEach(course => {
             $(`#course-${course.id}`).removeClass('d-none');
         });
-    }
-    else {
+    } else {
         $('.course').removeClass('d-none');
     }
 }
@@ -79,3 +77,28 @@ const filterData = response => {
 const filter = (value, filterBy) => {
     selectedCourses = selectedCourses.filter(course => course[filterBy] === value);
 }
+
+$('#table').DataTable({
+    buttons: {
+        buttons: [{
+            text: 'Alert',
+            action: function (e, dt, node, config) {
+                alert('Activated!');
+                this.disable(); // disable button
+            }
+        }]
+    },
+    "paging": true,
+    "ordering": true,
+    "info": true,
+});
+
+$('a.toggle-vis').on('click', function (e) {
+    e.preventDefault();
+
+    // Get the column API object
+    var column = table.column($(this).attr('data-column'));
+
+    // Toggle the visibility
+    column.visible(!column.visible());
+});

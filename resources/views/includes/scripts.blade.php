@@ -1,7 +1,13 @@
-    <!-- jQuery -->
-        <script src="{{ asset('libraries/js/jquery.js') }}"></script>
+<script src="{{ asset('assets/bundles/libscripts.bundle.js') }}"></script>
+<script src="{{ asset('assets/bundles/vendorscripts.bundle.js') }}"></script>
 
-        <!-- Cleave -->
+<script src="{{ asset('assets/bundles/mainscripts.bundle.js') }}"></script>
+<script src="{{ asset('assets/bundles/datatablescripts.bundle.js') }}"></script>
+
+{{-- <!-- jQuery -->
+<script src="{{ asset('libraries/js/jquery.js') }}"></script>
+
+      <!-- Cleave -->
         <script src="{{ asset('libraries/js/cleave.js') }}"></script>
 
         <!-- Card -->
@@ -23,10 +29,9 @@
         <script src="{{ asset('libraries/js/sortable.js') }}"></script>
 
         <!-- Sweet Alert -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js"></script>  --}}
         
-        <!-- Progress -->
-        <script src="{{ asset('libraries/js/progress.js') }}"></script>
+
 
         <!-- Initialize Libraries -->
         <script src="{{ asset('libraries/js/init.js') }}"></script>

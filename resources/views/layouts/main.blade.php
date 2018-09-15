@@ -22,7 +22,7 @@
         
     </head>
 
-    <body>
+    <body class="theme-gold">
             
         @yield('body')
 

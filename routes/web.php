@@ -9,7 +9,7 @@ Route::domain('admin.astaracademy.test')
     ->middleware('auth')
     ->group(function () {
 
-        Route::view('/', 'admin.index');
+        Route::view('/', 'admin.index')->name('home');
 
         Route::post('/levels/{level}', 'LevelController@update')->name('levels.update');
         Route::resource('/levels', 'LevelController')->except('update');
