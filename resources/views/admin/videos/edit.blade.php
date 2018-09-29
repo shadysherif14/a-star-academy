@@ -1,75 +1,71 @@
-@extends('layouts.admin') 
-@section('title', '| Videos - Edit') 
-@section('content')
+@extends('admin.layouts.create') 
+@section('form')
 
 
-<form action="{{ route('admin.videos.update', ['video' => $video]) }}" method="post" class="card ajax" enctype="multipart/form-data">
+<form action="{{ $video->adminRoutes->update }}" method="post" class="ajax" enctype="multipart/form-data">
 
     @csrf
 
-    <div class="card-header">
+    <div class="card">
+        <div class="header">
 
-        <h4> <i class="fas fa-video"></i> Edit Video </h4>
+            <h2>
+                <strong>
+                    Edit
+                </strong> Session
+            </h2>
 
-    </div>
+        </div>
 
-    <div class="card-body">
+        <div class="row clearfix">
 
-        <div class="md-form">
+            <div class="col-md-6">
+                <div class="body">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <span class="btn btn-primary btn-file">
+                        <span class=""> Change session </span>
+                        <input type="file" id="video" name="video" accept="video/*"> </span>
+                    </div>
 
-            <div class="file-field">
-
-                <a class="btn-floating elegant-color-dark mt-0 float-left">
-                    <i class="fas fa-video" aria-hidden="true"></i> <input name="video" type="file">
-                </a>
-
-                <div class="file-path-wrapper">
-                    <input class="file-path" type="text" placeholder="Upload a new video">
+                    <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                        <video controls="" name="media">
+                            <source class="embed-responsive-item" src="{{ $video->path }}" type="video/mp4">
+                        </video>
+                    </div>
                 </div>
+            </div>
 
+            <div class="col-md-6">
+                <div class="body">
+        
+                    <div class="form-group">
+                        <label for=""> Title </label>
+                        <input class="form-control" type="text" name="title" value="{{ $video->title }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label> Price </label>
+                        <input type="number" placeholder="Price" name="price" class="form-control" value="{{ $video->price }}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label> Description </label>
+                        <textarea class="form-control description" name="description" placeholder="Description">{{ $video->description }}</textarea>
+                    </div>
+        
+                </div>
             </div>
 
         </div>
 
-        <div class="md-form my-5">
-            <input class="form-control" type="text" name="title" value="{{ $video->title }}">
-            <label for=""> Title </label>
-        </div>
-
-        <h3> Free Video? </h3>
-        <div class="switch mb-4">
-            <label>
-                Paid
-                <input type="checkbox" name="free" @if($video->free) checked @endif>
-                <span class="lever"></span>
-                Free
-            </label>
-        </div>
-
-        <h3> Video Changed? </h3>
-        <div class="switch">
-            <label>
-                No
-                <input type="checkbox" name="path_changed">
-                <span class="lever"></span>
-                Yes
-            </label>
-        </div>
-
-        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half my-5">
-            <iframe class="embed-responsive-item" src="{{ $video->path }}" autoplay  allowfullscreen></iframe>
-        </div>
     </div>
 
-    <button type="submit" class="btn btn-submit"> <i class="fas fa-pen"></i> Edit </button>
+    @include('admin.partials.edit-button')
+
 
 </form>
 @endsection
  
-@section('scripts')
+@push('scripts')
     <script src="{{ asset('js/admin/videos/edit.js') }}"></script>
-@stop 
-
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/admin/shared/cru.css') }}"> 
-@stop
+@endpush 

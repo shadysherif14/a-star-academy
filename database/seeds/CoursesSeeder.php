@@ -99,7 +99,7 @@ class CoursesSeeder extends Seeder
                         foreach ($subSystems as $sub) {
                             $data['system'] = $sys;
                             $data['sub_system'] = $sub;
-                            $data['slug'] = str_slug($course) . '-' . $sys . '-' . $sub;
+                            $data['slug'] = str_slug($course) . '-' . strtolower($sys) . '-' . strtolower($sub);
                             Course::create($data);
                         }
                     }

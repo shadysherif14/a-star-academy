@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
         
-@section('layout_css')
+@push('css')
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-@stop
+@endpush
                 
 @section('body')
     @yield('content')

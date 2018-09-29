@@ -16,3 +16,7 @@ mix
     .sass('resources/assets/sass/Auth/index.scss', 'public/css/auth');
 
 mix.sass('resources/assets/sass/User/courses/index.scss', 'public/css/user/courses');
+
+mix.sass('resources/assets/sass/Admin/form.scss', 'public/css/admin');
+
+mix.js('resources/assets/js/app.js', 'public/js');

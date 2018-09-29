@@ -15,7 +15,11 @@ class InstructorController extends Controller
 
         $instructors = Instructor::all();
 
-        return view('admin.instructors.index', compact('instructors'));
+        $title = 'Instructors';
+
+        $breadcrumbs = 'admin.instructors';
+
+        return view('admin.instructors.index', compact('instructors', 'title', 'breadcrumbs'));
     }
 
     public function create()
@@ -23,24 +27,35 @@ class InstructorController extends Controller
 
         $instructor = new Instructor;
 
-        return view('admin.instructors.create', compact('instructor'));
+        $title = 'Instructors';
+
+        $breadcrumbs = 'admin.instructors.add';
+
+        $data = compact('instructor', 'title', 'breadcrumbs');
+
+        return view('admin.instructors.create', $data);
     }
 
     public function store(InstructorRequest $request)
     {
 
-        $request->validated();
-
         $instructor = new Instructor;
 
-        return $this->saveOrUpdate($request, $instructor);
+        return $this->persist($request, $instructor);
     }
 
     public function show(Instructor $instructor)
     {
-        
-        return view('admin.instructors.show', compact('instructor'));
-        
+
+        $title = $instructor->name;
+
+        $breadcrumbs = 'admin.instructor';
+
+        $breadcrumbArgument = $instructor;
+
+        $data = compact('instructor', 'title', 'breadcrumbs', 'breadcrumbArgument');
+
+        return view('admin.instructors.show', $data);
     }
 
     public function edit(Instructor $instructor)
@@ -53,7 +68,7 @@ class InstructorController extends Controller
 
         $request->validated();
 
-        return $this->saveOrUpdate($request, $instructor);
+        return $this->persist($request, $instructor);
 
     }
 
@@ -62,17 +77,26 @@ class InstructorController extends Controller
         $instructor->delete();
     }
 
-    private function saveOrUpdate(Request $request, Instructor $instructor)
+    private function persist(Request $request, Instructor $instructor)
     {
-        $instructor->name = $request->name;
 
-        $instructor->about = $request->about;
+        $columns = ['name', 'email', 'about'];
 
-        if ($request->file('avatar')) {
+        foreach ($columns as $column) {
 
-            $avatar = $request->avatar->store('public/images/instructors');
+            $instructor->$column = $request->$column;
+        }
 
-            $instructor->avatar = str_replace_first('public/', '', $avatar);
+        if ($request->hasFile('avatar')) {
+            $instructor->avatar = $request->avatar->store('images/instructors', 'public');
+        }
+
+        if ($request->filled('password')) {
+            $instructor->password = bcrypt($request->password);
+        }
+
+        if ($request->filled('accounts')) {
+            $instructor->accounts = $request->accounts;
         }
 
         $instructor->save();

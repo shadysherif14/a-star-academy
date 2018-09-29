@@ -1,73 +1,30 @@
-@extends('layouts.admin') 
+@extends('admin.layouts.table')
 
-@section('title', '| Instuctors') 
+@section('table')
 
-@section('content')
-
-
-<a class="btn create" href="{{ route('admin.instructors.create' ) }}">
-    <i class="fas fa-plus"></i> Add Instructor
-</a>
-
-
-<div class="card">
-
-    <div class="card-header grid">
-        <div> </div>
-        <div> Name </div>
-        <div> About </div>
-        <div>  </div>
-    </div>
-
-    <div class="card-body">
-        
-        @foreach ($instructors as $instructor)
-                
-        <div id="instructor-{{ $instructor->id }}" instructor="{{ $instructor->id }}" class="grid">
-        
-            <div class="avatar">
-                <img src="{{ $instructor->avatar }}" alt="" class="img-fluid rounded-circle">
-            </div>
-
-            <div>
-                <div>
-                    <p class="content"> Name </p>
-                </div>
-                <p> {{ $instructor->name }} </p>
-            </div>
-            
-            <div>
-               <div>
-                    <p class="content"> About </p>
-                </div>
-                <p> {{ $instructor->about }} </p>
-                
-            </div>
-            <div>
-                <div>
-                    <p class="content"> Actions </p>
-                </div>
-                <div class="actions">
-                    <a type="button" class="btn show" href="{{ route('admin.instructors.show', ['instructor' => $instructor]) }}">
-                        <i class="fas fa-eye"> </i>
-                    </a>
-                    <a type="button" class="btn edit" href="{{ route('admin.instructors.edit', ['instructor' => $instructor]) }}">
-                        <i class="fas fa-pen"> </i>
-                    </a>
-                    <button type="button" class="btn delete" action="{{ route('admin.instructors.destroy', ['instructor' => $instructor]) }}">
-                        <i class="fas fa-trash"> </i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
+<table class="table table-hover m-b-0" id="table">
+    <thead>
+        <tr role="row">
+            <th> Image </th>
+            <th> Name </th>
+            <th> No. of courses </th>
+            <th> Actions </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($instructors as $instructor)
+        <tr role="row">
+            <td>
+                <span class="list-icon">
+                    <img class="rounded" src="{{ $instructor->avatar }}" alt="" width="40" height="40">
+                </span>
+            </td>
+            <td> {{ $instructor->name }} </td>
+            <td> {{ $instructor->coursesCount }} </td>
+            <td> @include('admin.partials.actions', ['model' => $instructor]) </td>
+        </tr>
+    
         @endforeach
-  
-    </div>
-</div>
-
-@endsection
- 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/admin/instructors/index.css') }}">
+    </tbody>
+</table>
 @endsection

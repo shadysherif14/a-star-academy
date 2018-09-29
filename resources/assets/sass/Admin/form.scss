@@ -1,0 +1,96 @@
+@import "../variables";
+
+$borderRadius: 2em;
+$borderColor: #ddd;
+
+.hidden {
+    display: none;
+}
+
+.bg-gold {
+    background: $gold;
+}
+
+.font-gold {
+    font: $gold;
+}
+
+// Bootstrap Select
+
+.bootstrap-select {
+    .btn {
+        background: $white;
+        border: 1px solid $borderColor;
+        padding: 10px 14px !important;
+        font-size: 1em;
+
+        &:focus,
+        &:hover {
+            background: $white;
+            opacity: 0.6;
+        }
+    }
+
+    .filter-option {
+        color: $dark-black !important;
+    }
+
+    .selected {
+        a {
+            background: $dark-black !important;
+        }
+    }
+
+    .bs-caret {
+        margin-right: -1em;
+        color: $white;
+    }
+}
+
+// Inputs
+input.form-control,
+textarea.form-control {
+
+    padding: 10px 14px !important;
+    font-size: 1em;
+    border-radius: $borderRadius;
+    border: 1px solid $borderColor;
+    color: $dark-black;
+    font-weight: 500;
+    &:focus {
+        border: 1px solid $gold;
+    }
+}
+
+// Buttons
+.btn {
+    border-radius: $borderRadius;
+}
+
+label {
+    color: $gold;
+    font-weight: bold;
+}
+
+.radio {
+    label {
+        color: $light-black;
+    }
+}
+
+.form-group {
+    margin: 1em 0em;
+}
+
+.btn {
+    i.material-icons {
+        font-size: inherit;
+    }
+}
+
+small.feedback {
+    display: block;
+    margin-top: 0.75em;
+    font-weight: normal;
+    font-size: 12px;
+}

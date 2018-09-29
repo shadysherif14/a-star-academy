@@ -78,22 +78,16 @@ const filter = (value, filterBy) => {
     selectedCourses = selectedCourses.filter(course => course[filterBy] === value);
 }
 
-$('#table').DataTable({
-    buttons: {
-        buttons: [{
-            text: 'Alert',
-            action: function (e, dt, node, config) {
-                alert('Activated!');
-                this.disable(); // disable button
-            }
-        }]
-    },
-    "paging": true,
-    "ordering": true,
-    "info": true,
-});
 
-$('a.toggle-vis').on('click', function (e) {
+
+/* $('#table').DataTable({
+    buttons: [
+        'copy', 'excel', 'pdf'
+    ],
+    responsive: true
+}); */
+
+/* $('a.toggle-vis').on('click', function (e) {
     e.preventDefault();
 
     // Get the column API object
@@ -101,4 +95,4 @@ $('a.toggle-vis').on('click', function (e) {
 
     // Toggle the visibility
     column.visible(!column.visible());
-});
+}); */

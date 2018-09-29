@@ -1,64 +1,39 @@
-@extends('layouts.admin') 
+@extends('admin.layouts.create') 
+@section('form')
 
-@section('title', '| Courses - Create') 
+<form action="{{ $course->videosRoute('store') }}" id="form" method="POST" class="ajax" enctype="multipart/form-data">
 
-@section('content')
-
-
-
-<form action="{{ route('admin.videos.store', ['course' => $course]) }}" id="form" method="POST" 
-        class="card ajax" enctype="multipart/form-data">
-    
     @csrf
 
-    <div class="card-header">
-        <h3> <i class="fas fa-video"> New Videos </i> </h3>
-    </div>
+    <div class="card">
 
-    <div class="card-body">
+        <div class="header">
+            <h2> <strong>  <i class="fas fa-video"></i> New </strong> Sessions </h2>
+        </div>
 
-        <div class="md-form">
+        <div class="body">
 
-            <div class="file-field">
-
-                <a class="btn-floating elegant-color-dark mt-0 float-left">
-                    <i class="fas fa-video" aria-hidden="true"></i> <input id="files" name="files[]" type="file" multiple>
-                </a>
-
-                <div class="file-path-wrapper">
-                    <input class="file-path" type="text" placeholder="Upload a new video">
-                </div>
-
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+                <span class="btn btn-primary btn-file">
+                <span class=""> Select sessions </span>
+                <input type="file" id="files" multiple accept="video/*"> </span>
             </div>
 
         </div>
     </div>
 
-    <div class="card-header grid d-none">
-        <div> Information </div>
-        <div> Price </div>
-        <div class="status"> </div>
-    </div>
+    <div id="videos" class="row clearfix"></div>
 
-
-    <div class="card-body">
-
-        <div id="videos"></div>
-        
-    </div>
-
-    <button type="submit" class="btn btn-submit"> <i class="fas fa-upload"></i> Upload </button>
+    <button type="submit" class="btn btn-primary w-50 mx-auto d-none"> 
+        <i class="zmdi zmdi-upload"></i> Upload all session at once 
+    </button>
 
 </form>
 
 <video class="d-none" id="video"></video>
-</div>
-@stop 
 
-@section('scripts')
-    <script src="{{ asset('js/admin/videos/create.js') }}"></script>
-@stop 
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/admin/videos/create.css') }}"> 
-@stop
+
+@stop @push('scripts')
+<script src="{{ asset('js/admin/videos/create.js') }}"></script>
+@endpush

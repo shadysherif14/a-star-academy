@@ -19,7 +19,7 @@ class CourseController extends Controller
 
         $this->systems = array('Cambridge', 'Edexcel');
 
-        $this->subSystems = array('Al', 'Ol', 'A2', 'AS');
+        $this->subSystems = array('AL', 'OL', 'A2', 'AS');
     }
 
     public function index(CoursesFilter $filters)
@@ -34,13 +34,18 @@ class CourseController extends Controller
         $courses = $query->filter($filters)->get();
 
         $data = $this->prepareData();
-        
+
         $data['courses'] = $courses;
 
-        if(request()->ajax()) {
+        if (request()->ajax()) {
 
             return response()->json(compact('courses'));
         }
+
+        $data['title'] = 'Courses';
+
+        $data['breadcrumbs'] = 'admin.courses';
+
         return view('admin.courses.index', $data);
     }
 
@@ -53,7 +58,11 @@ class CourseController extends Controller
 
         $data['course'] = $course;
 
-        //return $data;
+        $data['title'] = 'Add Courses';
+
+        $data['breadcrumbs'] = 'admin.courses.add';
+
+        $data['endPoint'] = Course::adminRoutes()->store;
 
         return view('admin.courses.create', $data);
     }
@@ -65,19 +74,26 @@ class CourseController extends Controller
 
         $course = new Course();
 
-        return $this->saveOrUpdate($request, $course);
+        return $this->persist($request, $course);
     }
 
     public function show(Course $course)
     {
 
-        $course = Course::where('courses.id', $course->id)
+        $data['course'] = Course::where('courses.id', $course->id)
 
             ->with(['instructor', 'level'])
 
             ->first();
 
-        return view('admin.courses.show', compact('course'));
+        $data['title'] = $course->name;
+
+        $data['breadcrumbs'] = 'admin.course';
+
+        $data['breadcrumbArgument'] = $course;
+        
+
+        return view('admin.courses.show', $data);
     }
 
     public function edit(Course $course)
@@ -87,6 +103,14 @@ class CourseController extends Controller
 
         $data['course'] = $course;
 
+        $data['title'] = 'Edit Course';
+
+        $data['breadcrumbs'] = 'admin.course';
+
+        $data['breadcrumbArgument'] = $course;
+
+        $data['endPoint'] = $course->adminRoutes->update;
+
         return view('admin.courses.edit', $data);
     }
 
@@ -95,7 +119,7 @@ class CourseController extends Controller
 
         $request->validated();
 
-        return $this->saveOrUpdate($request, $course);
+        return $this->persist($request, $course);
 
     }
     public function destroy(Course $course)
@@ -103,7 +127,7 @@ class CourseController extends Controller
         $course->delete();
     }
 
-    private function saveOrUpdate(Request $request, Course $course)
+    private function persist(Request $request, Course $course)
     {
 
         $course->level_id = $request->level;
@@ -129,7 +153,6 @@ class CourseController extends Controller
             $course->system = null;
         }
 
-        
         if ($request->file('image')) {
 
             $image = $request->image->store('public/images/courses');

@@ -1,9 +1,6 @@
 @extends('layouts.app') 
 @section('content') 
 
-
-
-
 <!-- Header -->
 
 @php
@@ -81,6 +78,6 @@
     
 @stop
 
-@section('css')
+@push('css')
     <link rel="stylesheet" href="{{ asset('css/user/courses/index.css') }}">
-@stop
+@enspush

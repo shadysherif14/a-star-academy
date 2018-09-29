@@ -2,21 +2,26 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\Routes;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Model;
 
 class Instructor extends Model
 {
-    use Sluggable;
+
+    const ROUTE = 'instructors';
+
+    use Sluggable, Routes;
 
     protected $casts = [
         'created_at' => 'datetime:Y-m-d',
-        'updated_at' => 'datetime:Y-m-d'
+        'updated_at' => 'datetime:Y-m-d',
+        'accounts' => 'object',
     ];
 
     public function getRouteKeyName()
     {
-        return 'slug';
+        return 'username';
     }
 
     public function getAvatarAttribute($value)
@@ -34,12 +39,33 @@ class Instructor extends Model
         return $this->hasMany(Course::class);
     }
 
+    public function getCoursesCountAttribute()
+    {
+        $courses = $this->courses->count();
+
+        return $courses . ' ' . str_plural('Course', $courses);
+    }
+
+    public function getAccountsAttribute($accounts)
+    {
+        return json_decode($accounts);
+    }
+
+    public function accounts($account = null)
+    {
+        
+        if(is_null($this->id)) return null;
+
+        return isset($this->accounts->$account) ? $this->accounts->$account : null;
+    }
+
     public function sluggable()
     {
         return [
-            'slug' => [
-                'source' => 'name'
-            ]
+            'username' => [
+                'source' => 'name',
+                'separator' => ''
+            ],
         ];
     }
 }

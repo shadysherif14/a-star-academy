@@ -4,20 +4,6 @@
 
 @section('content')
 
-
-<a class="btn create" href="{{ route('admin.levels.create' ) }}">
-    <i class="fas fa-plus"></i> Add Level
-</a>
-
-@php
-    if(count($levels) === 0) 
-        $hidden = 'd-none';
-    else   
-        $hidden = '';
-@endphp
-
-@includeWhen( count($levels) == 0, 'includes.no_records', ['record' => 'level'])
-
 <div class="card">
 
     <div class="card-header grid">
@@ -70,6 +56,6 @@
 
 @endsection
  
-@section('css')
+@push('css')
     <link rel="stylesheet" href="{{ asset('css/admin/levels/index.css') }}">
-@endsection
+@endpush

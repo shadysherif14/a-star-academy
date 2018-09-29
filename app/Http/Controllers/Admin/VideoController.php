@@ -2,63 +2,60 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Video;
 use App\Course;
-use Illuminate\Http\Request;
-use App\Http\Requests\VideoRequest;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderVideoRequest;
 use App\Http\Requests\UpdateVideoRequest;
-
-use App\Http\Controllers\Controller;
+use App\Http\Requests\VideoRequest;
+use App\Video;
+use Illuminate\Http\Request;
 
 class VideoController extends Controller
 {
 
     public function index(Course $course)
     {
-
         $videos = Video::videos($course->id);
 
-        //return($videos);
+        $title = 'Sessions';
 
-        return view('admin.videos.index', compact('videos', 'course'));
+        $breadcrumbs = 'admin.sessions';
+
+        $breadcrumbArgument = $course;
+
+        $data = compact('videos', 'course', 'title', 'breadcrumbs', 'breadcrumbArgument');
+
+        return view('admin.videos.index', $data);
     }
 
     public function create(Course $course)
     {
+        $title = $course->name . ' Course Sessions';
 
-        return view('admin.videos.create', compact('course'));
+        $breadcrumbs = 'admin.sessions';
+
+        $breadcrumbArgument = $course;
+
+        $data = compact('course', 'title', 'breadcrumbs', 'breadcrumbArgument');
+
+        return view('admin.videos.create', $data);
 
     }
 
     public function store(VideoRequest $request, Course $course)
     {
 
-        $request->validated();
-
-        $order = Video::order($course->id);
-
-        $file = $request->file('video');
-
-        $path = $file->store('public/videos/' . $course->slug);
-
-        $path = str_replace_first('public/', '', $path);
-
         $video = new Video;
 
         $video->course_id = $course->id;
 
-        $video->path = $path;
+        $video->path = $request->video->store('videos/' . $course->slug, 'public');
 
         $video->title = $request->title;
 
-        $price = (int) $request->price;
+        $video->price = $request->price;
 
-        $video->price = $price;
-
-        $video->free = $price === 0;
-
-        $video->order = $order;
+        $video->order = Video::order($course->id);
 
         $video->duration = $request->duration;
 
@@ -66,54 +63,52 @@ class VideoController extends Controller
 
         $video->save();
 
-        Course::updatePrice($course->id);
+        $course->updatePrice();
 
         $video->pay()->create();
 
-        $status = true;
+        $target = $request->target;
 
-        $redirect = route('admin.videos.index', ['course' => $course]);
-
-        return response()->json(compact('status', 'redirect'));
+        return response()->json(compact('target', 'video'));
 
     }
 
     public function edit(Video $video)
     {
-        return view('admin.videos.edit', compact('video'));
+
+        $title = $video->course->name . ' Course Sessions';
+
+        $breadcrumbs = 'admin.sessions';
+
+        $breadcrumbArgument = $video->course;
+
+        $data = compact('video', 'title', 'breadcrumbs', 'breadcrumbArgument');
+
+        return view('admin.videos.edit', $data);
     }
 
     public function update(UpdateVideoRequest $request, Video $video)
     {
 
-        $request->validated();
-
         $video->title = $request->title;
 
-        $video->free = $request->has('free');
+        $video->price = $request->price;
 
-        $courseSlug = Course::select('slug')->where('id', $video->course_id)->first()->slug;
+        $video->description = $request->description;
 
-        if ($request->has('path_changed') && $request->file('video')) {
-            $path = $request->video->store('public/videos/' . $courseSlug);
+        if ($request->hasFile('video')) {
 
-            $video->path = str_replace_first('public/', '', $path);
+            $video->path = $request->video->store('videos/' . $video->course->slug, 'public');
         }
 
         $video->save();
-        
-        $path = $video->path;
 
-        $status = true;
-
-        return response()->json(compact('status', 'path'));
+        return response()->json(compact('video'));
 
     }
 
     public function order(OrderVideoRequest $request)
     {
-
-        $request->validated();
 
         $order = 1;
 
@@ -141,6 +136,7 @@ class VideoController extends Controller
 
     public function destroy(Video $video)
     {
+
         $video->delete();
 
         return jsonResponse(true);

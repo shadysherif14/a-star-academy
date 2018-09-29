@@ -23,7 +23,7 @@
                             <li>
                                 <a href="javascript:void(0);">
                                     <div class="media">
-                                        <img class="media-object" src="../../../../../via.placeholder.com/50x50" alt="">
+                                        <img class="media-object" src="" alt="">
                                         <div class="media-body">
                                             <span class="name">Sophia <span class="time">30min ago</span></span>
                                             <span class="message">There are many variations of passages</span>
@@ -34,7 +34,7 @@
                             <li>
                                 <a href="javascript:void(0);">
                                     <div class="media">
-                                        <img class="media-object" src="../../../../../via.placeholder.com/50x50" alt="">
+                                        <img class="media-object" src="" alt="">
                                         <div class="media-body">
                                             <span class="name">Sophia <span class="time">31min ago</span></span>
                                             <span class="message">There are many variations of passages of Lorem Ipsum</span>
@@ -45,7 +45,7 @@
                             <li>
                                 <a href="javascript:void(0);">
                                     <div class="media">
-                                        <img class="media-object" src="../../../../../via.placeholder.com/50x50" alt="">
+                                        <img class="media-object" src="" alt="">
                                         <div class="media-body">
                                             <span class="name">Isabella <span class="time">35min ago</span></span>
                                             <span class="message">There are many variations of passages</span>
@@ -56,7 +56,7 @@
                             <li>
                                 <a href="javascript:void(0);">
                                     <div class="media">
-                                        <img class="media-object" src="../../../../../via.placeholder.com/50x50" alt="">
+                                        <img class="media-object" src="" alt="">
                                         <div class="media-body">
                                             <span class="name">Alexander <span class="time">35min ago</span></span>
                                             <span class="message">Contrary to popular belief, Lorem Ipsum random</span>
@@ -67,7 +67,7 @@
                             <li>
                                 <a href="javascript:void(0);">
                                     <div class="media">
-                                        <img class="media-object" src="../../../../../via.placeholder.com/50x50" alt="">
+                                        <img class="media-object" src="" alt="">
                                         <div class="media-body">
                                             <span class="name">Grayson <span class="time">1hr ago</span></span>
                                             <span class="message">There are many variations of passages</span>
@@ -106,13 +106,13 @@
                                         <ul class="list-unstyled team-info">
                                             <li class="m-r-15"><small class="text-muted">Team</small></li>
                                             <li>
-                                                <img src="../../../../../via.placeholder.com/35x35" alt="Avatar">
+                                                <img src="" alt="Avatar">
                                             </li>
                                             <li>
-                                                <img src="../../../../../via.placeholder.com/35x35" alt="Avatar">
+                                                <img src="" alt="Avatar">
                                             </li>
                                             <li>
-                                                <img src="../../../../../via.placeholder.com/35x35" alt="Avatar">
+                                                <img src="" alt="Avatar">
                                             </li>
                                         </ul>
                                     </div>
@@ -130,19 +130,19 @@
                                         <ul class="list-unstyled team-info">
                                             <li class="m-r-15"><small class="text-muted">Team</small></li>
                                             <li>
-                                                <img src="../../../../../via.placeholder.com/35x35" alt="Avatar">
+                                                <img src="" alt="Avatar">
                                             </li>
                                             <li>
-                                                <img src="../../../../../via.placeholder.com/35x35" alt="Avatar">
+                                                <img src="" alt="Avatar">
                                             </li>
                                             <li>
-                                                <img src="../../../../../via.placeholder.com/35x35" alt="Avatar">
+                                                <img src="" alt="Avatar">
                                             </li>
                                             <li>
-                                                <img src="../../../../../via.placeholder.com/35x35" alt="Avatar">
+                                                <img src="" alt="Avatar">
                                             </li>
                                             <li>
-                                                <img src="../../../../../via.placeholder.com/35x35" alt="Avatar">
+                                                <img src="" alt="Avatar">
                                             </li>
                                         </ul>
                                     </div>
@@ -160,13 +160,13 @@
                                         <ul class="list-unstyled team-info">
                                             <li class="m-r-15"><small class="text-muted">Team</small></li>
                                             <li>
-                                                <img src="../../../../../via.placeholder.com/35x35" alt="Avatar">
+                                                <img src="" alt="Avatar">
                                             </li>
                                             <li>
-                                                <img src="../../../../../via.placeholder.com/35x35" alt="Avatar">
+                                                <img src="" alt="Avatar">
                                             </li>
                                             <li>
-                                                <img src="../../../../../via.placeholder.com/35x35" alt="Avatar">
+                                                <img src="" alt="Avatar">
                                             </li>
                                         </ul>
                                     </div>

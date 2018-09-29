@@ -19,11 +19,21 @@ class CreateInstructorsTable extends Migration
 
             $table->string('name');
 
-            $table->string('slug');
+            $table->string('username')->unique();
+            
+            $table->string('email')->unique()->nullable();
 
             $table->text('about');
 
+            $table->text('accounts')->nullable();
+            
+            $table->string('phone')->nullable();
+
             $table->string('avatar')->default('images/defaults/avatar.png');
+
+            $table->string('password');
+
+            $table->rememberToken();
 
             $table->timestamps();
         });

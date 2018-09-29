@@ -146,11 +146,10 @@
 <!-- Central Modal Medium Danger-->
 
 @stop 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/auth/register.css') }}"> 
-@stop 
-    @section('scripts')
-<script src="{{ asset('js/Auth/register.js') }}"></script>
+@push('css')
+    {{--  <link rel="stylesheet" href="{{ asset('css/auth/register.css') }}">   --}}
+@endpush 
 
-
-@stop
+@push('scripts')
+    <script src="{{ asset('js/Auth/register.js') }}"></script>
+@endpush

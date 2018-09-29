@@ -2,15 +2,20 @@
 
 namespace App;
 
-use App\Interfaces\PayableInterface;
+use App\Traits\Routes;
 use App\Traits\Payable;
-use Cviebrock\EloquentSluggable\Sluggable;
+use App\Interfaces\PayableInterface;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Video extends Model implements PayableInterface
 {
 
-    use Sluggable, Payable;
+    const ROUTE = 'videos';
+
+    protected $appends = ['admin_routes'];
+    
+    use Sluggable, Payable, Routes;
 
     public $guarded = [];
 

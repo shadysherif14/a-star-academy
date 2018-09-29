@@ -1,0 +1,85 @@
+.pointer {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.bg-gold {
+  background: #f3b715;
+}
+
+.font-gold {
+  font: #f3b715;
+}
+
+.bootstrap-select .btn {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 10px 14px !important;
+  font-size: 1em;
+}
+
+.bootstrap-select .btn:focus,
+.bootstrap-select .btn:hover {
+  background: #fff;
+  opacity: 0.6;
+}
+
+.bootstrap-select .filter-option {
+  color: #000 !important;
+}
+
+.bootstrap-select .selected a {
+  background: #000 !important;
+}
+
+.bootstrap-select .bs-caret {
+  margin-right: -1em;
+  color: #fff;
+}
+
+input.form-control,
+textarea.form-control {
+  padding: 10px 14px !important;
+  font-size: 1em;
+  border-radius: 2em;
+  border: 1px solid #ddd;
+  color: #000;
+  font-weight: 500;
+}
+
+input.form-control:focus,
+textarea.form-control:focus {
+  border: 1px solid #f3b715;
+}
+
+.btn {
+  border-radius: 2em;
+}
+
+label {
+  color: #f3b715;
+  font-weight: bold;
+}
+
+.radio label {
+  color: #222;
+}
+
+.form-group {
+  margin: 1em 0em;
+}
+
+.btn i.material-icons {
+  font-size: inherit;
+}
+
+small.feedback {
+  display: block;
+  margin-top: 0.75em;
+  font-weight: normal;
+  font-size: 12px;
+}
+

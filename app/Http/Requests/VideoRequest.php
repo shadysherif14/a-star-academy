@@ -23,10 +23,11 @@ class VideoRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
             'name' => 'required',
             'title' => 'required',
-            'price' => 'required',
+            'price' => 'required|numeric',
             'duration' => 'required',
             'video' => [
                 'bail',
@@ -38,7 +39,21 @@ class VideoRequest extends FormRequest
                         return $fail('Something went wrong please try again!');
                     }
                 },
-            ]      
+            ],
+            'description' => 'required',
         ];
     }
+
+    protected function withValidator($validator)
+    {
+
+        if ($validator->fails()) {
+
+            $validator->after(function($validator) {
+                
+                $validator->errors()->add('target', $this->target);
+            });
+        }
+    }
+
 }

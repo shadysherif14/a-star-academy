@@ -79,6 +79,6 @@
 
 @endsection
  
-@section('scripts')
-<script type="text/javascript" src="/js/main.js"></script>
-@endsection
+@push('scripts')
+    <script type="text/javascript" src="/js/main.js"></script>
+@endpush

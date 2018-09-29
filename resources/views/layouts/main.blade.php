@@ -15,22 +15,20 @@
         <title> A Star Academy @yield('title') </title>
 
         @include('includes.stylesheets')
-        
-        @yield('layout_css')
-
-        @yield('css')
+    
+        @stack('css')
         
     </head>
 
     <body class="theme-gold">
-            
+        
+        @include('partials.loader')
+
         @yield('body')
 
         @include('includes.scripts')
                 
-        @yield('layout_scripts')
-
-        @yield('scripts')
+        @stack('scripts')
 
     </body>
 

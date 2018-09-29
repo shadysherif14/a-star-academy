@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class InstructorRequest extends FormRequest
@@ -23,6 +24,12 @@ class InstructorRequest extends FormRequest
             'name' => 'required',
             
             'about' => 'required',
+
+            'email' => ['required', 'email', Rule::unique('instructors', 'email')],
+
+            'phone' => 'nullable|numeric',
+
+            'password' => 'required|confirmed',
 
             'avatar' => 'image'
         ];

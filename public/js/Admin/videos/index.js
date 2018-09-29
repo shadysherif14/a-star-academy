@@ -6,13 +6,13 @@ Sortable.create(videos, {
 
 $(document).on('click', '.modal-trigger', function () {
      
-    let video_path = $(this).parents('.grid').attr('video');
+    let video_path = $(this).parents('tr').attr('video');
     
     let iframe = $('#video-modal iframe');
 
     iframe.attr('src', video_path);
 
-    $('#video-modal').modal('show')
+    $('#video-modal').modal('show');
 
 });
 
@@ -33,12 +33,13 @@ $('form#videos-form').submit(function (e) {
     submitForm(form, successCallback, defaultError);
 });
 
-const successCallback = function (response) {
+const successCallback = _ => {
 
-    if (response.status) {
-
-        $('i.fa-spin').remove();
-
-        toastr.success('Video\'s data is successfully updated.');
-    }
+   $.notify({
+       // options
+       message: 'Hello World'
+   }, {
+       // settings
+       type: 'info'
+   });
 }

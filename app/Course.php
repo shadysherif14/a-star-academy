@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Video;
+use App\Traits\Routes;
 use App\Traits\Payable;
 use App\Interfaces\PayableInterface;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,9 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class Course extends Model implements PayableInterface
 {
 
-    use Sluggable, Payable;
+    const ROUTE = 'courses';
+    
+    use Sluggable, Payable, Routes;
 
     public static function boot()
     {
@@ -24,19 +27,19 @@ class Course extends Model implements PayableInterface
 
     }
 
-    public static function updatePrice($courseID)
+    public function updatePrice()
     {
-        $videos = Video::select('price')->where('course_id', $courseID)->get();
+        $videos = $this->videos;
 
-        if(empty($videos)) return;
+        if (empty($videos)) {
+            return;
+        }
 
         $price = $videos->sum('price');
 
-        $course = self::find($courseID);
+        $this->price = $price;
 
-        $course->price = $price;
-
-        $course->save();
+        $this->save();
     }
     public function getRouteKeyName()
     {
@@ -61,6 +64,16 @@ class Course extends Model implements PayableInterface
     public function videos()
     {
         return $this->hasMany(Video::class);
+    }
+
+    public function videosRoute($action = 'index')
+    {
+        return adminRoute(Video::ROUTE . '.' . $action, $this);
+    }
+
+    public function getVideosCountAttribute()
+    {
+        return $this->videos->count() . ' ' . str_plural('session', $this->videos->count());
     }
 
     public function intro()
@@ -97,7 +110,7 @@ class Course extends Model implements PayableInterface
         return asset("storage/{$value}");
     }
 
-    public function getSystemAttribute($value)
+    /* public function getSystemAttribute($value)
     {
         return $value ?? '<i class="fas fa-minus"></i>';
     }
@@ -105,11 +118,11 @@ class Course extends Model implements PayableInterface
     public function getSubSystemAttribute($value)
     {
         return $value ?? '<i class="fas fa-minus"></i>';
-    }
+    } */
 
     public function persistUser($user)
     {
-        $videos = $this->videos();
+        $videos = $this->videos;
 
         $user->videos()->saveMany($videos);
     }

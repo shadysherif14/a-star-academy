@@ -16,8 +16,6 @@
             <div class="col-md-6 d-flex flex-column justify-content-center">
                 <div><p>{{ $course->description }}</p></div>
                 <div class="text-center"><button class="btn btn-gold">Enroll</button></div>
-                
-                
             </div>
         </div>
     </div>
@@ -96,16 +94,15 @@
 
 </main>
 
-
 @stop 
-@section('css')
+@push('css')
     <link rel="stylesheet" href="https://cdn.plyr.io/3.4.3/plyr.css">
     <link rel="stylesheet" href="{{ asset('css/courses/show.css') }}"> 
 
-@endsection
+@endpush
 
-@section('scripts')
+@push('scripts')
     <script src="https://cdn.plyr.io/3.4.3/plyr.polyfilled.js"></script>
     <script src="{{asset('js/courses/show.js')}}"></script>
 
-@endsection
+@endpush

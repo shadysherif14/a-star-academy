@@ -1,130 +1,88 @@
-<div class="card-body">
-
-    <div class="md-form">
-
-        <input type="text" name="name" id="name" class="form-control" value="{{ $course->name }}">
-
-        <label for="name"> Course Name </label>
-
+<div class="card">
+    <div class="header">
+        <h2> <strong>Course</strong> Informaion</h2>
     </div>
-
-    <div class="md-form">
-
-        <textarea type="text" name="description" id="description" class="form-control md-textarea">{!! $course->description !!}</textarea>
-
-        <label for="description"> Course Description </label>
-
-    </div>
-
-    <div class="md-form">
     
-        <div class="file-field">
+    <div class="row claerfix body">
     
-            <a class="btn-floating elegant-color-dark mt-0 float-left">
-                    <i class="fas fa-image" aria-grid="true"></i> <input type="file" name="image" />
-                </a>
+        <div class="col-md-4">
+            @include('admin.partials.file-image', ['inputName' => 'image'])
+        </div>
     
-            <div class="file-path-wrapper">
-                <input class="file-path" type="text" placeholder="Upload an image" />>
+        <div class="col-md-8">
+    
+            <div class="form-group">
+                <label for="name"> Course Name </label>
+                <input type="text" name="name" id="name" placeholder="Course Name" class="form-control" value="{{ $course->name }}" />
+            </div>
+    
+            <div class="form-group">
+                <label for="description"> Course Description </label>
+                <textarea type="text" name="description" id="description" 
+                class="form-control" placeholder"Course Description">{{ $course->description }}</textarea>
+            </div>
+    
+    
+            <div class="form-group">
+                <label for="instructor"> Instructor </label>
+                <select name="instructor" title="Instructor" id="instructor" class="form-control">
+                @foreach($instructors as $instructor)
+                    <option value="{{ $instructor->id }}" 
+                        {{ $course->instructor_id === $instructor->id ? 'selected' : '' }} > 
+                        {{ $instructor->name }} 
+                    </option>
+                @endforeach
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label for="school"> School System </label>
+                <select name="school" id="school" class="form-control" title="School System">
+                @foreach($schools as $school)
+                    <option value="{{ $school }}"
+                        {{ $course->school === $school ? 'selected' : '' }} >
+                        {{ $school }} 
+                    </option>
+                @endforeach
+                </select>
+    
+            </div>
+    
+            <div class="form-group hidden">
+                <label for="level"> Level </label>
+                <select name="level" id="level" class="form-control" title="Choose Level"></select>
+            </div>
+    
+    
+            <div parent="system" id="system" class="form-group hidden">
+                <label for=""> Course System </label>
+                <div class="radio">
+                    @foreach($systems as $system)
+                    <input type="radio" name="system" id="radio-{{ $system }}" value="{{ $system }}" />
+                    <label for="radio-{{ $system }}"> {{ $system }} </label> 
+                    @endforeach
+                </div>
+            </div>
+    
+            <div parent="sub_system" id="sub_system" class="form-group hidden">
+                <label for=""> Course Subsystem </label>
+                <div class="radio">
+                    @foreach($subSystems as $subsystem)
+                    <input type="radio" name="sub_system" id="radio-{{ $subsystem }}" value="{{ $subsystem }}" />
+                    <label for="radio-{{ $subsystem }}" class="mr-3"> {{ $subsystem }} </label>
+                    @endforeach
+                </div>
             </div>
         </div>
-    </div>
     
-    <div class="md-form" id="image-wrapper">
-    
-        <img src="{{ $course->image }}" alt="Course Image">
-    
-        <button type="button" class="btn"> Remove Image </button>
-    
-        <input type="hidden" name="removed">
-    
-    </div>
-
-    <div class="row justify-content-between">
-
-        <div class="md-form col-md-5 mx-0">
-        
-            <select name="instructor" id="instructor" class="mdb-select">
-            
-                @if(is_null($course->instructor_id))
-                    <option value="" selected disabled> Choose Instructor </option>
-                @else
-                    <option value="" disabled> Choose Instructor </option>
-                @endif
-    
-                @foreach($instructors as $instructor)
-                    @if($course->instructor_id === $instructor->id)
-                        <option value="{{ $instructor->id }}" selected> {{ $instructor->name }} </option>
-                    @else
-                        <option value="{{ $instructor->id }}"> {{ $instructor->name }} </option>                    
-                    @endif
-                @endforeach
-            </select>
-        
-            <label for="instructor"> Instructor </label>
-        </div>
-    
-        <div class="md-form col-md-5 mx-0">
-    
-            <select name="school" id="school" class="mdb-select">
-                @if(is_null($course->school))
-                    <option value="" disabled selected> Choose Course System </option>
-                @else
-                    <option value="" disabled> Choose Course System </option>
-                @endif
-                @foreach($schools as $school)
-                    @if($course->school === $school)
-                        <option value="{{ $school }}" selected> {{ $school }} </option>
-                    @else
-                        <option value="{{ $school }}"> {{ $school }} </option>                    
-                    @endif
-                @endforeach
-            </select>
-    
-            <label for="school"> School System </label>
-        </div>
-    </div>
-
-    @if(is_null($course->level_id))
-    <div class="md-form hidden">
-    @else
-    <div class="md-form">
-    @endif
-        <select name="level" id="level" class="mdb-select">
-
-            @if(!is_null($course->level_id))
-            <option value="" disabled> Choose Level </option>
-
-            @foreach($levels as $level)
-                @if($course->level_id === $level->id)
-                    <option value="{{ $level->id }}" selected> {{ $level->name }} </option>
-                @else
-                    <option value="{{ $level->id }}"> {{ $level->name }} </option>                    
-                @endif
-            @endforeach
-
-            @endif
-        </select>
-        <label for="level"> Level </label>
-    </div>
-
-    <div parent="system">
-        <div class="btn-group hidden" data-toggle="buttons" id="system">
-            @foreach($systems as $system)
-            <label class="btn btn-rounded waves-effect btn-elegant form-check-label">
-                <input class="form-check-input" type="radio" name="system" value="{{ $system }}"> {{ $system }}
-            </label> 
-            @endforeach
-        </div>
-    </div>
-
-    <div parent="sub_system">
-        <div class="btn-group hidden" data-toggle="buttons" id="sub_system">
-            @foreach($subSystems as $sub_system)
-            <label class="btn btn-rounded waves-effect btn-elegant form-check-label">
-                <input class="form-check-input" type="radio" name="sub_system" value="{{ $sub_system }}"> {{ $sub_system }}
-            </label> 
-            @endforeach
-        </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    let course = @json($course);
+    let levels = @json($levels);
+</script>
+<script src="{{ asset('js/admin/courses/create-edit.js') }}"></script>
+<script src="{{ asset('js/admin/levels-courses/create-edit.js') }}"></script>
+@endpush

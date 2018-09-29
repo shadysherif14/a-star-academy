@@ -25,6 +25,8 @@ class UpdateVideoRequest extends FormRequest
     {
         return [
             'title' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
             'video' => 'mimes:mp4,mov,ogg,qt,flv,mkv,avi,flv,mpg,mpeg'                    
         ];
     }

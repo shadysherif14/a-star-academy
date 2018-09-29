@@ -1,0 +1,105 @@
+<?php
+
+use App\User;
+use App\Level;
+use App\Course;
+use App\Instructor;
+
+/** Home */
+Breadcrumbs::for('admin.home', function ($trail) {
+    $trail->push(config('app.name'), route('admin.home') , ['icon' => 'zmdi zmdi-home']);
+});
+
+
+/** Courses */
+Breadcrumbs::for('admin.courses', function ($trail) {
+
+    $trail->parent('admin.home');
+
+    $trail->push('Courses', Course::adminRoutes()->index);
+});
+
+Breadcrumbs::for('admin.course', function ($trail, $course) {
+
+    $trail->parent('admin.courses');
+
+    $trail->push($course->name, $course->adminRoutes->show);
+});
+
+Breadcrumbs::for('admin.courses.add', function ($trail) {
+
+    $trail->parent('admin.courses');
+
+    $trail->push('Add', Course::adminRoutes()->create);
+});
+
+
+
+/** Instructors */
+Breadcrumbs::for('admin.instructors', function ($trail) {
+
+    $trail->parent('admin.home');
+
+    $trail->push('Instructors', Instructor::adminRoutes()->index);
+});
+
+Breadcrumbs::for('admin.instructor', function ($trail, $instructor) {
+
+    $trail->parent('admin.instructors');
+
+    $trail->push($instructor->name, $instructor->adminRoutes->show);
+});
+
+Breadcrumbs::for('admin.instructors.add', function ($trail) {
+
+    $trail->parent('admin.instructors');
+
+    $trail->push('Add', Instructor::adminRoutes()->create);
+});
+
+
+
+/** Levels */
+Breadcrumbs::for('admin.levels', function ($trail) {
+
+    $trail->parent('admin.home');
+
+    $trail->push('Levels', Level::adminRoutes()->index);
+});
+
+Breadcrumbs::for('admin.level', function ($trail, $level) {
+
+    $trail->parent('admin.levels');
+
+    $trail->push($level->name, $level->adminRoutes->show);
+});
+
+/** Users */
+Breadcrumbs::for('admin.users', function ($trail) {
+
+    $trail->parent('admin.home');
+
+    $trail->push('Users', User::adminRoutes()->index);
+});
+
+Breadcrumbs::for('admin.user', function ($trail, $user) {
+
+    $trail->parent('admin.user');
+
+    $trail->push($user->name, $user->adminRoutes->show);
+});
+
+
+
+/** Sessions */
+
+Breadcrumbs::for('admin.sessions', function ($trail, $course) {
+
+    $trail->parent('admin.course', $course);
+
+    $trail->push('Sessions', $course->videoRoutes);
+});
+
+
+
+

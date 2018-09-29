@@ -1,10 +1,3 @@
-$('input[type=file]').on('change', function () {
-
-    let changed = $('input[name="path_changed"]');
-
-    changed.attr('checked', true);
-});
-
 $('form.ajax').submit(function (e) {
 
     e.preventDefault();
@@ -14,16 +7,5 @@ $('form.ajax').submit(function (e) {
 
 const successCallback = function (response) {
 
-    if (response.status) {
-
-        $('i.fa-spin').remove();
-
-        toastr.success('Video\'s data is successfully updated.');
-
-        let changed = $('input[name="path_changed"]');
-
-        if (changed.is(':checked')) {
-            $('iframe').attr('src', response.path);
-        }
-    }
+    $('video source').attr('src', response.video.path);
 }

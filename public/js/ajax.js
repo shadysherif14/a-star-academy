@@ -20,7 +20,7 @@ function displayErrors(errors) {
 
         if (type === 'hidden') continue;
 
-        let small = `<small class='font-weight-bold text-danger d-block feedback' id="${id}"> ${errors[error]} </small>`;
+        let small = `<small class='text-danger feedback' id="${id}"> ${errors[error]} </small>`;
 
         if (type === 'checkbox' || type === 'radio') {
 
@@ -36,11 +36,11 @@ function displayErrors(errors) {
 
 $('input, textarea').attr('autocomplete', 'off');
 
-$('input, textarea').focus(function () {
+$(document).on('keyup', 'input, textarea', function () {
 
     let name = $(this).attr('name');
 
-    //if (name.includes('[]')) return;
+    if (name.includes('[]')) return;
 
     let error = `#error-${name}`;
     
@@ -130,7 +130,7 @@ const defaultError = function (response, status, err, form) {
 
     let errors = response.responseJSON.errors;
 
-    currentForm.animateCss('shake');
+    //currentForm.animateCss('shake');
 
     displayErrors(errors);
 }
@@ -167,12 +167,26 @@ $(document).on('click', '.delete', function () {
             CSRFToken();
 
             $.ajax({
+
                 type: method,
                 url: action,
                 success: function (response) {
+
                     if (response.status) {
 
-                        btn.parents('.grid').remove();
+                        if (btn.attr('target')) {
+                            
+                            $(btn.attr('target')).remove();
+                        
+                        } else {
+
+                            btn.parents('tr').remove();
+                        }
+
+                        if (btn.parents('table')) {
+                            
+                            btn.parents('table').DataTable()
+                        }
                     }
                 }
             });

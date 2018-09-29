@@ -1,0 +1,1 @@
+<span class="text-danger align-middle font-20">*</span>
