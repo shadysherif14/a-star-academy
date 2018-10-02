@@ -12,7 +12,7 @@
         
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
-        <title> A Star Academy @yield('title') </title>
+        <title> A Star Academy </title>
 
         @include('includes.stylesheets')
     

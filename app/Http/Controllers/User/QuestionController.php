@@ -18,7 +18,11 @@ class QuestionController extends Controller
 
         $questions = Question::quiz($video->id);
 
-        return view('admin.quizzes.index', compact('questions', 'video'));
+        $title = $video->title . ' Quiz';
+
+        $data = compact('questions', 'video', 'title');
+
+        return view('admin.quizzes.index', $data);
     }
 
     // Done
@@ -57,8 +61,8 @@ class QuestionController extends Controller
         $method = 'create';
 
         $actions = [
-            'delete' => route('admin.quizzes.destroy', ['question' => $question]),
-            'show' => route('admin.quizzes.show', ['question' => $question]),
+            'delete' => route('admin.questions.destroy', ['question' => $question]),
+            'show' => route('admin.questions.show', ['question' => $question]),
         ];
 
         return response()->json(compact('status', 'question', 'actions', 'method'));

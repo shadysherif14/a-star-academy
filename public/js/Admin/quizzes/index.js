@@ -1,8 +1,8 @@
-Sortable.create(questions, {
+/* Sortable.create(questions, {
     animation: 100,
     handle: '.handler',
     ghostClass: 'active'
-});
+}); */
 
 let formModal = $('#modal');
 
@@ -110,18 +110,18 @@ const editQuestion = function (question, action) {
         <div class="form-group">
             <textarea name="question" class="form-control" rows="4" placeholder="Type your question ...">${question.body}</textarea>
         </div>
-        <div class="md-form">
-            <select id="correct-answer" name="correct_answer" class="mdb-select">
+        <div class="form-group">
+            <label for="correct-answer"> Correct Answer: </label>
+            <select id="correct-answer" name="correct_answer" class="form-control">
                 <option value="" disabled> Correct Answer: </option>
             </select>
-            <label for="correct-answer"> Correct Answer: </label>
         </div>
         <div class="answers"></div>
     `;
 
     footer = `
             <button class="btn btn-submit"> 
-                <i class="fas fa-pen"></i> Edit 
+                <i class="fas fa-pen"></i> Update 
             </button>
         `;
 
@@ -142,6 +142,7 @@ const editQuestion = function (question, action) {
         formModal.find('.answers').append(editAnswerTemplate(answer));
 
         let option;
+
         if(answer.body === question.correct_answer)
             option = `<option value="${answer.body}" selected> ${answer.body} </option>`;
         else {
@@ -152,12 +153,11 @@ const editQuestion = function (question, action) {
 
     showPlusIcon();
 
-    $('.mdb-select').material_select();
-
     autosize($('textarea'));
 
-    formModal.modal('show');
+    refreshAllSelect();
 
+    formModal.modal('show');
 }
 
 /** New Question */
@@ -175,11 +175,11 @@ const createQuestion = function (action) {
         <div class="form-group">
             <textarea name="question" class="form-control" rows="4" placeholder="Type your question ..."></textarea>
         </div>
-        <div class="md-form">
-            <select id="correct-answer" name="correct_answer" class="mdb-select">
+        <div class="form-group">
+            <label for="correct-answer"> Correct Answer: </label>
+            <select id="correct-answer" name="correct_answer" class="form-control">
                 <option value="" selected disabled> Correct Answer: </option>
             </select>
-            <label for="correct-answer"> Correct Answer: </label>
         </div>
         <div class="answers">
             ${newAnswerTemplate()}
@@ -205,9 +205,9 @@ const createQuestion = function (action) {
 
     showPlusIcon();
 
-    $('.mdb-select').material_select();
-
     autosize($('textarea'));
+
+    refreshAllSelect();
 
     formModal.modal('show');
 
@@ -266,11 +266,7 @@ const selectCorrectAnswer = function (correctAnswer) {
 
     let correctAnswerSelect = formModal.find('select');
 
-    correctAnswerSelect.material_select('destroy');
-
     $(`option[value="${correctAnswer}"]`).attr('selected', 'selected');
-
-    correctAnswerSelect.material_select();
 
     $('.dropdown-content.select-dropdown').find(`span`).removeClass('active selected');
 
@@ -348,7 +344,6 @@ const editAnswerTemplate = function (answer) {
 const childrenNumber = selector => $(selector).children().length;
 /** New Question */
 
-
 $('form.ajax').on('submit', function (e) {
 
     e.preventDefault();
@@ -358,8 +353,6 @@ $('form.ajax').on('submit', function (e) {
 const orderSuccessCallback = function (response) {
 
     if (response.status) {
-
-        $('i.fa-spin').remove();
 
         toastr.success('Data is successfully updated.');
     }

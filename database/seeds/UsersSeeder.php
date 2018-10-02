@@ -11,13 +11,20 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        
-        $user = new App\User;
-        $user->username = 'admin';
-        $user->name = "admin";
-        $user->email = 'admin@admin.com';
-        $user->gender = "Male";
-        $user->password = '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm'; // secret
-        $user->save();
+
+        factory(App\User::class)->create([
+            'username' => 'shady',
+            'name' => 'Shady Sherif',
+            'email' => 'shady@user.com',
+            'gender' => 'Male'
+        ]);
+
+        factory(App\User::class)->create([
+            'username' => 'hossam',
+            'name' => 'Hossam Hossien',
+            'email' => 'hossam@user.com',
+            'gender' => 'Male'
+        ]);
+
     }
 }

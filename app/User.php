@@ -3,15 +3,14 @@
 namespace App;
 
 use App\Traits\Routes;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
 
-    const ROUTE = 'students';
-    
+    const ROUTE = 'users';
+
     use Notifiable, Routes;
 
     /**
@@ -63,17 +62,15 @@ class User extends Authenticatable
         return (sizeof($nameArray) > 1) ? $nameArray[1] : 'N.A';
     }
 
+    public function getNameAttribute($name)
+    {
+        return ucfirst($name);
+    }
+
     public function canWatch($video)
     {
-        $result = DB::table('users_videos')->where([
-            'user_id' => $this->id,
-            'video_id' => $video->id,
-        ])->get();
 
-        //dd($result);
-        if (count($result)) {
-            return true;
-        }
-        return false;
+        return !!$this->videos->count();
+
     }
 }

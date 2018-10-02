@@ -40,7 +40,7 @@ $(document).on('keyup', 'input, textarea', function () {
 
     let name = $(this).attr('name');
 
-    if (name.includes('[]')) return;
+    if (name === undefined || name.includes('[]')) return;
 
     let error = `#error-${name}`;
     
@@ -105,7 +105,6 @@ const submitFileForm = function (form, successCallback, errorCallback) {
         method = 'POST'
     }
 
-    
     $.ajax({
         type: method,
         url: action,

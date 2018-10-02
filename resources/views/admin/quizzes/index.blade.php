@@ -1,97 +1,55 @@
-@extends('layouts.admin')
+@extends('admin.layouts.table') 
+@section('table')
 
-@section('title', ' | Quizzes')
 
-@section('content')
 
-<button class="btn create modal-trigger" action="{{ route('admin.quizzes.store', ['video' => $video]) }}" method="create">
+<form class="ajax" action="{{ route('admin.questions.order') }}" method="POST">
+    <table class="table table-hover m-b-0" id="table">
+        <thead>
+            <tr role="row">
+                <th> Question </th>
+                <th> Answers </th>
+                <th> Correct Answer </th>
+                <th> Actions </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($questions as $question)
+            <tr>
+                <input type="hidden" name="questions[]" value="{{ $question->id }}">
+
+                <td> {{ $question->body }} </td>
+
+                <td>
+                    @foreach ($question->answers as $answer)
+                    <span class="{{ $answer->answerStyle() }}"> {{ $answer->body }} </span> @if(!$loop->last) - @endif @endforeach
+                </td>
+
+                <td> {{ $question->correct_answer }} </td>
+                <td> 
+                    <button type="button" class="btn l-parpl btn-icon btn-icon-mini btn-round modal-trigger" 
+                    action="{{ $question->adminRoutes->show }}">
+                        <i class="zmdi zmdi-edit"></i>
+                    </button>
+                    @include('admin.partials.actions', ['model' => $question, 'actions' => ['delete']])
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</form>
+<button class="btn create modal-trigger" action="{{ route('admin.questions.store', ['video' => $video]) }}" method="create">
     <i class="fas fa-plus"></i> Add Question
 </button>
 
 
-@php
-    if(count($questions) === 0) 
-        $hidden = 'd-none';
-    else   
-        $hidden = '';
-@endphp
 
-@includeWhen( count($questions) == 0, 'includes.no_records', ['record' => 'question'])
+<form class="modal fade show" id="modal" method="POST" tabindex="-1">
 
-<form class="card ajax" action="{{ route('admin.quizzes.order') }}" method="POST">
-
-    @csrf
-
-    @method('put')
-  
-    <div class="card-header grid {{ $hidden }}">
-        <div> Question </div>
-        <div> Correct Answer </div>
-        <div>  </div>
-    </div>
-
-    <div class="card-body" id="questions">
-
-        @foreach($questions as $question)
-
-        <div class="grid" id="question-{{ $question->id }}" question="{{ $question->id }}">
-
-            <div>
-                <input type="hidden" name="questions[]" value="{{ $question->id }}">
-                <p class="body"> {{ $question->body }} </p>
-            </div>
-
-            <div>
-                <div>
-                    <p class="content">
-                        Correct Answer
-                    </p>
-                </div>
-                <p class="correct-answer"> {{ $question->correct_answer }}</p>
-        
-            </div>
-            <div>
-                <div>
-                    <p class="content"> Actions </p>
-                </div>
-                <div class="actions">
-                    <button type="button" class="btn show modal-trigger"  method="show"
-                            action="{{ route('admin.quizzes.show', ['question' => $question]) }}">                            
-                        <i class="fas fa-eye"> </i>
-                    </button>
-                    <button type="button" class="btn edit modal-trigger" method="edit"
-                            action="{{ route('admin.quizzes.show', ['question' => $question]) }}">
-                        <i class="fas fa-pen"> </i>
-                    </button>
-                    <button type="button" class="btn delete" 
-                            action="{{ route('admin.quizzes.destroy', ['question' => $question]) }}">
-                        <i class="fas fa-trash"> </i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="icons d-none d-lg-block">
-                <i class="fas fa-sort handler"></i>
-            </div>
-
-        </div>
-
-        @endforeach
-
-    </div>
-
-    <button class="btn btn-submit {{ $hidden }}" type="submit">
-        <i class="fas fa-pen"> Update </i>
-    </button>
-
-</form>
-
-<form class="modal ajax bounceIn animated" id="modal" method="POST" tabindex="-1">
-
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-danger">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
 
         <div class="modal-content">
-            
+
             <div class="modal-body">
 
             </div>
@@ -99,15 +57,14 @@
         </div>
     </div>
 </form>
-@endsection
 
-@section('scripts')
-    <script src="{{ asset('js/admin/quizzes/index.js') }}"></script>
 @endsection
+    @push('scripts')
+<script src="{{ asset('js/admin/quizzes/index.js') }}"></script>
 
-@section('css')
+
+@endpush 
+@push('css')
     <link rel="stylesheet" href="{{ asset('css/admin/quizzes/index.css') }}">
-@endsection
-
-
-
+    <link rel="stylesheet" href="{{ asset('css/admin/form.css') }}">
+@endpush

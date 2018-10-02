@@ -190,8 +190,23 @@
         </li>
         <li class="float-right">
             <a href="javascript:void(0);" class="fullscreen hidden-sm-down" data-provide="fullscreen" data-close="true"><i class="zmdi zmdi-fullscreen"></i></a>
-            <a href="./sign-in.html" class="mega-menu" data-close="true"><i class="zmdi zmdi-power"></i></a>
+            <a href="javascript:void(0);" id="logout" class="mega-menu" data-close="true">
+                <i class="zmdi zmdi-power"></i>
+            </a>
             <a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="zmdi zmdi-settings zmdi-hc-spin"></i></a>
         </li>
     </ul>
 </nav>
+
+<form action="{{ route('logout') }}" id="logout-form" method="post">@csrf</form>
+
+@push('scripts')
+
+<script>
+    $('#logout').click(function() {
+    
+        $('#logout-form').submit();
+    });
+
+</script>
+@endpush

@@ -12,7 +12,8 @@ class HomeController extends Controller
     public function index(){
 
     
-        $igGrades = Level::where('name','<>','SAT')->get();
+        $igGrades = Level::where('school', 'IGCSE')->get();
+
         $satCourses = Course::where('school','SAT')->get();
 
         return view('app.homepage.index',compact('igGrades','satCourses'));

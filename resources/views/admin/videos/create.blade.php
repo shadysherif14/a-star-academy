@@ -32,8 +32,7 @@
 
 <video class="d-none" id="video"></video>
 
-
-
 @stop @push('scripts')
+<script src="{{ asset('js/admin/videos/create-edit.js') }}"></script>
 <script src="{{ asset('js/admin/videos/create.js') }}"></script>
 @endpush

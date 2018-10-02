@@ -14,7 +14,7 @@
             <th> Actions </th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="questions">
         @foreach($courses as $course)
         <tr role="row">
             <td> {{ $course->name }} </td>

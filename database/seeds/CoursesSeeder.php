@@ -33,7 +33,7 @@ class CoursesSeeder extends Seeder
                 'level_id' => $satLevel->id,
                 'instructor_id' => random_int(1, 10),
                 'name' => $course,
-                'slug' => $slugs[$i],
+                'slug' => 'SAT-' . $slugs[$i],
                 'description' => $description,
                 'school' => 'SAT',
 
@@ -60,7 +60,7 @@ class CoursesSeeder extends Seeder
                         'level_id' => $level->id,
                         'instructor_id' => random_int(1, 10),
                         'name' => $course,
-                        'slug' => str_slug($course) . $level->id,
+                        'slug' => 'IG-' . str_slug($course) . '-' . str_slug($level->name),
                         'description' => $description,
                         'school' => 'IGCSE',
                     ];
@@ -76,7 +76,7 @@ class CoursesSeeder extends Seeder
                         'level_id' => $level->id,
                         'instructor_id' => random_int(1, 10),
                         'name' => $course,
-                        'slug' => str_slug($course) . '-' . $level->id,
+                        'slug' => 'IG-' . str_slug($course) . '-' . str_slug($level->name),
                         'description' => $description,
                         'school' => 'IGCSE'
                     ];
@@ -99,7 +99,7 @@ class CoursesSeeder extends Seeder
                         foreach ($subSystems as $sub) {
                             $data['system'] = $sys;
                             $data['sub_system'] = $sub;
-                            $data['slug'] = str_slug($course) . '-' . strtolower($sys) . '-' . strtolower($sub);
+                            $data['slug'] = 'IG-' . str_slug($course) . '-' . strtolower($sys) . '-' . strtolower($sub);
                             Course::create($data);
                         }
                     }

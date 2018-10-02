@@ -16,7 +16,10 @@ const filterLevelsBySchool = (school, levelID) => {
 
     schoolLevels.forEach(level => {
 
-        if (levelID = level.id) {
+        console.log(level.id === levelID);
+        
+        if (levelID === level.id) {
+
             options += `<option value="${level.id}" selected> ${level.name} </option>`;
 
         } else {
@@ -28,8 +31,6 @@ const filterLevelsBySchool = (school, levelID) => {
     levelSelect.html(options);
 
     if (schoolLevels.length === 1) {
-
-        levelSelect.find('option').removeAttr('selected');
 
         let selectedOption = levelSelect.find('option');
 
@@ -45,7 +46,7 @@ if (course.id) {
 
     let school = course.school;
 
-    filterLevelsBySchool(school, school.level_id);
+    filterLevelsBySchool(school, course.level_id);
 
     if (course.system) {
 

@@ -9,7 +9,9 @@
                         <div class="user-info">
                             <div class="image">
                                 <a href="./profile.html" class=" waves-effect waves-block">
-                                <img src="{{ auth()->user()->avatar }}" alt="User"></a></div>
+                                    <img src="/{{ auth()->user()->avatar }}" alt="User" />
+                                </a>
+                            </div>
                             <div class="detail">
                                 <h4> {{ auth()->user()->name }} </h4>
                             </div>

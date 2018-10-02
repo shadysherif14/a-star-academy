@@ -1,5 +1,3 @@
-let videoEl = document.querySelector('video#video');
-
 let currentEl;
 
 let video = 1;
@@ -19,35 +17,16 @@ let failedUploaded = `
 /** Input file event listener */
 $('input[type=file]').on('change', function () {
 
-
     let btnSubmit = $('button[type="submit"]');
 
     if (btnSubmit.hasClass('d-none')) {
-        
+
         btnSubmit.removeClass('d-none').addClass('d-block').fadeIn('slow');
     }
 
     readFiles(this);
 
-
 });
-
-const getExtension = file => {
-
-    let parts = file.split('.');
-
-    return parts[parts.length - 1];
-}
-
-function isVideo(filename) {
-
-    let ext = getExtension(filename).toLowerCase();
-
-    let videoExtensions = ['mp4', 'mov', 'ogg', 'qt', 'flv', 'mkv', 'avi', 'flv', 'mpg', 'mpeg'];
-
-    return videoExtensions.includes(ext);
-
-}
 
 function readFiles(input) {
 
@@ -192,8 +171,6 @@ $(document).on('click', '.upload', function () {
 
     if (video === undefined) return;
 
-    let duration = 0;
-
     videoEl.preload = 'metadata';
 
     videoEl.src = URL.createObjectURL(video);
@@ -202,25 +179,7 @@ $(document).on('click', '.upload', function () {
 
         window.URL.revokeObjectURL(videoEl.src);
 
-        duration = videoEl.duration;
-
-        let hours = Math.floor(duration / 3600);
-
-        duration -= hours * 3600;
-
-        hours = hours < 10 ? '0' + hours : hours;
-
-        let minutes = Math.floor(duration / 60);
-
-        duration -= minutes * 60;
-
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-
-        let seconds = Math.floor(duration);
-
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-
-        duration = `${hours}:${minutes}:${seconds}`;
+        let duration = calculateDuration(videoEl.duration);
 
         data.append('duration', duration);
 
@@ -267,7 +226,7 @@ const uploadVideo = data => {
 const successCallback = function (response) {
 
     let sessionID = response.target;
-    
+
     let sessionEl = $(sessionID);
 
     let video = response.video;
@@ -275,7 +234,7 @@ const successCallback = function (response) {
     sessionEl.find('.header').remove();
 
     sessionEl.find('.card').prepend(successfullyUploaded);
-    
+
     let uploadVideoID = `uploaded-video-${video.id}`;
 
     let template = `
@@ -338,10 +297,10 @@ $('form.ajax').submit(function (e) {
     $uploadBtns.each(function (index) {
 
         setTimeout(() => {
-            
+
             $(this).click();
         }, time);
-    
+
         time += 2000;
 
     });
@@ -366,11 +325,11 @@ const errorCallback = response => {
     let array = ['title', 'price', 'description'];
 
     array.forEach(element => {
-        
+
         let errorID = `error-${id}-${element}`;
 
         let error = errors[element];
-        
+
         if (error === undefined || exists('#' + errorID)) return;
 
         let input = sessionEl.find(`.${element}`);

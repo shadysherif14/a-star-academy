@@ -2,14 +2,12 @@
 
 use Illuminate\Support\Facades\Storage;
 
-
-
 // Add attributes to array as prefix, middelwares, ...
 Route::group(array('namespace' => 'User'), function () {
 
     //Route::resource('/courses', 'CourseController')->only(['index', 'show']);
 
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 
     Route::get('/courses', function () {
 
@@ -33,7 +31,6 @@ Route::get('/out', function () {
 
     auth()->logout();
 
-    return redirect()->route('register');
 
 });
 

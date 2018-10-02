@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Video;
 use App\Course;
+use Illuminate\Http\Request;
+use App\Http\Requests\VideoRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\OrderVideoRequest;
 use App\Http\Requests\UpdateVideoRequest;
-use App\Http\Requests\VideoRequest;
-use App\Video;
-use Illuminate\Http\Request;
 
 class VideoController extends Controller
 {
@@ -90,11 +91,56 @@ class VideoController extends Controller
     public function update(UpdateVideoRequest $request, Video $video)
     {
 
+        $data = $request->snapshot;
+
+        if (preg_match('/^data:image\/(\w+);base64,/', $data, $type)) {
+            $data = substr($data, strpos($data, ',') + 1);
+            $type = strtolower($type[1]); // jpg, png, gif
+
+            if (!in_array($type, ['jpg', 'jpeg', 'gif', 'png'])) {
+                throw new \Exception('invalid image type');
+            }
+
+            $data = base64_decode($data);
+
+            if ($data) {
+
+                $im = imagecreatefromstring($data);
+
+                dd($im);
+                
+                Storage::put('file.jpg', $im);
+
+                //Storage::disk('public')->put('image.png', $im);
+
+                if ($im !== false) {
+                    
+                    header('Content-Type: image/png');
+                    
+                    echo imagepng($im);
+                    
+                    imagedestroy($im);
+                    
+
+                } else {
+                    throw new \Exception('An error occurred.');
+                }
+            } else {
+                throw new \Exception('base64_decode failed');
+            }
+        } else {
+            throw new \Exception('did not match data URI with image data');
+        }
+
         $video->title = $request->title;
 
         $video->price = $request->price;
 
         $video->description = $request->description;
+
+        $video->duration = $request->duration;
+
+        $video->frame = $request->blob;
 
         if ($request->hasFile('video')) {
 

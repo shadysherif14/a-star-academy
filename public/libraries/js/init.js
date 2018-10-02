@@ -2,7 +2,10 @@ $(document).on('click', 'button.link', function () {
     window.location = $(this).attr('href');
 });
 
+// Refresh bootstrap select
 const reInitializeSelect = selector => $(selector).selectpicker('refresh');
+
+const refreshAllSelect = _ => reInitializeSelect('select');
 
 $(document).ready(function () {
 
@@ -17,37 +20,26 @@ $(document).ready(function () {
 
     $('button').addClass('waves-effect waves-black');
 
-    initDataTable('table');
+    //initDataTable('table');
 
     $('input[type="number"]').attr('min', 0);
 
 });
 
-let tableLength = $('.dataTables_length');
+/* $('form.ajax').submit(function (e) {
+    
+    e.preventDefault();
 
-tableLength.find('')
+    $(this).waitMe({
+        effect: 'pulse',
+        text: 'Session is uploading',
+    });
 
-let textareaElements = document.querySelectorAll('textarea');
+});
+ */
+autosize(document.querySelectorAll('textarea'));
 
-autosize(textareaElements);
 
-/* toastr.options = {
-    "closeButton": false,
-    "debug": false,
-    "newestOnTop": false,
-    "progressBar": true,
-    "positionClass": "toast-top-right",
-    "preventDuplicates": true,
-    "onclick": null,
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "4000",
-    "extendedTimeOut": "1000",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-} */
 
 
 const

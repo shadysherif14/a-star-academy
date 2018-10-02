@@ -32,7 +32,7 @@
                     </td>
 
                     <td>
-                        <a href="{{ route('admin.quizzes.index', ['video' => $video]) }}" class="btn btn-link">
+                        <a href="{{ route('admin.questions.index', ['video' => $video]) }}" class="btn btn-link">
                             Quiz
                         </a>
                     </td>

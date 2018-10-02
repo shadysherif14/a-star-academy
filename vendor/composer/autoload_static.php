@@ -86,6 +86,7 @@ class ComposerStaticInit782b76a4d167c00509dacf3ed94daa02
         'M' => 
         array (
             'Monolog\\' => 8,
+            'Melihovv\\Base64ImageDecoder\\' => 28,
         ),
         'L' => 
         array (
@@ -285,6 +286,10 @@ class ComposerStaticInit782b76a4d167c00509dacf3ed94daa02
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Melihovv\\Base64ImageDecoder\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/melihovv/base64-image-decoder/src',
+        ),
         'League\\Fractal\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/fractal/src',
@@ -455,6 +460,7 @@ class ComposerStaticInit782b76a4d167c00509dacf3ed94daa02
     );
 
     public static $classMap = array (
+        'AdminsSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminsSeeder.php',
         'App\\Admin' => __DIR__ . '/../..' . '/app/Admin.php',
         'App\\Answer' => __DIR__ . '/../..' . '/app/Answer.php',
         'App\\Comment' => __DIR__ . '/../..' . '/app/Comment.php',
@@ -463,7 +469,10 @@ class ComposerStaticInit782b76a4d167c00509dacf3ed94daa02
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Filters\\CoursesFilter' => __DIR__ . '/../..' . '/app/Filters/CoursesFilter.php',
         'App\\Filters\\Filter' => __DIR__ . '/../..' . '/app/Filters/Filter.php',
-        'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
+        'App\\Http\\Controllers\\AdminAuth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminAuth/ForgotPasswordController.php',
+        'App\\Http\\Controllers\\AdminAuth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminAuth/LoginController.php',
+        'App\\Http\\Controllers\\AdminAuth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminAuth/RegisterController.php',
+        'App\\Http\\Controllers\\AdminAuth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminAuth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Admin\\AnswerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AnswerController.php',
         'App\\Http\\Controllers\\Admin\\CommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CommentController.php',
         'App\\Http\\Controllers\\Admin\\CourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CourseController.php',
@@ -472,6 +481,7 @@ class ComposerStaticInit782b76a4d167c00509dacf3ed94daa02
         'App\\Http\\Controllers\\Admin\\LevelController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/LevelController.php',
         'App\\Http\\Controllers\\Admin\\PayMobOrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PayMobOrderController.php',
         'App\\Http\\Controllers\\Admin\\QuestionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/QuestionController.php',
+        'App\\Http\\Controllers\\Admin\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserController.php',
         'App\\Http\\Controllers\\Admin\\VideoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/VideoController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -2448,6 +2458,13 @@ class ComposerStaticInit782b76a4d167c00509dacf3ed94daa02
         'Maatwebsite\\Excel\\Readers\\LaravelExcelReader' => __DIR__ . '/..' . '/maatwebsite/excel/src/Maatwebsite/Excel/Readers/LaravelExcelReader.php',
         'Maatwebsite\\Excel\\Writers\\CellWriter' => __DIR__ . '/..' . '/maatwebsite/excel/src/Maatwebsite/Excel/Writers/CellWriter.php',
         'Maatwebsite\\Excel\\Writers\\LaravelExcelWriter' => __DIR__ . '/..' . '/maatwebsite/excel/src/Maatwebsite/Excel/Writers/LaravelExcelWriter.php',
+        'Melihovv\\Base64ImageDecoder\\Base64ImageDecoder' => __DIR__ . '/..' . '/melihovv/base64-image-decoder/src/Base64ImageDecoder.php',
+        'Melihovv\\Base64ImageDecoder\\Base64ImageEncoder' => __DIR__ . '/..' . '/melihovv/base64-image-decoder/src/Base64ImageEncoder.php',
+        'Melihovv\\Base64ImageDecoder\\Exceptions\\CannotEncodeToBase64' => __DIR__ . '/..' . '/melihovv/base64-image-decoder/src/Exceptions/CannotEncodeToBase64.php',
+        'Melihovv\\Base64ImageDecoder\\Exceptions\\CannotReadFile' => __DIR__ . '/..' . '/melihovv/base64-image-decoder/src/Exceptions/CannotReadFile.php',
+        'Melihovv\\Base64ImageDecoder\\Exceptions\\CodingFailedException' => __DIR__ . '/..' . '/melihovv/base64-image-decoder/src/Exceptions/CodingFailedException.php',
+        'Melihovv\\Base64ImageDecoder\\Exceptions\\InvalidFormat' => __DIR__ . '/..' . '/melihovv/base64-image-decoder/src/Exceptions/InvalidFormat.php',
+        'Melihovv\\Base64ImageDecoder\\Exceptions\\NotBase64Encoding' => __DIR__ . '/..' . '/melihovv/base64-image-decoder/src/Exceptions/NotBase64Encoding.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',

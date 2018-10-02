@@ -5816,5 +5816,53 @@
                 "email": "sam@taylornetwork.ca"
             }
         ]
+    },
+    {
+        "name": "melihovv/base64-image-decoder",
+        "version": "0.2.0",
+        "version_normalized": "0.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/melihovv/base64-image-decoder.git",
+            "reference": "3c4bdc11f8d4e932a0d9fad48f5fe86cd534daf6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/melihovv/base64-image-decoder/zipball/3c4bdc11f8d4e932a0d9fad48f5fe86cd534daf6",
+            "reference": "3c4bdc11f8d4e932a0d9fad48f5fe86cd534daf6",
+            "shasum": ""
+        },
+        "require": {
+            "ext-fileinfo": "*",
+            "php": ">=7.0"
+        },
+        "require-dev": {
+            "ext-gd": "*",
+            "phpunit/phpunit": "~6.0"
+        },
+        "time": "2018-09-08T08:35:25+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Melihovv\\Base64ImageDecoder\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Alexander Melihov",
+                "email": "amelihovv@ya.ru"
+            }
+        ],
+        "description": "A base64 image decoder",
+        "keywords": [
+            "base64",
+            "decoder",
+            "image"
+        ]
     }
 ]

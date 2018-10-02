@@ -17,6 +17,7 @@
     @include('includes.stylesheets') 
     
     <link rel="stylesheet" href="{{ asset('assets/css/authentication.css') }}">
+    
     @stack('css')
 
 </head>

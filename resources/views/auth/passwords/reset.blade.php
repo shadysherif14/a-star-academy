@@ -1,65 +1,52 @@
-@extends('layouts.app')
+@extends('layouts.auth') 
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+@section('form')
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.request') }}" aria-label="{{ __('Reset Password') }}">
-                        @csrf
+<form class="form" action="{{ route('login') }}" method="POST">
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+    @csrf
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+    <div class="header">
+        <div class="logo-container">
+            <img src="./assets/images/logo.svg" alt="" />
+        </div>
+        <h5>Log in</h5>
+    </div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
+    <div class="content">
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+        <div class="input-group input-lg">
+            <input type="text" class="form-control" name="username" placeholder="Enter User Name" />
+            <span class="input-group-addon">
+                <i class="zmdi zmdi-account-circle"></i>
+            </span>
+        </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+        <div class="input-group input-lg">
+            <input type="password" placeholder="Password" name="password" class="form-control" />
+            <span class="input-group-addon">
+                <i class="zmdi zmdi-lock"></i>
+            </span>
+        </div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+        <div class="form-group mt-3">
+            <div class="checkbox">
+                <input id="remember" name="remember" value="1" type="checkbox">
+                <label for="remember">
+                Remeber Me
+            </label>
             </div>
         </div>
+
     </div>
-</div>
-@endsection
+
+    <div class="footer text-center">
+        <button type="submit" class="btn btn-primary btn-round btn-lg btn-block ">SIGN IN</button>
+        <h5>
+            <a href="{{ route('password.request') }}" class="link">Forgot Password?</a>
+        </h5>
+    </div>
+</form>
+
+
+@stop

@@ -1,14 +1,14 @@
 @extends('layouts.auth') 
+
 @section('form')
 
-
-<form class="form" action="{{ route('login') }}" method="POST">
+<form class="form" action="{{ $login }}" method="POST">
 
     @csrf
     
     <div class="header">
         <div class="logo-container">
-            <img src="./assets/images/logo.svg" alt="" />
+            <img src="/assets/images/logo.svg" alt="" />
         </div>
         <h5>Log in</h5>
     </div>
@@ -29,21 +29,23 @@
             </span>
         </div>
 
+        <div class="form-group mt-3">
+            <div class="checkbox">
+                <input id="remember" name="remember" value="1" type="checkbox">
+                <label for="remember">
+                Remeber Me
+            </label>
+            </div>
+        </div>
+
     </div>
+
     <div class="footer text-center">
         <button type="submit" class="btn btn-primary btn-round btn-lg btn-block ">SIGN IN</button>
         <h5>
-            <a href="./forgot-password.html" class="link">Forgot Password?</a>
+            <a href="{{ $resetPassword }}" class="link">Forgot Password?</a>
         </h5>
     </div>
 </form>
 
 @stop
-
-@push('css') 
-
-@endpush 
-
-@push('scripts')
-
-@endpush

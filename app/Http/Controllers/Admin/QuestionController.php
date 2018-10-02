@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Answer;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Question;
 use App\Video;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class QuestionController extends Controller
 {
@@ -18,9 +18,12 @@ class QuestionController extends Controller
 
         $questions = Question::quiz($video->id);
 
-        return view('admin.quizzes.index', compact('questions', 'video'));
-    }
+        $title = $video->title . ' Questions';
 
+        $data = compact('questions', 'video', 'title');
+
+        return view('admin.quizzes.index', $data);
+    }
     // Done
     public function store(StoreQuestionRequest $request, Video $video)
     {
@@ -56,12 +59,7 @@ class QuestionController extends Controller
 
         $method = 'create';
 
-        $actions = [
-            'delete' => route('admin.quizzes.destroy', ['question' => $question]),
-            'show' => route('admin.quizzes.show', ['question' => $question]),
-        ];
-
-        return response()->json(compact('status', 'question', 'actions', 'method'));
+        return response()->json(compact('status', 'question', 'method'));
 
     }
 
@@ -71,9 +69,7 @@ class QuestionController extends Controller
 
         $question = Question::find($id);
 
-        $action = route('admin.quizzes.update', ['question' => $question]);
-
-        return response()->json(compact('question', 'action'));
+        return response()->json(compact('question'));
     }
 
     public function update(Request $request, $id)

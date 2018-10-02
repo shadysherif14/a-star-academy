@@ -2,13 +2,17 @@
 
 namespace App;
 
-use App\Notifications\AdminResetPassword;
+use App\Traits\Routes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class Admin extends Authenticatable
 {
-    use Notifiable;
+
+    const ROUTE = 'admins';
+    
+    use Notifiable, Routes;
 
     /**
      * The attributes that are mass assignable.
@@ -28,14 +32,4 @@ class Admin extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * Send the password reset notification.
-     *
-     * @param  string  $token
-     * @return void
-     */
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new AdminResetPassword($token));
-    }
 }

@@ -39,9 +39,9 @@ class CourseRequest extends FormRequest
             
             'school' => ['required', Rule::in($schools)],
             
-            'system' => ['required_if:school,IGCSE', Rule::in($systems)],
+            'system' => ['nullable', Rule::in($systems)],
             
-            'sub_system' => ['required_if:school,IGCSE', Rule::in($subSystems)],
+            'sub_system' => ['nullable', Rule::in($subSystems)],
 
             'image' => 'image',
 

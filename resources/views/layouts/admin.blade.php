@@ -1,6 +1,6 @@
 @extends('layouts.main') 
 @push('css') 
-@endpush 
+@endpush
 @section('body')
 @include('includes.navbar')
 @include('includes.left-sidebar')
