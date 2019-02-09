@@ -1,16 +1,14 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/admin/app.css": "/css/admin/app.css",
-    "/css/admin/shared/cru.css": "/css/admin/shared/cru.css",
-    "/css/admin/courses/index.css": "/css/admin/courses/index.css",
-    "/css/admin/levels/index.css": "/css/admin/levels/index.css",
-    "/css/admin/instructors/index.css": "/css/admin/instructors/index.css",
-    "/css/admin/quizzes/index.css": "/css/admin/quizzes/index.css",
-    "/css/admin/videos/index.css": "/css/admin/videos/index.css",
-    "/css/admin/videos/create.css": "/css/admin/videos/create.css",
-    "/css/auth/register.css": "/css/auth/register.css",
-    "/css/auth/login.css": "/css/auth/login.css",
     "/css/auth/index.css": "/css/auth/index.css",
+    "/css/errors/index.css": "/css/errors/index.css",
+    "/css/user/main.css": "/css/user/main.css",
+    "/css/user/home.css": "/css/user/home.css",
     "/css/user/courses/index.css": "/css/user/courses/index.css",
-    "/css/admin/form.css": "/css/admin/form.css"
+    "/css/user/courses/show.css": "/css/user/courses/show.css",
+    "/css/user/instructors/index.css": "/css/user/instructors/index.css",
+    "/css/user/instructors/show.css": "/css/user/instructors/show.css",
+    "/css/user/videos/show.css": "/css/user/videos/show.css",
+    "/css/user/profiles/show.css": "/css/user/profiles/show.css",
+    "/css/app.css": "/css/app.css"
 }

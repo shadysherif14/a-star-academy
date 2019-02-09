@@ -4,17 +4,19 @@ namespace App;
 
 use App\Video;
 use App\Traits\Routes;
-use App\Traits\Payable;
-use App\Interfaces\PayableInterface;
+use Cog\Laravel\Love\Likeable\Models\Traits\Likeable;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Cog\Contracts\Love\Likeable\Models\Likeable as LikeableContract;
 
-class Course extends Model implements PayableInterface
+class Course extends Model implements LikeableContract
 {
 
     const ROUTE = 'courses';
-    
-    use Sluggable, Payable, Routes;
+
+    const DEFAULT_IMAGE_PATH = 'images/defaults/course.png';
+
+    use Sluggable, Routes, Likeable;
 
     public static function boot()
     {
@@ -27,20 +29,6 @@ class Course extends Model implements PayableInterface
 
     }
 
-    public function updatePrice()
-    {
-        $videos = $this->videos;
-
-        if (empty($videos)) {
-            return;
-        }
-
-        $price = $videos->sum('price');
-
-        $this->price = $price;
-
-        $this->save();
-    }
     public function getRouteKeyName()
     {
         return 'slug';
@@ -49,6 +37,27 @@ class Course extends Model implements PayableInterface
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasManyThrough(UserVideo::class, Video::class)->latest();
+    }
+
+    public function getTotalSubscriptionsAttribute()
+    {
+        return $this->subscriptions()->sum('price');
+    }
+
+    public function scopeTop($query, $limit = 5)
+    {
+        return $query->with('subscriptions')
+
+            ->withCount('subscriptions')
+
+            ->orderBy('subscriptions_count', 'desc')
+            
+            ->limit($limit);
     }
 
     public function level()
@@ -63,7 +72,12 @@ class Course extends Model implements PayableInterface
 
     public function videos()
     {
-        return $this->hasMany(Video::class);
+        return $this->hasMany(Video::class)->oldest('order');
+    }
+
+    public function videosReverse()
+    {
+        return $this->hasMany(Video::class)->latest('order');
     }
 
     public function videosRoute($action = 'index')
@@ -78,12 +92,7 @@ class Course extends Model implements PayableInterface
 
     public function intro()
     {
-        $introduction = Video::where([
-            'course_id' => $this->id,
-            'free' => 1,
-        ])->first();
-
-        return $introduction ? $introduction : false;
+        return $this->videos()->where('price', 0)->first();
     }
 
     public function scopeFilter($query, $filters)
@@ -91,34 +100,13 @@ class Course extends Model implements PayableInterface
         return $filters->apply($query);
     }
 
-    public function adminPath()
+    public function getImageAttribute($path)
     {
-        return "/admin{$this->path()}";
+
+        $path = $path ? $path : self::DEFAULT_IMAGE_PATH;
+
+        return asset("storage/$path");
     }
-
-    public function path()
-    {
-        return "/courses/{$this->slug}";
-    }
-
-    public function getImageAttribute($value)
-    {
-        if (is_null($value)) {
-            return null;
-        }
-
-        return asset("storage/{$value}");
-    }
-
-    /* public function getSystemAttribute($value)
-    {
-        return $value ?? '<i class="fas fa-minus"></i>';
-    }
-
-    public function getSubSystemAttribute($value)
-    {
-        return $value ?? '<i class="fas fa-minus"></i>';
-    } */
 
     public function persistUser($user)
     {
@@ -143,4 +131,33 @@ class Course extends Model implements PayableInterface
         ];
     }
 
+    public function firstVideo()
+    {
+        return $this->videos()->first();
+    }
+
+    public function lastVideo()
+    {
+        return $this->videosReverse()->first();
+    }
+
+    public function findVideoByOrder($order)
+    {
+        return $this->videos()->where('order', $order)->first();
+    }
+
+    public function getPostersPathAttribute()
+    {
+        return "sessions/$this->slug/posters";
+    }
+
+    public function getVideosPathAttribute()
+    {
+        return "sessions/$this->slug/videos";
+    }
+
+    public function overview()
+    {
+        return $this->videos()->whereOverview('1')->first();
+    }
 }

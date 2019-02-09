@@ -1,5 +1,11 @@
 let video = null;
 
+let sessionVideoEl = document.querySelector('video#session-video');
+
+let poster = null;
+
+let posterUpdate = false;
+
 $('input[type=file]').on('change', function () {
 
     let files = this.files;
@@ -7,7 +13,6 @@ $('input[type=file]').on('change', function () {
     if (files.length) {
 
         video = isVideo(files[0].name) ? files[0] : null;
-
     }
 });
 
@@ -42,7 +47,6 @@ $('form.ajax').submit(function (e) {
 
 });
 
-
 const formSubmit = function (form, successCallback, errorCallback) {
 
     let formEl = $(form);
@@ -51,17 +55,10 @@ const formSubmit = function (form, successCallback, errorCallback) {
 
     let data = new FormData(form);
 
-    let frame = captureFrame();
+    if (poster) {
 
-    let src = $('#my-screenshot').attr('src');
-    
-    console.log(src);
-    
-    data.append('snapshot', frame.dataUri);
-   
-    data.append('src', src);
-   
-    data.append('blob', frame.blob);
+        data.append('poster', poster);
+    }
 
     let action = formEl.attr('action');
 
@@ -79,7 +76,51 @@ const formSubmit = function (form, successCallback, errorCallback) {
 
 const successCallback = function (response) {
 
-    $('video#session-video source').attr('src', response.video.path);
+    toastr.success("Data updated successfully.");
 
-    document.querySelector('video#session-video').load();
+    if (response.videoChanged) {
+
+        $('video#session-video source').attr('src', response.video.path);
+
+        sessionVideoEl.load();
+
+        posterUpdate = true;
+
+        sessionVideoEl.onloadedmetadata = function () {
+
+            this.currentTime = 5;
+        }
+    }
+
+    video = null;
+
 }
+
+sessionVideoEl.onseeked = function () {
+
+    if (posterUpdate) {
+
+        captureImage(sessionVideoEl);
+
+        $('form#poster-form input[name="poster"]').val(poster);
+
+        $('form#poster-form').submit();
+
+        posterUpdate = false;
+    }
+};
+
+$('form#poster-form').submit(function (e) {
+
+    e.preventDefault();
+
+    submitForm($(this), posterSuccessCallback, defaultError);
+});
+
+const posterSuccessCallback = _ => {
+
+    location.reload();
+
+}
+
+$('#poster-btn').click(_ => captureImage(document.querySelector('#session-video')));

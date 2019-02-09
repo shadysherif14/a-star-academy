@@ -28,5 +28,5 @@
 @endsection
  
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/admin/shared/cru.css') }}">
+    <link rel="stylesheet" href="{{ asset_path('css/admin/shared/cru.css') }}">
 @endsection

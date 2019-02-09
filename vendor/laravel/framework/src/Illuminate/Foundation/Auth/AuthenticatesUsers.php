@@ -17,26 +17,7 @@ trait AuthenticatesUsers
      */
     public function showLoginForm()
     {
-        $subdomain = getSubdomain();
-
-        $login = 'login';
-
-        $resetPassword = 'password.request';
-
-        if ($subdomain) {
-
-            $login = $subdomain . '.' . $login;
-
-            $resetPassword = $subdomain . '.' . $resetPassword;
-        }
-
-        $login = route($login);
-
-        $resetPassword = route($resetPassword);
-
-        $data = compact('login', 'resetPassword');
-
-        return view('auth.login', $data);
+        return view('auth.login');
     }
 
     /**
@@ -160,7 +141,7 @@ trait AuthenticatesUsers
      */
     public function username()
     {
-        return 'username';
+        return 'email';
     }
 
     /**

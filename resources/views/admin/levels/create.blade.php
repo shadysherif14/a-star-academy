@@ -1,35 +1,17 @@
-@extends('layouts.admin') 
+@extends('admin.layouts.create') 
+@section('header.text')
+@endsection
+ 
+@section('form')
 
-@section('title', 'Levels - Create') 
 
-@section('content')
-
-
-<form action="{{ route('admin.levels.store') }}" method="post" class="card ajax" enctype="multipart/form-data">
-
-    @csrf
-
-    <div class="card-header">
-
-        <h4> <i class="fas fa-list"></i> New Level </h4>
-
-    </div>
+<form action="{{ action('Admin\LevelController@store') }}" method="post" class="ajax card" enctype="multipart/form-data">
 
     @include('admin.levels.form')
 
-    <button type="submit" class="btn btn-submit"> <i class="fas fa-plus"></i> Add </button>
+    @include('admin.partials.add-button')
 
 </form>
-@endsection
 
-@section('scripts')
-    <script>
-        let level = @json($level);
-    </script>
-    <script src="{{ asset('js/admin/levels/create-edit.js') }}"></script>
-    <script src="{{ asset('js/admin/levels-courses/create-edit.js') }}"></script>
-@stop 
-
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/admin/shared/cru.css') }}">
 @endsection
+ 

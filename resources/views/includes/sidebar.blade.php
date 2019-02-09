@@ -3,7 +3,7 @@
     <li>
         <div class="logo-wrapper waves-light">
             <a href="#">
-                <img src="{{ asset('images/logo.png') }}" class="img-fluid flex-center py-2">
+                <img src="{{ asset_path('images/logo.png') }}" class="img-fluid flex-center py-2">
             </a>
         </div>
     </li>
@@ -12,7 +12,6 @@
         <ul class="collapsible collapsible-accordion">
 
             <li>
-
                 <li>
                     <a class="collapsible-header waves-effect arrow-r">
                         <i class="fas fa-list"></i>

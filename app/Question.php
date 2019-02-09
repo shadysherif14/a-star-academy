@@ -2,8 +2,8 @@
 
 namespace App;
 
-use stdClass;
 use Illuminate\Database\Eloquent\Model;
+use stdClass;
 
 class Question extends Model
 {
@@ -12,8 +12,7 @@ class Question extends Model
 
     protected $with = ['answers'];
 
-    protected $appends = ['admin_routes'];
-
+    protected $appends = ['admin_routes', 'correct_answer'];
 
     public static function boot()
     {
@@ -28,7 +27,12 @@ class Question extends Model
 
     public function answers()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Answer::class)->inRandomOrder();
+    }
+
+    public function getCorrectAnswerAttribute()
+    {
+        return Answer::find($this->answer_id);
     }
 
     public function video()
@@ -36,13 +40,17 @@ class Question extends Model
         return $this->belongsTo(Video::class);
     }
 
-    public static function quiz($videoID)
+
+    public function updateCorrectAnswer($answer)
     {
-        return self::where('video_id', $videoID)
+        // If the answer's body passed find it
+        if (is_string($answer)) {
+            $answer = Answer::findAnswer($this->id, $answer);
+        }
 
-            ->oldest('order')
+        $this->answer_id = $answer->id;
 
-            ->get();
+        $this->save();
     }
 
     public static function order($videoID)

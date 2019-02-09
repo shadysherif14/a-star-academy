@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use App\Video;
+use App\Course;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -18,6 +20,12 @@ class RouteServiceProvider extends ServiceProvider
 
     protected $adminNamespace = 'App\Http\Controllers\Admin';
 
+    protected $instructorNamespace = 'App\Http\Controllers\Instructor';
+
+    protected $userNamespace = 'App\Http\Controllers\User';
+
+    protected $authNamespace = 'App\Http\Controllers\Auth';
+
     /**
      * Define your route model bindings, pattern filters, etc.
      *
@@ -25,9 +33,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
+
+        Route::model('session', Video::class);
     }
 
     /**
@@ -42,11 +50,13 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapAdminRoutes();
 
+        $this->mapInstructorRoutes();
+
+        $this->mapUserRoutes();
+
         $this->mapWebRoutes();
 
         $this->mapApiRoutes();
-
-        //
     }
 
     /**
@@ -66,6 +76,33 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
+     * Define the "instructor" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapInstructorRoutes()
+    {
+        Route::middleware(['web', 'instructor', 'auth:instructor'])
+
+            ->namespace($this->instructorNamespace)
+
+            ->group(base_path('routes/instructor.php'));
+
+    }
+
+    protected function mapUserRoutes()
+    {
+        Route::middleware(['web'])
+
+            ->namespace($this->userNamespace)
+
+            ->group(base_path('routes/user.php'));
+
+    }
+
+    /**
      * Define the "web" routes for the application.
      *
      * These routes all receive session state, CSRF protection, etc.
@@ -75,7 +112,9 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
+
             ->namespace($this->namespace)
+
             ->group(base_path('routes/web.php'));
     }
 
@@ -89,8 +128,11 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
+
             ->middleware('api')
+
             ->namespace($this->namespace)
+
             ->group(base_path('routes/api.php'));
     }
 
@@ -105,7 +147,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware('web')
 
-            ->namespace($this->namespace)
+            ->namespace($this->authNamespace)
 
             ->group(base_path('routes/auth.php'));
     }

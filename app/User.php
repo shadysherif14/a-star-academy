@@ -3,15 +3,20 @@
 namespace App;
 
 use App\Traits\Routes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Notifications\Notifiable;
+use Cog\Laravel\Love\Liker\Models\Traits\Liker;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cog\Contracts\Love\Liker\Models\Liker as LikerContract;
 
-class User extends Authenticatable
+class User extends Authenticatable implements LikerContract
 {
 
     const ROUTE = 'users';
 
-    use Notifiable, Routes;
+    const DEFAULT_IMAGE_PATH = 'images/defaults/avatar.png';
+
+    use Notifiable, Routes, Liker;
 
     /**
      * The attributes that are mass assignable.
@@ -31,46 +36,105 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function courses()
+    protected static function boot()
     {
-        return $this->belongsToMany(Course::class);
+        parent::boot();
+    }
+
+    /** Relations */
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
     }
 
     public function videos()
     {
-        return $this->belongsToMany(Video::class);
+        return $this->belongsToMany(Video::class)->withPivot(['price', 'created_at']);
     }
 
-    public function name($user = null)
+    public function questions()
     {
-        $user = is_null($user) ? auth()->user() : $user;
-
-        return explode(' ', $user->name);
+        return $this->hasManyTrough(Question::class, Quiz::class);
     }
-    public static function firstName($user = null)
+
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class);
+    }
+
+    public function activeVideos()
+    {
+        return $this->belongsToMany(Video::class)
+
+            ->whereRaw('max_watching_times > watched_times')
+
+            ->orWhere('max_watching_times', null);
+
+    }
+    /** Relations */
+
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
+    /** Accessors */
+    public function getNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function getAvatarAttribute($path)
+    {
+        $path = $path ?? self::DEFAULT_IMAGE_PATH;
+
+        return secure_asset("storage/{$path}");
+
+    }
+
+    public function getCroppedAvatarAttribute($path)
+    {
+        $path = $path ?? self::DEFAULT_IMAGE_PATH;
+
+        return secure_asset("storage/{$path}");
+    }
+
+    public function getAccountsAttribute($accounts)
+    {
+        return json_decode($accounts);
+    }
+    /** Accessors */
+
+    public function accounts($account = null)
     {
 
-        $nameArray = (new self)->name($user);
+        if (is_null($this->id)) {
+            return null;
+        }
 
-        return (sizeof($nameArray) > 0) ? $nameArray[0] : 'N.A';
+        return isset($this->accounts->$account) ? $this->accounts->$account : null;
     }
-
-    public static function lastName($user = null)
+    public function canWatch(Video $video)
     {
-        $nameArray = (new self)->name($user);
-
-        return (sizeof($nameArray) > 1) ? $nameArray[1] : 'N.A';
+        return $video->userCanWatch($this);
     }
 
-    public function getNameAttribute($name)
+    public function profileRoutes($action = 'show')
     {
-        return ucfirst($name);
+        return route("profiles.{$action}");
     }
 
-    public function canWatch($video)
+    public function courses()
     {
-
-        return !!$this->videos->count();
+        return Course::whereLikedBy($this->id)
+            ->with('likesCounter') // Allow eager load (optional)
+            ->get();
 
     }
+
+    public function totalSubscriptions()
+    {
+        return UserVideo::whereUserId($this->id)->sum('price');
+    }
+
 }

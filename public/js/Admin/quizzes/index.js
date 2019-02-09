@@ -1,339 +1,121 @@
-/* Sortable.create(questions, {
+let questionsTable = document.querySelector('#questions tbody');
+
+Sortable.create(questionsTable, {
     animation: 100,
     handle: '.handler',
     ghostClass: 'active'
-}); */
-
-let formModal = $('#modal');
-
-let answersIndex;
-
-$(document).on('click', '.modal-trigger', function () {
-
-    let action = $(this).attr('action');
-
-    let method = $(this).attr('method');
-
-    formModal.find('.modal-header').remove();
-
-    formModal.find('.btn-submit').remove();
-
-    formModal.find('.modal-body').empty();
-
-    answersIndex = 1;
-    
-    if (method === 'create') {
-
-        createQuestion(action);
-
-    } else {
-
-        getQuestion(action, method);
-    }
 });
 
+let answersIndex = 3;
 
+let $questionsTable = $('#questions');
 
-const getQuestion = function (action, method) {
+let $newAnswerBtn = $('.add-new-answer');
 
-    $.ajax({
-        type: "GET",
-        url: action,
-        success: function (response) {
+$newAnswerBtn.on('click', function () {
 
-            method === 'edit' ? editQuestion(response.question, response.action) : showQuestion(response.question);
-        }
-    });
-}
+    let $answers = $(this).closest('.body');
 
+    let $answersWrapper = $answers.find('.answers-wrapper');
 
-const showQuestion = function (question) {
-
-    let body, header;
-
-    header = `<div class="modal-header">
-                <h3> ${question.body} </h3>
-            </div>`;
-
-    formModal.removeAttr('action');
-
-    formModal.find('input[name="_method"]').remove();
-
-    formModal.find('.modal-body').before(header);
-
-    body = `
-        <ul class='list-group'></ul>
-    `;
-    formModal.find('.modal-body').html(body);
-
-    let answers = question.answers;
-
-    let invisible = '';
-
-    body = ``;
-
-    answers.forEach((answer) => {
-
-        if (answer.body === question.correct_answer) {
-            invisible = '';
-        } else {
-            invisible = 'invisible';
-        }
-        answerTemplate = `
-
-            <li class='list-group-item d-flex justify-content-between align-items-center'>
-                <h5 class="mb-0"> ${answer.body} </h5>
-                <i class="fas fa-check text-success fa-3x ${invisible}"></i>
-            </li>
-            
-        `;
-        body += answerTemplate;
-    });
-
-    formModal.find('.modal-body ul').html(body);
-
-    formModal.modal('show');
-
-}
-
-const editQuestion = function (question, action) {
-
-    method = `<input type="hidden" name="_method" value="put">`;
-
-    header = `
-            <div class="modal-header">
-                <h3> Edit Question <i class='fas fa-question'></i> </h3>
-            </div>
-        `;
-
-    body = `
-        <div class="form-group">
-            <textarea name="question" class="form-control" rows="4" placeholder="Type your question ...">${question.body}</textarea>
-        </div>
-        <div class="form-group">
-            <label for="correct-answer"> Correct Answer: </label>
-            <select id="correct-answer" name="correct_answer" class="form-control">
-                <option value="" disabled> Correct Answer: </option>
-            </select>
-        </div>
-        <div class="answers"></div>
-    `;
-
-    footer = `
-            <button class="btn btn-submit"> 
-                <i class="fas fa-pen"></i> Update 
-            </button>
-        `;
-
-    formModal.attr('action', action);
-
-    formModal.prepend(method);
-
-    formModal.find('.modal-body').before(header);
-
-    formModal.find('.modal-body').html(body);
-
-    formModal.find('.modal-body').after(footer);
-
-    let answers = question.answers;
-
-    answers.forEach(answer => {
-        
-        formModal.find('.answers').append(editAnswerTemplate(answer));
-
-        let option;
-
-        if(answer.body === question.correct_answer)
-            option = `<option value="${answer.body}" selected> ${answer.body} </option>`;
-        else {
-            option = `<option value="${answer.body}"> ${answer.body} </option>`;
-        }
-        formModal.find('select').append(option)
-    });
-
-    showPlusIcon();
-
-    autosize($('textarea'));
-
-    refreshAllSelect();
-
-    formModal.modal('show');
-}
-
-/** New Question */
-const createQuestion = function (action) {
-
-    method = `<input type="hidden" name="_method" value="post">`;
-
-    header = `
-            <div class="modal-header">
-                <h3> New Question <i class='fas fa-question'></i> </h3>
-            </div>
-        `;
-
-    body = `
-        <div class="form-group">
-            <textarea name="question" class="form-control" rows="4" placeholder="Type your question ..."></textarea>
-        </div>
-        <div class="form-group">
-            <label for="correct-answer"> Correct Answer: </label>
-            <select id="correct-answer" name="correct_answer" class="form-control">
-                <option value="" selected disabled> Correct Answer: </option>
-            </select>
-        </div>
-        <div class="answers">
-            ${newAnswerTemplate()}
-            ${newAnswerTemplate()}
-        </div>
-    `;
-
-    footer = `
-            <button class="btn btn-submit"> 
-                <i class="fas fa-plus"></i> Add 
-            </button>
-        `;
-
-    formModal.attr('action', action);
-
-    formModal.prepend(method);
-
-    formModal.find('.modal-body').before(header);
-
-    formModal.find('.modal-body').html(body);
-
-    formModal.find('.modal-body').after(footer);
-
-    showPlusIcon();
-
-    autosize($('textarea'));
-
-    refreshAllSelect();
-
-    formModal.modal('show');
-
-}
-
-$(document).on('click', '.answers i.fa-plus', function () {
-
-    answersIndex++;
-
-    $(this).addClass('invisible');
-
-    formModal.find('.answers').append(newAnswerTemplate());
-
-    showPlusIcon();
+    $answersWrapper.append(answerTemplate());
 });
 
-$(document).on('click', '.answers i.fa-minus', function () {
+$(document).on('click', '.remove', function () {
 
-    if (childrenNumber('.answers') < 3) {
+    let $btn = $(this);
+
+    let $answers = $btn.closest('.answers');
+
+    let $answersWrapper = $answers.find('.answers-wrapper');
+
+    if ($answersWrapper.children().length < 3) {
 
         toastr.error('The answers cannot be less than two');
 
         return;
     }
 
-    $(this).parents('.form-group').remove();
+    let $correctInput = $($btn.attr('href'));
 
-    showPlusIcon();
+    let inputAnswer = $correctInput.val();
 
-    updateCorrectAnswersSelect();
+    let $correctAnswerInput = $answers.find('input.correct_answer');
+
+    let correctAnswer = $correctAnswerInput.val();
+
+    // If the correct answer is the same as the answer that will be removed
+    // Make the correct answer value equals to null
+    if (correctAnswer === inputAnswer) {
+
+        $correctAnswerInput.val(null);
+    }
+    $(this).closest('.form-group').remove();
+
+
 });
 
-$(document).on('click', '.answers i.fa-check', function () {
+$(document).on('click', '.correct', function () {
 
-    let correctAnswerSelect = formModal.find('select');
+    let $btn = $(this);
 
-    let correctInput = $(this).parents('.form-group').find('input.form-control');
+    let correctInput = $($btn.attr('href'));
 
     let correctAnswer = correctInput.val();
 
-    if (correctAnswer == '') {
+    if (!correctAnswer) {
 
         toastr.error("The correct answer cannot be empty");
 
         return;
     }
 
-    updateCorrectAnswersSelect();
+    let $answers = $btn.closest('.answers');
 
-    selectCorrectAnswer(correctAnswer);
+    let $correctAnswerInput = $answers.find('input.correct_answer');
+
+    $correctAnswerInput.val(correctAnswer);
+
 });
 
-$(document).on('blur', '.answers input.form-control', _ => updateCorrectAnswersSelect());
 
-const selectCorrectAnswer = function (correctAnswer) {
+$('form.order').on('submit', function (e) {
 
-    let correctAnswerSelect = formModal.find('select');
+    e.preventDefault();
 
-    $(`option[value="${correctAnswer}"]`).attr('selected', 'selected');
+    submitForm($(this), orderSuccessCallback, defaultError);
 
-    $('.dropdown-content.select-dropdown').find(`span`).removeClass('active selected');
+});
 
-    $('.dropdown-content.select-dropdown').find(`span:contains(${correctAnswer})`).parent().addClass('active selected');
+const orderSuccessCallback = response => {
 
+    toastr.success('Data is successfully updated.');
 }
 
-const updateCorrectAnswersSelect = function () {
+const answerTemplate = function (answer = '', id = -1, action = 'add') {
 
-    let correctAnswerSelect = formModal.find('select');
-
-    let correctAnswer = correctAnswerSelect.val();
-
-    correctAnswerSelect.empty();
-
-    let optionsTemplate = '<option value="" selected disabled> Correct Answer: </option>';
-
-    $('.answers').find('input.form-control').each(function () {
-
-        let answerText = $(this).val();
-
-        if (answerText === '') return;
-
-        optionsTemplate += `<option value="${answerText}"> ${answerText} </option>`;
-
-    });
-
-    correctAnswerSelect.html(optionsTemplate);
-
-    selectCorrectAnswer(correctAnswer);
-}
-
-const showPlusIcon = function () {
-
-    $('.answers div').last().find('.fa-plus').removeClass('invisible');
-}
-
-const newAnswerTemplate = function () {
+    let href = `${action}-answer-${answersIndex}`;
 
     let template = `
-            <div class="form-group">
-                <input type="text" name="answers[${answersIndex}]" class="form-control" placeholder="Answer">
-                <div class="icons">
-                    <i class="fas fa-plus invisible"></i>
-                    <i class="fas fa-check"></i>    
-                    <i class="fas fa-minus"></i>
+            <div class="form-group row answer">              
+                <div class="col-9">
+                    <input type="text" id="${href}" 
+                    name="answers[${answersIndex}][body]" 
+                    class="form-control" placeholder="Answer..." value="${answer}">
+                    <input type="hidden" name="answers[${answersIndex}][id]" value="${id}">
+
                 </div>
-            </div>  
-            `;
 
-    answersIndex++;
+                <div class="col-3">
+                    <button href="#${href}" type="button" class="btn l-green btn-icon btn-icon-mini btn-round correct">
+                        <i class="zmdi zmdi-check"></i>
+                    </button>
 
-    return template;
-}
-
-const editAnswerTemplate = function (answer) {
-
-    let template = `
-            <div class="form-group">
-                <input type="text" name="answers[${answersIndex}][body]" class="form-control" value="${answer.body}" placeholder="Answer">
-                <input type="hidden" name="answers[${answersIndex}][id]" class="form-control" value="${answer.id}">
-                <div class="icons">
-                    <i class="fas fa-plus invisible"></i>
-                    <i class="fas fa-check"></i>    
-                    <i class="fas fa-minus"></i>
+                    <button href="#${href}" type="button" class="btn l-coral btn-icon btn-icon-mini btn-round remove">
+                        <i class="zmdi zmdi-delete"></i>
+                    </button>
                 </div>
-            </div>  
+            </div>
             `;
 
     answersIndex++;
@@ -341,103 +123,11 @@ const editAnswerTemplate = function (answer) {
     return template;
 }
 
-const childrenNumber = selector => $(selector).children().length;
-/** New Question */
 
-$('form.ajax').on('submit', function (e) {
-
+$('#questions-form').submit(function (e) {
+   
     e.preventDefault();
 
-    submitForm($(this), orderSuccessCallback, defaultError);
+
+    submitForm($(this));
 });
-const orderSuccessCallback = function (response) {
-
-    if (response.status) {
-
-        toastr.success('Data is successfully updated.');
-    }
-}
-
-formModal.on('submit', function (e) {
-
-    e.preventDefault();
-
-    submitForm(formModal, successCallback, defaultError);
-});
-
-
-const successCallback = function (response) {
-
-    if (response.status) {
-
-        formModal.modal('hide');
-
-        if (response.method === 'create') {
-            
-            $('.card-header').removeClass('d-none');
-
-            $('.btn-submit').removeClass('d-none');
-
-            $('#no-data').remove();
-
-            $('#questions').append(newQuestionTemplate(response.question, response.actions));
-        }
-
-        if (response.method === 'edit') {
-            
-            console.log(response.question);
-            
-            let questionEl = $(`#question-${response.question.id}`);
-
-            questionEl.find('.body').text(response.question.body);
-
-            questionEl.find('.correct-answer').text(response.question.correct_answer);
-        }
-    }
-}
-
-
-const newQuestionTemplate = function (question, actions) {
-
-    let template = `
-        <div class="grid" id="question-${question.id}" question="${question.id}">
-            <div>
-                <input type="hidden" name="questions[]" value="${question.id}">
-                <p> ${question.body} </p>
-            </div>
-            <div>
-                <div>
-                    <p class="content">
-                        Correct Answer
-                    </p>
-                </div>
-                <p> ${question.correct_answer} </p>
-        
-            </div>
-            <div>
-                <div>
-                    <p class="content"> Actions </p>
-                </div>
-                <div class="actions">
-                    <button type="button" class="btn btn-floating show modal-trigger"  method="show"
-                            action="${actions.show}">                            
-                        <i class="fas fa-eye"> </i>
-                    </button>
-                    <button type="button" class="btn btn-floating edit modal-trigger" method="edit"
-                            action="${actions.show}">
-                        <i class="fas fa-pen"> </i>
-                    </button>
-                    <button type="button" class="btn btn-floating delete" 
-                            action="${actions.delete}">
-                        <i class="fas fa-trash"> </i>
-                    </button>
-                </div>
-            </div>
-            <div class="icons d-none d-lg-block">
-                <i class="fas fa-sort handler"></i>
-            </div>
-        </div>
-        `;
-
-    return template;
-}

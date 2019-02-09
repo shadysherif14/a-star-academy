@@ -2,36 +2,27 @@
 
 <html lang="{{ app()->getLocale() }}">
 
-    <head>
+<head>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        
-        <title> A Star Academy </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-        @include('includes.stylesheets')
-    
-        @stack('css')
-        
-    </head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <body class="theme-gold">
-        
-        @include('partials.loader')
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        @yield('body')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        @include('includes.scripts')
-                
-        @stack('scripts')
+    <title> A Star Academy </title>
 
-    </body>
+    <link rel="shortcut icon" href="{{ asset_path('images/logo.png') }}" type="image/x-icon">
+    @include('includes.stylesheets') @stack('css')
+
+</head>
+
+<body class="theme-gold">
+    @include('partials.loader') @yield('body')
+    @include('includes.scripts') @stack('scripts')
+
+</body>
 
 </html>
-
-

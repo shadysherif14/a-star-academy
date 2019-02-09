@@ -19,17 +19,20 @@ class QuizzesSeeder extends Seeder
 
         $videos->each(function ($video) {
 
-            for ($order = 1; $order <= 10; $order++) {
+            for ($order = 1; $order <= 20; $order++) {
 
                 $question = factory(Question::class)->create([
                     'video_id' => $video->id,
                     'order' => $order,
                 ]);
 
-                factory(Answer::class)->create([
+                $correctAnswer = factory(Answer::class)->create([
                     'question_id' => $question->id,
-                    'body' => $question->correct_answer,
                 ]);
+
+                $question->answer_id = $correctAnswer->id;
+
+                $question->save();
 
                 factory(Answer::class, 3)->create([
                     'question_id' => $question->id,

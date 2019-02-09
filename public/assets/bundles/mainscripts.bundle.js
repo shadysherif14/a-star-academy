@@ -101,7 +101,7 @@ $.AdminOreo = {}, $.AdminOreo.options = {
     }
 }, $.AdminOreo.select = {
     activate: function () {
-        $.fn.selectpicker && $("select:not(.ms)").selectpicker()
+        //$.fn.selectpicker && $("select:not(.ms)").selectpicker()
     }
 }, $(".boxs-close").on("click", function () {
     $(this).parents(".card").addClass("closed").fadeOut()
@@ -180,7 +180,7 @@ $.AdminOreo.browser = {
     }
 }, $(function () {
     $.AdminOreo.browser.activate(), $.AdminOreo.leftSideBar.activate(), $.AdminOreo.rightSideBar.activate(), $.AdminOreo.navbar.activate(), $.AdminOreo.select.activate(), setTimeout(function () {
-        $(".page-loader-wrapper").fadeOut()
+        $(".loader-wrapper").fadeOut('slow');
     }, 50)
 }), $(function () {
     "use strict";
@@ -201,38 +201,4 @@ $.AdminOreo.browser = {
     $(this).parent(".input-group").addClass("input-group-focus")
 }).on("blur", function () {
     $(this).parent(".input-group").removeClass("input-group-focus")
-});
-var Tawk_API = Tawk_API || {},
-    Tawk_LoadStart = new Date;
-! function () {
-    var e = document.createElement("script"),
-        t = document.getElementsByTagName("script")[0];
-    e.async = !0, e.src = "https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default", e.charset = "UTF-8", e.setAttribute("crossorigin", "*"), t.parentNode.insertBefore(e, t)
-}(), $(function () {
-    "use strict";
-    if ($("#supported").text("Supported/allowed: " + !!screenfull.enabled), !screenfull.enabled) return !1;
-    $("#request").on("click", function () {
-        screenfull.request($("#container")[0])
-    }), $("#exit").on("click", function () {
-        screenfull.exit()
-    }), $('[data-provide~="boxfull"]').on("click", function () {
-        screenfull.toggle($(".box")[0])
-    }), $('[data-provide~="fullscreen"]').on("click", function () {
-        screenfull.toggle($("#container")[0])
-    });
-    var e = '[data-provide~="fullscreen"]';
-
-    function t() {
-        var e = screenfull.element;
-        $("#status").text("Is fullscreen: " + screenfull.isFullscreen), e && $("#element").text("Element: " + e.localName + (e.id ? "#" + e.id : "")), screenfull.isFullscreen || ($("#external-iframe").remove(), document.body.style.overflow = "auto")
-    }
-    $(e).each(function () {
-        $(this).data("fullscreen-default-html", $(this).html())
-    }), document.addEventListener(screenfull.raw.fullscreenchange, function () {
-        screenfull.isFullscreen ? $(e).each(function () {
-            $(this).addClass("is-fullscreen")
-        }) : $(e).each(function () {
-            $(this).removeClass("is-fullscreen")
-        })
-    }), screenfull.on("change", t), t()
 });

@@ -1,4 +1,59 @@
 body{
+    background-color: #111!important;
+    color: #fff;
+    font-size: 16px;
+}
+.pointer{
+    cursor: pointer;
+}
+.text-gold{
+    color: #d6b92c;
+}
+
+.row{
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+.position-relative{
+    position: relative;
+}
+
+.position-absolute{
+    position: absolute;
+}
+
+.img-overlay{
+    background-image: url(../images/hall.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-overlay{
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.card-dark{
+    background: #090909;
+    margin-bottom: 30px;
+    transition: .5s;
+    border-bottom: 1px solid #191919;
+    /* border-radius: .1875rem; */
+    position: relative;
+    width: 100%;
+    box-shadow: none;
+    /* color: #000; */
+    box-shadow: 1px 1px 20px 3px #222, -1px -1px 20px 3px #222;
+}
+
+.price-label{
+    color: #000;
+    font-size: 14px;
+    font-weight: normal;
+    vertical-align: top;
+    border-radius: 10px;
+    padding: 0.1em 0.7em;
+    background-color: #d6b92c;
     background-color: #222!important;
     font-size: 18px;
 }
@@ -16,6 +71,16 @@ body{
 .tooltip-inner {
     background-color: #222 !important;
     color: #d2ba36;
+}
+.counter{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #d2ba36;
+    line-height: 100px;
+    color: #000;
+    font-size: 50px;
+    text-align: center;
 }
 
 .bs-tooltip-auto[x-placement^=top] .arrow,
@@ -439,5 +504,8 @@ body{
         padding: 0.5em;
         width: 70%;
         margin: 0.5em !important
+    }
+    .text-center-sm {
+        text-align: center;
     }
 }

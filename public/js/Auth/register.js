@@ -1,255 +1,186 @@
-$('#basic-info-btn').on('click', function (params) {
+$('.control-btn').on('click', function () {
 
-    let basicInfoEl = $('#basic-info');
+    let time = 500;
 
-    sendRequest(basicInfoEl);
-});
+    let btn = $(this);
 
-let courses;
+    let target = $(this).attr('href');
 
-let index = 0;
-
-const sendRequest = function (element) {
-
-    let form = document.querySelector('form.ajax');
-
-    let form$ = $(form);
-
-    let action = element.attr('action');
-
-    form$.attr('action', action);
-
-    submitFileForm(form, basicInfoCallback, defaultError);
-}
-
-const basicInfoCallback = function (response) {
-
-    if (response.status) {
-
-        let school = $('input[name=school]:checked').val();
-
-        let level = $('input[name=level]:checked').val();
-                
-        if (school !== 'IGCSE' || level !== 'IG') {
-                    
-            register();
-
-            return;
-        }
-
-        let animation = 'bounce';
-
-        $('#basic-info').parent('.body').animateCss(`${animation}Out`, function () {
-
-            $('#basic-info').addClass('hidden');
-
-            courses = response.courses;
-
-            showCourse('next');
-
-            $('#courses-info').removeClass('hidden');
-
-            $('#courses-info').parent('.body').animateCss(`${animation}In`);
-
-        });
-    }
-}
-
-
-const register = _ => {
-
-    let form = $('form.ajax');
-
-    let action = form.attr('main_action');
-    
-    form.attr('action', action);
-
-    $('form.ajax').submit();
-
-}
-
-
-let schoolRadio = $('input[type=radio][name=school]')
-
-let schoolLabels = $('#school label');
-
-schoolLabels.on('click', function () {
+    $(this).closest('.step').slideUp(time);
 
     setTimeout(() => {
 
-        let school = $('input[name=school]:checked').val();
+        $(target).slideDown(time);
 
-        let levels = $("#level").parent();
+    }, time + 200);
 
-        if (school === 'IGCSE' && levels.hasClass('hidden')) {
-
-            levels.addClass('grid').removeClass('hidden');
-
-            levels.animateCss('bounceInRight');
-
-        } else if (school === 'American Diploma' && levels.hasClass('grid')) {
-
-            levels.animateCss('bounceOutLeft', function () {
-
-                levels.addClass('hidden').removeClass('grid');
-            });
-        }
-    }, 200);
 });
 
 
+$levels = $('#level');
 
-$(document).on('click', '.course-prev', _ => {
+const filterLevelsBySchool = (school) => {
 
-    index--;
+    $levels.fadeOut('slow');
 
-    showCourse('prev');
-});
+    let schoolLevels = levels.filter(level => level.school === school);
 
-const checkSystem = function (msg) {
-    
-    let system = $(`input[name="courses[${index}][system]"]:checked`).val();
+    if (schoolLevels.length === 0) return;
 
-    let subsystem = $(`input[name="courses[${index}][subsystem]"]:checked`).val();
+    let radios = `
+    <label class="label"> 
+        School Level <span class="text-danger align-middle font-20">*</span>
+    </label>`;
 
-    if (system === undefined || subsystem == undefined) {
+    let img = $levels.attr('image');
 
-      $("#error-msg").text(msg);
+    schoolLevels.forEach(level => {
 
-      $("#error-modal").modal("show");
-
-        return false;
-    }
-
-    return true;
-}
-$(document).on('click', '.course-submit', _ => {
-
-    let msg = `You have to choose the course's system and the course's subsystem to join.`;
-    
-    if (checkSystem(msg)) {
-
-        register();
-    }
-    
-});
-
-$(document).on('click', '.course-next', _ => {
-
-    let msg = `You have to choose the course's system and the course's subsystem to proceed to the next courses.`;
-
-    if (checkSystem(msg)) {
-
-        index++;
-    
-        showCourse('next');
-    }
-});
-
-const showCourse = function (action) {
-
-    let course = courses[index];
-
-    let coursesContainer = $('#courses-info');
-
-    let prev = action == 'prev';
-
-    if (prev) {
-
-        coursesContainer.parent('.body').animateCss('bounceOutRight', function () {
-
-            coursesContainer.find('.course-config').hide();
-
-            $(`#${course}`).show().removeClass('animated bounceOutRight');
-
-            coursesContainer.parent('.body').animateCss('bounceInLeft');
-        });
-
-        return;
-
-    } else if (exists(`#${course}`)) {
-
-        coursesContainer.parent('.body').animateCss('bounceOutLeft', function () {
-
-            coursesContainer.find('.course-config').hide();
-
-            $(`#${course}`).show().removeClass('animated bounceOutRight');
-
-            coursesContainer.parent('.body').animateCss('bounceInRight');
-        });
-
-        return;
-    }
-
-    let btnNext = `<button type="button" class="btn course-next float-right"> <i class="fas fa-angle-right"></i> Next </button>`;
-
-    let btnPrev = `<button type="button" class="btn course-prev float-left"> <i class="fas fa-angle-left"></i> Previous </button>`;
-
-    let btnSubmit = `<button type="button" class="btn course-submit float-right"> <i class="fas fa-smile"></i> Join </button>`;
-
-    courseTemplate = `
-            <div class='course-config' id="${course}">
-             <div class="header">
-                <h4> ${course} </h4>
-                <input type="hidden" name="courses[${index}][name]" value="${course}">
-            </div>
-            <div parent="system" class="btn-group-wrapper">
-                <div class="btn-group grid" data-toggle="buttons" id="system-${course}">
-                     <label class="btn form-check-label">
-                        <input class="form-check-input" type="radio" name="courses[${index}][system]" value="Cambridge"> Cambridge
-                    </label>
-                     <label class="btn form-check-label">
-                        <input class="form-check-input" type="radio" name="courses[${index}][system]" value="Edexcel"> Edexcel
-                    </label>
-
+        radios += `
+            <div class="pretty p-jelly p-image p-plain">
+                <input type="radio" name="level" value="${level.id}" />
+                <div class="state">
+                    <img src="${img}" class="icon" />
+                    <label> ${level.name} </label>
                 </div>
             </div>
-
-            <div parent="sub_system" class="btn-group-wrapper">
-                <div class="btn-group grid sub_system" data-toggle="buttons" id="sub-system-${course}">
-                    <label class="btn form-check-label">
-                        <input class="form-check-input" type="radio" name="courses[${index}][subsystem]" value="A2"> A2 
-                    </label>
-                    <label class="btn form-check-label">
-                        <input class="form-check-input" type="radio" name="courses[${index}][subsystem]" value="AL"> AL
-                    </label>
-                    <label class="btn form-check-label">
-                        <input class="form-check-input" type="radio" name="courses[${index}][subsystem]" value="OL"> OL
-                    </label>
-                    <label class="btn form-check-label">
-                        <input class="form-check-input" type="radio" name="courses[${index}][subsystem]" value="AS"> AS
-                    </label>
-
-                </div>
-            </div>
-            <div class="controls">`;
-
-    if (index === 0) {
-
-        courseTemplate += `<div></div>` + btnNext;
-
-    } else if (index === course.length - 1) {
-
-        courseTemplate += btnPrev;
-
-        courseTemplate += btnSubmit;
-
-    } else {
-
-        courseTemplate += btnPrev;
-
-        courseTemplate += btnNext;
-    }
-
-    courseTemplate += `</div> </div>`;
-
-    coursesContainer.parent('.body').animateCss('bounceOutLeft', function () {
-
-        coursesContainer.find('.course-config').hide();
-
-        coursesContainer.append(courseTemplate);
-
-        coursesContainer.parent('.body').animateCss('bounceInRight');
+        `
     });
 
+    $levels.html(radios);
+
+    if (schoolLevels.length > 1) {
+
+        $levels.fadeIn('slow');
+
+        return;
+    }
+
+    let $selectedRadio = $levels.find('input');
+
+    $selectedRadio.prop('checked', true);
 }
+
+$('.btn-file input').on('change', function () {
+
+    let image = this.files ? this.files[0] : undefined;
+
+    let $input = $(this).parent().next();
+
+    image ? $input.val(image.name).fadeIn() : $input.val(null).fadeOut();
+
+});
+
+$('input[name="school"]').on('change', function () {
+
+    school = $(this).val();
+
+    filterLevelsBySchool(school);
+});
+
+
+$('.controls').on('click', function () {
+
+    $parent = $(this).closest('.steps');
+
+    let $form = $parent.closest('form');
+
+    if ($parent.hasClass('step-1')) {
+
+        $form.attr('action', $parent.attr('action'));
+
+        submitFileForm($form.get(0), step1Success, step1Error);
+
+        return;
+    }
+
+    $sibling = $parent.siblings('.steps');
+
+    $parent.slideToggle('slow', function () {
+
+        $sibling.slideToggle('slow');
+
+    });
+
+});
+
+const step1Success = () => {
+
+    $step = $('.step-1');
+
+    $step.find('.errors').empty();
+
+    $step.slideToggle('slow', function () {
+
+        $sibling = $('.step-2');
+
+        $sibling.parent('form').attr('action', $sibling.attr('action'));
+
+        $sibling.slideToggle('slow');
+
+    })
+};
+
+const step1Error = response => {
+
+    let errors = response.responseJSON ? response.responseJSON.errors : {};
+
+    $step = $('.step-1');
+
+    $errors = $step.find('.errors');
+
+    $errors.empty();
+
+    for (const key in errors) {
+
+        let error = errors[key];
+
+        let template = `<li> ${error} </li>`;
+
+        $errors.append(template);
+    }
+};
+
+$('form').on('submit', function (e) {
+    
+    e.preventDefault();
+    let that = this;
+    swal.fire({
+      title: 'Terms and conditions',
+      type:'info',
+      animation: false,
+      width: '80vw',
+      html:`<div class="terms-wrapper w-100 h-100 mx-auto" style="color:#111;">
+      <div class="my-4">
+            <p class="font-italic">Thank you for using A-Star Academy. Please read the following terms, conditions carefully.</p>
+            <p class="text-left">By agreeing on our Copyright and Trademark Policy, you are confirming that has been notified not to share,
+                or distribute any of our courses, services and/or materials without written permission issued by A-Star
+                Academy administration. That includes
+                <br/>
+                (a) Sharing our videos, courses, services, materials and anything published on our website with other
+                parties;<br/>
+                (b) Selling, renting or making profit using any of our resources;<br/>
+                (c) Use any of our resources in any form outside our only website “astaracademy.net”<br/>
+                Violating any of the above terms, policies will make you responsible and A-Star Academy has all rights to
+                legally sue you.</p> 
+        </div></div>`,
+      input: 'checkbox',
+      inputValue: 0,
+      inputPlaceholder:
+        `<div class="terms-consent">
+            <span>I agree to A-Star Academy's <a href="/terms" target="_blank" class="text-danger" style="text-decoration: underline;">Terms and conditions</a> and <a href="/cookies" target="_blank" class="text-danger" style="text-decoration: underline;"> Cookie & Privacy Policy.</a></span>
+        </div>`,
+      confirmButtonText:
+        'Complete Signup',
+      inputValidator: (result) => {
+        return !result && 'You need to agree with Terms & Conditions to complete signup process.'
+      }
+    }).then((result) => {
+      if (result.value) {
+        submitFileForm(that)
+
+      }
+    })
+    
+     
+});

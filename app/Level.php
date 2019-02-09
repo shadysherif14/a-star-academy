@@ -2,13 +2,18 @@
 
 namespace App;
 
-use Cviebrock\EloquentSluggable\Sluggable;
+use App\Traits\Routes;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Level extends Model
 {
 
-    use Sluggable;
+    const ROUTE = 'levels';
+
+    const ROUTES = ['edit', 'update', 'destroy'];
+
+    use Sluggable, Routes;
 
     protected $casts = [
         'created_at' => 'datetime:Y-m-d',
@@ -38,21 +43,21 @@ class Level extends Model
         return $this->hasMany(Course::class);
     }
 
-    public function adminPath()
+
+    public function getImageAttribute($image)
     {
-        return "/admin{$this->path()}";
+        return secure_asset("storage/$image");
     }
 
-    public function path()
+    public function getNameAndSchoolAttribute()
     {
-        return "/levels/{$this->slug}";
+        return "{$this->school} ({$this->name})";
     }
 
-    public function getImageAttribute($value)
+    public static function schools() 
     {
-        return asset("/storage/{$value}");
+        return self::select('school')->distinct()->get()->pluck('school');
     }
-
     public function sluggable()
     {
         return [

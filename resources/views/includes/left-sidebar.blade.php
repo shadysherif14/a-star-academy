@@ -7,10 +7,8 @@
 
                     <li>
                         <div class="user-info">
-                            <div class="image">
-                                <a href="./profile.html" class=" waves-effect waves-block">
-                                    <img src="/{{ auth()->user()->avatar }}" alt="User" />
-                                </a>
+                            <div class="image my-2">
+                                <img src="{{ auth()->user()->avatar }}" alt="User" />
                             </div>
                             <div class="detail">
                                 <h4> {{ auth()->user()->name }} </h4>
@@ -27,32 +25,18 @@
 
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
-                            <i class="zmdi zmdi-accounts-outline"></i>
-                            <span>Students</span> 
-                        </a>
-
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="{{ adminStaticRoute('User') }}" class=" waves-effect waves-block">All Students</a>
-                            </li>
-                        </ul>
-
-                    </li>
-
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
-                            <i class="zmdi zmdi-accounts-alt"></i>
-                            <span>Instructors</span>
+                            <i class="fas fa-list"></i>
+                            <span>Levels</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="{{ adminStaticRoute('Instructor') }}" class=" waves-effect waves-block">
-                                    All Instructors
+                                <a href="{{ action('Admin\LevelController@index') }}" class=" waves-effect waves-block">
+                                    All Levels
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ adminStaticRoute('Instructor', 'create') }}" class=" waves-effect waves-block">
-                                    Add Instructors
+                                <a href="{{ action('Admin\LevelController@create') }}" class=" waves-effect waves-block">
+                                    Add Levels
                                 </a>
                             </li>
                         </ul>
@@ -75,6 +59,46 @@
                                 </a>
                             </li>
                         </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                            <i class="zmdi zmdi-accounts-outline"></i>
+                            <span>Students</span> 
+                        </a>
+
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{{ adminStaticRoute('User') }}" class=" waves-effect waves-block">All Students</a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Instructors</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{{ adminStaticRoute('Instructor') }}" class=" waves-effect waves-block">
+                                    All Instructors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ adminStaticRoute('Instructor', 'create') }}" class=" waves-effect waves-block">
+                                    Add Instructors
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('profile') }}" class="menu-toggle waves-effect waves-block">
+                            <i class="fas fa-user"></i>
+                            <span> Profile </span>
+                        </a>
                     </li>
 
                 </ul>

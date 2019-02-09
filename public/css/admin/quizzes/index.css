@@ -1,6 +1,45 @@
+@import url(https://fonts.googleapis.com/css?family=Mali|Montserrat+Alternates|PT+Sans+Narrow|Rambla|Titillium+Web);/*!
+ *
+ * Color Me SASS v1.0
+ * Built and Designed by Richard Bray
+ *
+ */
+
+/*!
+ *
+ * Color Me SASS v1.0
+ * Built and Designed by Richard Bray
+ *
+ */
+
 .pointer {
   cursor: pointer;
 }
+
+* {
+  font-family: 'Rambla', sans-serif;
+}
+
+p {
+  font-size: 1.25em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+/**
+font-family: 'Mali', cursive;
+font-family: 'PT Sans Narrow', sans-serif;
+font-family: 'Titillium Web', sans-serif;
+font-family: 'Montserrat Alternates', sans-serif;
+font-family: 'Rambla', sans-serif;
+ */
 
 img {
   display: block;

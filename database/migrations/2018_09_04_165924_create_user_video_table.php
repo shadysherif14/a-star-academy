@@ -21,9 +21,13 @@ class CreateUserVideoTable extends Migration
 
             $table->unsignedInteger('video_id');
 
+            $table->unsignedInteger('price');
+
+            $table->string('paymob_id')->nullable();
+
             $table->unsignedInteger('watched_times')->default(0);
 
-            $table->unsignedInteger('max_watching_times')->default(1);
+            $table->unsignedInteger('max_watching_times')->nullable()->default(1);
 
             $table->timestamps();
 

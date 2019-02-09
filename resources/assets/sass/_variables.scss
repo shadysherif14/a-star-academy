@@ -1,10 +1,14 @@
+@import 'colors';
+@import 'gradient-mixins';
+
 // Colors
 $gold: #f3b715;
 $dark-black: #000;
 $light-black: #222;
 $white: #fff;
 
-
+    
+$gradientBg: linear-gradient(45deg, rgba($black, 1), rgba($black, 0.8));
 $action-btns-radius: 1em;
 $action-btns-padding: 0.5em 1em;
 $btn-show-background: #013243;
@@ -24,8 +28,3 @@ $sm: 576px;
 $md: 768px;
 $lg: 992px;
 $xl: 1200px;
-
-
-.pointer {
-    cursor: pointer;
-}

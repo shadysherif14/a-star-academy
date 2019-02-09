@@ -19,10 +19,10 @@ class CreateQuestionsTable extends Migration
             
             $table->unsignedInteger('video_id');
 
+            $table->unsignedInteger('answer_id')->nullable();
+
             $table->text('body');
-            
-            $table->string('correct_answer');
-            
+                        
             $table->unsignedInteger('order');
             
             $table->timestamps();

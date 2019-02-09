@@ -1,0 +1,56 @@
+#paymob-checkout .content {
+  padding: 1rem;
+}
+
+#paymob-checkout .content .input-group-addon img {
+  width: 20px;
+}
+
+#paymob-checkout .content .type {
+  margin: 1rem 0;
+}
+
+#paymob-checkout .content .type label {
+  display: block;
+}
+
+#paymob-checkout .content .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+#paymob-checkout .content #price-wrapper {
+  text-align: center;
+  display: none;
+  margin: 0.5rem auto;
+}
+
+#paymob-checkout .content .input-group {
+  margin: 0;
+}
+
+#paymob-checkout .content label {
+  font-weight: normal;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  color: #000;
+}
+
+#paymob-checkout .content .pretty label {
+  margin: 0 !important;
+}
+
+#paymob-checkout .content .pretty label:before,
+#paymob-checkout .content .pretty label:after {
+  padding: 8px;
+}
+
+#paymob-checkout button.btn {
+  background: #000;
+  color: #fff;
+  display: block;
+  width: 100%;
+  margin: 0px;
+  border-radius: 0 !important;
+}

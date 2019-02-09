@@ -1,29 +1,31 @@
-<div class="card-body">
+<div class="header">
 
-    <div class="md-form">
+    <h2> <strong><i class="fas fa-list"></i> Level</strong> Information </h2>
 
-        <input type="text" name="name" id="name" class="form-control" value="{{ $level->name }}">
+</div>
 
-        <label for="name"> Level Name </label>
+<div class="body row clearfix">
 
+    <div class="col-md-4">
+        @include('admin.partials.file-image', ['inputName' => 'image'])
     </div>
 
+    <div class="col-md-8">
 
-    <div class="md-form">
+        <div class="form-group">
 
-        <textarea type="text" name="description" id="description" class="form-control md-textarea">{{ $level->description }}</textarea>
+            <label for="name"> Level Name </label>
 
-        <label for="description"> Level Description </label>
+            <input type="text" name="name" id="name" class="form-control" value="{{ $level->name }}">
 
-    </div>
+        </div>
 
-    <div class="md-form">
-        <select name="school" id="school" class="mdb-select">
-            @if(is_null($level->school))
-                <option value="" disabled selected> Choose Level System </option>
-            @else
-                <option value="" disabled> Choose Level System </option>
-            @endif
+        <div class="form-group">
+
+            <label for="name"> School System </label>
+            
+            <select name="school" id="school" class="form-control" title="School System">
+
             @foreach($schools as $school)
                 @if($level->school === $school)
                     <option value="{{ $school }}" selected> {{ $school }} </option>
@@ -32,46 +34,35 @@
                 @endif
             @endforeach
         </select>
-        <label for="school"> School System </label>
-    </div>
 
-    <div class="md-form input-group">
-
-        <input type="text" name="" id="new_school" class="form-control" value="">
-
-        <label for="new_school"> New School System </label>
-
-        <div class="input-group-append">
-            <button class="btn btn-dark btn-sm waves-effect" style="margin: 0px !important;" id="add-school-btn" type="button"> Add </button>
         </div>
 
-    </div>
-    
-    <div class="md-form">
 
-        <div class="file-field">
+        <div class="form-group">
 
-            <a class="btn-floating elegant-color-dark mt-0 float-left">
-                <i class="fas fa-image" aria-hidden="true"></i> <input type="file" name="image">
-            </a>
+            <label for="new_school"> New School System </label>
 
-            <div class="file-path-wrapper">
-                <input class="file-path" type="text" placeholder="Upload an image">
+            <div class="d-flex">
+
+                <input type="text" name="" id="new_school" class="form-control" value="">
+
+                <button class="btn btn-primary" id="add-school-btn" type="button" style="margin: 0px; border-radius: 0px; width: 120px;">
+                    Add
+                </button>
+
             </div>
 
         </div>
     </div>
 
-    
-    <div class="md-form" id="image-wrapper">
-
-        @php
-            $hidden = $level->id == null ? 'hidden' : '';
-            $src = $level->id == null ? '' : $level->image; 
-        @endphp
-        <img src="{{ $src }}" alt="Course Image" class="{{ $hidden }}">
-
-        <button type="button" class="btn {{ $hidden }}"> Remove Image </button>
-
-    </div>
 </div>
+
+@push('scripts')
+<script>
+    let level = @json($level);
+
+</script>
+<script src="{{ asset_path('js/admin/levels/create-edit.js') }}"></script>
+<script src="{{ asset_path('js/admin/levels-courses/create-edit.js') }}"></script>
+
+@endpush

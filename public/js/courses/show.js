@@ -1,3 +1,48 @@
+$(function(){
+
+   
+    $('.timeline-slider').slick({
+       slidesToShow: 1,
+       slidesToScroll: 1,
+       arrows: true,
+       infinite:true,
+       autoplay: false,
+      /*  asNavFor: '.timeline-nav',      */
+       centerMode: true,     
+       cssEase: 'ease',
+        edgeFriction: 0.5,
+        mobileFirst: true,
+        speed: 500,
+        responsive: [
+          {
+           breakpoint: 0,
+           settings: {
+               centerMode: false
+           }
+         },
+            {
+           breakpoint: 768,
+           settings: {
+               centerMode: true
+           }
+         }
+      ]
+   });
+  
+ });
+
+ 
+ function showAs(type){
+    if (type === "list"){
+        $('#slider').hide()
+        $('#list').show()
+    }
+    else if (type === "slider"){
+        
+        $('#list').hide()
+        $('#slider').show()
+    }
+}
 const player = new Plyr('#videoPlayer');
 
 

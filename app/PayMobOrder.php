@@ -2,17 +2,18 @@
 
 namespace App;
 
-use BaklySystems\PayMob\Facades\PayMob;
-
 use Illuminate\Database\Eloquent\Model;
 
-class PayMobOrder extends Model
+class PaymobOrder extends Model
 {
-
-
-    public function payable()
+    public function video()
     {
-        return $this->belongsTo(Payable::class);        
+        return $this->belongsTo(Video::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+
+    }
 }

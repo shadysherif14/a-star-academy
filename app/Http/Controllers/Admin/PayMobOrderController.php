@@ -23,9 +23,6 @@ class PayMobOrderController extends Controller
     public function pay(Payable $payable, CreditCardRequest $request)
     {
 
-        /** Validate Request */
-        $request->validated();
-
         /** Convert from piasters into pounds */
         $price = $payable->payable->price * 100;
 
@@ -80,80 +77,7 @@ class PayMobOrderController extends Controller
         return JsonResponse(true);
     }
 
-    public function payAPI($request, $token, $paymobOrderID)
-    {
-
-        $month = $this->convertDateToValid($request->card_expiry_mm);
-
-        $year = $this->convertDateToValid($request->card_expiry_yy);
-
-        $cardNumber = str_replace(' ', '', $request->card_number);
-
-        $user = Auth::user();
-
-        /** make transaction on Paymob servers. */
-        $payment = PayMob::makePayment(
-            $token,
-            $cardNumber,
-            $request->card_holdername,
-            $month,
-            $year,
-            $request->card_cvn,
-            $paymobOrderID,
-            User::firstName(),
-            User::lastName(),
-            $user->email,
-            '01157701147'
-        );
-
-        // return redirect($payment->redirection_url);
-        // dd($payment);
-
-        $responseCode = $payment->txn_response_code;
-
-        //$responseCode = 4;
-
-        switch ($responseCode) {
-            case 1:
-                $message = 'There was an error processing the transaction';
-                $status = false;
-                break;
-            case 2:
-                $message = 'Contact card issuing bank';
-                $status = false;
-                break;
-            case 3:
-                $message = 'Expired Card';
-                $status = false;
-                break;
-            case 4:
-                $message = 'Insufficient Funds';
-                $status = false;
-                break;
-            default:
-                $message = '';
-                $status = true;
-                break;
-        }
-
-        $result = new stdClass;
-
-        $result->message = $message;
-
-        $result->status = $status;
-
-        return $result;
-    }
-
-    public function convertDateToValid($value): String
-    {
-
-        $value = (int) $value;
-
-        $value = $value < 9 ? '0' . $value : $value;
-
-        return (string) $value;
-    }
+    
 
     public function iframe()
     {

@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Level;
 use App\Course;
+use Carbon\Carbon;
+use App\Instructor;
+use Illuminate\Http\Request;
+use App\Classes\CroppedImage;
 use App\Filters\CoursesFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
-use App\Instructor;
-use App\Level;
-use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Facades\Storage;
+
 
 class CourseController extends Controller
 {
@@ -80,18 +86,23 @@ class CourseController extends Controller
     public function show(Course $course)
     {
 
-        $data['course'] = Course::where('courses.id', $course->id)
+        $course->load(['instructor', 'level', 'videos.users', 'subscriptions']);
 
-            ->with(['instructor', 'level'])
-
-            ->first();
+        $data['course'] = $course;
 
         $data['title'] = $course->name;
 
         $data['breadcrumbs'] = 'admin.course';
 
         $data['breadcrumbArgument'] = $course;
-        
+
+        $path = "public/$course->videosPath";
+
+        $videos = collect(Storage::files($path))->map(function ($video) use ($path) {
+            return str_after($video, "$path/");
+        });
+
+        $data['videos'] = $videos;
 
         return view('admin.courses.show', $data);
     }
@@ -153,20 +164,20 @@ class CourseController extends Controller
             $course->system = null;
         }
 
-        if ($request->file('image')) {
+        if ($request->hasFile('image')) {
 
-            $image = $request->image->store('public/images/courses');
+            $slug = $course->id ? $course->slug : SlugService::createSlug(Course::class, 'slug', $request->name);
 
-            $course->image = str_replace_first('public/', '', $image);
+            $course->image = CroppedImage::create($request->file('image'), 'images/courses', $slug);
         }
-
+        
         $course->save();
 
         return response()->json([
 
             'status' => true,
 
-            'redirect' => route('admin.courses.show', ['course' => $course]),
+            'redirect' => route('admin.courses.show', $course)
         ]);
 
     }

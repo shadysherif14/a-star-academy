@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateVideoRequest extends FormRequest
@@ -23,10 +24,13 @@ class UpdateVideoRequest extends FormRequest
      */
     public function rules()
     {
+
+
         return [
             'title' => 'required',
-            'description' => 'required',
-            'price' => 'required|numeric',
+            'unlimited_price' => 'required_unless:overview,1|numeric',
+            'one_price' => 'required_unless:overview,1|numeric',
+            'overview' => ['nullable', Rule::in(['1'])],
             'video' => 'mimes:mp4,mov,ogg,qt,flv,mkv,avi,flv,mpg,mpeg'                    
         ];
     }

@@ -4,7 +4,7 @@
 <!-- Header -->
 
 @php
-    $img = asset('images/header.jpeg');
+    $img = asset_path('images/header.jpeg');
 @endphp
 <header>
     <img class="img-fluid" src="{{ $img }}" alt="" srcset="">
@@ -32,7 +32,7 @@
             <div class="col-xl-4 col-md-6 course_col">
                 <div class="course">
                     <div class="course_image">
-                        <img src="{{ asset('images/courses') }}/{{ strtolower($course) }}.png" alt="">
+                        <img src="{{ asset_path('images/courses') }}/{{ strtolower($course) }}.png" alt="">
                     </div>
                     <a href="#" > 
                     <div class="course_body text-center">
@@ -79,5 +79,5 @@
 @stop
 
 @push('css')
-    <link rel="stylesheet" href="{{ asset('css/user/courses/index.css') }}">
+    <link rel="stylesheet" href="{{ asset_path('css/user/courses/index.css') }}">
 @enspush

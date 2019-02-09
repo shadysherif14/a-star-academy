@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\VideoPathRule;
+
 
 class VideoRequest extends FormRequest
 {
@@ -23,24 +26,19 @@ class VideoRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
-            'name' => 'required',
+            // 'name' => 'required',
             'title' => 'required',
-            'price' => 'required|numeric',
-            'duration' => 'required',
+            'max_price' => 'required_unless:overview,1|numeric',
+            'max_times' => 'required_unless:overview,1|numeric',
+            'one_price' => 'required_unless:overview,1|numeric',
+            'overview' => ['nullable', Rule::in(['1'])],
+            // 'duration' => 'required',
             'video' => [
                 'bail',
                 'required',
-                'mimes:mp4,mov,ogg,qt,flv,mkv,avi,flv,mpg,mpeg',
-                function ($attribute, $value, $fail) {
-                    $file = request()->file('video');
-                    if ($file->getClientOriginalName() !== request()->name) {
-                        return $fail('Something went wrong please try again!');
-                    }
-                },
+                new VideoPathRule,
             ],
-            'description' => 'required',
         ];
     }
 

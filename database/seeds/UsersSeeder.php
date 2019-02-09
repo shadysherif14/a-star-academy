@@ -14,16 +14,18 @@ class UsersSeeder extends Seeder
 
         factory(App\User::class)->create([
             'username' => 'shady',
-            'name' => 'Shady Sherif',
+            'first_name' => 'Shady',
+            'last_name' => 'Sherif',
             'email' => 'shady@user.com',
-            'gender' => 'Male'
+            'gender' => 'Male',
         ]);
 
         factory(App\User::class)->create([
             'username' => 'hossam',
-            'name' => 'Hossam Hossien',
+            'first_name' => 'Hossam',
+            'last_name' => 'Hossien',
             'email' => 'hossam@user.com',
-            'gender' => 'Male'
+            'gender' => 'Male',
         ]);
 
     }

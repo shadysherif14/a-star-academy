@@ -7,9 +7,26 @@ use App\Instructor;
 
 /** Home */
 Breadcrumbs::for('admin.home', function ($trail) {
-    $trail->push(config('app.name'), route('admin.home') , ['icon' => 'zmdi zmdi-home']);
+    
+    $trail->push(config('app.name'), url('/') , ['icon' => 'zmdi zmdi-home']);
 });
 
+
+/** Profile */
+Breadcrumbs::for('admin.profile', function ($trail) {
+
+    $trail->parent('admin.home');
+
+    $trail->push('Profile', url('profile'));
+});
+
+/** Notifications */
+Breadcrumbs::for('admin.subscriptions', function ($trail) {
+
+    $trail->parent('admin.home');
+
+    $trail->push('Subscriptions', url('subscriptions'));
+});
 
 /** Courses */
 Breadcrumbs::for('admin.courses', function ($trail) {
@@ -59,19 +76,27 @@ Breadcrumbs::for('admin.instructors.add', function ($trail) {
 
 
 
+
 /** Levels */
 Breadcrumbs::for('admin.levels', function ($trail) {
 
     $trail->parent('admin.home');
 
-    $trail->push('Levels', Level::adminRoutes()->index);
+    $trail->push('Levels', action('Admin\LevelController@index'));
 });
 
 Breadcrumbs::for('admin.level', function ($trail, $level) {
 
     $trail->parent('admin.levels');
 
-    $trail->push($level->name, $level->adminRoutes->show);
+    $trail->push($level->name, action('Admin\LevelController@show', $level));
+});
+
+Breadcrumbs::for('admin.levels.add', function ($trail) {
+
+    $trail->parent('admin.levels');
+
+    $trail->push('Add', action('Admin\LevelController@create'));
 });
 
 /** Users */
@@ -97,9 +122,35 @@ Breadcrumbs::for('admin.sessions', function ($trail, $course) {
 
     $trail->parent('admin.course', $course);
 
-    $trail->push('Sessions', $course->videoRoutes);
+    $trail->push('Sessions', action('Admin\VideoController@index', $course));
+});
+
+Breadcrumbs::for('admin.sessions.add', function ($trail, $course) {
+
+    $trail->parent('admin.sessions', $course);
+
+    $trail->push('Add', $course->videoRoutes);
+});
+
+Breadcrumbs::for('admin.sessions.edit', function ($trail, $course) {
+
+    $trail->parent('admin.sessions', $course);
+
+    $trail->push('Edit', action('Admin\VideoController@index', $course));
+
 });
 
 
+
+/** Quiz */
+Breadcrumbs::for('admin.quiz', function ($trail, $video) {
+
+    $trail->parent('admin.course', $video->course);
+
+    $trail->push($video->title, action('Admin\VideoController@index', $video->course));
+
+    $trail->push('Quiz', action('Admin\QuestionController@index', $video));
+
+});
 
 

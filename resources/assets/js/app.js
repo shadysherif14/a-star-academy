@@ -1,3 +1,3 @@
 require('./bootstrap');
 
-require('./init');
+require('./main');

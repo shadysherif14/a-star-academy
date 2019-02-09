@@ -1,0 +1,126 @@
+@mixin theme($primary, $secondary) {
+
+    .content.home {
+        &:before {
+            background: $secondary;
+        }
+    }
+
+    .btn-primary {
+        background: $primary;
+
+        &:active {
+            background: $secondary;
+        }
+
+        &:hover {
+            background: $secondary;
+        }
+
+        &:focus {
+            background: $secondary;
+        }
+
+        &.btn-simple {
+            border-color: $primary;
+            color: $primary;
+            background: transparent;
+        }
+    }
+
+    .navbar {
+        background: $primary;
+    }
+
+    .page-loader-wrapper {
+        background: $primary;
+    }
+
+    .bars {
+        color: $white;
+    }
+
+    .menu>ul>li>ul {
+        &.normal-sub>li a:hover {
+            background-color: $primary;
+        }
+
+        >li>ul>li a:hover {
+            background-color: $primary;
+        }
+    }
+
+    &.sidebar-collapse .navbar-collapse:before {
+        background-color: $primary;
+    }
+
+    .block-header h2 {
+        color: $white;
+        small {
+            color: $white;
+        }
+    }
+
+    section.content:before {
+        background-color: $primary;
+    }
+
+    .sidebar .menu .list {
+        li.active {
+            background-color: transparent;
+
+            > :first-child {
+                i {
+                    color: $primary;
+                }
+
+                span {
+                    color: $primary;
+                }
+            }
+        }
+
+        a:hover {
+            color: $primary;
+        }
+    }
+
+    .checkbox input[type="checkbox"]:checked+label::after {
+        border: 1px solid $primary;
+    }
+
+    .nav-tabs .nav-link.active {
+        border: 1px solid $primary !important;
+    }
+
+    .card .header h2 {
+        &:before {
+            background: $primary;
+        }
+
+        strong {
+            color: $primary;
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .font-primary {
+        color: $primary;
+    }
+
+    // Inputs
+    label {
+        color: $primary;
+        font-weight: bold;
+    }
+
+    .input-group-focus {
+        * {
+            border-color: #000;
+        }
+    }
+
+}

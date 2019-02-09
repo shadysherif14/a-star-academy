@@ -1,0 +1,11 @@
+@import 'theme';
+
+//colors
+$primary: #111;
+$secondary: #434343;
+$white: #fff;
+$lightGray: #ddd;
+
+.theme-dark {
+    @include theme($primary, $secondary);
+}

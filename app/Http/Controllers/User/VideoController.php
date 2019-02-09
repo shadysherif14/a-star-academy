@@ -2,134 +2,137 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Video;
-use App\Course;
-use Illuminate\Http\Request;
-use App\Http\Requests\VideoRequest;
-use App\Http\Requests\OrderVideoRequest;
-use App\Http\Requests\UpdateVideoRequest;
-
+use App\Classes\Paymob;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreditCardRequest;
+use App\Rules\AuthPassword;
+use App\UserVideo;
+use App\Video;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class VideoController extends Controller
 {
 
-    public function index(Course $course)
+    public function show(Video $video)
     {
 
-        $videos = Video::videos($course->id);
+        $video->load('questions');
 
-        return view('admin.videos.index', compact('videos', 'course'));
+        $video->allowed = $video->userCanWatch();
+
+        $nextVideo = $video->nextVideo();
+
+        $prevVideo = $video->prevVideo();
+
+        $data = compact('video', 'nextVideo', 'prevVideo');
+
+        return view('user.videos.show', $data);
     }
 
-    public function create(Course $course)
+    public function subscribe(CreditCardRequest $request, Video $video)
     {
 
-        return view('admin.videos.create', compact('course'));
+        $type = request('type') . '_price';
 
-    }
+        /** Multiple by 100 because Paymob deals with piasters not pounds */
+        $price = $video->$type * 100;
 
-    public function store(VideoRequest $request, Course $course)
-    {
+        $paymentKey = Paymob::getPaymentKey($video->id, $price);
 
-        $request->validated();
+        $iframeId = config('paymob.iframe_id');
 
-        $order = Video::order($course->id);
+        return response()->json([
+            'iframe' => "https://accept.paymobsolutions.com/api/acceptance/iframes/{$iframeId}?payment_token={$paymentKey->token}",
+            'name' => $request->name,
+            'number' => $request->number,
+            'month' => $request->month,
+            'year' => $request->year,
+            'cv' => $request->cv,
+        ]);
 
-        $file = $request->file('video');
+        dd($request->all());
 
-        $path = $file->store('public/videos/' . $course->slug);
+        $result = Paymob::create($video);
 
-        $path = str_replace_first('public/', '', $path);
+        if ($result->status) {
 
-        $video = new Video;
+            return response()->json([], 200);
 
-        $video->course_id = $course->id;
+        } else {
 
-        $video->path = $path;
-
-        $video->title = $request->title;
-
-        $video->free = $request->free === 'true';
-
-        $video->order = $order;
-
-        $video->save();
-
-        $status = true;
-
-        $redirect = route('admin.videos.index', ['course' => $course]);
-
-        return response()->json(compact('status', 'redirect'));
-
-    }
-
-    public function edit(Video $video)
-    {
-        return view('admin.videos.edit', compact('video'));
-    }
-
-    public function update(UpdateVideoRequest $request, Video $video)
-    {
-
-        $request->validated();
-
-        $video->title = $request->title;
-
-        $video->free = $request->has('free');
-
-        $courseSlug = Course::select('slug')->where('id', $video->course_id)->first()->slug;
-
-        if ($request->has('path_changed') && $request->file('video')) {
-            $path = $request->video->store('public/videos/' . $courseSlug);
-
-            $video->path = str_replace_first('public/', '', $path);
+            return response()->json(['error' => $result->message], 422);
         }
 
-        $video->save();
-        
-        $path = $video->path;
+    }
 
-        $status = true;
+    public function paymentKey(Request $request, Video $video)
+    {
 
-        return response()->json(compact('status', 'path'));
+        /** Validate Request Data */
+        Validator::make($request->all(), [
+            'type' => ['required', Rule::in(['unlimited', 'one'])],
+            'password' => ['required', new AuthPassword],
+        ])->validate();
+
+        /** Multiple by 100 because Paymob deals with piasters not pounds */
+        $type = request('type') . '_price';
+        $price = $video->$type * 100;
+
+        $paymentKey = Paymob::getPaymentKey($video->id, $price, request('type'));
+
+        $iframeId = config('paymob.iframe_id');
+
+        return response()->json([
+            'iframe' => "https://accept.paymobsolutions.com/api/acceptance/iframes/{$iframeId}?payment_token={$paymentKey->token}",
+        ]);
 
     }
 
-    public function order(OrderVideoRequest $request)
+    public function processedCallback(Request $request)
     {
 
-        $request->validated();
+        $merchantID = json_decode($request->merchant_order_id);
 
-        $order = 1;
+        // There is an error happens while the paying process
+        if ($request->success == 'false' || $request->error_occured == 'true') {
 
-        foreach ($request->videos as $video) {
+            return redirect()->route('videos.show', Video::find((int) $merchantID->video_id))
 
-            $video = (object) $video;
-
-            $free = isset($video->free);
-
-            Video::where('id', $video->id)->update([
-                'order' => $order,
-                'free' => $free,
-            ]);
-
-            $order++;
+                ->with('error', 'Something wrong happens!');
         }
 
-        return jsonResponse(true);
+        // Subscribe user to the session
+        $userVideo = new UserVideo;
+
+        $userVideo->video_id = (int) $merchantID->video_id;
+
+        $userVideo->user_id = (int) $merchantID->user_id;
+
+        $userVideo->paymob_id = $request->order;
+
+        $userVideo->price = (int) $request->amount_cents / 100;
+
+        if ($merchantID->subscription_type === 'unlimited') {
+
+            $userVideo->max_watching_times = null;
+        }
+
+        $userVideo->save();
+
+        $video = Video::find($userVideo->video_id);
+        $user = User::find($userVideo->user_id);
+        $video->fireNotification($user, $userVideo->price);
+
+        return redirect()->route('videos.show', Video::find((int) $merchantID->video_id));
     }
 
-    protected function free(Request $request)
+    public function responseCallback(Request $request)
     {
-        return $request->filled('free') ? true : false;
-    }
 
-    public function destroy(Video $video)
-    {
-        $video->delete();
-
-        return jsonResponse(true);
+        return $this->processedCallback($request);
     }
 
 }

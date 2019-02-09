@@ -26,13 +26,25 @@ trait Routes
 
         $routes = new stdClass;
 
-        $routes->show = adminRoute(self::ROUTE . '.' . 'show', $this);
+        $ROUTES = defined('self::ROUTES') ? self::ROUTES : null;
 
-        $routes->edit = adminRoute(self::ROUTE . '.' . 'edit', $this);
+        if (is_null($ROUTES)) {
 
-        $routes->update = adminRoute(self::ROUTE . '.' . 'update', $this);
+            $routes->show = adminRoute(self::ROUTE . '.' . 'show', $this);
 
-        $routes->destroy = adminRoute(self::ROUTE . '.' . 'destroy', $this);
+            $routes->edit = adminRoute(self::ROUTE . '.' . 'edit', $this);
+
+            $routes->update = adminRoute(self::ROUTE . '.' . 'update', $this);
+
+            $routes->destroy = adminRoute(self::ROUTE . '.' . 'destroy', $this);
+
+        } else {
+
+            foreach ($ROUTES as $route) {
+
+                $routes->$route = adminRoute(self::ROUTE . '.' . $route, $this);
+            }
+        }
 
         return $routes;
     }

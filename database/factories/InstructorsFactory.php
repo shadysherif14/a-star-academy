@@ -12,7 +12,7 @@ $factory->define(App\Instructor::class, function (Faker $faker) {
 
     $email = $faker->unique()->safeEmail;
 
-    $password = bcrypt('secret');
+    $password = bcrypt('123456');
 
     $phone = $faker->phoneNumber;
 

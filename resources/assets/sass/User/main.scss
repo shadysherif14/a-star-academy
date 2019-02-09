@@ -1,0 +1,74 @@
+@import '../variables';
+
+body {
+    background-image: url(../../images/background.jpg);
+    overflow-x: hidden;
+}
+
+.main-content {
+    min-height: 90vh;
+    padding: 10vh 0 1rem;
+    background: rgba($color: #000000, $alpha: 0.7);
+}
+
+.navbar {
+    &.user-navbar {
+        margin-bottom: 0;
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 50px;
+        height: 10vh;
+        background: $black;
+        .toggler-parent {
+            display: none;
+        }
+        @media screen and (max-width: $md) {
+            height: fit-content !important;
+            padding-left: 10px;
+            padding-right: 10px;
+            .links {
+                float: none !important;
+                display: none;
+                a {
+                    display: block;
+                }
+                .logout-btn {
+                    display: none;
+                }
+            }
+            .toggler-parent {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+
+        a.brand {
+            font-size: 1.3rem;
+        }
+
+        a.grid {
+            display: inline-grid;
+            align-items: center;
+            grid-template-columns: 32px auto;
+
+            img {
+                height: 24px;
+                width: auto;
+                border-radius: 50%;
+            }
+        }
+
+        a:not(.brand) {
+            &:hover,
+            &:focus {
+                text-decoration: none;
+
+                * {
+                    color: $gold;
+
+                }
+            }
+        }
+
+    }
+}

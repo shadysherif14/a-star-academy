@@ -2,7 +2,8 @@
 /.vscode
 *.md
 /storage
-/public/images
 /public/storage
 /public/videos
+/env
 /vendor
+/public/assets

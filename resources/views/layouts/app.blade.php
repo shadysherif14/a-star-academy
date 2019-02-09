@@ -2,7 +2,7 @@
 
         
 @push('css')
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset_path('css/style.css') }}">
 @endpush
                 
 @section('body')

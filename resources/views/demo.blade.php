@@ -44,7 +44,7 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/js/mdb.min.js"></script>
     
-    <script src="{{asset('js/compiled.min.js')}}"></script>
+    <script src="{{asset_path('js/compiled.min.js')}}"></script>
     @yield('scripts')
     
     

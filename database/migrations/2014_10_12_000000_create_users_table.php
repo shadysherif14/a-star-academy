@@ -17,23 +17,29 @@ class CreateUsersTable extends Migration
             
             $table->increments('id');
 
-            $table->string('name');
+            $table->string('unique', 20)->unique();
+
+            $table->string('first_name');
+
+            $table->string('last_name');
                         
             $table->string('email')->unique()->nullable();
             
-            $table->string('username')->unique()->nullable();
+            $table->string('username')->unique();
+
+            $table->string('password');
+
+            $table->string('avatar')->nullable();
+
+            $table->string('cropped_avatar')->nullable();
             
-            $table->string('avatar')->default('images/defaults/avatar.png');
-            
-            $table->string('school')->nullable();
+            $table->unsignedInteger('level_id')->nullable();
 
             $table->text('accounts')->nullable();
 
             $table->string('phone')->nullable();
 
             $table->enum('gender', ['Male', 'Female'])->nullable();
-            
-            $table->string('password');
                         
             $table->rememberToken();
             

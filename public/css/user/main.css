@@ -1,0 +1,99 @@
+/*!
+ *
+ * Color Me SASS v1.0
+ * Built and Designed by Richard Bray
+ *
+ */
+
+/*!
+ *
+ * Color Me SASS v1.0
+ * Built and Designed by Richard Bray
+ *
+ */
+
+body {
+  background-image: url(/images/background.jpg?81a63e0bc22cf450a34e0c35e2a05302);
+  overflow-x: hidden;
+}
+
+.main-content {
+  min-height: 90vh;
+  padding: 10vh 0 1rem;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.navbar.user-navbar {
+  margin-bottom: 0;
+  width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+  height: 10vh;
+  background: #000;
+}
+
+.navbar.user-navbar .toggler-parent {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar.user-navbar {
+    height: -webkit-fit-content !important;
+    height: -moz-fit-content !important;
+    height: fit-content !important;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .navbar.user-navbar .links {
+    float: none !important;
+    display: none;
+  }
+
+  .navbar.user-navbar .links a {
+    display: block;
+  }
+
+  .navbar.user-navbar .links .logout-btn {
+    display: none;
+  }
+
+  .navbar.user-navbar .toggler-parent {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
+.navbar.user-navbar a.brand {
+  font-size: 1.3rem;
+}
+
+.navbar.user-navbar a.grid {
+  display: inline-grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-template-columns: 32px auto;
+}
+
+.navbar.user-navbar a.grid img {
+  height: 24px;
+  width: auto;
+  border-radius: 50%;
+}
+
+.navbar.user-navbar a:not(.brand):hover,
+.navbar.user-navbar a:not(.brand):focus {
+  text-decoration: none;
+}
+
+.navbar.user-navbar a:not(.brand):hover *,
+.navbar.user-navbar a:not(.brand):focus * {
+  color: #f3b715;
+}
+

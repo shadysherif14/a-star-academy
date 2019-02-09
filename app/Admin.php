@@ -6,12 +6,13 @@ use App\Traits\Routes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-
 class Admin extends Authenticatable
 {
 
     const ROUTE = 'admins';
-    
+
+    const DEFAULT_IMAGE_PATH = 'images/defaults/avatar.png';
+
     use Notifiable, Routes;
 
     /**
@@ -31,5 +32,12 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getAvatarAttribute($path)
+    {
+        $path = $path ?? self::DEFAULT_IMAGE_PATH;
+
+        return secure_asset("storage/{$path}");
+    }
 
 }

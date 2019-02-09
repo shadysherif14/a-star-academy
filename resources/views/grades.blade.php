@@ -4,49 +4,49 @@
 <div class="parent w-100 h-100">
 
     <img id="guide" src="/res/teacher.svg" alt="" class="img-responsive guide" style="height:100%;width:33%;display:none;" data-toggle="tooltip" data-placement="bottom" title="Hi again. Now you have to choose your grade to explore courses.">
-    <audio id="audio-3" src="{{ asset('res/audio/3.mp3')}}"></audio>
-    <audio id="audio-4" src="{{ asset('res/audio/4.mp3')}}"></audio>
+    <audio id="audio-3" src="{{ asset_path('res/audio/3.mp3')}}"></audio>
+    <audio id="audio-4" src="{{ asset_path('res/audio/4.mp3')}}"></audio>
     <nav id="grades">
         <ul>
             
             <li>
                 <a href="#grade7" data-item="0" >
-                    <img src="{{ asset('res/grades/7.svg')}}" alt="">
+                    <img src="{{ asset_path('res/grades/7.svg')}}" alt="">
                     <span>Grade 7</span>
                 </a>
             </li>
 
             <li>
                 <a href="#grade8" data-item="1" >
-                        <img src="{{ asset('res/grades/8.svg')}}" alt="">
+                        <img src="{{ asset_path('res/grades/8.svg')}}" alt="">
                     <span>Grade 8</span>
                 </a>
             </li>
 
             <li>
                 <a href="#grade9" data-item="2" >
-                        <img src="{{ asset('res/grades/9.svg')}}" alt="">
+                        <img src="{{ asset_path('res/grades/9.svg')}}" alt="">
                     <span>Grade 9</span>
                 </a>
             </li>
 
             <li>
                 <a href="#grade10" data-item="3" >
-                        <img src="{{ asset('res/grades/10.svg')}}" alt="">
+                        <img src="{{ asset_path('res/grades/10.svg')}}" alt="">
                     <span>Grade 10</span>
                 </a>
             </li>
 
             <li>
                 <a href="#grade11" data-item="4" >
-                        <img src="{{ asset('res/grades/11.svg')}}" alt="">
+                        <img src="{{ asset_path('res/grades/11.svg')}}" alt="">
                     <span>Grade 11</span>
                 </a>
             </li>
 
             <li>
                 <a href="#grade12" data-item="5" >
-                    <img src="{{ asset('res/grades/12.svg')}}" alt="">
+                    <img src="{{ asset_path('res/grades/12.svg')}}" alt="">
                     <span>Grade 12</span>
                 </a>
             </li>

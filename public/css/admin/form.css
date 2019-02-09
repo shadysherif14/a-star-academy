@@ -1,85 +1,139 @@
-.pointer {
-  cursor: pointer;
-}
+/* @import "../variables";
+
+$borderRadius: 2em;
+$borderColor: #ddd;
 
 .hidden {
-  display: none;
+    display: none;
 }
 
 .bg-gold {
-  background: #f3b715;
+    background: $gold;
 }
 
 .font-gold {
-  font: #f3b715;
+    color: $gold;
 }
 
-.bootstrap-select .btn {
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 10px 14px !important;
-  font-size: 1em;
+// Bootstrap Select
+
+.bootstrap-select {
+    .btn {
+        background: $white;
+        border: 1px solid $borderColor;
+        padding: 10px 14px !important;
+        border-radius: 0px !important;
+        box-shadow: none;
+
+        &:focus,
+        &:hover,
+        &:active {
+            outline: none !important;
+            background: $white !important;
+            border: 1px solid $borderColor;
+            border: 1px solid $gold;
+            box-shadow: none;
+            outline: none;
+
+        }
+    }
+
+    .filter-option {
+        color: $dark-black !important;
+        font-size: 1rem;
+    }
+
+    .selected {
+        background: $dark-black !important;
+    }
+
+    .bs-caret {
+        margin-right: -1em;
+
+        color: $gold;
+    }
+
+    .bs-searchbox:after {
+        top: 20px;
+    }
+
 }
 
-.bootstrap-select .btn:focus,
-.bootstrap-select .btn:hover {
-  background: #fff;
-  opacity: 0.6;
-}
 
-.bootstrap-select .filter-option {
-  color: #000 !important;
-}
-
-.bootstrap-select .selected a {
-  background: #000 !important;
-}
-
-.bootstrap-select .bs-caret {
-  margin-right: -1em;
-  color: #fff;
-}
-
+// Inputs
 input.form-control,
 textarea.form-control {
-  padding: 10px 14px !important;
-  font-size: 1em;
-  border-radius: 2em;
-  border: 1px solid #ddd;
-  color: #000;
-  font-weight: 500;
+
+    padding: 10px 14px !important;
+    font-size: 1em;
+    border-radius: $borderRadius;
+    border: 1px solid $borderColor;
+    color: $dark-black;
+    font-weight: 500;
+
+    &:focus {
+        border: 1px solid $gold;
+
+        &~.input-group-addon {
+            border-color: $gold;
+        }
+    }
 }
 
-input.form-control:focus,
-textarea.form-control:focus {
-  border: 1px solid #f3b715;
-}
-
+// Buttons
 .btn {
-  border-radius: 2em;
+    border-radius: $borderRadius;
 }
 
 label {
-  color: #f3b715;
-  font-weight: bold;
+    color: $gold;
+    font-weight: bold;
 }
 
-.radio label {
-  color: #222;
+.radio,
+.pretty {
+    label {
+        color: $light-black;
+    }
 }
 
-.form-group {
-  margin: 1em 0em;
+.input-group {
+    .form-control {
+        padding-left: 1rem;
+    }
+
+    .input-group-addon {
+        border-radius: 0px;
+        padding-left: 10px;
+        width: 7%;
+
+        &:hover,
+        &:focus {
+            border-color: $gold;
+        }
+    }
 }
 
-.btn i.material-icons {
-  font-size: inherit;
+.form-group,
+.input-group {
+    margin: 1em 0em;
+
+    .form-control {
+        border-radius: 0px;
+    }
+
+}
+
+.btn {
+    i.material-icons {
+        font-size: inherit;
+    }
 }
 
 small.feedback {
-  display: block;
-  margin-top: 0.75em;
-  font-weight: normal;
-  font-size: 12px;
-}
+    display: block;
+    margin-top: 0.75em;
+    font-weight: normal;
+    font-size: 12px;
+} */
 

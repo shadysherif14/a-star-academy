@@ -6,6 +6,14 @@ function CSRFToken() {
     });
 }
 
+$('form.file-ajax').submit(function (e) {
+
+    e.preventDefault();
+
+    submitFileForm(this);
+});
+
+
 function displayErrors(errors) {
 
     for (const error in errors) {
@@ -30,7 +38,16 @@ function displayErrors(errors) {
 
             continue;
         }
-        input.after(small);
+
+        if (input.parent().hasClass('input-group')) {
+
+            input.parent().after(small);
+
+        } else {
+
+            input.after(small);
+        }
+
     }
 }
 
@@ -43,7 +60,7 @@ $(document).on('keyup', 'input, textarea', function () {
     if (name === undefined || name.includes('[]')) return;
 
     let error = `#error-${name}`;
-    
+
     $(error).remove();
 });
 
@@ -51,12 +68,14 @@ $(document).on('change', 'select, input[type=radio], input[type=checkbox]', func
 
     let name = $(this).attr('name');
 
+    if (name === undefined || name.includes('[]')) return;
+
     $(`#error-${name}`).remove();
 });
 
 let currentForm;
 
-const submitForm = function (form, successCallback, errorCallback) {
+const submitForm = function (form, successCallback = defaultSuccess, errorCallback = defaultError) {
 
     currentForm = form;
 
@@ -81,7 +100,7 @@ const submitForm = function (form, successCallback, errorCallback) {
     });
 }
 
-const submitFileForm = function (form, successCallback, errorCallback) {
+const submitFileForm = function (form, successCallback = defaultSuccess, errorCallback = defaultError) {
 
     let formEl = $(form);
 
@@ -100,7 +119,7 @@ const submitFileForm = function (form, successCallback, errorCallback) {
     if (method.toUpperCase() !== 'GET') {
         CSRFToken();
     }
-    
+
     if (method.toUpperCase() === 'PUT') {
         method = 'POST'
     }
@@ -119,19 +138,29 @@ const submitFileForm = function (form, successCallback, errorCallback) {
 
 const defaultSuccess = function (response) {
 
-    if (response.status) {
+    if (response.redirect) {
 
         window.location = response.redirect;
+
+    } else {
+        swal.fire({
+            text: 'Data Updated Successfully',
+            'type': 'success'
+        });
     }
 }
 
 const defaultError = function (response, status, err, form) {
 
-    let errors = response.responseJSON.errors;
+    if (response.responseJSON) {
 
-    //currentForm.animateCss('shake');
+        let errors = response.responseJSON.errors;
 
-    displayErrors(errors);
+        if (errors) {
+            displayErrors(errors);
+        }
+
+    }
 }
 
 const exists = function (selector) {
@@ -174,16 +203,16 @@ $(document).on('click', '.delete', function () {
                     if (response.status) {
 
                         if (btn.attr('target')) {
-                            
+
                             $(btn.attr('target')).remove();
-                        
+
                         } else {
 
                             btn.parents('tr').remove();
                         }
 
                         if (btn.parents('table')) {
-                            
+
                             btn.parents('table').DataTable()
                         }
                     }

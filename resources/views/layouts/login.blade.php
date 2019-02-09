@@ -1,52 +1,40 @@
-@extends('layouts.auth') 
+@extends('layouts.auth')
 
 @section('form')
 
-<form class="form" action="@yield('form-action')" method="POST">
+<form action="@yield('form-action')" method="POST">
 
     @csrf
+    
+    <h3> 
+        <a href="{{ route('home') }}">
+            Welcome to {{ config('app.name') }}
+        </a> 
+    </h3>
 
-    <div class="header">
-        <div class="logo-container">
-            <img src="/assets/images/logo.svg" alt="" />
-        </div>
-        <h5>Log in</h5>
-    </div>
-
-    <div class="content">
-
-        <div class="input-group input-lg">
-            <input type="text" class="form-control" name="username" placeholder="Enter User Name" />
-            <span class="input-group-addon">
-                <i class="zmdi zmdi-account-circle"></i>
-            </span>
-        </div>
-
-        <div class="input-group input-lg">
-            <input type="password" placeholder="Password" name="password" class="form-control" />
-            <span class="input-group-addon">
-                <i class="zmdi zmdi-lock"></i>
-            </span>
-        </div>
-
-        <div class="form-group mt-3">
-            <div class="checkbox">
-                <input id="remember" name="remember" value="1" type="checkbox">
-                <label for="remember">
-                Remeber Me
-            </label>
-            </div>
-        </div>
+    <div class="input-group">
+        <input type="text" class="form-control" name="login" placeholder="Username Or Email" value="{{ old('login') }}" />
+        <span class="input-group-addon">
+        <img src="{{ imageIcon('user') }}" alt="" class="icon">
+    </span>
 
     </div>
 
-    <div class="footer text-center">
-        <button type="submit" class="btn btn-primary btn-round btn-lg btn-block ">SIGN IN</button>
-        <h5>
-            <a href="@yield('password-reset')" class="link">Forgot Password?</a>
-        </h5>
+    <div class="input-group">
+        <input type="password" placeholder="Password" name="password" class="form-control" value="{{ old('password') }}" />
+        <span class="input-group-addon">
+            <img src="{{ imageIcon('key') }}" alt="" class="icon">
+        </span>
     </div>
+
+    <div class="checkbox">
+        <input id="remember" name="remember" value="1" type="checkbox">
+        <label for="remember"> Remeber Me </label>
+    </div>
+
+    <button type="submit" class="btn ">SIGN IN</button>
 </form>
 
+@yield('register')
 
 @stop

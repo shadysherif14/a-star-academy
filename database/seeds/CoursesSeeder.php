@@ -14,13 +14,14 @@ class CoursesSeeder extends Seeder
     public function run()
     {
 
-        $description = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem minima autem enim blanditiis necessitatibus tempore. Reiciendis commodi quo earum quasi totam aut molestiae non in nam adipisci quaerat, nemo dolore sint. Esse a incidunt consequuntur quam eius officia accusantium ut expedita, fuga quaerat inventore quisquam fugit, delectus numquam harum eveniet.';
 
         // American SAT
 
         $courses = ['Math', 'English (Reading)', 'English (Writing)'];
 
         $slugs = ['math', 'english-reading', 'english-writing'];
+
+        $images = ['math', 'english', 'english'];
 
         $satLevel = Level::select('id')->where([
             ['school', 'SAT'],
@@ -33,10 +34,9 @@ class CoursesSeeder extends Seeder
                 'level_id' => $satLevel->id,
                 'instructor_id' => random_int(1, 10),
                 'name' => $course,
-                'slug' => 'SAT-' . $slugs[$i],
-                'description' => $description,
+                'slug' => 'sat-' . $slugs[$i],
                 'school' => 'SAT',
-
+                'image' => "images/courses/{$images[$i]}.png",
             ];
             Course::create($sat);
         }
@@ -56,13 +56,17 @@ class CoursesSeeder extends Seeder
                 $courses = ['Math', 'Science', 'English', 'Arabic'];
 
                 foreach ($courses as $course) {
+
+                    $image = strtolower($course);
+
                     $data = [
                         'level_id' => $level->id,
                         'instructor_id' => random_int(1, 10),
                         'name' => $course,
-                        'slug' => 'IG-' . str_slug($course) . '-' . str_slug($level->name),
-                        'description' => $description,
+                        'slug' => 'ig-' . str_slug($course) . '-' . str_slug($level->name),
                         'school' => 'IGCSE',
+                        'image' => "images/courses/{$image}.png"
+
                     ];
                     Course::create($data);
                 }
@@ -72,13 +76,17 @@ class CoursesSeeder extends Seeder
                 $courses = ['Math', 'Physics', 'English', 'Chemistry', 'Biology', 'Arabic'];
 
                 foreach ($courses as $course) {
+
+                    $image = strtolower($course);
+
                     $data = [
                         'level_id' => $level->id,
                         'instructor_id' => random_int(1, 10),
                         'name' => $course,
-                        'slug' => 'IG-' . str_slug($course) . '-' . str_slug($level->name),
-                        'description' => $description,
-                        'school' => 'IGCSE'
+                        'slug' => 'ig-' . str_slug($course) . '-' . str_slug($level->name),
+                        'school' => 'IGCSE',
+                        'image' => "images/courses/{$image}.png"
+
                     ];
                     Course::create($data);
                 }
@@ -88,18 +96,23 @@ class CoursesSeeder extends Seeder
                 $courses = ['Math', 'Physics', 'English', 'Chemistry', 'Biology', 'Arabic'];
 
                 foreach ($courses as $course) {
+
+                    $image = strtolower($course);
+
                     $data = [
                         'level_id' => $level->id,
                         'instructor_id' => random_int(1, 10),
                         'name' => $course,
                         'school' => 'IGCSE',
-                        'description' => $description,
+                        'image' => "images/courses/{$image}.png"
                     ];
                     foreach ($systems as $sys) {
+
                         foreach ($subSystems as $sub) {
+
                             $data['system'] = $sys;
                             $data['sub_system'] = $sub;
-                            $data['slug'] = 'IG-' . str_slug($course) . '-' . strtolower($sys) . '-' . strtolower($sub);
+                            $data['slug'] = 'ig-' . str_slug($course) . '-' . strtolower($sys) . '-' . strtolower($sub);
                             Course::create($data);
                         }
                     }

@@ -4,15 +4,27 @@ namespace App;
 
 use App\Traits\Routes;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Instructor extends Model
+class Instructor extends Authenticatable
 {
 
     const ROUTE = 'instructors';
 
-    use Sluggable, Routes;
+    const DEFAULT_IMAGE_PATH = 'images/defaults/avatar.png';
 
+    use Sluggable, Routes, Notifiable;
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+    
     protected $casts = [
         'created_at' => 'datetime:Y-m-d',
         'updated_at' => 'datetime:Y-m-d',
@@ -24,19 +36,27 @@ class Instructor extends Model
         return 'username';
     }
 
-    public function getAvatarAttribute($value)
+    public function getAvatarAttribute($path)
     {
+        $path = $path ? : self::DEFAULT_IMAGE_PATH;
 
-        if (is_null($value)) {
-            return null;
-        }
-
-        return asset("storage/{$value}");
+        return secure_asset("storage/{$path}");
     }
 
+    /**
+     * Get all of the courses for the instructor.
+     */
     public function courses()
     {
         return $this->hasMany(Course::class);
+    }
+
+    /**
+     * Get all of the videos for the instructor.
+     */
+    public function videos()
+    {
+        return $this->hasManyThrough(Video::class, Course::class);
     }
 
     public function getCoursesCountAttribute()
@@ -46,6 +66,13 @@ class Instructor extends Model
         return $courses . ' ' . str_plural('Course', $courses);
     }
 
+    public function getVideosCountAttribute()
+    {
+        $videos = $this->videos->count();
+
+        return $videos . ' ' . str_plural('Sessions', $videos);
+    }
+
     public function getAccountsAttribute($accounts)
     {
         return json_decode($accounts);
@@ -53,8 +80,10 @@ class Instructor extends Model
 
     public function accounts($account = null)
     {
-        
-        if(is_null($this->id)) return null;
+
+        if (is_null($this->id)) {
+            return null;
+        }
 
         return isset($this->accounts->$account) ? $this->accounts->$account : null;
     }
@@ -64,7 +93,7 @@ class Instructor extends Model
         return [
             'username' => [
                 'source' => 'name',
-                'separator' => ''
+                'separator' => '',
             ],
         ];
     }

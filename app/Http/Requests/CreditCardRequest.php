@@ -2,7 +2,14 @@
 
 namespace App\Http\Requests;
 
-use LVR\CreditCard\{CardCvc, CardNumber, CardExpirationYear, CardExpirationMonth};
+use App\Rules\AuthPassword;
+use LVR\CreditCard\CardCvc;
+
+use LVR\CreditCard\CardNumber;
+use Illuminate\Validation\Rule;
+use LVR\CreditCard\CardExpirationDate;
+use LVR\CreditCard\CardExpirationYear;
+use LVR\CreditCard\CardExpirationMonth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreditCardRequest extends FormRequest
@@ -24,12 +31,16 @@ class CreditCardRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            'card_number' => ['required', new CardNumber],
-            'card_holdername' => 'required|string|max:255',
-            'card_expiry_mm' => ['required', new CardExpirationMonth($this->get('card_expiry_yy'))],
-            'card_expiry_yy' => ['required', new CardExpirationYear($this->get('card_expiry_mm'))],
-            'card_cvn' => ['required', new CardCvc($this->get('card_number'))],
+            'number' => ['required', new CardNumber],
+            'name' => 'required|string|max:255',
+            'date' => ['required'],
+            'month' => ['required', new CardExpirationMonth($this->get('year'))],
+            'year' => ['required', new CardExpirationYear($this->get('month'))],
+            'cv' => ['required', new CardCvc($this->get('number'))],
+            'type' => ['required', Rule::in(['unlimited', 'one'])],
+            'password' => ['required', new AuthPassword]
         ];
 
     }

@@ -17,10 +17,18 @@ class RedirectIfAdmin
 	 */
 	public function handle($request, Closure $next, $guard = 'admin')
 	{
-	    if (Auth::guard($guard)->check()) {
-	        return redirect('admin/home');
-	    }
 
-	    return $next($request);
+
+        $routeName = $request->route()->getName();
+        
+	    if (Auth::guard($guard)->check()) {
+
+            return redirect()->route('admin.home');
+            
+        } else {
+
+            return $next($request);
+        }
+
 	}
 }

@@ -32,6 +32,11 @@ class Config
     protected $force = false;
 
     /**
+     * @var string
+     */
+    protected $path;
+
+    /**
      * @param string $name
      *
      * @return \Sven\ArtisanView\Config
@@ -131,6 +136,18 @@ class Config
     public function setForce(bool $force)
     {
         $this->force = $force;
+
+        return $this;
+    }
+
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    public function setPath($path)
+    {
+        $this->path = $path;
 
         return $this;
     }

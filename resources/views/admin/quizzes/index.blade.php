@@ -1,70 +1,34 @@
-@extends('admin.layouts.table') 
-@section('table')
+@extends('layouts.admin') 
+@section('content')
 
 
+<div class="card">
 
-<form class="ajax" action="{{ route('admin.questions.order') }}" method="POST">
-    <table class="table table-hover m-b-0" id="table">
-        <thead>
-            <tr role="row">
-                <th> Question </th>
-                <th> Answers </th>
-                <th> Correct Answer </th>
-                <th> Actions </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($questions as $question)
-            <tr>
-                <input type="hidden" name="questions[]" value="{{ $question->id }}">
+    <ul class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#questions"> All Question </a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#new-question"> New Question </a></li>
+    </ul>
 
-                <td> {{ $question->body }} </td>
+</div>
 
-                <td>
-                    @foreach ($question->answers as $answer)
-                    <span class="{{ $answer->answerStyle() }}"> {{ $answer->body }} </span> @if(!$loop->last) - @endif @endforeach
-                </td>
+<div class="tab-content">
+  
+    @include('admin.quizzes.table')
 
-                <td> {{ $question->correct_answer }} </td>
-                <td> 
-                    <button type="button" class="btn l-parpl btn-icon btn-icon-mini btn-round modal-trigger" 
-                    action="{{ $question->adminRoutes->show }}">
-                        <i class="zmdi zmdi-edit"></i>
-                    </button>
-                    @include('admin.partials.actions', ['model' => $question, 'actions' => ['delete']])
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</form>
-<button class="btn create modal-trigger" action="{{ route('admin.questions.store', ['video' => $video]) }}" method="create">
-    <i class="fas fa-plus"></i> Add Question
-</button>
+    @include('admin.quizzes.create')
 
+    @include('admin.quizzes.edit')
 
-
-<form class="modal fade show" id="modal" method="POST" tabindex="-1">
-
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-
-        <div class="modal-content">
-
-            <div class="modal-body">
-
-            </div>
-
-        </div>
-    </div>
-</form>
+</div>
 
 @endsection
-    @push('scripts')
-<script src="{{ asset('js/admin/quizzes/index.js') }}"></script>
+@push('scripts')
+<script src="{{ asset_path('js/admin/quizzes/index.js') }}"></script>
+<script src="{{ asset_path('js/admin/quizzes/create.js') }}"></script>
+<script src="{{ asset_path('js/admin/quizzes/edit.js') }}"></script>
 
-
-@endpush 
-@push('css')
-    <link rel="stylesheet" href="{{ asset('css/admin/quizzes/index.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/admin/form.css') }}">
+@endpush @push('css')
+    <link rel="stylesheet" href="{{ asset_path('assets/plugins/bootstrap-select/css/bootstrap-select.css') }}" />
+    <link rel="stylesheet" href="{{ asset_path('css/admin/quizzes/index.css') }}">
+    <link rel="stylesheet" href="{{ asset_path('css/admin/form.css') }}"> 
 @endpush

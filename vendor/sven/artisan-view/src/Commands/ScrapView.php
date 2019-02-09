@@ -33,9 +33,7 @@ class ScrapView extends Command
             return;
         }
 
-        $destroyer = new Destroyer($config);
-
-        $destroyer->destroy();
+        (new Destroyer($config, $this->getPath()))->destroy();
 
         $this->info('View scrapped successfully.');
     }
@@ -51,6 +49,17 @@ class ScrapView extends Command
             ->setResource($this->option('resource'))
             ->setVerbs(...$this->option('verb'))
             ->setForce($this->option('force'));
+    }
+
+    private function getPath()
+    {
+        $paths = app('view.finder')->getPaths();
+
+        if (count($paths) === 1) {
+            return head($paths);
+        }
+
+        return $this->choice('Where is/are the view(s) you want to scrap?', $paths, head($paths));
     }
 
     /**

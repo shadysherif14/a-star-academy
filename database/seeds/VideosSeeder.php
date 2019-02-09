@@ -19,7 +19,6 @@ class VideosSeeder extends Seeder
         $faker->addProvider(new Faker\Provider\Youtube($faker));
         \Bezhanov\Faker\ProviderCollectionHelper::addAllProvidersTo($faker);
 
-        
 
         $courses = Course::all();
 

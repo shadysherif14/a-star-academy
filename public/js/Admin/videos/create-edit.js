@@ -1,3 +1,7 @@
+var priceElements = document.querySelectorAll('input.price');
+
+
+
 let videoEl = document.querySelector('video#video');
 
 const getExtension = file => {
@@ -16,60 +20,62 @@ function isVideo(filename) {
     return videoExtensions.includes(ext);
 }
 
-
 const calculateDuration = duration => {
 
     let hours = Math.floor(duration / 3600);
 
     duration -= hours * 3600;
 
-    hours = hours < 10 ? '0' + hours : hours;
+    if (hours) {
+        
+        hours = hours < 10 ? '0' + hours : hours;
+
+        hours += ':';
+
+    } else {
+
+        hours = '';
+    }
 
     let minutes = Math.floor(duration / 60);
 
     duration -= minutes * 60;
 
-    minutes = minutes < 10 ? '0' + minutes : minutes;
+    if (minutes) {
+        
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+
+        minutes += ':';
+
+    } else {
+
+        minutes = '';
+    }
 
     let seconds = Math.floor(duration);
 
     seconds = seconds < 10 ? '0' + seconds : seconds;
 
-    return `${hours}:${minutes}:${seconds}`;
-
+    return `${hours}${minutes}${seconds}`;
 }
 
+let captureImage = function (videoSrc) {
 
-const captureFrame = _ => {
+    var canvas = document.createElement("canvas");
 
-    videoEl.currentTime = 50;
+    canvas.width = videoSrc.videoWidth;
 
-    videoEl.play();
+    canvas.height = videoSrc.videoHeight;
 
-    videoEl.muted = true;
+    canvas.getContext('2d')
+        .drawImage(videoSrc, 0, 0, canvas.width, canvas.height);
 
-    var frame = captureVideoFrame(videoEl, 'png');
+    if ('#poster-wrapper') {
 
-    // Show the image
-    var img = document.getElementById('my-screenshot');
-    
-    img.setAttribute('src', frame.dataUri);
-    
-    return frame;
+        $('#poster-wrapper img').attr('src', canvas.toDataURL());
+    }
 
-}
+    poster = canvas.toDataURL('image/jpeg');
 
-videoEl.addEventListener("seeked", function () {
-
-    videoEl.play();
-
-    var frame = captureVideoFrame(videoEl, 'png');
-
-    // Show the image
-    var img = document.getElementById('my-screenshot');
-
-    img.setAttribute('src', frame.dataUri);
-
-}, true);
-
-
+    return poster;
+};

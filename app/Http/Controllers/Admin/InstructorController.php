@@ -4,8 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\InstructorRequest;
+use App\Http\Requests\InstructorUpdateRequest;
 use App\Instructor;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+use App\Classes\CroppedImage;
 
 class InstructorController extends Controller
 {
@@ -13,7 +18,7 @@ class InstructorController extends Controller
     public function index()
     {
 
-        $instructors = Instructor::all();
+        $instructors = Instructor::withCount(['courses', 'videos'])->get();
 
         $title = 'Instructors';
 
@@ -63,10 +68,8 @@ class InstructorController extends Controller
         return view('admin.instructors.edit', compact('instructor'));
     }
 
-    public function update(Request $request, Instructor $instructor)
+    public function update(InstructorUpdateRequest $request, Instructor $instructor)
     {
-
-        $request->validated();
 
         return $this->persist($request, $instructor);
 
@@ -80,15 +83,17 @@ class InstructorController extends Controller
     private function persist(Request $request, Instructor $instructor)
     {
 
-        $columns = ['name', 'email', 'about'];
+        $columns = ['name', 'email', 'about', 'phone'];
 
         foreach ($columns as $column) {
-
             $instructor->$column = $request->$column;
         }
 
         if ($request->hasFile('avatar')) {
-            $instructor->avatar = $request->avatar->store('images/instructors', 'public');
+
+            $username = $instructor->id ? $instructor->username : SlugService::createSlug(Instructor::class, 'username', $request->name);
+
+            $instructor->avatar = CroppedImage::create($request->file('avatar'), 'images/avatars/instructors', $username);
         }
 
         if ($request->filled('password')) {
@@ -96,7 +101,11 @@ class InstructorController extends Controller
         }
 
         if ($request->filled('accounts')) {
-            $instructor->accounts = $request->accounts;
+
+            // Filter blank accounts
+            $accounts = collect($request->accounts)->filter();
+
+            $instructor->accounts = $accounts;
         }
 
         $instructor->save();

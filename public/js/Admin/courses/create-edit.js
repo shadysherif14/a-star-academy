@@ -16,8 +16,6 @@ const filterLevelsBySchool = (school, levelID) => {
 
     schoolLevels.forEach(level => {
 
-        console.log(level.id === levelID);
-        
         if (levelID === level.id) {
 
             options += `<option value="${level.id}" selected> ${level.name} </option>`;

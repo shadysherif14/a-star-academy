@@ -23,6 +23,7 @@ class OrderVideoRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
             'videos' => 'required',
             'videos.*.id' => 'required|exists:videos,id',

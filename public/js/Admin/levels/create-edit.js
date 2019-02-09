@@ -46,7 +46,7 @@ $('#add-school-btn').on('click', _ => {
         $('#school').append(newOption);
     }
     
-    reInitializeSelect('#school');
+    $('#school').selectpicker('refresh');
 
     newSchool.val(null).blur();
     

@@ -19,21 +19,27 @@ class CreateVideosTable extends Migration
 
             $table->unsignedInteger('course_id');
 
-            $table->string('path');
-
             $table->string('title');
 
-            $table->float('price');
+            $table->unsignedInteger('order');
 
-            $table->string('description')->nullable();
+            $table->boolean('overview')->default(false);
+
+            $table->integer('one_price')->default(0);
+
+            $table->integer('max_price')->default(0);
+
+            $table->integer('max_times')->default(0);                     
 
             $table->string('slug');
 
             $table->string('duration');
 
-            $table->boolean('free')->default(false);
+            $table->text('description')->nullable();
 
-            $table->unsignedInteger('order');
+            $table->string('poster')->nullable();
+
+            $table->string('path');
 
             $table->timestamps();
         });

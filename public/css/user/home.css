@@ -1,0 +1,212 @@
+/*!
+ *
+ * Color Me SASS v1.0
+ * Built and Designed by Richard Bray
+ *
+ */
+
+/*!
+ *
+ * Color Me SASS v1.0
+ * Built and Designed by Richard Bray
+ *
+ */
+
+#header {
+  display: grid;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, #000, #111);
+  /* &:after {
+        background-image: url(../../images/header.png);
+        background-size: cover;
+        content: "";
+        position: absolute;
+        left: 55%;
+        width: 45%;
+        height: 100%;
+        z-index: 0;
+        background-repeat: no-repeat;
+    } */
+}
+
+#header .content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 100vw;
+}
+
+@media screen and (max-width: 768px) {
+  #header .content {
+    grid-template-columns: 1fr;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+}
+
+#header .text {
+  display: grid;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  padding: 0.5rem 3rem;
+  min-height: 400px;
+}
+
+@media screen and (max-width: 768px) {
+  #header .text {
+    text-align: center;
+  }
+
+  #header .text h2 {
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 0.6rem;
+  }
+}
+
+#header .text * {
+  color: #ddd !important;
+}
+
+#header .image img {
+  padding-top: 1rem;
+  display: block;
+}
+
+@media screen and (min-width: 768px) {
+  #header .image img {
+    margin-right: 0px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #header .image {
+    margin: auto;
+    width: 500px;
+    max-width: 90%;
+  }
+}
+
+#header:after {
+  background: rgba(0, 0, 0, 0) url(/images/home-wave.svg?66738b45ddd0f50f2b8e89dd6e8e5bb1) no-repeat scroll center center/cover;
+  bottom: 0px;
+  height: 166px;
+  width: 100%;
+  top: auto;
+  z-index: 9;
+  content: "";
+}
+
+/* #slider {
+    height: calc(100vh - 60px);
+    #slide-1 {
+        background: url(../../images/slides/1)
+    }
+} */
+
+.skills {
+  text-align: center;
+  padding: 2rem;
+}
+
+.skills * {
+  color: #fff;
+}
+
+.skills .stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.skills .stats>div {
+  width: 150px;
+  margin: 1rem;
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#000), to(#111));
+  background-image: linear-gradient(to right top, #000, #111);
+  padding: 1rem;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 20px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.35);
+}
+
+.skills .stats>div h5 {
+  font-weight: bold;
+  color: #fff;
+}
+
+.skills .stats>div p {
+  color: #ddd;
+  margin: 0;
+}
+
+.schools {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.schools .school {
+  width: 200px;
+  margin: 1rem;
+  background: #000;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 20px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.35);
+}
+
+.schools .school .name {
+  text-align: center;
+  color: #ddd;
+}
+
+.schools .school .school-stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.schools .school .school-stats>div {
+  margin: 1rem;
+  text-align: center;
+}
+
+.schools .school .school-stats>div * {
+  color: #ddd;
+}

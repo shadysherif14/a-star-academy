@@ -1,61 +1,33 @@
-@extends('layouts.admin') 
+@extends('admin.layouts.table') 
 
-@section('title', '| Levels') 
+@section('table')
 
-@section('content')
+<table class="table table-hover m-b-0" id="table">
 
-<div class="card">
+    <thead>
+        <th> # </th>
+        <th> Name </th>
+        <th> School System</th>
+        <th> Actions </th>
+    </thead>
 
-    <div class="card-header grid">
-        <div> Name </div>
-        <div> School </div>
-        <div>  </div>
-    </div>
+    <tbody>
 
-    <div class="card-body">
-        
-        @foreach ($levels as $level)
-                
-        <div id="level-{{ $level->id }}" level="{{ $level->id }}" class="grid">
-        
-            <div>
-                <p class="link">
-                    <a href="{{ route('admin.levels.show', ['level' => $level]) }}"> {{ $level->name }} </a>
-                </p>
-            </div>
-        
-            <div>
-                <div>
-                    <p class="content"> School </p>
-                </div>
-                <p> {{  $level->school }} </p>
-            </div>
-        
-            <div>
-                <div>
-                    <p class="content"> Actions </p>
-                </div>
-                <div class="actions">
-                    <a type="button" class="btn show" href="{{ route('admin.levels.show', ['level' => $level]) }}">
-                        <i class="fas fa-eye"> </i>
-                    </a>
-                    <a type="button" class="btn edit" href="{{ route('admin.levels.edit', ['level' => $level]) }}">
-                        <i class="fas fa-pen"> </i>
-                    </a>
-                    <button type="button" class="btn delete" action="{{ route('admin.levels.destroy', ['level' => $level]) }}">
-                        <i class="fas fa-trash"> </i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        @endforeach
-  
-    </div>
-</div>
+        @foreach($levels as $level)
+            <tr>
+                <th> {{ $loop->iteration }} </th>
+                <td> {{ $level->name }} </td>
+                <td> {{ $level->school }} </td>
+                <td> 
+                    @include('admin.partials.actions', ['model' => $level, 'actions' => ['edit', 'delete']]) 
+                </td>
+            @endforeach
+            </tr>
+    </tbody>
+</table>
 
 @endsection
  
 @push('css')
-    <link rel="stylesheet" href="{{ asset('css/admin/levels/index.css') }}">
+    <link rel="stylesheet" href="{{ asset_path('css/admin/levels/index.css') }}">
 @endpush

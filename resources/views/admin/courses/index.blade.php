@@ -33,14 +33,3 @@
 </table>
 
 @endsection
-
-@push('scripts')
-<script>
-    let levels = @json($levels);
-</script>
-<script src="{{ asset('js/admin/courses/index.js') }}"></script>
-@endpush 
-
-@push('css')
-<link rel="stylesheet" href="{{ asset('css/admin/courses/index.css') }}"> 
-@endpush

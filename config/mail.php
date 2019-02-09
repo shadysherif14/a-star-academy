@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'admin@astaracademy.net'),
+        'name' => env('MAIL_FROM_NAME', 'A-Star Academy'),
     ],
 
     /*
@@ -88,6 +88,13 @@ return [
 
     'password' => env('MAIL_PASSWORD'),
 
+    'contact' => env('CONTACT_EMAIL_ADDRESS'),
+
+    'question' => env('QUESTION_EMAIL_ADDRESS'),
+
+    'subscription' => env('SUBSCRIPTION_EMAIL_ADDRESS'),
+
+
     /*
     |--------------------------------------------------------------------------
     | Sendmail System Path
@@ -113,11 +120,22 @@ return [
     */
 
     'markdown' => [
-        'theme' => 'default',
+        'theme' => 'mytheme',
 
         'paths' => [
             resource_path('views/vendor/mail'),
         ],
     ],
+    
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Mail Settings
+    |--------------------------------------------------------------------------
+    |
+    |
+    |
+    */
+    
 
 ];

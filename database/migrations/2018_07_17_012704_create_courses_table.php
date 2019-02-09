@@ -29,7 +29,7 @@ class CreateCoursesTable extends Migration
             
             $table->text('description')->nullable();
             
-            $table->string('image')->default('images/defaults/course.png');
+            $table->string('image')->nullable();
             
             $table->string('school');
             

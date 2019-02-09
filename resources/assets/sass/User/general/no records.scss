@@ -1,0 +1,35 @@
+#no-records {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    background: linear-gradient(45deg, rgba($black, 1), rgba($black, 0.8));
+    .wrapper {
+        .title {
+
+            h1 {
+                text-transform: uppercase;
+                color: #444;
+                margin: 0px;
+                font-weight: 700;
+                text-shadow: 2px 2px 0px #ddd, -2px -2px 0px #ddd;
+                margin-bottom: 2rem;
+                text-align: center;
+                letter-spacing: 3px;
+
+                span {
+                    text-shadow: 2px 2px 0px $gold, -2px -2px 0px $gold, 0px 0px 8px $gold;
+
+                }
+            }
+
+        }
+        .text {
+            font-family: 'Josefin Sans', sans-serif;
+            color: #ddd;
+            font-size: 16px;
+            font-weight: 400;
+            margin-top: 0px;
+        }
+    }
+}

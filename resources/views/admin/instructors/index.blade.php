@@ -8,6 +8,7 @@
             <th> Image </th>
             <th> Name </th>
             <th> No. of courses </th>
+            <th> No. of sessions </th>
             <th> Actions </th>
         </tr>
     </thead>
@@ -21,6 +22,7 @@
             </td>
             <td> {{ $instructor->name }} </td>
             <td> {{ $instructor->coursesCount }} </td>
+            <td> {{ $instructor->videosCount }} </td>
             <td> @include('admin.partials.actions', ['model' => $instructor]) </td>
         </tr>
     

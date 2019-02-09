@@ -1,6 +1,7 @@
-let videoEl = document.querySelector('video#video');
 let currentEl;
-let video = 0;
+
+let video = 1;
+
 let successfullyUploaded = `
 <div class="header">
     <h2 class="text-success"> Uploaded Successfully <i class="fas fa-check"></i> </h2>
@@ -9,37 +10,25 @@ let successfullyUploaded = `
 
 let failedUploaded = `
 <div class="header">
-    <h2 class="text-danger" Upload Failed <i class="fas fa-times"></i>  </h2>
+    <h2 class="text-danger"> Upload Failed <i class="fas fa-times"></i> </h2>
 </div>
 `;
 
 /** Input file event listener */
 $('input[type=file]').on('change', function () {
 
-    readURL(this);
+    let btnSubmit = $('button[type="submit"]');
 
-    $('.btn-submit').removeAttr('disabled');
+    if (btnSubmit.hasClass('d-none')) {
+
+        btnSubmit.removeClass('d-none').addClass('d-block').fadeIn('slow');
+    }
+
+    readFiles(this);
 
 });
 
-const getExtension = file => {
-
-    let parts = file.split('.');
-
-    return parts[parts.length - 1];
-}
-
-function isVideo(filename) {
-
-    let ext = getExtension(filename).toLowerCase();
-
-    let videoExtensions = ['mp4', 'mov', 'ogg', 'qt', 'flv', 'mkv', 'avi', 'flv', 'mpg', 'mpeg'];
-
-    return videoExtensions.includes(ext);
-
-}
-
-function readURL(input) {
+function readFiles(input) {
 
     let invalid = false;
 
@@ -58,6 +47,7 @@ function readURL(input) {
                 if (isVideo(element.name)) {
 
                     addNewVideo(element);
+
                 } else {
                     invalid = true;
                 }
@@ -77,8 +67,10 @@ const addNewVideo = function (element) {
 
     let title = element.name.slice(0, index);
 
+    let id = `videos-${video}`;
+
     let template = `
-        <div class="col-md-6 videos" id="videos-${video}">
+        <div class="col-md-6 videos" id="${id}">
         
             <div class="card">
 
@@ -86,32 +78,50 @@ const addNewVideo = function (element) {
 
                     <div class="form-group">
                         <label> Title </label>
-                        <input type="text" placeholder="Title" class="form-control title" name="videos[${video}][title]" value="${title}">
-                        <input class="name" type="hidden" name="videos[${video}][original_name]" value="${element.name}">
+                        <input type="text" placeholder="Title" id="${id}-name" class="form-control title" value="${title}">
+                        <input class="name" type="hidden" value="${element.name}">
                     </div>
 
+                    
                     <div class="form-group">
                         <label> Price </label>
-                        <input type="number" placeholder="Price" class="form-control price" name="videos[${video}][price]">
+                        <div class="row">
+                        
+                            <div class="input-group col-md-6">
+                                <span class="input-group-addon">
+                                    <i class="fas fa-infinity"></i>
+                                </span>
+                                <input type="text" id="${id}-unlimited-price" class="form-control price unlimited"
+                                placeholder="Unlimited access">
+                            </div>
+
+                            <div class="input-group col-md-6">
+                                <span class="input-group-addon">
+                                    <i class="zmdi zmdi-collection-item-1"></i>
+                                </span>
+                                <input type="text" id="${id}-one-price" class="form-control price one" placeholder="One time access">
+                            </div>
+
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label> Description </label>
-                        <textarea rows="2" name="videos[${video}][description]" class="form-control description" placeholder="Description"></textarea>
+                        <textarea class="form-control description" id="${id}-description" placeholder="Description"></textarea>
                     </div>
-                    
                     
                     <div class="row justify-content-center buttons">
 
-                        <button type="button" class="btn bg-primary upload" href="#videos-${video}">
+                        <button type="button" class="btn bg-primary upload" href="#${id}">
                             <i class="zmdi zmdi-upload"></i> 
                             Upload
                         </button>
 
-                        <button type="button"class="btn bg-red remove" href="#videos-${video}">
+                        <button type="button"class="btn bg-red remove" href="#${id}">
                             <i class="zmdi zmdi-delete"></i> 
                             Delete
                         </button>
+
                     </div>
                 </div>
             </div>
@@ -134,6 +144,14 @@ $(document).on('click', '.remove', function () {
 
 $(document).on('click', '.upload', function () {
 
+    let unlimitedGlobalPrice = $('#unlimited-price').val();
+
+    unlimitedGlobalPrice = unlimitedGlobalPrice ? unlimitedGlobalPrice : 0;
+
+    let oneGlobalPrice = $('#one-price').val();
+
+    oneGlobalPrice = oneGlobalPrice ? oneGlobalPrice : 0;
+    
     let target = $(this).attr('href');
 
     $(target).waitMe({
@@ -143,23 +161,23 @@ $(document).on('click', '.upload', function () {
 
     let data = new FormData();
 
-    currentEl = $(target);
-
     /** Title */
-    let title = currentEl.find('input.title').val();
+    let title = $(target).find('input.title').val();
 
     /** Description */
-    let description = currentEl.find('textarea.description').val();
+    let description = $(target).find('textarea.description').val();
 
     /** Name */
-    let name = currentEl.find('input.name').val();
+    let name = $(target).find('input.name').val();
 
     /** Price */
-    let price = currentEl.find('input.price').val();
+    let unlimited_price = $(target).find('input.unlimited').val();
 
-    price = parseFloat(price);
+    unlimited_price = unlimited_price ? unlimited_price : unlimitedGlobalPrice;
 
-    price = isNaN(price) ? 0 : price;
+    let one_price = $(target).find('input.one').val();
+
+    one_price = one_price ? one_price : oneGlobalPrice;
 
     /** Files */
     let files = document.querySelector('#files').files;
@@ -179,14 +197,7 @@ $(document).on('click', '.upload', function () {
         }
     }
 
-    if (video === undefined) {
-
-        // Video doesn't exist
-
-        return;
-    }
-
-    let duration = 0;
+    if (video === undefined) return;
 
     videoEl.preload = 'metadata';
 
@@ -196,25 +207,7 @@ $(document).on('click', '.upload', function () {
 
         window.URL.revokeObjectURL(videoEl.src);
 
-        duration = videoEl.duration;
-
-        let hours = Math.floor(duration / 3600);
-
-        duration -= hours * 3600;
-
-        hours = hours < 10 ? '0' + hours : hours;
-
-        let minutes = Math.floor(duration / 60);
-
-        duration -= minutes * 60;
-
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-
-        let seconds = Math.floor(duration);
-
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-
-        duration = `${hours}:${minutes}:${seconds}`;
+        let duration = calculateDuration(videoEl.duration);
 
         data.append('duration', duration);
 
@@ -226,7 +219,11 @@ $(document).on('click', '.upload', function () {
 
         data.append('name', name);
 
-        data.append('price', price);
+        data.append('unlimited_price', unlimited_price);
+
+        data.append('one_price', one_price);
+
+        data.append('target', target);
 
         uploadVideo(data);
     }
@@ -234,201 +231,6 @@ $(document).on('click', '.upload', function () {
 });
 
 const uploadVideo = data => {
-
-    let form = $('#form');
-
-    let action = form.attr('action');
-
-    let method = form.attr('method');
-
-    showFormData(data);
-
-    CSRFToken();
-
-    $.ajax({
-        type: method,
-        url: action,
-        data: data,
-        contentType: false,
-        cache: false,
-        processData: false,
-        success: successCallback,
-        error: errorCallback,
-        xhr: xhrCallback
-    });
-}
-
-let videosNum;
-
-/* $('form.ajax').submit(function (e) {
-
-    e.preventDefault();
-
-    $('.upload').each(function () {
-
-        setTimeout(function () {
-            console.log($(this).attr('href'));
-        }, 2000);
-    });
-
-    return;
-
-    toastr.info('This may be take a while, so please be patient and don\'t close the page.');
-
-    videosNum = childrenNumber('#videos');
-
-    let form = $(this);
-
-    form.find('.icons').empty();
-
-    $('.status').text('Status');
-
-    prepareData();
-
-}); */
-
-const prepareData = function () {
-
-    videosNum--;
-
-    if (videosNum < 0) return;
-
-    let data = new FormData();
-
-    currentEl = $('.videos').first();
-
-    currentEl.removeClass('videos');
-
-    /** Title */
-    let titleEl = $('input.title').first();
-
-    titleEl.removeClass('title');
-
-    let title = titleEl.val();
-
-    /** Description */
-    let descriptionEl = $('textarea.description').first();
-
-    descriptionEl.removeClass('description');
-
-    let description = descriptionEl.val();
-
-    /** Name */
-    let nameEl = $('input.name').first();
-
-    nameEl.removeClass('name');
-
-    let name = nameEl.val();
-
-    /** Price */
-    let priceEl = $('input.price').first();
-
-    priceEl.removeClass('price');
-
-    let price = parseFloat(priceEl.val());
-
-    price = isNaN(price) ? 0 : price;
-
-    /** Files */
-    let files = document.querySelector('#files').files;
-
-    let video;
-
-    for (const file in files) {
-
-        if (files.hasOwnProperty(file)) {
-
-            const element = files[file];
-
-            if (element.name === name) {
-
-                video = element;
-            }
-
-        }
-    }
-
-    if (video === undefined) {
-
-        data = null;
-
-        storeVideo(data);
-
-
-    } else {
-
-        let duration = 0;
-
-        let videoEl = document.querySelector('video#video');
-
-        videoEl.preload = 'metadata';
-
-        videoEl.src = URL.createObjectURL(video);
-
-        videoEl.onloadedmetadata = function () {
-
-            window.URL.revokeObjectURL(videoEl.src);
-
-            duration = videoEl.duration;
-
-            let hours = Math.floor(duration / 3600);
-
-            duration -= hours * 3600;
-
-            hours = hours < 10 ? '0' + hours : hours;
-
-            let minutes = Math.floor(duration / 60);
-
-            duration -= minutes * 60;
-
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-
-            let seconds = Math.floor(duration);
-
-            seconds = seconds < 10 ? '0' + seconds : seconds;
-
-            duration = `${hours}:${minutes}:${seconds}`;
-
-            data.append('duration', duration);
-
-            storeVideo(data);
-        }
-
-        data.append('video', video);
-
-        data.append('title', title);
-
-        data.append('description', description);
-
-        data.append('name', name);
-
-        data.append('price', price);
-    }
-
-
-}
-
-const storeVideo = function (data) {
-
-    while (data == null && videosNum >= 0) {
-
-        currentEl.find('.icons').html('<i class="fas fa-times text-danger"></i>')
-
-        data = prepareData();
-    }
-
-    if (data == null) {
-        return;
-    }
-
-    let progress = `
-            <div class="progress md-progress w-50 mx-auto">
-                <div id="progress" class="progress-bar elegant-color-dark progress-bar-striped progress-bar-animated" role="progressbar"
-                    style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-    `;
-
-    currentEl.after(progress);
 
     let form = $('#form');
 
@@ -453,34 +255,158 @@ const storeVideo = function (data) {
 
 const successCallback = function (response) {
 
-    currentEl.find('.card').prepend(successfullyUploaded);
+    let sessionID = response.target;
 
-    currentEl.find('input, textarea').prop('disabled', true);
+    let sessionEl = $(sessionID);
 
-    currentEl.find('buttons').remove();
+    let video = response.video;
 
-    currentEl.waitMe('hide');
+    sessionEl.find('.header').remove();
+
+    sessionEl.find('.card').prepend(successfullyUploaded);
+
+    let uploadVideoID = `uploaded-video-${video.id}`;
+
+    let template = `
+
+    <div id="${uploadVideoID}">
+        <div class="table-responsive">
+            <table class="table table-hover m-t-20">
+                <tbody>
+                    <tr>
+                        <td> Title </td>
+                        <td> ${video.title} </td>
+                    </tr>
+
+                    <tr>
+                        <td> <i class="fas fa-infinity"></i> Price </td>
+                        <td> ${video.unlimited_price} EGP </td>
+                    </tr>
+
+                    <tr>
+                        <td> <i class="zmdi zmdi-collection-item-1"></i> Price </td>
+                        <td> ${video.one_price} EGP </td>
+                    </tr>
+
+                    <tr>
+                        <td> Description </td>
+                        <td> ${video.description || ''} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row justify-content-center buttons">
+
+            <button type="button" class="btn link bg-primary" href="${video.admin_routes.edit}">
+                <i class="zmdi zmdi-edit"></i> 
+                Edit
+            </button>
+
+            <button type="button"class="btn bg-red delete" action="${video.admin_routes.destroy}" target="${sessionID}">
+                <i class="zmdi zmdi-delete"></i> 
+                Delete
+            </button>
+
+        </div>
+
+        <video class="d-none" id="video-el-${video.id}" src="${video.path}"></video>
+        
+    </div>
+   
+    `;
+
+    sessionEl.find('.body').html(template);
+
+    sessionEl.waitMe('hide');
+
+    uploadPoster(`video-el-${video.id}`, video.poster_update_route);
+
 }
 
-const errorCallback = function () {
+const uploadPoster = (videoID, action) => {
 
-    currentEl.find('.icons').html('<i class="fas fa-times"></i>');
+    let sessionVideoEl = document.querySelector(`#${videoID}`);
 
-    $('.progress').remove();
+    sessionVideoEl.load();
 
-    if (videosNum === 0) {
+    posterUpdate = true;
 
-        let form = $('form');
+    sessionVideoEl.onloadedmetadata = function () {
 
-        form.find('.btn-submit').removeAttr('disabled');
-
-        form.find('input').removeAttr('disabled');
-
-    } else {
-
-        prepareData();
+        this.currentTime = 5;
     }
 
+    sessionVideoEl.onseeked = function () {
+
+        let poster = captureImage(this);
+
+        $.ajax({
+            type: "PUT",
+            url: action,
+            data: {
+                poster
+            },
+            success: function (response) {
+                sessionVideoEl.remove;
+            }
+        });
+    }
+
+}
+
+$('form.ajax').submit(function (e) {
+
+    e.preventDefault();
+
+    $uploadBtns = $('button.upload');
+
+    let time = 2000;
+
+    $uploadBtns.each(function (index) {
+
+        setTimeout(() => {
+
+            $(this).click();
+        }, time);
+
+        time += 2000;
+
+    });
+});
+
+const errorCallback = response => {
+
+    let errors = response.responseJSON.errors;
+
+    let id = errors.target[0];
+
+    let sessionEl = $(id);
+
+    sessionEl.find('.header').remove();
+
+    sessionEl.find('.card').prepend(failedUploaded);
+
+    sessionEl.waitMe('hide');
+
+    id = id.replace('#', '');
+
+    let array = ['title', 'price', 'description'];
+
+    array.forEach(element => {
+
+        let errorID = `error-${id}-${element}`;
+
+        let error = errors[element];
+
+        if (error === undefined || exists('#' + errorID)) return;
+
+        let input = sessionEl.find(`.${element}`);
+
+        let small = `<small class='text-danger feedback' id="${errorID}"> ${error} </small>`;
+
+        input.after(small);
+    });
 }
 
 const xhrCallback = function () {
@@ -496,7 +422,9 @@ const xhrCallback = function () {
             if (e.lengthComputable) {
 
                 loaded = Math.round(e.loaded / e.total * 100);
-
+                
+                console.log(loaded);
+                
                 let percentage = `${loaded}%`;
 
                 let progressEl = $('#progress');
@@ -509,6 +437,7 @@ const xhrCallback = function () {
             }
         }, false);
     }
+    
     return myXhr;
 }
 

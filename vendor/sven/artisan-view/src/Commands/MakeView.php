@@ -26,10 +26,12 @@ class MakeView extends Command
      */
     public function handle()
     {
-        $generator = new Generator($this->getConfig());
+        $path = $this->getPath();
+
+        $generator = new Generator($this->getConfig(), $path);
 
         $generator->generate(
-            (new BlockStack)->build($this->input)
+            (new BlockStack)->build($this->input, $path)
         );
 
         $this->info('View created successfully.');
@@ -45,6 +47,17 @@ class MakeView extends Command
             ->setExtension($this->option('extension'))
             ->setResource($this->option('resource'))
             ->setVerbs(...$this->option('verb'));
+    }
+
+    private function getPath()
+    {
+        $paths = app('view.finder')->getPaths();
+
+        if (count($paths) === 1) {
+            return head($paths);
+        }
+
+        return $this->choice('Where do you want to create the view(s)?', $paths, head($paths));
     }
 
     /**

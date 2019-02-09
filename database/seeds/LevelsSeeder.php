@@ -17,8 +17,6 @@ class LevelsSeeder extends Seeder
         $levelsSAT = ['General'];
         $levelsIG = ['8th Grade', '9th Grade', 'IG'];
 
-        $description = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid voluptas vero expedita similique autem saepe odio, officiis esse reiciendis porro enim quisquam incidunt quos praesentium iste officia distinctio neque, repellendus quae adipisci? Omnis, quod reiciendis a commodi, debitis enim doloribus asperiores, nulla consectetur deserunt molestiae. Ut placeat vero adipisci voluptatibus.';
-
         foreach ($levelsGeneral as $levelGeneral) {
 
             $level = new Level;
@@ -26,8 +24,6 @@ class LevelsSeeder extends Seeder
             $level->name = $levelGeneral;
 
             $level->school = 'General';
-
-            $level->description = $description;
 
             $level->save();
         }
@@ -40,8 +36,6 @@ class LevelsSeeder extends Seeder
 
             $level->school = 'SAT';
 
-            $level->description = $description;
-
             $level->save();
         }
 
@@ -52,8 +46,6 @@ class LevelsSeeder extends Seeder
             $level->name = $levelIG;
 
             $level->school = 'IGCSE';
-
-            $level->description = $description;
 
             $level->save();
         }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class InstructorRequest extends FormRequest
 {
@@ -19,10 +19,11 @@ class InstructorRequest extends FormRequest
 
     public function rules()
     {
+     
         return [
-            
+
             'name' => 'required',
-            
+
             'about' => 'required',
 
             'email' => ['required', 'email', Rule::unique('instructors', 'email')],
@@ -31,7 +32,7 @@ class InstructorRequest extends FormRequest
 
             'password' => 'required|confirmed',
 
-            'avatar' => 'image'
+            'avatar' => 'image',
         ];
     }
 }

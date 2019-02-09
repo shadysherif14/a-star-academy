@@ -29,7 +29,7 @@ payButton.on('click', function () {
     $('.card-wrapper').css('min-height', '0px');
 });
 
-new Card({
+/* new Card({
 
     form: '#pay-modal',
 
@@ -49,7 +49,7 @@ new Card({
         cvc: '•••'
     },
 
-});
+}); */
 
 formModal.submit(function (e) {
 

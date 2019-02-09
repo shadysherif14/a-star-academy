@@ -12,33 +12,28 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title> A Star Academy @yield('title') </title>
+    <title> A Star Academy </title>
 
-    @include('includes.stylesheets') 
-    
-    <link rel="stylesheet" href="{{ asset('assets/css/authentication.css') }}">
+    @include('includes.stylesheets')
     
     @stack('css')
-
+    
+    <link rel="stylesheet" href="{{ asset_path('css/auth/index.css') }}"> 
+    
 </head>
 
-<body class="theme-gold authentication">
+<body class="">
 
-    @include('partials.loader')
-    
-    <div class="page-header">
-        <div class="page-header-image" style="background-image:url(/assets/images/login.jpg)"></div>
-        <div class="container">
-            <div class="col-md-12 content-center">
-                <div class="card-plain">
-                    @yield('form')                    
-                </div>
-            </div>
+    <div class="content">
+        <div class="wrapper">
+            @yield('form')
         </div>
     </div>
 
-    @include('includes.scripts') 
-    
+    <div class="image"></div>
+
+    @include('includes.scripts')
+
     @stack('scripts')
 
 </body>

@@ -1,0 +1,277 @@
+@import '../../variables';
+@import '../courses/list';
+@import '../videos/flipper';
+
+.user {
+    background: linear-gradient(45deg, #000, #111);
+    display: none;
+    > section {
+        grid-template-columns: 1fr 3fr;
+        max-width: 100%;
+        width: fit-content;
+        margin: auto;
+        padding: 2rem 0;
+
+        * {
+            color: $gold;
+        }
+
+        .title {
+            .name {
+                margin: 0 auto 10px;
+                text-align: center;
+            }
+        }
+
+        .image-wrapper {
+            img {
+                display: block;
+                width: auto;
+                border-radius: 0.50%;
+            }
+
+        }
+    }
+}
+
+.tabs-nav {
+
+    min-height: fit-content !important;
+    background: #111;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+
+    @media screen and (max-width: $md) {
+        display: grid;
+        grid-gap: 10px;
+
+        > * {
+            display: grid;
+        }
+    }
+
+    > * {
+        cursor: pointer;
+        display: inline-grid;
+        align-items: center;
+        grid-template-columns: 32px auto;
+        grid-gap: 10px;
+        margin: 0px 2rem;
+
+        img {
+            width: 32px;
+            height: auto;
+        }
+
+        span {
+            color: $white;
+        }
+
+        &.active {
+            span {
+                color: $gold;
+            }
+        }
+    }
+}
+
+
+#courses {
+    @include courses-list;
+    display: none;
+}
+
+#videos {
+    @include flipper;
+    display: none;
+}
+
+#quizzes {
+    //background: $black;
+    width: 80%;
+    margin: 10px auto;
+    display: none;
+    box-shadow: 0px 40px 0px rgba(0, 0, 0, 0.15);
+    table.table {
+        min-height: 1px;
+        margin: 0;
+        thead {
+            background: #000;
+            tr {
+                th {
+                    border: 0;
+                }
+            }
+        }
+
+        * {
+            color: #ddd;
+            border-color: #222;
+        }
+
+        tbody {
+            tr {
+                &:nth-child(even) {
+                    background: #222;
+                }
+
+                &:nth-child(odd) {
+                    background: #111;
+                }
+
+                &:last-child {
+                    border-radius: 0 0 15px 15px;
+                }
+
+                &:hover {
+                    background: #000;
+                }
+
+                td {
+                    a {
+                        &:hover {
+                            color: $gold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#form {
+    display: grid;
+    form {
+        width: 500px;
+        max-width: 90%;
+        margin: auto;
+        padding: 2rem 0;
+    }
+
+    .input-group {
+        margin-top: 0;
+        margin-bottom: 20px;
+        max-width: 100% !important;
+
+        &.input-group-focus {
+            * {
+                background: #222 !important;
+            }
+        }
+
+        * {
+            color: $white;
+            border: 0px;
+            background: #111;
+            border-radius: 0px;
+        }
+
+
+        .form-control {
+            &::placeholder {
+                color: #777;
+                font-weight: 300;
+            }
+        }
+
+        .input-group-addon {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            width: 48px;
+            display: grid;
+            justify-content: center;
+
+            img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        @media screen and (max-width: $sm) {
+            grid-template-columns: 1fr;
+            grid-gap: 0;
+        }
+
+        grid-gap: 10px;
+    }
+
+    label {
+        color: $white;
+
+        &.label {
+            display: block;
+            font-weight: normal;
+        }
+    }
+
+    .pretty {
+        label {
+            margin-left: 4px;
+            margin-top: 1px;
+        }
+    }
+
+    .checkbox {
+        margin: 10px;
+
+        label {
+            color: $white;
+
+            &:after,
+            &:before {
+                border-radius: 0;
+                color: $white;
+            }
+        }
+    }
+
+    button[type=submit] {
+        background-image: linear-gradient(45deg, #111, #000);
+        margin: 20px auto;
+        border-radius: 0;
+        display: block;
+        width: 100%;
+        transition: 0.5s all;
+    }
+
+    .fileinput {
+        display: grid;
+        grid-template-columns: 160px auto;
+        align-items: stretch;
+
+        input.form-control,
+        .btn {
+            border: 0;
+            border-radius: 0;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .btn-file {
+            cursor: pointer;
+        }
+
+        .btn {
+            min-width: 100%;
+            background: #222;
+
+            &:hover {
+                color: $white;
+            }
+        }
+
+        .form-control {
+            background: #111;
+            color: $white;
+            display: none;
+        }
+    }
+}

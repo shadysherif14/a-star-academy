@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Answer;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreQuestionRequest;
-use App\Question;
 use App\Video;
+use App\Answer;
+use App\Question;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\QuestionStore;
+use App\Http\Requests\QuestionUpdate;
 
 class QuestionController extends Controller
 {
@@ -16,111 +17,102 @@ class QuestionController extends Controller
     public function index(Video $video)
     {
 
-        $questions = Question::quiz($video->id);
+        $questions = $video->questions;
 
         $title = $video->title . ' Questions';
 
-        $data = compact('questions', 'video', 'title');
+        $breadcrumbs = 'admin.quiz';
+
+        $breadcrumbArgument = $video;
+
+        $data = compact('questions', 'video', 'title', 'breadcrumbs', 'breadcrumbArgument');
 
         return view('admin.quizzes.index', $data);
     }
+
     // Done
-    public function store(StoreQuestionRequest $request, Video $video)
+    public function store(QuestionStore $request, Video $video)
     {
-
-        $request->validated();
-
-        $order = Question::order($video->id);
 
         $question = new Question;
 
-        $question->body = $request->question;
-
-        $question->correct_answer = $request->correct_answer;
+        $question->body = $request->new_question;
 
         $question->video_id = $video->id;
 
-        $question->order = $order;
+        $question->order = $order = Question::order($video->id);
 
         $question->save();
 
-        foreach ($request->answers as $answerReq) {
+        foreach ($request->answers as $answerData) {
+
+            $answerData = (object) $answerData;
+
+            $answerBody = $answerData->body;
 
             $answer = new Answer();
 
-            $answer->body = $answerReq;
+            $answer->body = $answerBody;
 
             $answer->question_id = $question->id;
 
             $answer->save();
+
+            if ($request->new_correct_answer === $answerBody) {
+
+                $question->updateCorrectAnswer($answer);
+            }
         }
 
-        $status = true;
+        $question->load('answers');
 
-        $method = 'create';
-
-        return response()->json(compact('status', 'question', 'method'));
+        return response()->json(compact('question'));
 
     }
 
     // Done
-    public function show($id)
+    public function show(Question $question)
+    {
+        return response()->json(compact('question'));
+    }
+
+    public function update(QuestionUpdate $request, Question $question)
     {
 
-        $question = Question::find($id);
+        $question->body = $request->question;
+
+        foreach ($request->answers as $answer) {
+
+            $answerData = (object) $answer;
+
+            $answer = Answer::find($answerData->id);
+
+            if (is_null($answer)) {
+
+                $answer = new Answer;
+
+                $answer->question_id = $question->id;
+            }
+
+            $answer->body = $answerData->body;
+
+            $answer->save();
+
+            $answersID[] = $answer->id;
+
+        }
+
+        $question->updateCorrectAnswer($request->correct_answer);
+
+        Answer::syncAnswers($question->id, $answersID);
 
         return response()->json(compact('question'));
     }
 
-    public function update(Request $request, $id)
+    public function destroy(Question $question)
     {
 
-        $question = Question::find($id);
-
-        $question->body = $request->question;
-
-        $question->correct_answer = $request->correct_answer;
-
-        $question->save();
-
-        foreach ($request->answers as $key => $answer) {
-
-            if (isset($answer['id'])) {
-
-                $answer = (object) $answer;
-
-                Answer::where('id', $answer->id)
-
-                    ->update(['body' => $answer->body]);
-            } else {
-
-                $newAnswer = new Answer;
-
-                $newAnswer->body = $answer;
-
-                $newAnswer->question_id = $id;
-
-                $newAnswer->save();
-            }
-        }
-
-        $answers = collect($request->answers);
-
-        $IDs = $answers->pluck('id');
-
-        Answer::where('question_id', $id)->whereNotIn('id', $IDs)->delete();
-
-        $status = true;
-
-        $method = 'edit';
-
-        return response()->json(compact('status', 'question', 'method'));
-    }
-
-    public function destroy($id)
-    {
-
-        Question::destroy($id);
+        $question->delete();
 
         return jsonResponse(true);
     }

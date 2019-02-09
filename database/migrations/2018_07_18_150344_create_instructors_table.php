@@ -29,7 +29,7 @@ class CreateInstructorsTable extends Migration
             
             $table->string('phone')->nullable();
 
-            $table->string('avatar')->default('images/defaults/avatar.png');
+            $table->string('avatar')->nullable();
 
             $table->string('password');
 

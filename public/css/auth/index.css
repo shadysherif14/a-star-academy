@@ -1,4 +1,264 @@
-.pointer {
+/*!
+ *
+ * Color Me SASS v1.0
+ * Built and Designed by Richard Bray
+ *
+ */
+
+/*!
+ *
+ * Color Me SASS v1.0
+ * Built and Designed by Richard Bray
+ *
+ */
+
+body {
+  display: grid;
+  grid-template-columns: 600px auto;
+}
+
+@media screen and (max-width: 576px) {
+  body {
+    grid-template-columns: 1fr;
+  }
+}
+
+body .image {
+  background-image: url("https://images.unsplash.com/photo-1477281765962-ef34e8bb0967?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=31e82f46b077da92e44712da8f71bc51&auto=format&fit=crop&w=632&q=80");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  position: relative;
+}
+
+@media screen and (max-width: 576px) {
+  body .image {
+    display: none;
+  }
+}
+
+body .image:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  background: linear-gradient(70deg, rgba(0, 0, 0, 0.5), black);
+}
+
+body .content {
+  min-height: 100vh;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  background: linear-gradient(45deg, black, rgba(0, 0, 0, 0.96));
+}
+
+@media screen and (max-width: 576px) {
+  body .content {
+    background-image: url("https://images.unsplash.com/photo-1477281765962-ef34e8bb0967?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=31e82f46b077da92e44712da8f71bc51&auto=format&fit=crop&w=632&q=80");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  body .content .wrapper {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: grid;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+body .content .wrapper .step-2 {
+  display: none;
+}
+
+body .content .wrapper .step-2 label {
+  color: #fff;
+}
+
+body .content .wrapper .step-2 label.label {
+  font-size: 1.25rem;
+  display: block;
+}
+
+body .content .wrapper .step-2 .pretty label {
+  margin-left: 4px;
+  margin-top: 1px;
+}
+
+body .content .wrapper h3 a {
+  display: block;
+  color: #fff;
+  text-align: center;
+}
+
+body .content .wrapper .input-group {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+body .content .wrapper .input-group.input-group-focus * {
+  background: #222 !important;
+}
+
+body .content .wrapper .input-group * {
+  color: #fff;
+  border: 0px;
+  background: #111;
+  border-radius: 0px;
+}
+
+body .content .wrapper .input-group .form-control::-webkit-input-placeholder {
+  color: #777;
+  font-weight: 300;
+}
+
+body .content .wrapper .input-group .form-control:-ms-input-placeholder {
+  color: #777;
+  font-weight: 300;
+}
+
+body .content .wrapper .input-group .form-control::-ms-input-placeholder {
+  color: #777;
+  font-weight: 300;
+}
+
+body .content .wrapper .input-group .form-control::placeholder {
+  color: #777;
+  font-weight: 300;
+}
+
+body .content .wrapper .input-group .input-group-addon {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 48px;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .content .wrapper .input-group .input-group-addon img {
+  width: 24px;
+  height: 24px;
+}
+
+body .content .wrapper .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+body .content .wrapper .checkbox {
+  margin: 10px;
+}
+
+body .content .wrapper .checkbox label {
+  color: #fff;
+}
+
+body .content .wrapper .checkbox label:after,
+body .content .wrapper .checkbox label:before {
+  border-radius: 0;
+  color: #fff;
+}
+
+body .content .wrapper button[type=submit] {
+  background: #f3b715;
+  margin: 20px auto;
+  border-radius: 0;
+  display: block;
+  width: 100%;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+  border: #f3b715;
+}
+
+body .content .wrapper button[type=submit]:hover {
+  background: #fff;
+  color: #000;
+}
+
+body .content .wrapper .fileinput {
+  display: grid;
+  grid-template-columns: 160px auto;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+body .content .wrapper .fileinput input.form-control,
+body .content .wrapper .fileinput .btn {
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  padding: 10px;
+}
+
+body .content .wrapper .fileinput .btn-file {
   cursor: pointer;
+}
+
+body .content .wrapper .fileinput .btn {
+  min-width: 100%;
+  background: #222;
+}
+
+body .content .wrapper .fileinput .btn:hover {
+  color: #fff;
+}
+
+body .content .wrapper .fileinput .form-control {
+  background: #111;
+  color: #fff;
+  display: none;
+}
+
+body .content .wrapper p.toggler {
+  text-align: center;
+  color: #fff;
+}
+
+body .content .wrapper p.toggler a {
+  color: #c0c0c0;
+  margin-left: 2px;
+}
+
+body .content .wrapper p.toggler a:hover {
+  color: #f3b715;
+  text-decoration: none;
+}
+
+body .content .wrapper button.controls {
+  background: linear-gradient(45deg, black, rgba(0, 0, 0, 0.8));
+  display: block;
+  margin-left: auto;
+}
+
+body .content .wrapper .step-1 i.controls {
+  text-align: right;
+}
+
+body .content .wrapper .errors {
+  padding-left: 15px;
+}
+
+body .content .wrapper .errors li {
+  color: #D42C2C;
 }
 

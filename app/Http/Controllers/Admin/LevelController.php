@@ -15,18 +15,26 @@ class LevelController extends Controller
     public function index()
     {
 
-        $levels = Level::all();
+        $title = 'Levels';
 
-        return view('admin.levels.index', compact('levels'));
+        $breadcrumbs = 'admin.levels';
+
+        $levels = Level::orderBy('school')->get();
+
+        return view('admin.levels.index', compact('levels', 'title', 'breadcrumbs'));
     }
 
     public function create()
     {
         $level = new Level();
 
-        $schools = Level::select('school')->distinct()->get()->pluck('school');
+        $schools = Level::schools();
 
-        return view('admin.levels.create', compact('level', 'schools'));
+        $title = 'Add Levels';
+
+        $breadcrumbs = 'admin.levels.add';
+
+        return view('admin.levels.create', compact('level', 'schools', 'title', 'breadcrumbs'));
     }
 
     public function store(LevelRequest $request)
@@ -36,28 +44,27 @@ class LevelController extends Controller
         
         $level = new Level();
 
-        return $this->saveOrUpdate($request, $level);
-    }
-
-    public function show(Level $level)
-    {
-        return view('admin.levels.show', compact('level'));
+        return $this->persist($request, $level);
     }
 
     public function edit(Level $level)
     {
 
-        $schools = Level::select('school')->distinct()->get()->pluck('school');
+        $schools = Level::schools();
 
-        return view('admin.levels.edit', compact('level', 'schools'));
+        $title = 'Edit Level';
+
+        $breadcrumbs = 'admin.level';
+
+        $breadcrumbArgument = $level; 
+
+        return view('admin.levels.edit', compact('level', 'schools', 'title', 'breadcrumbs', 'breadcrumbArgument'));
     }
 
     public function update(LevelRequest $request, Level $level)
     {
 
-        $request->validated();
-
-        return $this->saveOrUpdate($request, $level);
+        return $this->persist($request, $level);
 
     }
 
@@ -68,19 +75,15 @@ class LevelController extends Controller
         return jsonResponse(true);
     }
 
-    private function saveOrUpdate(Request $request, Level $level)
+    private function persist(Request $request, Level $level)
     {
         $level->name = $request->name;
 
         $level->school = $request->school;
         
-        $level->description = $request->description;
+        if ($request->hasFile('image')) {
 
-        if ($request->file('image')) {
-
-            $image = $request->image->store('public/images/levels');
-
-            $level->image = str_replace_first('public/', '', $image);
+            $image = $request->file('image')->store('images/levels', 'public');
         }
 
         $level->save();
@@ -89,7 +92,7 @@ class LevelController extends Controller
 
             'status' => true,
 
-            'redirect' => route('admin.levels.show', ['level' => $level])
+            'redirect' => action('Admin\LevelController@index')
         ]);
 
     }

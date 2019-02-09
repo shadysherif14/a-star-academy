@@ -1,6 +1,6 @@
 @extends('layouts.app') 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/courses/show.css') }}"> 
+<link rel="stylesheet" href="{{ asset_path('css/courses/show.css') }}"> 
 @stop 
 @section('content')
 
@@ -12,7 +12,7 @@
 
             <video id="videoPlayer" class="video-fluid plyr" controls playsinline>
 
-                    <source src="{{ asset('videos/video.mp4') }}" type="video/mp4" />
+                    <source src="{{ asset_path('videos/video.mp4') }}" type="video/mp4" />
                     
                 </video>
 

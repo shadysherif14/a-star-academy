@@ -4,6 +4,9 @@
 
 @import "../mixins/create";
 
+@import '../../form.scss';
+
+
 $gtc: 3fr 2fr 0.5fr;
 
 @include index($gtc);
