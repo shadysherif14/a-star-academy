@@ -1,0 +1,11 @@
+/node_modules
+/.vscode
+*.md
+/storage
+/public/storage
+/public/videos
+/env
+/vendor
+/public/assets
+/public/res
+/public/fonts

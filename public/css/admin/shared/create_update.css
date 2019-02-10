@@ -1,0 +1,108 @@
+.pointer {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.card {
+  width: 800px;
+  max-width: 90%;
+  margin: auto;
+}
+
+.card div.card-header {
+  height: 8vh;
+  background: #222;
+}
+
+.card div.card-header * {
+  font-size: 1.25em;
+}
+
+.card div.card-body {
+  overflow-y: scroll;
+}
+
+.card div.card-body::-webkit-scrollbar {
+  display: none;
+}
+
+.card div.card-body #image-wrapper * {
+  display: block;
+  width: 400px;
+  height: auto;
+  max-width: 90%;
+  margin: 0px auto !important;
+}
+
+.card div.card-body #image-wrapper *.hidden {
+  display: none !important;
+}
+
+.card div.card-body #image-wrapper button.btn {
+  padding: 0.5em 1em;
+  background: transparent;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+  color: #CF000F;
+  border: 1px solid #CF000F;
+}
+
+.card div.card-body #image-wrapper button.btn:hover {
+  background: #CF000F;
+  color: #fff;
+}
+
+.card div.card-body .btn-group {
+  margin: auto;
+  grid-template-columns: 1fr 1fr;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  width: 700px;
+  max-width: 95%;
+}
+
+.card div.card-body .btn-group.grid {
+  display: grid !important;
+}
+
+@media screen and (max-width: 400px) {
+  .card div.card-body .btn-group {
+    grid-template-columns: 1fr;
+    margin: 2rem auto;
+  }
+
+  .card div.card-body .btn-group label {
+    border-radius: 0 !important;
+    margin: 0px !important;
+  }
+}
+
+.card div.card-body .btn-group#sub_system {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media screen and (max-width: 400px) {
+  .card div.card-body .btn-group#sub_system {
+    grid-template-columns: 1fr 1fr;
+    margin: 2rem auto;
+  }
+}
+
+.card button.btn-submit {
+  margin-bottom: 0px !important;
+  background: #222;
+}
+
+.card button.btn-submit * {
+  font-size: 1.25em;
+}
+

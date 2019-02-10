@@ -1,0 +1,139 @@
+/* @import "../variables";
+
+$borderRadius: 2em;
+$borderColor: #ddd;
+
+.hidden {
+    display: none;
+}
+
+.bg-gold {
+    background: $gold;
+}
+
+.font-gold {
+    color: $gold;
+}
+
+// Bootstrap Select
+
+.bootstrap-select {
+    .btn {
+        background: $white;
+        border: 1px solid $borderColor;
+        padding: 10px 14px !important;
+        border-radius: 0px !important;
+        box-shadow: none;
+
+        &:focus,
+        &:hover,
+        &:active {
+            outline: none !important;
+            background: $white !important;
+            border: 1px solid $borderColor;
+            border: 1px solid $gold;
+            box-shadow: none;
+            outline: none;
+
+        }
+    }
+
+    .filter-option {
+        color: $dark-black !important;
+        font-size: 1rem;
+    }
+
+    .selected {
+        background: $dark-black !important;
+    }
+
+    .bs-caret {
+        margin-right: -1em;
+
+        color: $gold;
+    }
+
+    .bs-searchbox:after {
+        top: 20px;
+    }
+
+}
+
+
+// Inputs
+input.form-control,
+textarea.form-control {
+
+    padding: 10px 14px !important;
+    font-size: 1em;
+    border-radius: $borderRadius;
+    border: 1px solid $borderColor;
+    color: $dark-black;
+    font-weight: 500;
+
+    &:focus {
+        border: 1px solid $gold;
+
+        &~.input-group-addon {
+            border-color: $gold;
+        }
+    }
+}
+
+// Buttons
+.btn {
+    border-radius: $borderRadius;
+}
+
+label {
+    color: $gold;
+    font-weight: bold;
+}
+
+.radio,
+.pretty {
+    label {
+        color: $light-black;
+    }
+}
+
+.input-group {
+    .form-control {
+        padding-left: 1rem;
+    }
+
+    .input-group-addon {
+        border-radius: 0px;
+        padding-left: 10px;
+        width: 7%;
+
+        &:hover,
+        &:focus {
+            border-color: $gold;
+        }
+    }
+}
+
+.form-group,
+.input-group {
+    margin: 1em 0em;
+
+    .form-control {
+        border-radius: 0px;
+    }
+
+}
+
+.btn {
+    i.material-icons {
+        font-size: inherit;
+    }
+}
+
+small.feedback {
+    display: block;
+    margin-top: 0.75em;
+    font-weight: normal;
+    font-size: 12px;
+} */
+

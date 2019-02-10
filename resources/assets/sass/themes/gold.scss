@@ -1,0 +1,11 @@
+@import 'theme';
+
+//colors
+$primary: #f3b715;
+$secondary: #ffdc73;
+$white: #fff;
+$lightGray: #ddd;
+
+.theme-gold {
+    @include theme($primary, $secondary);
+}

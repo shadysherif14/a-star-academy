@@ -1,0 +1,1676 @@
+//colors
+$bodyBg: #222;
+$color_1: #fff;
+$color_2: #000;
+$color_3: #111;
+$color_4: rgba(0, 0, 0, 0.8);
+$color_5: #f3b715;
+$color_6: #fedbae;
+$color_7: #a3358c;
+$color_8: #cf3684;
+$color_9: #fd8f5d;
+$color_10: #ffdf70;
+$color_11: #1383df;
+$color_12: #08abf3;
+$color_13: #11c1f1;
+$color_14: #22e5f1;
+$color_15: #7a7afe;
+$color_16: #9a82ff;
+$color_17: #b588ff;
+$color_18: #d491ff;
+$color_19: #000;
+$color_20: rebeccapurple;
+
+//@extend-elements
+//original selectors
+//html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video
+%extend_1 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+//original selectors
+//ol, ul
+%extend_2 {
+    list-style: none;
+}
+
+//original selectors
+//caption, th, td
+%extend_3 {
+    text-align: left;
+    font-weight: normal;
+    vertical-align: middle;
+}
+
+//original selectors
+//q, blockquote
+%extend_4 {
+    quotes: none;
+}
+
+//original selectors
+//q:before, q:after, blockquote:before, blockquote:after
+%extend_5 {
+    content: "";
+    content: none;
+}
+
+//original selectors
+//article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary
+%extend_6 {
+    display: block;
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+
+html {
+    @extend %extend_1;
+    line-height: 1;
+}
+
+body {
+    @extend %extend_1;
+    background-image: url(../../images/background.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: Poppins;
+}
+
+div {
+    @extend %extend_1;
+}
+
+span {
+    @extend %extend_1;
+}
+
+applet {
+    @extend %extend_1;
+}
+
+object {
+    @extend %extend_1;
+}
+
+iframe {
+    @extend %extend_1;
+}
+
+h1 {
+    @extend %extend_1;
+}
+
+h2 {
+    @extend %extend_1;
+}
+
+h3 {
+    @extend %extend_1;
+}
+
+h4 {
+    @extend %extend_1;
+}
+
+h5 {
+    @extend %extend_1;
+}
+
+h6 {
+    @extend %extend_1;
+}
+
+p {
+    @extend %extend_1;
+}
+
+blockquote {
+    @extend %extend_1;
+    @extend %extend_4;
+
+    &:before {
+        @extend %extend_5;
+    }
+
+    &:after {
+        @extend %extend_5;
+    }
+}
+
+pre {
+    @extend %extend_1;
+}
+
+a {
+    @extend %extend_1;
+
+    img {
+        border: none;
+    }
+}
+
+abbr {
+    @extend %extend_1;
+}
+
+acronym {
+    @extend %extend_1;
+}
+
+address {
+    @extend %extend_1;
+}
+
+big {
+    @extend %extend_1;
+}
+
+cite {
+    @extend %extend_1;
+}
+
+code {
+    @extend %extend_1;
+}
+
+del {
+    @extend %extend_1;
+}
+
+dfn {
+    @extend %extend_1;
+}
+
+em {
+    @extend %extend_1;
+}
+
+img {
+    @extend %extend_1;
+}
+
+ins {
+    @extend %extend_1;
+}
+
+kbd {
+    @extend %extend_1;
+}
+
+q {
+    @extend %extend_1;
+    @extend %extend_4;
+
+    &:before {
+        @extend %extend_5;
+    }
+
+    &:after {
+        @extend %extend_5;
+    }
+}
+
+s {
+    @extend %extend_1;
+}
+
+samp {
+    @extend %extend_1;
+}
+
+small {
+    @extend %extend_1;
+}
+
+strike {
+    @extend %extend_1;
+}
+
+strong {
+    @extend %extend_1;
+}
+
+sub {
+    @extend %extend_1;
+}
+
+sup {
+    @extend %extend_1;
+}
+
+tt {
+    @extend %extend_1;
+}
+
+var {
+    @extend %extend_1;
+}
+
+b {
+    @extend %extend_1;
+}
+
+u {
+    @extend %extend_1;
+}
+
+i {
+    @extend %extend_1;
+}
+
+center {
+    @extend %extend_1;
+}
+
+dl {
+    @extend %extend_1;
+}
+
+dt {
+    @extend %extend_1;
+}
+
+dd {
+    @extend %extend_1;
+}
+
+ol {
+    @extend %extend_1;
+    @extend %extend_2;
+}
+
+ul {
+    @extend %extend_1;
+    @extend %extend_2;
+}
+
+li {
+    @extend %extend_1;
+}
+
+fieldset {
+    @extend %extend_1;
+}
+
+form {
+    @extend %extend_1;
+}
+
+label {
+    @extend %extend_1;
+}
+
+legend {
+    @extend %extend_1;
+}
+
+table {
+    @extend %extend_1;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+caption {
+    @extend %extend_1;
+    @extend %extend_3;
+}
+
+tbody {
+    @extend %extend_1;
+}
+
+tfoot {
+    @extend %extend_1;
+}
+
+thead {
+    @extend %extend_1;
+}
+
+tr {
+    @extend %extend_1;
+}
+
+th {
+    @extend %extend_1;
+    @extend %extend_3;
+}
+
+td {
+    @extend %extend_1;
+    @extend %extend_3;
+}
+
+article {
+    @extend %extend_1;
+    @extend %extend_6;
+}
+
+aside {
+    @extend %extend_1;
+    @extend %extend_6;
+}
+
+canvas {
+    @extend %extend_1;
+}
+
+details {
+    @extend %extend_1;
+    @extend %extend_6;
+}
+
+embed {
+    @extend %extend_1;
+}
+
+figure {
+    @extend %extend_1;
+    @extend %extend_6;
+}
+
+figcaption {
+    @extend %extend_1;
+    @extend %extend_6;
+}
+
+footer {
+    @extend %extend_1;
+    @extend %extend_6;
+}
+
+header {
+    @extend %extend_1;
+    @extend %extend_6;
+}
+
+hgroup {
+    @extend %extend_1;
+    @extend %extend_6;
+}
+
+menu {
+    @extend %extend_1;
+    @extend %extend_6;
+}
+
+nav {
+    @extend %extend_1;
+    @extend %extend_6;
+}
+
+output {
+    @extend %extend_1;
+}
+
+ruby {
+    @extend %extend_1;
+}
+
+section {
+    @extend %extend_1;
+    @extend %extend_6;
+}
+
+summary {
+    @extend %extend_1;
+    @extend %extend_6;
+}
+
+time {
+    @extend %extend_1;
+}
+
+mark {
+    @extend %extend_1;
+}
+
+audio {
+    @extend %extend_1;
+}
+
+video {
+    @extend %extend_1;
+}
+
+main {
+    @extend %extend_6;
+}
+
+@keyframes shining {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.2;
+    }
+}
+
+.scenery {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1000px;
+    height: 618px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    border-radius: 5px;
+    color: $color_1;
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzJhMWY2ZiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2FlMzA4MiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==");
+    background-size: 100%;
+    background-image: linear-gradient($color_2, $color_3);
+    box-shadow: $color_4 0 0 100px;
+}
+
+.star {
+    position: absolute;
+    z-index: 1;
+    background-color: $color_1;
+    animation-name: shining;
+    animation-timing-function: ease;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: $color_1 0 0 5px;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 200px;
+
+    &:nth-child(1) {
+        width: 1px;
+        height: 1px;
+        bottom: 15px;
+        left: 18px;
+        animation-duration: 0.66667s;
+    }
+
+    &:nth-child(2) {
+        width: 1px;
+        height: 1px;
+        bottom: 344px;
+        left: 907px;
+        animation-duration: 0.66667s;
+    }
+
+    &:nth-child(3) {
+        width: 3px;
+        height: 3px;
+        bottom: 153px;
+        left: 180px;
+        animation-duration: 2s;
+    }
+
+    &:nth-child(4) {
+        width: 2px;
+        height: 2px;
+        bottom: 145px;
+        left: 622px;
+        animation-duration: 3s;
+    }
+
+    &:nth-child(5) {
+        width: 1px;
+        height: 1px;
+        bottom: 435px;
+        left: 744px;
+        animation-duration: 1s;
+    }
+
+    &:nth-child(6) {
+        width: 1px;
+        height: 1px;
+        bottom: 285px;
+        left: 156px;
+        animation-duration: 0.33333s;
+    }
+
+    &:nth-child(7) {
+        width: 3px;
+        height: 3px;
+        bottom: 607px;
+        left: 692px;
+        animation-duration: 3s;
+    }
+
+    &:nth-child(8) {
+        width: 3px;
+        height: 3px;
+        bottom: 555px;
+        left: 813px;
+        animation-duration: 0.33333s;
+    }
+
+    &:nth-child(9) {
+        width: 3px;
+        height: 3px;
+        bottom: 179px;
+        left: 38px;
+        animation-duration: 0.66667s;
+    }
+
+    &:nth-child(10) {
+        width: 1px;
+        height: 1px;
+        bottom: 506px;
+        left: 763px;
+        animation-duration: 1.33333s;
+    }
+
+    &:nth-child(11) {
+        width: 1px;
+        height: 1px;
+        bottom: 309px;
+        left: 989px;
+        animation-duration: 0.5s;
+    }
+
+    &:nth-child(12) {
+        width: 3px;
+        height: 3px;
+        bottom: 92px;
+        left: 65px;
+        animation-duration: 2s;
+    }
+
+    &:nth-child(13) {
+        width: 1px;
+        height: 1px;
+        bottom: 396px;
+        left: 127px;
+        animation-duration: 1s;
+    }
+
+    &:nth-child(14) {
+        width: 1px;
+        height: 1px;
+        bottom: 188px;
+        left: 357px;
+        animation-duration: 1s;
+    }
+
+    &:nth-child(15) {
+        width: 3px;
+        height: 3px;
+        bottom: 87px;
+        left: 781px;
+        animation-duration: 0.33333s;
+    }
+
+    &:nth-child(16) {
+        width: 3px;
+        height: 3px;
+        bottom: 565px;
+        left: 237px;
+        animation-duration: 1.33333s;
+    }
+
+    &:nth-child(17) {
+        width: 1px;
+        height: 1px;
+        bottom: 594px;
+        left: 890px;
+        animation-duration: 4s;
+    }
+
+    &:nth-child(18) {
+        width: 3px;
+        height: 3px;
+        bottom: 142px;
+        left: 513px;
+        animation-duration: 1.33333s;
+    }
+
+    &:nth-child(19) {
+        width: 3px;
+        height: 3px;
+        bottom: 336px;
+        left: 714px;
+        animation-duration: 3s;
+    }
+
+    &:nth-child(20) {
+        width: 1px;
+        height: 1px;
+        bottom: 529px;
+        left: 116px;
+        animation-duration: 2s;
+    }
+
+    &:nth-child(21) {
+        width: 2px;
+        height: 2px;
+        bottom: 311px;
+        left: 761px;
+        animation-duration: 1.33333s;
+    }
+
+    &:nth-child(22) {
+        width: 3px;
+        height: 3px;
+        bottom: 4px;
+        left: 777px;
+        animation-duration: 0.66667s;
+    }
+
+    &:nth-child(23) {
+        width: 2px;
+        height: 2px;
+        bottom: 338px;
+        left: 112px;
+        animation-duration: 0.33333s;
+    }
+
+    &:nth-child(24) {
+        width: 3px;
+        height: 3px;
+        bottom: 586px;
+        left: 391px;
+        animation-duration: 1.33333s;
+    }
+
+    &:nth-child(25) {
+        width: 3px;
+        height: 3px;
+        bottom: 311px;
+        left: 889px;
+        animation-duration: 1.5s;
+    }
+
+    &:nth-child(26) {
+        width: 1px;
+        height: 1px;
+        bottom: 571px;
+        left: 735px;
+        animation-duration: 0.5s;
+    }
+
+    &:nth-child(27) {
+        width: 3px;
+        height: 3px;
+        bottom: 56px;
+        left: 384px;
+        animation-duration: 1.5s;
+    }
+
+    &:nth-child(28) {
+        width: 1px;
+        height: 1px;
+        bottom: 67px;
+        left: 771px;
+        animation-duration: 0.33333s;
+    }
+
+    &:nth-child(29) {
+        width: 3px;
+        height: 3px;
+        bottom: 440px;
+        left: 99px;
+        animation-duration: 1s;
+    }
+
+    &:nth-child(30) {
+        width: 2px;
+        height: 2px;
+        bottom: 102px;
+        left: 814px;
+        animation-duration: 0.33333s;
+    }
+
+    &:nth-child(31) {
+        width: 1px;
+        height: 1px;
+        bottom: 14px;
+        left: 543px;
+        animation-duration: 4s;
+    }
+
+    &:nth-child(32) {
+        width: 2px;
+        height: 2px;
+        bottom: 616px;
+        left: 637px;
+        animation-duration: 2s;
+    }
+
+    &:nth-child(33) {
+        width: 3px;
+        height: 3px;
+        bottom: 300px;
+        left: 321px;
+        animation-duration: 1.33333s;
+    }
+
+    &:nth-child(34) {
+        width: 2px;
+        height: 2px;
+        bottom: 77px;
+        left: 3px;
+        animation-duration: 1.33333s;
+    }
+
+    &:nth-child(35) {
+        width: 2px;
+        height: 2px;
+        bottom: 59px;
+        left: 43px;
+        animation-duration: 0.5s;
+    }
+
+    &:nth-child(36) {
+        width: 1px;
+        height: 1px;
+        bottom: 401px;
+        left: 428px;
+        animation-duration: 1.33333s;
+    }
+
+    &:nth-child(37) {
+        width: 1px;
+        height: 1px;
+        bottom: 573px;
+        left: 373px;
+        animation-duration: 4s;
+    }
+
+    &:nth-child(38) {
+        width: 2px;
+        height: 2px;
+        bottom: 211px;
+        left: 431px;
+        animation-duration: 2s;
+    }
+
+    &:nth-child(39) {
+        width: 3px;
+        height: 3px;
+        bottom: 401px;
+        left: 792px;
+        animation-duration: 0.33333s;
+    }
+
+    &:nth-child(40) {
+        width: 2px;
+        height: 2px;
+        bottom: 232px;
+        left: 333px;
+        animation-duration: 0.33333s;
+    }
+
+    &:nth-child(41) {
+        width: 1px;
+        height: 1px;
+        bottom: 324px;
+        left: 926px;
+        animation-duration: 1s;
+    }
+
+    &:nth-child(42) {
+        width: 3px;
+        height: 3px;
+        bottom: 379px;
+        left: 560px;
+        animation-duration: 2s;
+    }
+
+    &:nth-child(43) {
+        width: 2px;
+        height: 2px;
+        bottom: 598px;
+        left: 87px;
+        animation-duration: 0.5s;
+    }
+
+    &:nth-child(44) {
+        width: 2px;
+        height: 2px;
+        bottom: 591px;
+        left: 136px;
+        animation-duration: 4s;
+    }
+
+    &:nth-child(45) {
+        width: 3px;
+        height: 3px;
+        bottom: 4px;
+        left: 998px;
+        animation-duration: 1s;
+    }
+
+    &:nth-child(46) {
+        width: 1px;
+        height: 1px;
+        bottom: 323px;
+        left: 71px;
+        animation-duration: 4s;
+    }
+
+    &:nth-child(47) {
+        width: 2px;
+        height: 2px;
+        bottom: 173px;
+        left: 825px;
+        animation-duration: 0.66667s;
+    }
+
+    &:nth-child(48) {
+        width: 3px;
+        height: 3px;
+        bottom: 207px;
+        left: 878px;
+        animation-duration: 2s;
+    }
+
+    &:nth-child(49) {
+        width: 2px;
+        height: 2px;
+        bottom: 313px;
+        left: 155px;
+        animation-duration: 0.5s;
+    }
+
+    &:nth-child(50) {
+        width: 2px;
+        height: 2px;
+        bottom: 15px;
+        left: 917px;
+        animation-duration: 1.33333s;
+    }
+
+    &:nth-child(51) {
+        width: 3px;
+        height: 3px;
+        bottom: 372px;
+        left: 272px;
+        animation-duration: 0.33333s;
+    }
+
+    &:nth-child(52) {
+        width: 2px;
+        height: 2px;
+        bottom: 441px;
+        left: 232px;
+        animation-duration: 1.5s;
+    }
+
+    &:nth-child(53) {
+        width: 3px;
+        height: 3px;
+        bottom: 451px;
+        left: 405px;
+        animation-duration: 0.66667s;
+    }
+
+    &:nth-child(54) {
+        width: 1px;
+        height: 1px;
+        bottom: 512px;
+        left: 963px;
+        animation-duration: 2s;
+    }
+
+    &:nth-child(55) {
+        width: 1px;
+        height: 1px;
+        bottom: 106px;
+        left: 264px;
+        animation-duration: 0.66667s;
+    }
+
+    &:nth-child(56) {
+        width: 2px;
+        height: 2px;
+        bottom: 174px;
+        left: 272px;
+        animation-duration: 3s;
+    }
+
+    &:nth-child(57) {
+        width: 1px;
+        height: 1px;
+        bottom: 367px;
+        left: 971px;
+        animation-duration: 3s;
+    }
+
+    &:nth-child(58) {
+        width: 1px;
+        height: 1px;
+        bottom: 512px;
+        left: 480px;
+        animation-duration: 3s;
+    }
+
+    &:nth-child(59) {
+        width: 2px;
+        height: 2px;
+        bottom: 251px;
+        left: 757px;
+        animation-duration: 2s;
+    }
+
+    &:nth-child(60) {
+        width: 3px;
+        height: 3px;
+        bottom: 279px;
+        left: 385px;
+        animation-duration: 4s;
+    }
+
+    &:nth-child(61) {
+        width: 1px;
+        height: 1px;
+        bottom: 590px;
+        left: 131px;
+        animation-duration: 1.33333s;
+    }
+
+    &:nth-child(62) {
+        width: 3px;
+        height: 3px;
+        bottom: 577px;
+        left: 788px;
+        animation-duration: 0.66667s;
+    }
+
+    &:nth-child(63) {
+        width: 3px;
+        height: 3px;
+        bottom: 427px;
+        left: 176px;
+        animation-duration: 1s;
+    }
+
+    &:nth-child(64) {
+        width: 3px;
+        height: 3px;
+        bottom: 212px;
+        left: 286px;
+        animation-duration: 2s;
+    }
+
+    &:nth-child(65) {
+        width: 2px;
+        height: 2px;
+        bottom: 364px;
+        left: 114px;
+        animation-duration: 0.5s;
+    }
+
+    &:nth-child(66) {
+        width: 3px;
+        height: 3px;
+        bottom: 394px;
+        left: 152px;
+        animation-duration: 0.33333s;
+    }
+
+    &:nth-child(67) {
+        width: 2px;
+        height: 2px;
+        bottom: 608px;
+        left: 1px;
+        animation-duration: 1.5s;
+    }
+
+    &:nth-child(68) {
+        width: 2px;
+        height: 2px;
+        bottom: 522px;
+        left: 614px;
+        animation-duration: 0.66667s;
+    }
+
+    &:nth-child(69) {
+        width: 1px;
+        height: 1px;
+        bottom: 6px;
+        left: 802px;
+        animation-duration: 0.33333s;
+    }
+
+    &:nth-child(70) {
+        width: 1px;
+        height: 1px;
+        bottom: 295px;
+        left: 723px;
+        animation-duration: 1s;
+    }
+
+    &:nth-child(71) {
+        width: 1px;
+        height: 1px;
+        bottom: 65px;
+        left: 682px;
+        animation-duration: 1s;
+    }
+
+    &:nth-child(72) {
+        width: 3px;
+        height: 3px;
+        bottom: 169px;
+        left: 82px;
+        animation-duration: 2s;
+    }
+
+    &:nth-child(73) {
+        width: 2px;
+        height: 2px;
+        bottom: 145px;
+        left: 756px;
+        animation-duration: 2s;
+    }
+
+    &:nth-child(74) {
+        width: 3px;
+        height: 3px;
+        bottom: 16px;
+        left: 379px;
+        animation-duration: 1s;
+    }
+
+    &:nth-child(75) {
+        width: 1px;
+        height: 1px;
+        bottom: 297px;
+        left: 634px;
+        animation-duration: 1s;
+    }
+
+    &:nth-child(76) {
+        width: 3px;
+        height: 3px;
+        bottom: 194px;
+        left: 588px;
+        animation-duration: 0.5s;
+    }
+
+    &:nth-child(77) {
+        width: 3px;
+        height: 3px;
+        bottom: 503px;
+        left: 52px;
+        animation-duration: 2s;
+    }
+
+    &:nth-child(78) {
+        width: 2px;
+        height: 2px;
+        bottom: 406px;
+        left: 733px;
+        animation-duration: 1.33333s;
+    }
+
+    &:nth-child(79) {
+        width: 1px;
+        height: 1px;
+        bottom: 201px;
+        left: 834px;
+        animation-duration: 1s;
+    }
+
+    &:nth-child(80) {
+        width: 1px;
+        height: 1px;
+        bottom: 304px;
+        left: 266px;
+        animation-duration: 4s;
+    }
+
+    &:nth-child(81) {
+        width: 2px;
+        height: 2px;
+        bottom: 238px;
+        left: 947px;
+        animation-duration: 1.33333s;
+    }
+
+    &:nth-child(82) {
+        width: 1px;
+        height: 1px;
+        bottom: 199px;
+        left: 703px;
+        animation-duration: 0.33333s;
+    }
+
+    &:nth-child(83) {
+        width: 1px;
+        height: 1px;
+        bottom: 522px;
+        left: 669px;
+        animation-duration: 0.66667s;
+    }
+
+    &:nth-child(84) {
+        width: 3px;
+        height: 3px;
+        bottom: 471px;
+        left: 3px;
+        animation-duration: 1.33333s;
+    }
+
+    &:nth-child(85) {
+        width: 2px;
+        height: 2px;
+        bottom: 423px;
+        left: 858px;
+        animation-duration: 1s;
+    }
+
+    &:nth-child(86) {
+        width: 1px;
+        height: 1px;
+        bottom: 368px;
+        left: 617px;
+        animation-duration: 4s;
+    }
+
+    &:nth-child(87) {
+        width: 2px;
+        height: 2px;
+        bottom: 573px;
+        left: 223px;
+        animation-duration: 0.66667s;
+    }
+
+    &:nth-child(88) {
+        width: 2px;
+        height: 2px;
+        bottom: 587px;
+        left: 60px;
+        animation-duration: 1.5s;
+    }
+
+    &:nth-child(89) {
+        width: 2px;
+        height: 2px;
+        bottom: 160px;
+        left: 840px;
+        animation-duration: 0.66667s;
+    }
+
+    &:nth-child(90) {
+        width: 1px;
+        height: 1px;
+        bottom: 155px;
+        left: 841px;
+        animation-duration: 2s;
+    }
+
+    &:nth-child(91) {
+        width: 3px;
+        height: 3px;
+        bottom: 148px;
+        left: 736px;
+        animation-duration: 2s;
+    }
+
+    &:nth-child(92) {
+        width: 2px;
+        height: 2px;
+        bottom: 63px;
+        left: 567px;
+        animation-duration: 0.5s;
+    }
+
+    &:nth-child(93) {
+        width: 2px;
+        height: 2px;
+        bottom: 70px;
+        left: 775px;
+        animation-duration: 1.5s;
+    }
+
+    &:nth-child(94) {
+        width: 1px;
+        height: 1px;
+        bottom: 354px;
+        left: 320px;
+        animation-duration: 4s;
+    }
+
+    &:nth-child(95) {
+        width: 3px;
+        height: 3px;
+        bottom: 241px;
+        left: 415px;
+        animation-duration: 1s;
+    }
+
+    &:nth-child(96) {
+        width: 1px;
+        height: 1px;
+        bottom: 349px;
+        left: 162px;
+        animation-duration: 0.5s;
+    }
+
+    &:nth-child(97) {
+        width: 1px;
+        height: 1px;
+        bottom: 472px;
+        left: 472px;
+        animation-duration: 4s;
+    }
+
+    &:nth-child(98) {
+        width: 3px;
+        height: 3px;
+        bottom: 465px;
+        left: 617px;
+        animation-duration: 0.33333s;
+    }
+
+    &:nth-child(99) {
+        width: 2px;
+        height: 2px;
+        bottom: 14px;
+        left: 508px;
+        animation-duration: 0.66667s;
+    }
+}
+
+.title {
+    position: relative;
+    z-index: 50;
+
+    h1 {
+        font-size: 15rem;
+        font-weight: bold;
+
+        span {
+            vertical-align: middle;
+            margin: 0 30px;
+        }
+    }
+}
+
+.message {
+    margin: 50px auto 20px;
+
+    h2 {
+        font-size: 1.8rem;
+    }
+}
+
+.action {
+    margin-top: 30px;
+
+    a {
+        padding: 10px 20px;
+        font-family: Poppins;
+        text-decoration: none;
+        font-size: 1.2rem;
+        color: $color_1;
+        border: 2px solid $color_5;
+        background-color: $color_5;
+        border-radius: 50px;
+        transition: all 0.2s ease;
+        box-shadow: 0 0 15px $color_5;
+        &:hover {
+            cursor: pointer;
+            background-color: transparent;
+        }
+    }
+}
+
+.square {
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    left: -30px;
+    transform: scale(1.1) rotate(45deg);
+
+    >* {
+        position: absolute;
+    }
+
+    .light {
+        box-shadow: 0 0 10px $color_6;
+        background-color: $color_6;
+    }
+
+    .light1 {
+        width: 15px;
+        height: 135px;
+        transform: skew(0deg, 45deg);
+        z-index: 10;
+        top: 5.5px;
+        left: 15px;
+    }
+
+    .light3 {
+        width: 15px;
+        height: 135px;
+        transform: skew(0deg, 45deg);
+        z-index: 2;
+        top: 7.5px;
+        right: 15px;
+    }
+
+    .light2 {
+        width: 120px;
+        height: 15px;
+        transform: skew(45deg);
+        top: 0;
+        left: 22.5px;
+    }
+
+    .light4 {
+        width: 120px;
+        height: 15px;
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: skew(45deg);
+        bottom: 0;
+        right: 22.5px;
+    }
+
+    .shadow {
+        background-color: $color_5;
+        //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: 0 0 10px $color_5;
+    }
+
+    .shadow1 {
+        bottom: 7.5px;
+        right: 0;
+        width: 15px;
+        height: 120px;
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: skew(0deg, -45deg);
+    }
+
+    .shadow2 {
+        z-index: 3;
+        top: 15px;
+        left: 22.5px;
+        width: 120px;
+        height: 15px;
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: skew(-45deg);
+    }
+
+    .stairs1 {
+        top: 1px;
+        left: 11px;
+        width: 0;
+        height: 150px;
+
+        li {
+            position: relative;
+            width: 7.5px;
+            height: 7.5px;
+            background-color: $color_6;
+            //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+            box-shadow: 0 0 10px $color_6;
+            //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+            transform: rotate(45deg);
+            margin-bottom: 3px;
+        }
+
+        li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 7.5px;
+            height: 13px;
+            background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZlZGJhZSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmOWM2MSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==");
+            background-size: 100%;
+            background-image: linear-gradient(to right, $color_6, $color_5);
+            //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+            box-shadow: 0 0 10px $color_6;
+            top: 100%;
+        }
+    }
+
+    .stairs2 {
+        z-index: 10;
+        bottom: 19px;
+        left: 3px;
+        width: 150px;
+        height: 0;
+        display: flex;
+
+        li {
+            position: relative;
+            width: 7.5px;
+            height: 7.5px;
+            background-color: $color_6;
+            //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+            box-shadow: 0 0 10px $color_6;
+            //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+            transform: rotate(45deg);
+            margin-right: 3.5px;
+
+            &:last-child::before {
+                background: $color_6;
+            }
+        }
+
+        li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 7.5px;
+            height: 13px;
+            background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZlZGJhZSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmOWM2MSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==");
+            background-size: 100%;
+            background-image: linear-gradient(to right, $color_6, $color_5);
+            //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+            box-shadow: 0 0 10px $color_6;
+            bottom: 100%;
+        }
+    }
+
+    .stairs3 {
+        bottom: -32px;
+        right: 34px;
+        width: 0;
+        height: 150px;
+        z-index: 10;
+
+        li {
+            position: relative;
+            width: 7.5px;
+            height: 7.5px;
+            background-color: $color_6;
+            //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+            box-shadow: 0 0 10px $color_6;
+            //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+            transform: rotate(45deg);
+            margin-bottom: 3.5px;
+        }
+    }
+
+    .stairs4 {
+        top: -4px;
+        left: 16px;
+        width: 150px;
+        height: 0;
+        display: flex;
+
+        li {
+            position: relative;
+            width: 7.5px;
+            height: 7.5px;
+            background-color: $color_6;
+            //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+            box-shadow: 0 0 10px $color_6;
+            //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+            transform: rotate(45deg);
+            margin-right: 3.5px;
+        }
+    }
+}
+
+.planet {
+    position: absolute;
+    z-index: 10;
+    width: 90px;
+    height: 90px;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 50%;
+    //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: border-box;
+}
+
+.planet::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 50%;
+    //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+}
+
+.planet::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 50%;
+    //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+}
+
+.planet1 {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 0 0 30px $color_7;
+    bottom: 260px;
+    left: 50px;
+    border: 5px solid $color_7;
+    background-color: $color_8;
+}
+
+.planet1::before {
+    background-color: $color_9;
+}
+
+.planet1::after {
+    background-color: $color_10;
+}
+
+.planet2 {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 0 0 30px $color_11;
+    //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: scale(0.8);
+    bottom: 40px;
+    right: 80px;
+    border: 5px solid $color_11;
+    background-color: $color_12;
+}
+
+.planet2::before {
+    background-color: $color_13;
+}
+
+.planet2::after {
+    background-color: $color_14;
+}
+
+.planet3 {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 0 0 30px $color_15;
+    //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: scale(0.6);
+    top: 20px;
+    right: 30px;
+    border: 5px solid $color_15;
+    background-color: $color_16;
+}
+
+.planet3::before {
+    background-color: $color_17;
+}
+
+.planet3::after {
+    background-color: $color_18;
+}
+
+.girl {
+    position: absolute;
+    z-index: 99;
+    width: 12px;
+    height: 40px;
+    top: 130px;
+    left: 460px;
+
+    .head {
+        position: relative;
+        z-index: 10;
+        width: 10px;
+        height: 10px;
+        //Instead of the line below you could use @include box-sizing($bs)
+        box-sizing: border-box;
+        background-color: $color_1;
+        border-left: 3px solid $color_19;
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+        border-radius: 5px;
+        //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(-20deg);
+    }
+
+    .head::before {
+        content: "";
+        position: absolute;
+        left: -16px;
+        top: 0;
+        width: 0;
+        height: 0;
+        display: block;
+        border-right: 15px solid $color_1;
+        border-top: 5px solid transparent;
+        border-bottom: 4px solid transparent;
+    }
+
+    .body {
+        position: absolute;
+        top: 7px;
+        left: -2px;
+        width: 0;
+        height: 0;
+        //Instead of the line below you could use @include box-sizing($bs)
+        box-sizing: border-box;
+        border-bottom: 20px solid $color_1;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+        border-radius: 7px;
+    }
+
+    .legs {
+        position: absolute;
+        bottom: 5px;
+        left: 3px;
+        width: 3px;
+        height: 10px;
+        border-left: 2px solid $color_1;
+        border-right: 2px solid $color_1;
+    }
+}
+
+.test {
+    color: $color_20;
+}

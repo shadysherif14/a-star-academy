@@ -1,0 +1,126 @@
+@mixin index($gtc) {
+    .card {
+        div.card-header {
+            @media screen and (max-width: $lg) {
+                display: none !important;
+            }
+            height: $header-height;
+            background: $light-black;
+            * {
+                font-size: 1.25em;
+            }
+
+        }
+        div.grid {
+            @media screen and (max-width: $lg) {
+                grid-template-columns: 1fr;
+            }
+            grid-gap: 0.5rem;
+            display: grid;
+            grid-template-columns: $gtc;
+            text-align: center;
+            align-content: center;
+            align-items: start;
+        }
+        div.card-body {
+            @media screen and (max-width: $lg) and (min-width: $md) {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+            padding: 0px;
+            div.grid {
+                padding: 1em 0.5em;
+                * {
+                    margin-top: 0;
+                    margin-bottom: 0;
+                }
+                &:nth-child(even) {
+                    background: #ededed;
+                }
+                p.content {
+                    display: none;
+                }
+                p a {
+                    color: #212529;
+                    @media screen and (max-width: $lg) {
+                        color: $white;
+                    }
+                }
+                img {
+                    max-width: 100%;
+                    width: 200px;
+                    height: auto;
+                }
+                @media screen and (max-width: $lg) {
+                    padding: 0px;
+                    > div {
+                        &:first-child {
+                            background: $light-black;
+                            color: $white;
+                            font-size: 1.5em;
+                            display: block !important;
+                        }
+
+                        &:not(:first-child),
+                        &:not(:last-child) {
+                            display: grid;
+                            grid-template-columns: 2fr 3fr;
+                            align-items: center;
+                            justify-items: stretch;
+                            text-align: start;
+                            * {
+                                padding: 0.5em;
+                            }
+                            
+                            div {
+                                p.content {
+                                    display: block;
+                                    font-size: 1.2em;
+                                }
+                            }
+                        }
+                    }
+                }
+                div.actions {
+                   
+                    max-width: 200px;
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    justify-items: center;
+                    grid-gap: 0.5rem;
+                    button.btn,
+                    a.btn {
+                        width: 50px !important;
+                        height: 50px !important;
+                        border-radius: 100%;
+                        padding: 0px;
+                        display: grid;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 0px !important;
+                        background: transparent;
+                        i {
+                            font-size: 1.25rem;
+                        }
+                        $actions: show edit delete;
+                        $btns: $btn-show-background $btn-edit-background $btn-delete-background;
+                        @each $action in $actions {
+                            $index: index($actions, $action);
+                            $btn: nth($btns, $index);
+                            &.#{$action} {
+                                i {
+                                    color: #{$btn};
+                                }
+                                border: 1px solid #{$btn};
+                                &:hover {
+                                    background: #{$btn};
+                                    i{color: $white;}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

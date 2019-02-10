@@ -1,0 +1,7 @@
+@import "../../variables";
+
+@import "../mixins/index";
+
+$gtc: repeat(5, 2fr) 3fr 2fr;
+
+@include index($gtc);

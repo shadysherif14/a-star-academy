@@ -1,0 +1,14 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/auth/index.css": "/css/auth/index.css",
+    "/css/errors/index.css": "/css/errors/index.css",
+    "/css/user/main.css": "/css/user/main.css",
+    "/css/user/home.css": "/css/user/home.css",
+    "/css/user/courses/index.css": "/css/user/courses/index.css",
+    "/css/user/courses/show.css": "/css/user/courses/show.css",
+    "/css/user/instructors/index.css": "/css/user/instructors/index.css",
+    "/css/user/instructors/show.css": "/css/user/instructors/show.css",
+    "/css/user/videos/show.css": "/css/user/videos/show.css",
+    "/css/user/profiles/show.css": "/css/user/profiles/show.css",
+    "/css/app.css": "/css/app.css"
+}

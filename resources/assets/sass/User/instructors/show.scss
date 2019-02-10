@@ -1,0 +1,131 @@
+@import '../../variables';
+
+@import '../courses/list';
+
+
+.main-content {
+    padding-bottom: 0px !important;
+}
+#list {
+    margin: auto !important;
+    padding: 1rem !important;
+}
+
+.instructor-wrapper,
+.user-wrapper {
+    background: linear-gradient(45deg, #000, #111);
+    color: #fff;
+    min-height: 90vh;
+    display: grid;
+    align-content: center;
+
+    .body {
+        display: grid;
+        grid-template-columns: auto 300px;
+        grid-gap: 2rem;
+        align-items: center;
+        padding: 3rem 0;
+        width: 90%;
+        margin: auto;
+
+        @media screen and (max-width: $md) {
+            grid-template-columns: 1fr;
+            padding: 1rem;
+        }
+
+        .details {
+            .title {
+                .name {
+                    margin: 0 0 5px;
+                    color: $gold;
+                    font-weight: 700;
+                    font-size: 2rem;
+
+                    @media screen and (max-width: $md) {
+                        text-align: center;
+                    }
+
+                    @media screen and (max-width: $sm) {
+                        font-size: 2.5rem;
+                    }
+                }
+            }
+
+            .about {
+                margin: 10px 0;
+
+                @media screen and (min-width: $md) {
+                    max-width: 80%;
+
+                }
+            }
+
+            img.icon {
+                width: 32px;
+                height: auto;
+            }
+
+            .meta {
+                display: grid;
+                grid-auto-rows: 1fr 1fr 1fr;
+                align-items: center;
+
+                img.icon {
+                    margin: 5px 10px;
+                }
+            }
+
+            .social {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+
+                img.icon {
+                    margin: 0 5px;
+                    width: 48px;
+                }
+            }
+
+        }
+
+        .image-wrapper {
+            img {
+                @media screen and (max-width: $md) {
+                    display: block;
+                    margin: auto;
+                }
+                border-radius: 50%;
+                max-width: 300px ;
+                margin: auto;
+                width: auto;
+                box-shadow: 0 20px 20px rgba(0, 0, 0, 0.35);
+            }
+        }
+    }
+}
+
+#courses {
+    .header {
+        background: rgba($color: #000000, $alpha: 0.5);
+        text-align: center;
+        margin: 0;
+        color: $gold;
+        padding: 1rem;
+
+        img {
+            margin-top: 10px;
+            height: 100px;
+            width: auto;
+        }
+
+        h1 {
+            @media screen and (max-width: $md) {
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
+#list {
+    @include courses-list;
+}

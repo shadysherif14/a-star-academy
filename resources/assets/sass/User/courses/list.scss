@@ -1,0 +1,183 @@
+@mixin courses-list {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    @media screen and (max-width: $md) {
+        grid-template-columns: 1fr;
+    }
+
+    grid-gap: 10px;
+    max-width: 90%;
+    margin: 10px auto;
+
+    .single {
+        box-shadow: 0 20px 20px rgba(0, 0, 0, 0.35);
+        color: #e6e6e6;
+        position: relative;
+        overflow: hidden;
+
+        &:hover {
+            .image-wrapper {
+                img {
+                    opacity: 1;
+                }
+            }
+        }
+
+        img.like {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 32px;
+            height: auto;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .details {
+            padding: 20px;
+            position: relative;
+            z-index: 5;
+            background: radial-gradient(circle at left, rgba(0, 0, 0, .6) 0, #000 50%, #000 100%);
+            min-height: 100%;
+
+            .title {
+                .name {
+                    margin: 0 0 5px;
+                    color: $gold;
+                    font-weight: 400;
+                }
+            }
+
+            .tags {
+                margin-bottom: 10px;
+
+                .tag {
+                    cursor: pointer;
+                    background: $grayDarker;
+                    border-radius: 1rem;
+                    border-left: 5px solid $gold;
+                    color: #fff;
+                    display: inline-block;
+                    padding: 5px 20px;
+
+                    &:not(:last-child) {
+                        margin-right: 0.5rem;
+                    }
+
+                    transition: all 0.4s;
+
+                    &:hover {
+                        background-color: $gold;
+                        border-left-color: $grayDarker;
+                    }
+                }
+
+            }
+
+            .instructor {
+                $height: 70px;
+                min-height: $height;
+                position: relative;
+                display: grid;
+                grid-template-columns: $height auto;
+                align-items: center;
+                grid-gap: 1rem;
+
+                .name {
+                    a {
+                        color: #fff;
+                        text-decoration: none;
+                        transition: 1s;
+
+                        &:hover {
+                            color: $gold;
+                            text-decoration: none;
+                        }
+                    }
+
+                    margin-top: 0px;
+                    margin-bottom: 10px;
+                }
+
+                .about {
+                    color: #aaa;
+                }
+
+                img {
+                    overflow: hidden;
+                    width: $height;
+                    height: auto;
+                    z-index: 1;
+                    border: 3px solid #ddd;
+                    box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+                    border-radius: 50%;
+
+                }
+
+            }
+
+            .description {
+                font-size: 1rem;
+                margin: 10px 0;
+                text-align: justify;
+            }
+
+            .meta {
+                color: $gold;
+                font-size: 14px;
+                margin: 10px 0;
+            }
+
+
+            .buttons-wrapper {
+                min-height: 50px;
+                margin-top: 10px;
+
+                .buttons {
+                    position: absolute;
+                    bottom: 10px;
+
+                    .btn {
+                        border-radius: 1rem;
+                        font-size: 14px;
+                        padding: 10px 20px;
+                        transition: 0.5 all;
+
+                        &:nth-child(odd) {
+                            background: $gold;
+
+                            &:hover {
+                                background: lighten($color: $gold, $amount: 15);
+                            }
+                        }
+
+                        &:nth-child(even) {
+                            background: transparent;
+                            border: 1px solid $gold;
+
+                            &:hover {
+                                border-color: lighten($color: $gold, $amount: 15);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .image-wrapper {
+            overflow: hidden;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            img {
+                height: 100%;
+                opacity: .7;
+                width: auto;
+            }
+        }
+    }
+}

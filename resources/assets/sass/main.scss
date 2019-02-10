@@ -1,0 +1,270 @@
+@import 'variables';
+
+.overlay-image {
+    position: relative;
+    min-width: 100%;
+    display: grid;
+    align-items: center;
+    align-content: center;
+
+    img.image {
+        min-width: 100%;
+    }
+
+    .overlay {
+        background: rgba(0, 0, 0, 0.7);
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        opacity: 1;
+        transition: all 0.4s ease-in-out 0s;
+        display: block;
+        z-index: 1;
+    }
+
+    .content {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+
+        * {
+            color: $white;
+        }
+
+        z-index: 2;
+    }
+}
+
+.has-danger {
+    * {
+        border-color: $redCrimson !important;
+        color: $redCrimson !important
+    }
+}
+
+.has-success {
+    * {
+        border-color: $greenFalls !important;
+        color: $greenFalls !important;
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Mali|Montserrat+Alternates|PT+Sans+Narrow|Rambla|Titillium+Web|Changa');
+
+*:not(i) {
+    font-family: 'Rambla', sans-serif !important;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Titillium Web', sans-serif !important;
+}
+
+/**
+font-family: 'Mali', cursive;
+font-family: 'PT Sans Narrow', sans-serif;
+font-family: 'Titillium Web', sans-serif;
+font-family: 'Montserrat Alternates', sans-serif;
+font-family: 'Rambla', sans-serif;
+ */
+
+.radio,
+.pretty {
+    label {
+        color: #222;
+    }
+}
+
+.input-group {
+    .form-control {
+        padding-left: 1rem;
+    }
+
+    .input-group-addon {
+        padding-left: 10px;
+        width: 7%;
+        min-width: 32px;
+    }
+}
+
+.form-group,
+.input-group {
+    margin: 1em 0em;
+
+    input.form-control,
+    textarea.form-control {
+        padding: 10px 14px !important;
+        font-size: 1em;
+        font-weight: 500;
+    }
+
+    textarea.form-control {
+        border: 1px solid rgb(227, 227, 227);
+        border-radius: 30px;
+    }
+}
+
+small.feedback {
+    display: block;
+    margin-top: 0.75em;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.bootstrap-select {
+    .btn {
+        background: $white;
+        border: 1px solid $grayAsh;
+        padding: 10px 14px !important;
+        border-radius: 0px !important;
+        box-shadow: none;
+
+        &:focus,
+        &:hover,
+        &:active {
+            outline: none !important;
+            background: $white !important;
+            border: 1px solid $grayAsh;
+            box-shadow: none;
+            outline: none;
+
+        }
+    }
+
+    .filter-option {
+        color: $dark-black !important;
+        font-size: 1rem;
+    }
+
+    .selected {
+        background: $dark-black !important;
+    }
+
+    .bs-caret {
+        margin-right: -1em;
+    }
+
+    .bs-searchbox:after {
+        top: 20px;
+    }
+
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+
+    &-track {
+        background: #f1f1f1;
+        border-radius: 8px;
+
+    }
+
+    &-thumb {
+        background: lighten($gold, 20%);
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+
+        &:hover {
+            background: $gold;
+        }
+    }
+
+}
+
+footer#footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    @media screen and (max-width: $md) {
+        grid-template-columns: 1fr;
+    }
+    background: linear-gradient(45deg, #000, #111);
+    padding: 3rem;
+    grid-gap: 3rem;
+    h3 {
+        color: $white;
+    }
+
+    .about {
+        p {
+            color: #aaa;
+            text-align: justify;
+        }
+    }
+    .social {
+        img.icon {
+            width: 32px;
+            height: 32px;
+            margin: 10px 10px 10px 0;
+        }
+        a {
+            color: $white;
+        }
+    }
+    .contact {
+        .input-group {
+            margin-top: 0;
+            margin-bottom: 20px;
+    
+            &.input-group-focus {
+                * {
+                    background: #222 !important;
+                }
+            }
+    
+            * {
+                color: $white;
+                border: 0px;
+                background: #111;
+                border-radius: 0px;
+            }
+    
+    
+            .form-control {
+                &::placeholder {
+                    color: #777;
+                    font-weight: 300;
+                }
+            }
+    
+            .input-group-addon {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                width: 48px;
+                display: grid;
+                justify-content: center;
+    
+                img {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+        }
+
+        button {
+            display: block;
+            max-width: 400px;
+            width: 100%;
+            margin: auto;
+            background: #111;
+            color: #ddd;
+            border-radius: 0;
+            i {
+                margin-right: 10px;
+            }
+        }
+
+    }
+}

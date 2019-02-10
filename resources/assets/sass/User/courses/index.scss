@@ -1,0 +1,90 @@
+@import '../../variables';
+@import './list';
+
+.header {
+    display: none;
+    background: url(https://images.unsplash.com/photo-1510519138101-570d1dca3d66?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=45fbe9046945ce711c299b8c6d26d998&auto=format&fit=crop&w=731&q=80);
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 100vw;
+    min-height: 90vh;
+    position: relative;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.35);
+
+    .body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba($color: $black, $alpha: 0.7);
+        width: 100%;
+        height: 100%;
+        display: grid;
+        align-content: center;
+        justify-content: center;
+
+        img {
+            height: 150px;
+            width: auto;
+            display: block;
+            margin: auto;
+        }
+
+        h1 {
+            color: $gold;
+            margin: 20px;
+        }
+    }
+}
+
+
+#list {
+    @include courses-list;
+}
+
+#search {
+    width: 90%;
+    margin: 1rem auto;
+    background: $gradientBg;
+    .input-group {
+        max-width: 100% !important;
+        &.input-group-focus {
+            * {
+                background: #222 !important;
+            }
+        }
+
+        * {
+            color: $white;
+            border: 0px;
+            background: #111;
+            border-radius: 0px;
+        }
+
+
+        .form-control {
+            &::placeholder {
+                color: #777;
+                font-weight: 300;
+            }
+        }
+
+        .input-group-addon {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            width: 48px;
+            display: grid;
+            justify-content: center;
+
+            img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+    input {
+        background: $black;
+        color: #fff;
+        border-radius: 0px;
+    }
+}

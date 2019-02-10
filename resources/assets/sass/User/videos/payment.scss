@@ -1,0 +1,106 @@
+#payment-form {
+
+    .modal-dialog {
+        max-width: 90%;
+        margin: 0 auto;
+        width: 400px;
+    }
+
+    &.show {
+        display: grid !important;
+        align-content: center;
+        justify-content: center;
+    }
+
+
+    .modal-content {
+        border-radius: 0 !important;
+        box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.9);
+
+        .modal-body {
+            background: transparent;
+            padding: 0px;
+            .image {
+                background-image: url(../../../images/payment.jpg);
+                background-position: center;
+                background-origin: content-box;
+                background-size: cover;
+                min-height: 300px;
+                min-width: 100%;
+            }
+
+            form {
+                .content {
+                    padding: 1rem;
+
+                    .input-group-addon {
+                        img {
+                            width: 20px;
+                        }
+                    }
+
+                    .type {
+                        margin: 1rem 0;
+
+                        label {
+                            display: block;
+                        }
+                    }
+
+                    .grid {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        grid-gap: 10px;
+                    }
+
+                    #price-wrapper {
+                        text-align: center;
+                        display: none;
+                        margin: 0.5rem auto;
+                    }
+
+                    .input-group {
+                        margin: 0;
+                    }
+
+                    label {
+                        font-weight: normal;
+                        margin-bottom: 5px;
+                        margin-top: 10px;
+                        color: #000;
+                    }
+
+                    .pretty {
+                        label {
+                            margin: 0 !important;
+
+                            &:before,
+                            &:after {
+                                padding: 8px;
+                            }
+                        }
+                    }
+
+                }
+
+                button.btn {
+                    background: $black;
+                    color: $white;
+                    display: block;
+                    width: 100%;
+                    margin: 0px;
+                    border-radius: 0 !important;
+                }
+            }
+
+            iframe {
+                width: 100%;
+                height: 522px;
+                border: none;
+                body {
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}

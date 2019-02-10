@@ -1,0 +1,345 @@
+/*!
+ *
+ * Color Me SASS v1.0
+ * Built and Designed by Richard Bray
+ *
+ */
+
+/*!
+ *
+ * Color Me SASS v1.0
+ * Built and Designed by Richard Bray
+ *
+ */
+
+.main-content {
+  padding-bottom: 0px !important;
+}
+
+#list {
+  margin: auto !important;
+  padding: 1rem !important;
+}
+
+.instructor-wrapper,
+.user-wrapper {
+  background: linear-gradient(45deg, #000, #111);
+  color: #fff;
+  min-height: 90vh;
+  display: grid;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.instructor-wrapper .body,
+.user-wrapper .body {
+  display: grid;
+  grid-template-columns: auto 300px;
+  grid-gap: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 3rem 0;
+  width: 90%;
+  margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .instructor-wrapper .body,
+  .user-wrapper .body {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+}
+
+.instructor-wrapper .body .details .title .name,
+.user-wrapper .body .details .title .name {
+  margin: 0 0 5px;
+  color: #f3b715;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .instructor-wrapper .body .details .title .name,
+  .user-wrapper .body .details .title .name {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .instructor-wrapper .body .details .title .name,
+  .user-wrapper .body .details .title .name {
+    font-size: 2.5rem;
+  }
+}
+
+.instructor-wrapper .body .details .about,
+.user-wrapper .body .details .about {
+  margin: 10px 0;
+}
+
+@media screen and (min-width: 768px) {
+  .instructor-wrapper .body .details .about,
+  .user-wrapper .body .details .about {
+    max-width: 80%;
+  }
+}
+
+.instructor-wrapper .body .details img.icon,
+.user-wrapper .body .details img.icon {
+  width: 32px;
+  height: auto;
+}
+
+.instructor-wrapper .body .details .meta,
+.user-wrapper .body .details .meta {
+  display: grid;
+  grid-auto-rows: 1fr 1fr 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.instructor-wrapper .body .details .meta img.icon,
+.user-wrapper .body .details .meta img.icon {
+  margin: 5px 10px;
+}
+
+.instructor-wrapper .body .details .social,
+.user-wrapper .body .details .social {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.instructor-wrapper .body .details .social img.icon,
+.user-wrapper .body .details .social img.icon {
+  margin: 0 5px;
+  width: 48px;
+}
+
+.instructor-wrapper .body .image-wrapper img,
+.user-wrapper .body .image-wrapper img {
+  border-radius: 50%;
+  max-width: 300px;
+  margin: auto;
+  width: auto;
+  -webkit-box-shadow: 0 20px 20px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 20px 20px rgba(0, 0, 0, 0.35);
+}
+
+@media screen and (max-width: 768px) {
+  .instructor-wrapper .body .image-wrapper img,
+  .user-wrapper .body .image-wrapper img {
+    display: block;
+    margin: auto;
+  }
+}
+
+#courses .header {
+  background: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  margin: 0;
+  color: #f3b715;
+  padding: 1rem;
+}
+
+#courses .header img {
+  margin-top: 10px;
+  height: 100px;
+  width: auto;
+}
+
+@media screen and (max-width: 768px) {
+  #courses .header h1 {
+    font-size: 2rem;
+  }
+}
+
+#list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  max-width: 90%;
+  margin: 10px auto;
+}
+
+@media screen and (max-width: 768px) {
+  #list {
+    grid-template-columns: 1fr;
+  }
+}
+
+#list .single {
+  -webkit-box-shadow: 0 20px 20px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 20px 20px rgba(0, 0, 0, 0.35);
+  color: #e6e6e6;
+  position: relative;
+  overflow: hidden;
+}
+
+#list .single:hover .image-wrapper img {
+  opacity: 1;
+}
+
+#list .single img.like {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 32px;
+  height: auto;
+  cursor: pointer;
+  z-index: 10;
+}
+
+#list .single .details {
+  padding: 20px;
+  position: relative;
+  z-index: 5;
+  background: radial-gradient(circle at left, rgba(0, 0, 0, 0.6) 0, #000 50%, #000 100%);
+  min-height: 100%;
+}
+
+#list .single .details .title .name {
+  margin: 0 0 5px;
+  color: #f3b715;
+  font-weight: 400;
+}
+
+#list .single .details .tags {
+  margin-bottom: 10px;
+}
+
+#list .single .details .tags .tag {
+  cursor: pointer;
+  background: #222;
+  border-radius: 1rem;
+  border-left: 5px solid #f3b715;
+  color: #fff;
+  display: inline-block;
+  padding: 5px 20px;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+#list .single .details .tags .tag:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+#list .single .details .tags .tag:hover {
+  background-color: #f3b715;
+  border-left-color: #222;
+}
+
+#list .single .details .instructor {
+  min-height: 70px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 70px auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 1rem;
+}
+
+#list .single .details .instructor .name {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+#list .single .details .instructor .name a {
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+#list .single .details .instructor .name a:hover {
+  color: #f3b715;
+  text-decoration: none;
+}
+
+#list .single .details .instructor .about {
+  color: #aaa;
+}
+
+#list .single .details .instructor img {
+  overflow: hidden;
+  width: 70px;
+  height: auto;
+  z-index: 1;
+  border: 3px solid #ddd;
+  -webkit-box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+}
+
+#list .single .details .description {
+  font-size: 1rem;
+  margin: 10px 0;
+  text-align: justify;
+}
+
+#list .single .details .meta {
+  color: #f3b715;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+#list .single .details .buttons-wrapper {
+  min-height: 50px;
+  margin-top: 10px;
+}
+
+#list .single .details .buttons-wrapper .buttons {
+  position: absolute;
+  bottom: 10px;
+}
+
+#list .single .details .buttons-wrapper .buttons .btn {
+  border-radius: 1rem;
+  font-size: 14px;
+  padding: 10px 20px;
+  -webkit-transition: 0.5 all;
+  transition: 0.5 all;
+}
+
+#list .single .details .buttons-wrapper .buttons .btn:nth-child(odd) {
+  background: #f3b715;
+}
+
+#list .single .details .buttons-wrapper .buttons .btn:nth-child(odd):hover {
+  background: #f7cd5e;
+}
+
+#list .single .details .buttons-wrapper .buttons .btn:nth-child(even) {
+  background: transparent;
+  border: 1px solid #f3b715;
+}
+
+#list .single .details .buttons-wrapper .buttons .btn:nth-child(even):hover {
+  border-color: #f7cd5e;
+}
+
+#list .single .image-wrapper {
+  overflow: hidden;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#list .single .image-wrapper img {
+  height: 100%;
+  opacity: .7;
+  width: auto;
+}
+

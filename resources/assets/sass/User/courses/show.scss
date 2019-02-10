@@ -1,0 +1,683 @@
+@import '../../variables';
+@import '../videos/flipper';
+
+.main-content {
+    padding-bottom: 0px !important;
+}
+
+.layouts {
+    //background: linear-gradient(275deg, rgba($black, 1), rgba($black, 0.8));
+
+    .text {
+        display: inline;
+        margin: 0px 0.5rem 0px 0px;
+        color: $white;
+    }
+
+    .btn {
+        margin: 5px 0px;
+        background: $grayDarker;
+        transition: 0.5 all;
+
+        &.active {
+            background: $gold;
+        }
+    }
+
+    text-align: right;
+    padding: 0.5rem 3rem;
+}
+
+.course {
+    background: linear-gradient(45deg, #000, #111);
+    color: #fff;
+    min-height: calc(100vh - 60px);
+
+    .body {
+        display: grid;
+        grid-template-columns: auto 300px;
+        grid-gap: 2rem;
+        align-items: start;
+        padding: 3rem 0;
+        width: 90%;
+        margin: auto;
+
+
+        @media screen and (max-width: $md) {
+            grid-template-columns: 1fr;
+            padding: 1rem;
+        }
+
+        .details {
+            position: relative;
+            z-index: 5;
+            min-height: 100%;
+
+            .title {
+                .name {
+                    margin: 0 0 5px;
+                    color: $gold;
+                    font-weight: 400;
+                    font-size: 4rem;
+                    letter-spacing: 5px;
+                    text-transform: uppercase;
+                    animation-name: fadeInDown;
+
+                    @media screen and (max-width: $md) {
+                        text-align: center;
+                    }
+
+                    @media screen and (max-width: $sm) {
+                        font-size: 2.5rem;
+                    }
+                }
+            }
+
+            .tags {
+                margin-bottom: 1rem;
+                animation-name: fadeInLeft;
+                animation-delay: 1s;
+
+                .tag {
+                    cursor: pointer;
+                    background: $grayDarker;
+                    border-radius: 1rem;
+                    border-left: 5px solid $gold;
+                    color: #fff;
+                    display: inline-block;
+                    padding: 5px 20px;
+
+                    &:not(:last-child) {
+                        margin-right: 0.5rem;
+                    }
+
+                    transition: all 0.4s;
+
+                    &:hover {
+                        background-color: $gold;
+                        border-left-color: $grayDarker;
+                    }
+                }
+
+            }
+
+            .instructor {
+                border-top: 2px solid rgba($white, 0.8);
+                padding-top: 2rem;
+                margin-top: 2rem;
+                $height: 80px;
+                min-height: $height;
+                position: relative;
+                display: grid;
+                grid-template-columns: $height auto;
+                animation-name: fadeInUp;
+                animation-delay: 4s;
+
+                @media screen and (max-width: $sm) {
+                    grid-template-columns: 1fr;
+
+                    img {
+                        display: block;
+                        margin: 0 auto 10px;
+                    }
+                }
+
+                align-items: flex-start;
+                grid-gap: 1rem;
+
+                a {}
+
+                .name {
+                    a {
+                        color: #fff;
+                        text-decoration: none;
+                        transition: 1s;
+
+                        &:hover {
+                            color: $gold;
+                            text-decoration: none;
+                        }
+                    }
+
+                    margin-top: 0px;
+                    margin-bottom: 10px;
+                }
+
+                .about {
+                    color: #aaa;
+                }
+
+                img {
+                    overflow: hidden;
+                    width: $height;
+                    height: auto;
+                    z-index: 1;
+                    border: 3px solid #ddd;
+                    box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+                    border-radius: 50%;
+
+                }
+            }
+
+            .grid {
+                display: grid;
+                align-items: start;
+                grid-template-columns: 7fr 3fr;
+            }
+
+            .description {
+                margin: 10px 0;
+                animation-name: bounceInLeft;
+                animation-delay: 2s;
+            }
+
+            .videos {
+                color: $gold;
+                font-size: 14px;
+                margin: 10px 0;
+                justify-self: end;
+                animation-name: slideInLeft;
+                animation-delay: 2s;
+
+                img {
+                    margin-right: 10px;
+                }
+            }
+
+
+            .buttons {
+                min-height: 50px;
+                margin-top: 10px;
+                animation-name: fadeIn;
+                animation-delay: 4.5s;
+
+                .btn {
+                    border-radius: 1rem;
+                    font-size: 14px;
+                    padding: 10px 20px;
+                    transition: 0.5 all;
+                    border: 1px solid $gold;
+                    background: transparent;
+
+                    &:hover {
+                        background: $gold;
+                    }
+
+                }
+            }
+        }
+
+        .image-wrapper {
+            animation-name: rotateInDownRight;
+            animation-delay: 3s;
+
+            img {
+                @media screen and (max-width: $md) {
+                    display: block;
+                    margin: auto;
+                }
+
+                width: auto;
+                max-width: 300px;
+                box-shadow: 0 20px 20px rgba(0, 0, 0, 0.35);
+
+            }
+        }
+    }
+}
+
+.videos-header {
+    text-align: center;
+    background: rgba($color: #000000, $alpha: 0.5);
+    margin: 0;
+    color: $gold;
+    padding: 1rem;
+
+    img {
+        margin-top: 10px;
+        height: 100px;
+        width: auto;
+    }
+
+    h1 {
+        @media screen and (max-width: $md) {
+            font-size: 2rem;
+        }
+    }
+}
+
+#videos-list {
+
+    ul {
+        list-style: none;
+
+        li {
+            display: grid;
+            grid-template-columns: 150px auto;
+
+            @media screen and (max-width: $md) {
+                display: block;
+            }
+
+            grid-gap: 2rem;
+            align-items: center;
+            background: $light-black;
+            padding: 3rem;
+            position: relative;
+
+            .price {
+                @media screen and (max-width: $md) {
+                    display: none;
+                }
+
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                padding: 0.5rem 1rem;
+                background: $grayDark;
+            }
+
+            &:nth-child(even) {
+                background: $grayDark;
+
+                .circle,
+                .duration {
+                    background: $light-black !important;
+                    border-color: lighten($color: $light-black, $amount: 20) !important;
+                }
+
+                .price {
+                    background: $light-black;
+                }
+            }
+
+            .number {
+                @media screen and (max-width: $md) {
+                    display: none;
+                }
+
+                width: 80px;
+                height: 80px;
+                justify-self: center;
+
+                .circle {
+                    width: 100%;
+                    height: 100%;
+                    background: $grayDark;
+                    border-radius: 100%;
+                    display: grid;
+                    align-items: center;
+                    justify-items: center;
+                    border: 1px solid;
+                    border-color: lighten($color: $grayDark, $amount: 20);
+
+                    span {
+                        font-family: 'Mali', cursive;
+                        font-size: 2rem;
+                        color: #fff;
+                    }
+                }
+            }
+
+            .details {
+                position: relative;
+
+                .duration {
+                    margin-left: 1rem;
+                    background: $grayDark;
+                    padding: 0.5rem;
+                    border-radius: 1rem;
+                    font-size: 0.9em;
+                }
+
+                * {
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+#videos-grid {
+    margin: 1rem auto;
+    max-width: 90%;
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        @media screen and (max-width: $lg) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media screen and (max-width: $sm) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        grid-gap: 1rem;
+    }
+
+    a {
+
+        @media screen and (min-width: $lg) {
+            &:nth-child(3n) {
+                animation-name: fadeInRight;
+            }
+
+            &:nth-child(3n + 1) {
+                animation-name: fadeInLeft;
+            }
+
+            &:nth-child(3n + 2) {
+                animation-name: fadeInUp;
+            }
+        }
+
+        @media screen and (min-width: $sm) and (max-width: $lg) {
+            &:nth-child(even) {
+                animation-name: fadeInRight;
+            }
+
+            &:nth-child(odd) {
+                animation-name: fadeInLeft;
+            }
+        }
+
+        @media screen and (max-width: $sm) {
+            animation-name: fadeInUp;
+        }
+    }
+
+    .video-single {
+
+        margin: auto;
+        transition: all 200ms ease;
+        border-radius: 1rem;
+
+        .body {
+            padding: 1rem;
+            transition: 1s all;
+            vertical-align: center;
+            background: linear-gradient(45deg, rgba($black, 1), rgba($black, 0.8));
+            height: 120px;
+            display: grid;
+            align-items: center;
+
+            .title {
+                width: 100%;
+                height: fit-content;
+                margin: 0px;
+                text-align: center;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: #ddd;
+                font-weight: 500;
+                text-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+                padding: 15px 0;
+                font-size: 1.25rem;
+            }
+        }
+
+
+        .meta {
+            padding: 1rem 0px;
+            background: linear-gradient(45deg, rgba($grayDark, 1), rgba($grayDark, 0.8));
+            color: $white;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+
+            @media screen and (max-width: $md) and (min-width: $sm) {
+                grid-template-columns: 1fr;
+            }
+
+            align-items: center;
+            justify-items: center;
+            justify-content: center;
+
+            >div {
+                display: grid;
+                grid-template-columns: 32px auto;
+                align-items: center;
+                grid-gap: 10px;
+            }
+        }
+
+        &:hover {
+            box-shadow: 0 20px 20px rgba(0, 0, 0, 0.35);
+        }
+    }
+}
+
+
+#videos-slider {
+    width: 1000px;
+    max-width: 95%;
+    margin: 10px auto;
+
+    $background: $gradientBg;
+
+    .top,
+    .bottom {
+        height: 50px;
+        background: $background;
+    }
+
+    .top {
+        border-radius: 1rem 1rem 0 0;
+    }
+
+    .bottom {
+        border-radius: 0 0 1rem 1rem;
+    }
+
+    .sliders {
+        display: grid;
+        grid-template-columns: 3rem auto 3rem;
+        align-items: center;
+
+        .sessions {
+            height: 500px !important;
+
+            @media screen and (max-width: $md) {
+                height: 400px !important;
+            }
+
+            @media screen and (max-width: $sm) {
+                height: 300px !important;
+            }
+        }
+    }
+
+    a.btn,
+    button.btn {
+        margin: 0px;
+        border-radius: 0px;
+        width: 50px;
+        height: 100%;
+        background: $background;
+
+        i {
+            position: absolute;
+            color: $white !important;
+        }
+
+        &:disabled,
+        &[disabled] {
+            opacity: 1;
+
+            i {
+                position: static;
+            }
+        }
+    }
+
+    .prev {
+        justify-self: start;
+        border-top-left-radius: 1rem;
+    }
+
+    .next {
+        justify-self: end;
+        border-top-right-radius: 1rem;
+
+    }
+
+    .session {
+        box-shadow: 0 20px 20px rgba(0, 0, 0, 0.35);
+        padding: 0px;
+        position: relative;
+        text-align: center;
+        width: 100%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        display: none;
+
+        &.active {
+            display: block;
+        }
+
+        .body {
+            background-color: rgba(0, 0, 0, 0.8);
+            bottom: 0px;
+            left: 0px;
+            padding: 10px 2rem;
+            height: 100%;
+            position: absolute;
+            transition: 0.5s all;
+            width: 100%;
+            max-height: 100%;
+            display: grid;
+
+            @media screen and (min-width: $sm) {
+                padding-top: 2rem;
+            }
+
+            align-content: center;
+
+            .title {
+                display: none;
+                animation-duration: 2s;
+                animation-delay: 0.2s;
+                animation-name: jackInTheBox;
+                margin: 1rem;
+                width: 100%;
+                height: fit-content;
+                margin: 0px;
+                text-align: center;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-weight: 500;
+                text-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+                padding: 15px 0;
+                font-size: 1.5rem;
+
+                a {
+                    color: $gold;
+                    transition: 0.5 color;
+
+                    &:hover {
+                        color: #f1f1f1;
+                    }
+                }
+            }
+
+            .description {
+                text-align: justify;
+                color: $grayAsh;
+                display: none;
+                animation-duration: 2s;
+                animation-delay: 2s;
+                max-height: fit-content;
+                overflow-y: hidden;
+            }
+
+            .meta {
+                display: none;
+                animation-duration: 1s;
+                animation-delay: 3s;
+                animation-name: fadeInUp;
+                padding: 1rem 0px;
+                color: $white;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-items: center;
+                justify-content: center;
+
+                >div {
+                    display: grid;
+                    grid-template-columns: 32px auto;
+                    align-items: center;
+                    grid-gap: 10px;
+                    margin: 0 2rem;
+
+                    img {
+                        width: 32px !important;
+                        height: 32px !important;
+                    }
+                }
+            }
+
+            .meta-wrapper {
+                display: none;
+                animation-delay: 1s;
+            }
+        }
+
+        &.active {
+            .title {
+                display: block;
+            }
+
+            @media screen and (min-width: $sm) {
+                .meta {
+                    display: flex;
+                }
+
+                .description {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .navigation {
+        background: $background;
+        height: 50px;
+        min-height: fit-content;
+        width: 100%;
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 0 0 1rem 1rem !important;
+        align-items: center;
+
+        .nav {
+            cursor: pointer;
+            height: 7px !important;
+            width: 7px !important;
+            margin: 5px !important;
+            border-radius: 50% !important;
+            background: $white !important;
+
+            &:hover {
+                background: $grayDark !important;
+            }
+
+            &:focus {
+                outline: none;
+            }
+
+            &.active {
+                cursor: context-menu;
+                background: $gold !important;
+            }
+        }
+    }
+}
+
+#videos-flippers {
+    @include flipper;
+}

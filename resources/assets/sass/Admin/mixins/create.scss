@@ -1,0 +1,87 @@
+@mixin create {
+    .card {
+        width: 1000px;
+        max-width: 90%;
+        margin: auto;
+        div.card-header {
+            height: $header-height;
+            background: $light-black;
+            * {
+                font-size: 1.25em;
+            }
+        }
+        div.card-body {
+            overflow-y: scroll;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            #image-wrapper {
+                * {
+                    &.hidden {
+                        display: none !important;
+                    }
+                    display: block;
+                    width: 400px;
+                    height: auto;
+                    max-width: 90%;
+                    margin: 0px auto !important;
+                }
+                button.btn {
+                    padding: $action-btns-padding;
+                    background: transparent;
+                    transition-duration: 1s;
+                    color: $btn-delete-background;
+                    border: 1px solid $btn-delete-background;
+                    &:hover {
+                        background: $btn-delete-background;
+                        color: $white;
+                    }
+                }
+            }
+            .btn-group {
+                
+                &.grid {
+                    display: grid !important;
+                }
+                margin: auto;
+                grid-template-columns: 1fr 1fr;
+                @media screen and (max-width: $xs) {
+                    grid-template-columns: 1fr;
+                    margin: 2rem auto;
+                    label {
+                        border-radius: 0 !important;
+                        margin: 0px !important;
+                    }
+                }
+                justify-content: center;
+                align-content: center;
+                width: 700px;
+                max-width: 95%;
+                &#sub_system {
+                    grid-template-columns: repeat(4, 1fr);
+                    @media screen and (max-width: $xs) {
+                        grid-template-columns: 1fr 1fr;
+                        margin: 2rem auto;
+                        
+                    }
+                }
+            }
+        }
+        button.btn-submit {
+            margin-bottom: 0px !important;
+            background: $light-black;
+            * {
+                font-size: 1.25em;
+            }
+        }
+    }
+}
+
+img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+@import '../form';

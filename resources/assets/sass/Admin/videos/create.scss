@@ -1,0 +1,76 @@
+@import "../../variables";
+
+@import "../mixins/index";
+
+@import "../mixins/create";
+
+@import '../../form.scss';
+
+
+$gtc: 3fr 2fr 0.5fr;
+
+@include index($gtc);
+
+@include create;
+
+#videos {
+    .card-header {
+        @media screen and (max-width: $lg) {
+            display: grid !important;
+        }
+    }
+
+    .videos {
+
+        padding: 1rem 0.5rem;
+        &:nth-child(even) {
+            background: #ddd;
+            input, textarea {
+                border-color: #fff;
+                background: transparent;
+            }
+        }
+        margin-top: 1rem;
+    }
+    div.grid {
+        padding: 0.5em;
+
+        grid-gap: 0.5rem;
+        @media screen and (max-width: $lg) {
+            grid-template-columns: $gtc !important;
+        }
+        align-items: center !important;
+        @media screen and (max-width: $lg) {
+            > div {
+                display: block !important;
+            }
+        }
+        .icons {
+            justify-self: end;
+            i { font-size: 1.5em; }
+            .handler {
+                cursor: move;
+                color: $btn-edit-background;
+            }
+            .delete {
+                cursor: pointer;
+                color: $btn-delete-background;
+            }
+            .fa-times {
+                color: $btn-delete-background;
+            }
+            .fa-check {
+                color: $btn-check;
+            }
+        }
+    }
+    
+    .textarea-container {
+        padding: 0.5rem;
+        margin-bottom: 0px;
+    }
+    .active {
+        background: $gold;
+        opacity: 0.5;
+    }
+}
