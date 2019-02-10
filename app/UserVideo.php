@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserVideo extends Model
 {
+    protected $guarded = [];
     
-
     protected $hidden = ['paymob_id'];
 
     protected $with = ['user', 'video'];

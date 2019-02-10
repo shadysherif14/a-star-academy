@@ -1,13 +1,16 @@
 @extends('layouts.user') 
 @section('content')
 <div class="floating-btn" data-user="{{ auth()->user()->serial ?? ''}}" data-video="{{ $video->id ?? ''}}"> ? </div>
+<div class="floating-btn-left"></div>
 <div id="wrapper">
     @if($video->isAllowed)
     <div id="plyr-wrapper">
         <video controls id="player" poster="{{ $video->poster }}">
             <source src="{{ $video->path }}" type="video/mp4">
         </video> @auth
-        <input type="hidden" id="user-serial" value="{{ auth()->user()->username . '-' . Auth::user()->serial }}"> @endauth
+        <input type="hidden" id="user-serial" value="{{ Auth::user()->serial }}">
+        <input type="hidden" id="user-name" value="{{ Auth::user()->username }}">
+        <input type="hidden" id="subscription-route" value="{{ route('subscription.update.date', $video->id) }}"> @endauth
         @if(!$video->isFirstVideo())
         <a href="{{ action('User\VideoController@show', $prevVideo) }}" class="btn btn-sm prev">
             <i class="typcn typcn-arrow-left-outline"></i>
@@ -15,7 +18,6 @@
         <a href="{{ action('User\VideoController@show', $nextVideo) }}" class="btn btn-sm next">
             <i class="typcn typcn-arrow-right-outline"></i>
         </a> @endif
-
     </div>
 
     @else
@@ -176,7 +178,8 @@
 
                             <label for=""> Subscription Type </label>
                             <div class="pretty p-icon p-pulse">
-                                <input type="radio" name="type" value="unlimited" price="{{ $video->max_price }}" />
+                                <<<<<<< HEAD <input type="radio" name="type" value="unlimited" price="{{ $video->max_price }}" /> =======
+                                <input type="radio" name="type" value="max" price="{{ $video->max_price }}" /> >>>>>>> ed5d75eca418b8d9ab99906ab5e88982116e8a82
                                 <div class="state">
                                     <i class="icon fas fa-infinity"></i>
                                     <label> {{ $video->max_times }} Times Access </label>
@@ -227,69 +230,14 @@
 @endpush @push('scripts')
 <script>
     let questionsNumber = @json(count($video->questions));
-let paymentFolder = @json(asset_path('images/payment/'));
+    let paymentFolder = @json(asset_path('images/payment/'));
+    let isOverview = @json($isOverview);
+    let timeRemaining = @json($timeRemaining);
 
 </script>
 
 <script src="{{ asset_path('js/user/videos/show.js') }}"></script>
 <script src="{{ asset_path('js/user/payment/index.js') }}"></script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<<<<<<< HEAD=======>>>>>>> ed5d75eca418b8d9ab99906ab5e88982116e8a82 
 @endpush

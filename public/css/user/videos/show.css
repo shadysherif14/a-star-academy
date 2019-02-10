@@ -729,3 +729,20 @@
 .floating-btn:hover {
   box-shadow: 0px 0px 15px #f0ad4e, 0px 0px 15px #f0ad4e
 }
+
+
+.floating-btn-left {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 999;
+  background: #CF000F;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #fff;
+}

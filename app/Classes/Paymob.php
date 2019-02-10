@@ -11,7 +11,6 @@ use stdClass;
 
 class Paymob
 {
-
     public static function getPaymentKey($id, $price, $type)
     {
         
@@ -40,7 +39,6 @@ class Paymob
                 $price,
                 $id
             );
-
         } while (isset($paymobOrder->message) && $paymobOrder->message === 'duplicate');
         
 
@@ -56,7 +54,6 @@ class Paymob
         );
 
         return $paymentKey;
-
     }
     public static function create(Video $video)
     {
@@ -85,19 +82,16 @@ class Paymob
         $userVideo->price = $video->$type;
 
         if ($type === 'max_times') {
-
             $userVideo->max_watching_times = $vide->max_times;
         }
 
         $userVideo->save();
 
         return $result;
-
     }
 
     public function payAPI($token, $paymobOrderID)
     {
-
         $user = Auth::user();
 
         /** make transaction on Paymob servers. */

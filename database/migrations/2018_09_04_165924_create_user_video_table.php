@@ -14,7 +14,6 @@ class CreateUserVideoTable extends Migration
     public function up()
     {
         Schema::create('user_video', function (Blueprint $table) {
-
             $table->increments('id');
 
             $table->unsignedInteger('user_id');
@@ -29,8 +28,9 @@ class CreateUserVideoTable extends Migration
 
             $table->unsignedInteger('max_watching_times')->nullable()->default(1);
 
-            $table->timestamps();
+            $table->datetime('subscription_end_data')->nullable();
 
+            $table->timestamps();
         });
     }
 

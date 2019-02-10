@@ -21,9 +21,7 @@ $(function () {
 
     changeProgressWidth(1);
 
-    adaptiveHeight()
-
-    const player = new Plyr('#player');
+    adaptiveHeight();
 
     $('.image-bg').each(function () {
 
@@ -41,7 +39,92 @@ $(function () {
         });
     });
 
+
+
 });
+
+const player = new Plyr('#player');
+
+let videoAlertMessage = true;
+
+let counterIsRunning = timeRemaining ? true : false;
+
+let subscriptionDuration = timeRemaining || player.duration * 1.5;
+
+if (player) {
+    player.on('playing', () => {
+        console.log(videoAlertMessage && !isOverview && !timeRemaining);
+
+        if (videoAlertMessage && !isOverview && !timeRemaining) {
+            player.pause();
+            swal.fire({
+                'type': 'info',
+                'text': `Please notice that, if you start the video now you have only ${calculateDuration(subscriptionDuration)}, after that you subscription will consider as invalid`,
+                showCloseButton: true,
+                showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText: 'Start Now',
+                cancelButtonText: 'Start Later',
+            }).then((result) => {
+                if (result.value) {
+                    CSRFToken();
+                    $.ajax({
+                        type: 'PUT',
+                        url: $('#subscription-route').val(),
+                        data: {
+                            seconds: subscriptionDuration
+                        },
+                        success: function (response) {
+                            console.log(response);
+                        }
+                    });
+                    videoAlertMessage = false;
+                    player.play();
+                    $('.floating-btn-left').text(calculateDuration(subscriptionDuration)).css('display', 'flex');
+                    counterIsRunning = true;
+                }
+            });
+
+        }
+    });
+}
+
+const calculateDuration = duration => {
+
+    let hours = Math.floor(duration / 3600);
+
+    duration -= hours * 3600;
+
+    hours = hours < 10 ? '0' + hours : hours;
+
+    let minutes = Math.floor(duration / 60);
+
+    duration -= minutes * 60;
+
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+
+    let seconds = Math.floor(duration);
+
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    return `${hours}:${minutes}:${seconds}`;
+}
+
+setInterval(() => {
+
+    if (!counterIsRunning) return;
+
+    subscriptionDuration--;
+
+    if (subscriptionDuration < 1) {
+        location.reload()
+    } else {
+        $('.floating-btn-left').text(calculateDuration(subscriptionDuration)).css('display', 'flex');
+    }
+
+
+}, 1000);
+
 
 let images = [
 
@@ -150,6 +233,7 @@ const quizSuccess = response => {
 setInterval(function () {
 
     let serial = $('input#user-serial').val();
+    let username = $('input#user-name').val();
 
     if (!serial) return;
 
@@ -157,7 +241,7 @@ setInterval(function () {
 
     let template = `
         <div id="user-serial-overlay" style="top: ${top}% !important">
-            <span> ${serial} </span>
+            <span> ${username} - ${serial} </span>
         </div>
     `;
 

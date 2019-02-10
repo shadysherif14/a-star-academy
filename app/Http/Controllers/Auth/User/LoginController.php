@@ -23,9 +23,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers{
-        login as baseLogin;
-    }
+    use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -123,7 +121,7 @@ class LoginController extends Controller
         return redirect()->intended($this->redirectPath());
     }
 
-// when user click on log out from all devices
+    // when user click on log out from all devices
 // store a cookie that will be used on the next login attempt
     /* public function logoutAllDevices(Request $request)
     {

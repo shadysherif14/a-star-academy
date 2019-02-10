@@ -14,7 +14,6 @@ $type.on('change', function () {
     $price.text(`${price} EGP`);
 
     $('#price-wrapper').fadeIn('slow');
-
 });
 
 
@@ -24,7 +23,6 @@ $form.on('submit', function (e) {
 
     e.preventDefault();
 
-
     submitForm($form, subscriptionCallback);
 });
 
@@ -33,7 +31,7 @@ const subscriptionCallback = response => {
     let iframe = `<iframe src="${response.iframe}"></iframe>`;
 
     $('#payment-form .modal-body').html(iframe);
-    
+
     $('#payment-form').addClass('iframe-loaded');
 
 

@@ -1,105 +1,105 @@
-<?php return array (
-  'baklysystems/laravel-paymob' => 
-  array (
-    'providers' => 
-    array (
+<?php return array(
+  'baklysystems/laravel-paymob' =>
+  array(
+    'providers' =>
+    array(
       0 => 'BaklySystems\\PayMob\\PayMobServiceProvider',
     ),
-    'aliases' => 
-    array (
+    'aliases' =>
+    array(
       'PayMob' => 'BaklySystems\\PayMob\\Facades\\PayMob',
     ),
   ),
-  'beyondcode/laravel-er-diagram-generator' => 
-  array (
-    'providers' => 
-    array (
+  'beyondcode/laravel-er-diagram-generator' =>
+  array(
+    'providers' =>
+    array(
       0 => 'BeyondCode\\ErdGenerator\\ErdGeneratorServiceProvider',
     ),
-    'aliases' => 
-    array (
+    'aliases' =>
+    array(
       'ErdGenerator' => 'BeyondCode\\ErdGenerator\\ErdGeneratorFacade',
     ),
   ),
-  'cviebrock/eloquent-sluggable' => 
-  array (
-    'providers' => 
-    array (
+  'cviebrock/eloquent-sluggable' =>
+  array(
+    'providers' =>
+    array(
       0 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
     ),
   ),
-  'cybercog/laravel-love' => 
-  array (
-    'providers' => 
-    array (
+  'cybercog/laravel-love' =>
+  array(
+    'providers' =>
+    array(
       0 => 'Cog\\Laravel\\Love\\Providers\\LoveServiceProvider',
     ),
   ),
-  'davejamesmiller/laravel-breadcrumbs' => 
-  array (
-    'providers' => 
-    array (
+  'davejamesmiller/laravel-breadcrumbs' =>
+  array(
+    'providers' =>
+    array(
       0 => 'DaveJamesMiller\\Breadcrumbs\\BreadcrumbsServiceProvider',
     ),
-    'aliases' => 
-    array (
+    'aliases' =>
+    array(
       'Breadcrumbs' => 'DaveJamesMiller\\Breadcrumbs\\Facades\\Breadcrumbs',
     ),
   ),
-  'fideloper/proxy' => 
-  array (
-    'providers' => 
-    array (
+  'fideloper/proxy' =>
+  array(
+    'providers' =>
+    array(
       0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     ),
   ),
-  'hesto/multi-auth' => 
-  array (
-    'providers' => 
-    array (
+  'hesto/multi-auth' =>
+  array(
+    'providers' =>
+    array(
       0 => 'Hesto\\MultiAuth\\MultiAuthServiceProvider',
     ),
   ),
-  'intervention/image' => 
-  array (
-    'providers' => 
-    array (
+  'intervention/image' =>
+  array(
+    'providers' =>
+    array(
       0 => 'Intervention\\Image\\ImageServiceProvider',
     ),
-    'aliases' => 
-    array (
+    'aliases' =>
+    array(
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
-  'laravel/tinker' => 
-  array (
-    'providers' => 
-    array (
+  'laravel/tinker' =>
+  array(
+    'providers' =>
+    array(
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
     ),
   ),
-  'laravolt/avatar' => 
-  array (
-    'providers' => 
-    array (
+  'laravolt/avatar' =>
+  array(
+    'providers' =>
+    array(
       0 => 'Laravolt\\Avatar\\ServiceProvider',
     ),
-    'aliases' => 
-    array (
+    'aliases' =>
+    array(
       'Avatar' => 'Laravolt\\Avatar\\Facade',
     ),
   ),
-  'nunomaduro/collision' => 
-  array (
-    'providers' => 
-    array (
+  'nunomaduro/collision' =>
+  array(
+    'providers' =>
+    array(
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
-  'sven/artisan-view' => 
-  array (
-    'providers' => 
-    array (
+  'sven/artisan-view' =>
+  array(
+    'providers' =>
+    array(
       0 => 'Sven\\ArtisanView\\ServiceProvider',
     ),
   ),

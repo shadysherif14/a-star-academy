@@ -31,6 +31,14 @@ Route::domain(config('app.url'))
 
             ->middleware('auth');
 
+        
+        Route::put('subscription-date/{videoID}', 'VideoController@updateSubscriptionEndDate')
+        
+        ->name('subscription.update.date')
+        
+        ->middleware('auth');
+        
+
         Route::any('/api/process-callback', 'VideoController@processedCallback');
 
         Route::any('/api/response-callback', 'VideoController@responseCallback');
