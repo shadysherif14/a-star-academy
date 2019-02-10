@@ -1,9 +1,13 @@
 /node_modules
 /.vscode
 *.md
-/storage
+/storage/framework/views/*.*
+/storage/framework/cache/*.*
+/storage/framework/sessions/*.*
+/storage/framework/testing/*.*
 /public/storage
 /public/videos
 /env
+.env
 /vendor
 /public/assets

@@ -1,18 +1,4 @@
 <?php return array (
-  'fideloper/proxy' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-    ),
-  ),
-  'cviebrock/eloquent-sluggable' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
-    ),
-  ),
   'baklysystems/laravel-paymob' => 
   array (
     'providers' => 
@@ -22,6 +8,49 @@
     'aliases' => 
     array (
       'PayMob' => 'BaklySystems\\PayMob\\Facades\\PayMob',
+    ),
+  ),
+  'beyondcode/laravel-er-diagram-generator' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'BeyondCode\\ErdGenerator\\ErdGeneratorServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'ErdGenerator' => 'BeyondCode\\ErdGenerator\\ErdGeneratorFacade',
+    ),
+  ),
+  'cviebrock/eloquent-sluggable' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
+    ),
+  ),
+  'cybercog/laravel-love' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Cog\\Laravel\\Love\\Providers\\LoveServiceProvider',
+    ),
+  ),
+  'davejamesmiller/laravel-breadcrumbs' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'DaveJamesMiller\\Breadcrumbs\\BreadcrumbsServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Breadcrumbs' => 'DaveJamesMiller\\Breadcrumbs\\Facades\\Breadcrumbs',
+    ),
+  ),
+  'fideloper/proxy' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     ),
   ),
   'hesto/multi-auth' => 
@@ -49,24 +78,6 @@
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
     ),
   ),
-  'cybercog/laravel-love' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Cog\\Laravel\\Love\\Providers\\LoveServiceProvider',
-    ),
-  ),
-  'davejamesmiller/laravel-breadcrumbs' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'DaveJamesMiller\\Breadcrumbs\\BreadcrumbsServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Breadcrumbs' => 'DaveJamesMiller\\Breadcrumbs\\Facades\\Breadcrumbs',
-    ),
-  ),
   'laravolt/avatar' => 
   array (
     'providers' => 
@@ -76,17 +87,6 @@
     'aliases' => 
     array (
       'Avatar' => 'Laravolt\\Avatar\\Facade',
-    ),
-  ),
-  'beyondcode/laravel-er-diagram-generator' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'BeyondCode\\ErdGenerator\\ErdGeneratorServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'ErdGenerator' => 'BeyondCode\\ErdGenerator\\ErdGeneratorFacade',
     ),
   ),
   'nunomaduro/collision' => 

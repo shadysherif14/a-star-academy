@@ -210,3 +210,19 @@
 .schools .school .school-stats>div * {
   color: #ddd;
 }
+
+.faq {
+  border: 1px solid #222;
+}
+
+.faq p {
+  color: #fff !important;
+}
+
+.faq h5 {
+  color: #f3b715;
+}
+
+.faq-question:not(:last-child) {
+  border-bottom: 1px solid #222
+}

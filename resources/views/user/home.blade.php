@@ -8,7 +8,7 @@
         </div>
 
         <div class="text">
-            <h2 class="font-italic">Learn today and Lead tomorrow</h2>
+            <h2 class="font-italic">Learn Today, Lead Tomorrow</h2>
         </div>
 
         <div class="image d-md-block d-none">
@@ -25,7 +25,7 @@
 </header>
 
 <section class="skills">
-    <h3> The most concise screencasts for the working developer. </h3>
+    <h3> The most concise screencasts for the brilliant student. </h3>
     <div class="stats">
 
         <div class="hours">

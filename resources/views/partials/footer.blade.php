@@ -25,6 +25,7 @@
         <div class="my-3">
             <a class="my-1 d-block" href="/terms">Terms and Conditions</a>
             <a class="my-1 d-block" href="/cookies">Cookies Policy</a>
+            <a class="my-1 d-block" href="/faq">FAQ</a>
 
         </div>
     </div>

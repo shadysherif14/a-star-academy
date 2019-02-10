@@ -7,7 +7,8 @@
         <video controls id="player" poster="{{ $video->poster }}">
             <source src="{{ $video->path }}" type="video/mp4">
         </video> @auth
-        <input type="hidden" id="user-serial" value="{{ Auth::user()->serial }}"> @endauth @if(!$video->isFirstVideo())
+        <input type="hidden" id="user-serial" value="{{ auth()->user()->username . '-' . Auth::user()->serial }}"> @endauth
+        @if(!$video->isFirstVideo())
         <a href="{{ action('User\VideoController@show', $prevVideo) }}" class="btn btn-sm prev">
             <i class="typcn typcn-arrow-left-outline"></i>
         </a> @endif @if(!$video->isLastVideo())
@@ -232,6 +233,9 @@ let paymentFolder = @json(asset_path('images/payment/'));
 
 <script src="{{ asset_path('js/user/videos/show.js') }}"></script>
 <script src="{{ asset_path('js/user/payment/index.js') }}"></script>
+
+
+
 
 
 

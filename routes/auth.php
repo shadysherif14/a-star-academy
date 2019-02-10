@@ -5,10 +5,10 @@ Route::domain(config('app.url'))
     ->namespace('User')
 
     ->group(function () {
-
         Route::get('login', 'LoginController@showLoginForm')->name('login');
         Route::post('login', 'LoginController@login');
         Route::post('logout', 'LoginController@logout')->name('logout');
+        Route::post('users/logoutalldevices', 'LoginController@logoutAllDevices');
 
         // Registration Routes...
         Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
@@ -29,7 +29,6 @@ Route::domain('admin.' . config('app.url'))
     ->name('admin.')
 
     ->group(function () {
-
         Route::get('/login', 'LoginController@showLoginForm')->name('login');
         Route::post('/login', 'LoginController@login');
         Route::any('/logout', 'LoginController@logout')->name('logout');
@@ -47,7 +46,6 @@ Route::domain('instructor.' . config('app.url'))
     ->name('instructor.')
 
     ->group(function () {
-
         Route::get('/login', 'LoginController@showLoginForm')->name('login');
         Route::post('/login', 'LoginController@login');
         Route::post('/logout', 'LoginController@logout')->name('logout');

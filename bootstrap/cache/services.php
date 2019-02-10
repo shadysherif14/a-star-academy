@@ -23,16 +23,16 @@
     19 => 'Illuminate\\Translation\\TranslationServiceProvider',
     20 => 'Illuminate\\Validation\\ValidationServiceProvider',
     21 => 'Illuminate\\View\\ViewServiceProvider',
-    22 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-    23 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
-    24 => 'BaklySystems\\PayMob\\PayMobServiceProvider',
-    25 => 'Hesto\\MultiAuth\\MultiAuthServiceProvider',
-    26 => 'Intervention\\Image\\ImageServiceProvider',
-    27 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    28 => 'Cog\\Laravel\\Love\\Providers\\LoveServiceProvider',
-    29 => 'DaveJamesMiller\\Breadcrumbs\\BreadcrumbsServiceProvider',
-    30 => 'Laravolt\\Avatar\\ServiceProvider',
-    31 => 'BeyondCode\\ErdGenerator\\ErdGeneratorServiceProvider',
+    22 => 'BaklySystems\\PayMob\\PayMobServiceProvider',
+    23 => 'BeyondCode\\ErdGenerator\\ErdGeneratorServiceProvider',
+    24 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
+    25 => 'Cog\\Laravel\\Love\\Providers\\LoveServiceProvider',
+    26 => 'DaveJamesMiller\\Breadcrumbs\\BreadcrumbsServiceProvider',
+    27 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
+    28 => 'Hesto\\MultiAuth\\MultiAuthServiceProvider',
+    29 => 'Intervention\\Image\\ImageServiceProvider',
+    30 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    31 => 'Laravolt\\Avatar\\ServiceProvider',
     32 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     33 => 'Sven\\ArtisanView\\ServiceProvider',
     34 => 'BaklySystems\\PayMob\\PayMobServiceProvider',
@@ -54,14 +54,14 @@
     7 => 'Illuminate\\Pagination\\PaginationServiceProvider',
     8 => 'Illuminate\\Session\\SessionServiceProvider',
     9 => 'Illuminate\\View\\ViewServiceProvider',
-    10 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-    11 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
-    12 => 'BaklySystems\\PayMob\\PayMobServiceProvider',
-    13 => 'Hesto\\MultiAuth\\MultiAuthServiceProvider',
-    14 => 'Intervention\\Image\\ImageServiceProvider',
-    15 => 'Cog\\Laravel\\Love\\Providers\\LoveServiceProvider',
-    16 => 'Laravolt\\Avatar\\ServiceProvider',
-    17 => 'BeyondCode\\ErdGenerator\\ErdGeneratorServiceProvider',
+    10 => 'BaklySystems\\PayMob\\PayMobServiceProvider',
+    11 => 'BeyondCode\\ErdGenerator\\ErdGeneratorServiceProvider',
+    12 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
+    13 => 'Cog\\Laravel\\Love\\Providers\\LoveServiceProvider',
+    14 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
+    15 => 'Hesto\\MultiAuth\\MultiAuthServiceProvider',
+    16 => 'Intervention\\Image\\ImageServiceProvider',
+    17 => 'Laravolt\\Avatar\\ServiceProvider',
     18 => 'Sven\\ArtisanView\\ServiceProvider',
     19 => 'BaklySystems\\PayMob\\PayMobServiceProvider',
     20 => 'App\\Providers\\AppServiceProvider',
@@ -171,8 +171,8 @@
     'translation.loader' => 'Illuminate\\Translation\\TranslationServiceProvider',
     'validator' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
-    'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
     'DaveJamesMiller\\Breadcrumbs\\BreadcrumbsManager' => 'DaveJamesMiller\\Breadcrumbs\\BreadcrumbsServiceProvider',
+    'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
     'NunoMaduro\\Collision\\Contracts\\Provider' => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
   ),
   'when' => 
@@ -213,10 +213,10 @@
     'Illuminate\\Validation\\ValidationServiceProvider' => 
     array (
     ),
-    'Laravel\\Tinker\\TinkerServiceProvider' => 
+    'DaveJamesMiller\\Breadcrumbs\\BreadcrumbsServiceProvider' => 
     array (
     ),
-    'DaveJamesMiller\\Breadcrumbs\\BreadcrumbsServiceProvider' => 
+    'Laravel\\Tinker\\TinkerServiceProvider' => 
     array (
     ),
     'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider' => 

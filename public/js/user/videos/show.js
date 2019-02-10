@@ -188,6 +188,7 @@ $(document).on('click', '.floating-btn', function () {
         input: 'textarea',
         text: 'Have a question about this session?',
         inputPlaceholder: 'Type your question here...',
+        confirmButtonText: 'Send',
         showCancelButton: true
     }).then((result) => {
         let message = result.value;

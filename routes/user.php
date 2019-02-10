@@ -38,8 +38,4 @@ Route::domain(config('app.url'))
         Route::post('contact-us', 'ContactController')->name('contact.send');
 
         Route::post('question', 'QuestionController')->name('question.send');
-
-        Route::get('/terms', 'TermsController@index')->name('terms');
-        
-        Route::get('/cookies', 'TermsController@cookies')->name('cookies');
     });
