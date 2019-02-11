@@ -3,7 +3,6 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Instructor::class, function (Faker $faker) {
-
     $name = $faker->name;
 
     $username = str_replace(' ', '', $name);
@@ -16,10 +15,9 @@ $factory->define(App\Instructor::class, function (Faker $faker) {
 
     $phone = $faker->phoneNumber;
 
-    $accounts['facebook'] = 'https://www.facebook.com/shadysherifsayed';
+    $accounts['facebook'] = 'https://www.facebook.com/hossamhoussiena';
 
-    $accounts['instagram'] = 'https://www.instagram.com/shadysherifsayed';
+    $accounts['instagram'] = 'https://www.instagram.com/hossamhoussien';
 
     return compact('name', 'slug', 'about', 'email', 'password', 'phone', 'accounts');
-
 });

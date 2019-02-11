@@ -11,15 +11,6 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-
-        factory(App\User::class)->create([
-            'username' => 'shady',
-            'first_name' => 'Shady',
-            'last_name' => 'Sherif',
-            'email' => 'shady@user.com',
-            'gender' => 'Male',
-        ]);
-
         factory(App\User::class)->create([
             'username' => 'hossam',
             'first_name' => 'Hossam',

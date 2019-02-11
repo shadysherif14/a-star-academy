@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Auth\User;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Session as LoginSession;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -47,7 +48,7 @@ class LoginController extends Controller
      *
      * @return string
      */
-    /* public function username()
+    public function username()
     {
         $login = request()->input('login');
 
@@ -56,7 +57,7 @@ class LoginController extends Controller
         request()->merge([$field => $login]);
 
         return $field;
-    } */
+    }
 
 
     public function showLoginForm()
@@ -79,12 +80,15 @@ class LoginController extends Controller
 
         $user = $this->getUserFromRequest($request) ?? null;
 
+        
         // User exists but already logged in
-        $isLoggedIn = $user ? $user->logged_in : false;
+        // By default, if user info is invalid, consider it as it's already logged in
+        // Hence prevent login process
+        $isLoggedIn = is_null($this->validateOtherDevicesLogin($user)) ? true : $this->validateOtherDevicesLogin($user);
         $customMsg = $isLoggedIn ? 'True' : null;
         $owner = $user ? $user->serial : null;
-
-        if (($isLoggedIn === 0) && $this->attemptLogin($request)) {
+        
+        if (!$isLoggedIn  && $this->attemptLogin($request)) {
             return $this->sendLoginResponse($request);
         }
 
@@ -93,15 +97,10 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request, $customMsg, $owner);
     }
 
-    /* protected function checkLogginStatus(Request $request)
-    {
-        return $this->getUserFromRequest($request) ? $this->getUserFromRequest($request)->logged_in : false;
-    } */
-
 
     protected function getUserFromRequest(Request $request)
     {
-        $user =  User::where('email', $request->email)->get();
+        $user =  User::where($this->username(), $request->email)->get();
         return count($user) ? $user->first() : null;
     }
 
@@ -114,28 +113,32 @@ class LoginController extends Controller
             "errorOwner" => $owner
         ]);
     }
-    public function authenticated(Request $request, User $user)
+
+    
+    public function validateOtherDevicesLogin($user)
     {
-        $user->logged_in = 1;
-        $user->save();
-        return redirect()->intended($this->redirectPath());
+        if (is_null($user) || !$user) {
+            return null;
+        }
+        
+        return LoginSession::otherDevicesLoggedIn($user->id);
     }
 
-    // when user click on log out from all devices
-// store a cookie that will be used on the next login attempt
-    /* public function logoutAllDevices(Request $request)
+    
+    public function logoutAllDevices(Request $request)
     {
         if ($request->ajax()) {
             $owner_serial = $request->owner ?? null;
             if ($owner_serial) {
                 $user = User::where('serial', $owner_serial)->first();
                 if ($user) {
-                    Auth::setUser($user)->logoutOtherDevices($user->password);
+                    $user->invalidateAllLogginSessions();
+                    //LoginSession::deleteByUserID($user->id);
                     return response()->json('All devices logged out', 200);
                 }
             }
         }
 
         return response()->json('Invalid Data provided', 303);
-    } */
+    }
 }

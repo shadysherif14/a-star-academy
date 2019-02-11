@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Session as LoginSession;
 use App\Traits\Routes;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +12,6 @@ use Cog\Contracts\Love\Liker\Models\Liker as LikerContract;
 
 class User extends Authenticatable implements LikerContract
 {
-
     const ROUTE = 'users';
 
     const DEFAULT_IMAGE_PATH = 'images/defaults/avatar.png';
@@ -69,7 +69,6 @@ class User extends Authenticatable implements LikerContract
             ->whereRaw('max_watching_times > watched_times')
 
             ->orWhere('max_watching_times', null);
-
     }
     /** Relations */
 
@@ -89,7 +88,6 @@ class User extends Authenticatable implements LikerContract
         $path = $path ?? self::DEFAULT_IMAGE_PATH;
 
         return secure_asset("storage/{$path}");
-
     }
 
     public function getCroppedAvatarAttribute($path)
@@ -107,7 +105,6 @@ class User extends Authenticatable implements LikerContract
 
     public function accounts($account = null)
     {
-
         if (is_null($this->id)) {
             return null;
         }
@@ -129,7 +126,6 @@ class User extends Authenticatable implements LikerContract
         return Course::whereLikedBy($this->id)
             ->with('likesCounter') // Allow eager load (optional)
             ->get();
-
     }
 
     public function totalSubscriptions()
@@ -137,4 +133,8 @@ class User extends Authenticatable implements LikerContract
         return UserVideo::whereUserId($this->id)->sum('price');
     }
 
+    public function invalidateAllLogginSessions()
+    {
+        LoginSession::deleteByUserID($this->id);
+    }
 }

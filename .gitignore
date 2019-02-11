@@ -1,10 +1,11 @@
 /node_modules
 /.vscode
 *.md
-/storage/framework/views/*.*
-/storage/framework/cache/*.*
-/storage/framework/sessions/*.*
-/storage/framework/testing/*.*
+/storage/framework/views/*
+/storage/framework/cache/*
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/testing/*
 /public/storage
 /public/videos
 /env

@@ -1,7 +1,7 @@
 @extends('layouts.auth') 
 @section('form')
 <!-- LINE BREAK -->
-@if ($errors->get('customMessage'))
+@if ($errors->get('customMessage') && $errors->get('errorOwner'))
 <!-- LINE BREAK -->
 <div class="alert alert-danger text-white">
     Your account already logged in, you can either <a href="#" id="logOutAll" data-error-owner="{{$errors->get('errorOwner')[0]}}"
@@ -20,7 +20,7 @@
     </h3>
 
     <div class="input-group">
-        <input type="text" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}" />
+        <input type="text" class="form-control" name="login" placeholder="Email" value="{{ old('login') }}" />
         <span class="input-group-addon">
         <img src="{{ imageIcon('user') }}" alt="" class="icon">
     </span>
@@ -44,24 +44,8 @@
 
 @yield('register') 
 @stop @push('scripts')
-<script>
-    /* $(document).on('click','#logOutAll',function(){
-        CSRFToken();
-        $.ajax({
-            type: "POST",
-            url: "/users/logoutalldevices",
-            data: {
-                owner: $(this).attr('data-error-owner')
-            },
-            dataType: "dataType",
-            success: function (response) {
-                
-            }
-        });
-    });
- */
 
-</script>
+<script src="{{ asset_path('js/auth/login.js') }}"></script>
 
 
 

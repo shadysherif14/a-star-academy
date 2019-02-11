@@ -178,8 +178,8 @@
 
                             <label for=""> Subscription Type </label>
                             <div class="pretty p-icon p-pulse">
-                                <<<<<<< HEAD <input type="radio" name="type" value="unlimited" price="{{ $video->max_price }}" /> =======
-                                <input type="radio" name="type" value="max" price="{{ $video->max_price }}" /> >>>>>>> ed5d75eca418b8d9ab99906ab5e88982116e8a82
+                                <input type="radio" name="type" value="unlimited" price="{{ $video->max_price }}" />
+                                <input type="radio" name="type" value="max" price="{{ $video->max_price }}" />
                                 <div class="state">
                                     <i class="icon fas fa-infinity"></i>
                                     <label> {{ $video->max_times }} Times Access </label>
@@ -239,5 +239,6 @@
 <script src="{{ asset_path('js/user/videos/show.js') }}"></script>
 <script src="{{ asset_path('js/user/payment/index.js') }}"></script>
 
-<<<<<<< HEAD=======>>>>>>> ed5d75eca418b8d9ab99906ab5e88982116e8a82 
+
+
 @endpush
