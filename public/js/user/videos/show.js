@@ -59,7 +59,7 @@ if (player) {
             player.pause();
             swal.fire({
                 'type': 'info',
-                'text': `Please notice that, if you start the video now you have only ${calculateDuration(subscriptionDuration)}, after that you subscription will consider as invalid`,
+                'text': `Please notice that, if you start the video now you have only ${calculateDuration(subscriptionDuration)}, after that your subscription will be considered as invalid`,
                 showCloseButton: true,
                 showCancelButton: true,
                 focusConfirm: false,

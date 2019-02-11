@@ -14,6 +14,8 @@ class User extends Authenticatable implements LikerContract
 {
     const ROUTE = 'users';
 
+    const ROUTES = ['index', 'destroy'];
+
     const DEFAULT_IMAGE_PATH = 'images/defaults/avatar.png';
 
     use Notifiable, Routes, Liker;

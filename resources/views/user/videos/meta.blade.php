@@ -2,18 +2,18 @@
 
     @if(!$video->isOverview())
     <div class="one_price">
-        <img src="{{ imageIcon('one') }}" alt="one" class="icon">
+        <span class="times"> 1 </span>
         <span> <strong> {{ $video->one_price }} </strong> EGP</span>
     </div>
 
     <div class="max_price">
-        <img src="{{ imageIcon('infinity') }}" alt="infinity" class="icon">
+        <span class="times"> {{ $video->max_times }} </span>
         <span> <strong> {{ $video->max_price }} </strong> EGP </span>
     </div>
     @endif
 
     <div class="duration">
-        <img src="{{ imageIcon('clock') }}" alt="time" class="icon">
+        <span class="times"> <i class="far fa-clock"></i> </span>
         <span>{{ $video->duration }}</span>
     </div>
 
