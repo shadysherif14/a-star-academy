@@ -16,11 +16,10 @@ class CreateQuizQuestionsTable extends Migration
         Schema::create('quiz_questions', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('quiz_id');
-            $table->foreign('quiz_id')->references('id')->on('quizzez')->onDelete('cascade');
+            $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
             $table->unsignedInteger('question_id');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->boolean('correct')->default(false);
-
         });
     }
 

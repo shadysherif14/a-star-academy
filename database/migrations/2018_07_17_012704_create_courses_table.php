@@ -18,7 +18,7 @@ class CreateCoursesTable extends Migration
             $table->unsignedInteger('level_id');
             $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
             $table->unsignedInteger('instructor_id');
-            $table->foreign('instructor')->references('id')->on('instructors')->onDelete('cascade');
+            $table->foreign('instructor_id')->references('id')->on('instructors')->onDelete('cascade');
             $table->string('name');
             $table->float('price')->default(0);
             $table->string('slug')->unique();
