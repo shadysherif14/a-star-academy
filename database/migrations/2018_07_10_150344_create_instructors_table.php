@@ -14,27 +14,16 @@ class CreateInstructorsTable extends Migration
     public function up()
     {
         Schema::create('instructors', function (Blueprint $table) {
-
             $table->increments('id');
-
             $table->string('name');
-
             $table->string('username')->unique();
-            
             $table->string('email')->unique()->nullable();
-
             $table->text('about');
-
             $table->text('accounts')->nullable();
-            
             $table->string('phone')->nullable();
-
             $table->string('avatar')->nullable();
-
             $table->string('password');
-
             $table->rememberToken();
-
             $table->timestamps();
         });
     }

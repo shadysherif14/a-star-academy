@@ -35,8 +35,7 @@ Route::domain('admin.' . config('app.url'))
 
         Route::post('/payables/{payable}', 'PayMobOrderController@pay')->name('payables.pay');
 
-        Route::resource('/users', 'UserController');
+        Route::resource('/users', 'UserController')->only('index', 'show', 'destroy', 'create', 'store');
+        Route::put('/users/block/{user}', 'UserController@toggleBlock')->name('users.toggle-block');
 
-    }
-    );
-
+    });

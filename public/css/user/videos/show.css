@@ -548,7 +548,7 @@
 }
 
 #wrapper #video-details {
-  background: #111;
+  /* background: #111; */
   color: #fff;
   padding: 3rem;
   display: grid;

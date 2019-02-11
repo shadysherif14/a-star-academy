@@ -21,11 +21,27 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-
         $title = 'Students';
 
         $breadcrumbs = 'admin.users';
 
         return view('admin.users.show', compact('user', 'title', 'breadcrumbs'));
+    }
+
+
+    public function toggleBlock(User $user)
+    {
+
+        $user->blocked = !$user->blocked;
+        $user->save();
+        return jsonResponse(true);
+    }
+
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return jsonResponse(true);
+
     }
 }

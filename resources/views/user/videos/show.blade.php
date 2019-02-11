@@ -82,12 +82,12 @@
                         </tr>
 
                         <tr>
-                            <td> <i class="zmdi zmdi-collection-item-1"></i> Price </td>
+                            <td> 1 Time Price </td>
                             <td> {{ $video->one_price }} EGP </td>
                         </tr>
 
                         <tr>
-                            <td> <i class="fas fa-infinity"></i> Price </td>
+                            <td> {{ $video->max_times }} Times Price </td>
                             <td> {{ $video->max_price }} EGP </td>
                         </tr>
 

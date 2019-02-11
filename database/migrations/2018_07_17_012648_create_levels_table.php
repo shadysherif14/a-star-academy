@@ -14,19 +14,12 @@ class CreateLevelsTable extends Migration
     public function up()
     {
         Schema::create('levels', function (Blueprint $table) {
-
             $table->increments('id');
-            
             $table->string('name');
-
             $table->string('school');
-
             $table->string('slug')->unique();
-            
             $table->text('description')->nullable();
-            
             $table->string('image')->default('images/defaults/level.png');
-            
             $table->timestamps();
         });
     }
