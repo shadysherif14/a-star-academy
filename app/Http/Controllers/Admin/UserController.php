@@ -33,7 +33,13 @@ class UserController extends Controller
     {
 
         $user->blocked = !$user->blocked;
+
         $user->save();
+        
+        if($user->blocked) {
+            $user->invalidateAllLogginSessions();
+        }
+
         return jsonResponse(true);
     }
 

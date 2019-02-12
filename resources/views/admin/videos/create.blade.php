@@ -36,40 +36,35 @@
 
                 <video class="d-none" id="video"></video>
     
-                <div class="form-group">
-                    <label> Price </label>
+                <div>
+                    <p class="m-0 text-black"> Max Times of Access </p>
                     <div class="row">
-
-                        <div class="col-md-4">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="fas fa-infinity"></i>
-                                </span>
-                                <input type="text" id="max-times" name="max_times" class="form-control price unlimited" placeholder="Maximum times of access">
-                            </div>
+                        <div class="form-group mt-2 col-md-6">
+                            <label for="">Times</label>
+                            <input type="number" min="2" id="max-times" name="max_times" class="form-control price unlimited" placeholder="Times">
                         </div>
 
-                        <div class="col-md-4">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="fas fa-infinity"></i>
-                                </span>
-                                <input type="text" id="max-price" name="max_price" class="form-control price unlimited" placeholder="Maximum times of access price">
-                            </div>
+                        <div class="form-group mt-2 col-md-6">
+                            <label for="">Price</label>
+                            <input type="number" min="0" id="max-price" name="max_price" class="form-control price unlimited" placeholder="Price">
                         </div>
-
-                        <div class="col-md-4">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="zmdi zmdi-collection-item-1"></i>
-                                </span>
-                                <input type="text" name="one_price" class="form-control price one" placeholder="One time access price">
-                            </div>
-                        </div>
-    
                     </div>
                 </div>
-    
+
+                <div>
+                    <p class="m-0 text-black"> One Time Access</p>
+                    <div class="row">
+                        <div class="form-group mt-2 col-md-6">
+                            <label for="">Times</label>
+                            <input type="number" min="1" class="form-control" value="1" placeholder="Times" readonly>
+                        </div>
+                        <div class="form-group mt-2 col-md-6">
+                            <label for="">Price</label>
+                            <input type="number" min="0" name="one_price" class="form-control" placeholder="Price">
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label> Description </label>
                     <textarea class="form-control description"  name="description" placeholder="Description"></textarea>

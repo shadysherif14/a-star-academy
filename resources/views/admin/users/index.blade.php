@@ -18,7 +18,7 @@
     </thead>
 
     <tbody>
-        {{dd($users)}} @foreach($users as $user)
+        @foreach($users as $user)
         <tr>
             <th> <img src="{{ $user->avatar }}" alt="" width="32"> </th>
             <td> <a href="{{ route('admin.users.show', $user) }}"> {{ $user->name }} </a> </td>
@@ -35,8 +35,8 @@
                     <div class="{{ $name }}-widget">
                         <div class="icon mx-2">
                             <a href="{{ $link }}" target="_blank">
-                                    <i class="zmdi zmdi-{{ $name }} display-1"></i>
-                                </a>
+                                <i class="zmdi zmdi-{{ $name }} display-1"></i>
+                            </a>
                         </div>
                     </div>
                     @endforeach

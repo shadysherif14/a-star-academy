@@ -70,10 +70,7 @@
 
     </table>
 
-
-    <button class="btn btn-submit" type="submit">
-        <i class="fas fa-pen"> Update </i>
-    </button>
+    @include('admin.partials.edit-button')
 
 </form>
 

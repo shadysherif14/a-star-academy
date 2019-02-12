@@ -3,6 +3,7 @@
 Route::domain(config('app.url'))
 
     ->group(function () {
+
         Route::get('/', 'HomeController')->name('home');
         
         Route::get('/courses', function () {
@@ -37,7 +38,6 @@ Route::domain(config('app.url'))
         ->name('subscription.update.date')
         
         ->middleware('auth');
-        
 
         Route::any('/api/process-callback', 'VideoController@processedCallback');
 

@@ -21,7 +21,7 @@ class CreateUserVideoTable extends Migration
             $table->string('paymob_id')->nullable();
             $table->unsignedInteger('watched_times')->default(0);
             $table->unsignedInteger('max_watching_times')->nullable()->default(1);
-            $table->datetime('subscription_end_data')->nullable();
+            $table->datetime('subscription_end_date')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('video_id')->references('id')->on('videos')->onDelete('cascade');
             $table->timestamps();

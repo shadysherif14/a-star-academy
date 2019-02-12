@@ -22,7 +22,7 @@ class LoginController extends Controller
     | redirecting them to your home screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
     |
-    */
+     */
 
     use AuthenticatesUsers;
 
@@ -80,51 +80,56 @@ class LoginController extends Controller
 
         $user = $this->getUserFromRequest($request) ?? null;
 
-        
+        if ($user && $user->blocked) {
+            return $this->sendFailedLoginResponse($request, null, null, true);
+        }
+
         // User exists but already logged in
         // By default, if user info is invalid, consider it as it's already logged in
         // Hence prevent login process
         $isLoggedIn = is_null($this->validateOtherDevicesLogin($user)) ? true : $this->validateOtherDevicesLogin($user);
-        $customMsg = $isLoggedIn ? 'True' : null;
+        // $customMsg = $isLoggedIn ? 'True' : null;
         $owner = $user ? $user->serial : null;
-        
-        if (!$isLoggedIn  && $this->attemptLogin($request)) {
+
+        if (!$isLoggedIn && $this->attemptLogin($request)) {
             return $this->sendLoginResponse($request);
         }
 
         $this->incrementLoginAttempts($request);
 
-        return $this->sendFailedLoginResponse($request, $customMsg, $owner);
+        return $this->sendFailedLoginResponse($request, $isLoggedIn, $owner);
     }
 
 
     protected function getUserFromRequest(Request $request)
     {
-        $user =  User::where($this->username(), $request->email)->get();
-        return count($user) ? $user->first() : null;
+        $username = $this->username();
+
+        return User::where($username, $request->$username)->first();
     }
 
 
-    protected function sendFailedLoginResponse(Request $request, $customMessage=null, $owner=null)
+    protected function sendFailedLoginResponse(Request $request, $customMessage = null, $owner = null, $blocked = null)
     {
         throw ValidationException::withMessages([
             $this->username() => [trans('auth.failed')],
             "customMessage" => $customMessage,
-            "errorOwner" => $owner
+            "errorOwner" => $owner,
+            "blocked" => $blocked
         ]);
     }
 
-    
+
     public function validateOtherDevicesLogin($user)
     {
         if (is_null($user) || !$user) {
             return null;
         }
-        
+
         return LoginSession::otherDevicesLoggedIn($user->id);
     }
 
-    
+
     public function logoutAllDevices(Request $request)
     {
         if ($request->ajax()) {

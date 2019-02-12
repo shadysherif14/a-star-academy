@@ -31,16 +31,6 @@ $('form#videos-form').submit(function (e) {
 
     let form = $(this);
 
-    submitForm(form, successCallback, defaultError);
+    submitForm(form);
 });
 
-const successCallback = _ => {
-
-   $.notify({
-       // options
-       message: 'Hello World'
-   }, {
-       // settings
-       type: 'info'
-   });
-}
