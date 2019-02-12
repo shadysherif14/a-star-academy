@@ -53,7 +53,6 @@ let subscriptionDuration = timeRemaining || player.duration * 1.5;
 
 if (player) {
     player.on('playing', () => {
-        console.log(videoAlertMessage && !isOverview && !timeRemaining);
 
         if (videoAlertMessage && !isOverview && !timeRemaining) {
             player.pause();
@@ -255,7 +254,6 @@ setInterval(function () {
 /*************************************** */
 
 $(document).on('click', '.floating-btn', function () {
-    console.log($(this).attr('data-user'), $(this).attr('data-video'));
 
     if (!$(this).attr('data-user') || !$(this).attr('data-video')) {
         swal.fire({
@@ -286,7 +284,11 @@ $(document).on('click', '.floating-btn', function () {
                     video: $(this).attr('data-video')
                 },
                 success: function (response) {
-                    console.log(response);
+                    swal.fire({
+                        title: "Your Question Has Been Sent Successfully",
+                        type: 'success',
+                        text: 'The instructor has been notified. Thanks for reaching out, Happy learning',
+                    });
 
                 }
             });
@@ -294,5 +296,4 @@ $(document).on('click', '.floating-btn', function () {
 
     })
 
-    console.log('test');
 });

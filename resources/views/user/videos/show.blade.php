@@ -88,10 +88,9 @@
                         @if($accessRemaining)
                         <tr>
                             <td> Remaining Access Times </td>
-                            <td> {{ $accessRemaining . ' ' . str_plural('Time', $accessRemaining) }}  </td>
+                            <td> {{ $accessRemaining . ' ' . str_plural('Time', $accessRemaining) }} </td>
                         </tr>
-                        @endif
-                        @endif
+                        @endif @endif
 
                     </tbody>
                 </table>
@@ -244,10 +243,8 @@
     let timeRemaining = @json($timeRemaining);
 
 </script>
-
+<script src="{{ asset_path('/js/user/loader.js') }}"></script>
 <script src="{{ asset_path('js/user/videos/show.js') }}"></script>
 <script src="{{ asset_path('js/user/payment/index.js') }}"></script>
-
-
 
 @endpush

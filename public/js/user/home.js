@@ -3,6 +3,9 @@ $('#contact-us-form').on('submit', function (e) {
     e.preventDefault();
 
     submitForm($(this), successCallback);
+
+    showLoaderModal('Sending your message...', 'This window will be closed automatically');
+
 });
 
 const successCallback = (response) => {
@@ -22,4 +25,5 @@ const successCallback = (response) => {
             'type': 'error'
         });
     }
+    clearInterval(timerInterval)
 }
