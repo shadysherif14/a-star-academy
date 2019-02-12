@@ -13,7 +13,11 @@ class DashboardController extends Controller
     {
         $instructor = Auth::user();
 
-        $instructor->load('courses.subscriptions')->load('videos');
+        $instructor->load([
+            'courses' => function($query) {
+                return $query->withCount('subscriptions');
+            }
+        ])->load('videos');
 
         $title = config('app.name');
 

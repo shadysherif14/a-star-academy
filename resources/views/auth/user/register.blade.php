@@ -60,7 +60,6 @@
                     <img src="{{ imageIcon('key') }}" alt="" class="icon">
                 </span>
             </div>
-
         </div>
 
         <button type="button" class="controls btn hvr-bounce-to-top">Next</button>

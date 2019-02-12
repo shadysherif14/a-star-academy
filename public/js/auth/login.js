@@ -15,8 +15,20 @@ $(document).on('click', '#logOutAll', function () {
                     confirmButtonText: 'Ok',
 
                 })
-                //swal.fire('All other login sessions have been deactivated, you can login now from this device.')
             }
         }
     });
+});
+
+
+$("#password-forget").click(() => {
+    $('#login').slideUp(() => {
+        $("#password-reset").slideDown();
+    })
+});
+
+$("#login-back").click(() => {
+    $('#password-reset').slideUp(() => {
+        $("#login").slideDown();
+    })
 });

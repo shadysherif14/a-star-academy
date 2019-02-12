@@ -1,0 +1,1 @@
+@extends('auth.password.email')

@@ -38,7 +38,7 @@ class ForgotPasswordController extends Controller
      */
     public function showLinkRequestForm()
     {
-        return view('instructor.auth.passwords.email');
+        return view('auth.instructor.passwords.email');
     }
 
     /**

@@ -12,7 +12,10 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="shortcut icon" href="{{ asset_path('images/logo.png') }}" type="image/x-icon">
+    
     <title> A Star Academy </title>
+
     @include('includes.stylesheets') @stack('css')
 
     <link rel="stylesheet" href="{{ asset_path('css/auth/index.css') }}">
