@@ -80,7 +80,16 @@ class CourseController extends Controller
 
         $course = new Course();
 
-        return $this->persist($request, $course);
+        $response = $this->persist($request, $course);
+
+        if (!Storage::exists("public/sessions/{$course->slug}/videos")) {
+            Storage::makeDirectory("public/sessions/{$course->slug}/videos");
+        }
+        if (!Storage::exists("public/sessions/{$course->slug}/posters")) {
+            Storage::makeDirectory("public/sessions/{$course->slug}/posters");
+        }
+        return $response;
+
     }
 
     public function show(Course $course)
@@ -170,7 +179,7 @@ class CourseController extends Controller
 
             $course->image = CroppedImage::create($request->file('image'), 'images/courses', $slug);
         }
-        
+
         $course->save();
 
         return response()->json([

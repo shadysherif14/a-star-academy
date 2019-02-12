@@ -15,6 +15,7 @@
     <title> A Star Academy </title>
 
     <link rel="shortcut icon" href="{{ asset_path('images/logo.png') }}" type="image/x-icon">
+    
     @include('includes.stylesheets') @stack('css')
 
 </head>

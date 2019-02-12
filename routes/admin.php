@@ -1,5 +1,8 @@
 <?php
 
+use App\Course;
+use Illuminate\Support\Facades\Storage;
+
 Route::domain('admin.' . config('app.url'))
 
     ->name('admin.')
@@ -37,5 +40,19 @@ Route::domain('admin.' . config('app.url'))
 
         Route::resource('/users', 'UserController')->only('index', 'show', 'destroy', 'create', 'store');
         Route::put('/users/block/{user}', 'UserController@toggleBlock')->name('users.toggle-block');
+
+
+        Route::get('/create-dirs', function () {
+            Course::all()->each(function ($course) {
+
+                if(!Storage::exists("public/sessions/{$course->slug}/videos")) {
+                    Storage::makeDirectory("public/sessions/{$course->slug}/videos");
+                }
+                if (!Storage::exists("public/sessions/{$course->slug}/posters")) {
+                    Storage::makeDirectory("public/sessions/{$course->slug}/posters");
+                }
+            });
+
+        });
 
     });

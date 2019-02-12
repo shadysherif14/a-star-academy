@@ -25,11 +25,12 @@ class CourseRequest extends FormRequest
      */
     public function rules()
     {
+
         $schools = Level::select('school')->get()->unique('school')->pluck('school');
 
         $systems = array('Cambridge', 'Edexcel');
 
-        $subSystems = array('Al', 'Ol', 'A2', 'AS');
+        $subSystems = array('AL', 'OL', 'A2', 'AS');
         
         return [
 
