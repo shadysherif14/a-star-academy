@@ -11,6 +11,7 @@ use App\Rules\AuthPassword;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreditCardRequest;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,23 +21,30 @@ class VideoController extends Controller
     {
         $timeRemaining = null;
 
-        if (auth()->check()) {
-            $lastOne = UserVideo::where([
+        $accessRemaining = 0;
+
+        if (Auth::check()) {
+
+            if (Auth::user()->level_id !== $video->course->level_id) {
+
+                abort(404);
+            }
+            $subscription = UserVideo::where([
                 'user_id' => auth()->id(),
                 'video_id' => $video->id,
             ])->latest()->first();
 
-            if ($lastOne) {
-                $date = $lastOne->subscription_end_date;
-    
+            if ($subscription) {
+                $date = $subscription->subscription_end_date;
+                $accessRemaining = $subscription->max_watching_times - $subscription->watched_times;
                 if ($date) {
                     $now = Carbon::now();
-                    
+
                     $timeRemaining = strtotime($date) - strtotime($now);
-        
+
                     if ($timeRemaining < 0) {
-                        $lastOne->update([
-                            'watched_times' => ++$lastOne->watched_times,
+                        $subscription->update([
+                            'watched_times' => ++$subscription->watched_times,
                             'subscription_end_date' => null
                         ]);
                         $timeRemaining = null;
@@ -54,7 +62,7 @@ class VideoController extends Controller
 
         $prevVideo = $video->prevVideo();
 
-        $data = compact('video', 'nextVideo', 'prevVideo', 'timeRemaining', 'isOverview');
+        $data = compact('video', 'nextVideo', 'prevVideo', 'timeRemaining', 'accessRemaining', 'isOverview');
 
         return view('user.videos.show', $data);
     }
@@ -116,25 +124,25 @@ class VideoController extends Controller
 
         // There is an error happens while the paying process
         if ($request->success == 'false' || $request->error_occured == 'true') {
-            return redirect()->route('videos.show', Video::find((int) $merchantID->video_id))
+            return redirect()->route('videos.show', Video::find((int)$merchantID->video_id))
 
                 ->with('error', 'Something wrong happens!');
         }
 
-        $video = Video::find($userVideo->video_id);
+        $video = Video::find($merchantID->video_id);
 
-        $user = User::find($userVideo->user_id);
+        $user = User::find($merchantID->user_id);
 
         // Subscribe user to the session
         $userVideo = new UserVideo;
 
-        $userVideo->video_id = (int) $merchantID->video_id;
+        $userVideo->video_id = (int)$merchantID->video_id;
 
-        $userVideo->user_id = (int) $merchantID->user_id;
+        $userVideo->user_id = (int)$merchantID->user_id;
 
         $userVideo->paymob_id = $request->order;
 
-        $userVideo->price = (int) $request->amount_cents / 100;
+        $userVideo->price = (int)$request->amount_cents / 100;
 
         $userVideo->max_watching_times = $merchantID->subscription_type == 'max' ? $video->max_watching_times : 1;
 
@@ -142,7 +150,7 @@ class VideoController extends Controller
 
         $video->fireNotification($user, $userVideo->price);
 
-        return redirect()->route('videos.show', Video::find((int) $merchantID->video_id));
+        return redirect()->route('videos.show', Video::find((int)$merchantID->video_id));
     }
 
     public function responseCallback(Request $request)

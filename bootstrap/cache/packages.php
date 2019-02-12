@@ -10,17 +10,6 @@
       'PayMob' => 'BaklySystems\\PayMob\\Facades\\PayMob',
     ),
   ),
-  'beyondcode/laravel-er-diagram-generator' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'BeyondCode\\ErdGenerator\\ErdGeneratorServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'ErdGenerator' => 'BeyondCode\\ErdGenerator\\ErdGeneratorFacade',
-    ),
-  ),
   'cviebrock/eloquent-sluggable' => 
   array (
     'providers' => 
@@ -60,6 +49,13 @@
       0 => 'Hesto\\MultiAuth\\MultiAuthServiceProvider',
     ),
   ),
+  'laravel/tinker' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    ),
+  ),
   'intervention/image' => 
   array (
     'providers' => 
@@ -71,13 +67,6 @@
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
-  'laravel/tinker' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    ),
-  ),
   'laravolt/avatar' => 
   array (
     'providers' => 
@@ -87,6 +76,17 @@
     'aliases' => 
     array (
       'Avatar' => 'Laravolt\\Avatar\\Facade',
+    ),
+  ),
+  'beyondcode/laravel-er-diagram-generator' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'BeyondCode\\ErdGenerator\\ErdGeneratorServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'ErdGenerator' => 'BeyondCode\\ErdGenerator\\ErdGeneratorFacade',
     ),
   ),
   'nunomaduro/collision' => 

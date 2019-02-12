@@ -13,20 +13,8 @@ class LevelsSeeder extends Seeder
     public function run()
     {
 
-        $levelsGeneral = ['General'];
         $levelsSAT = ['General'];
         $levelsIG = ['8th Grade', '9th Grade', 'IG'];
-
-        foreach ($levelsGeneral as $levelGeneral) {
-
-            $level = new Level;
-
-            $level->name = $levelGeneral;
-
-            $level->school = 'General';
-
-            $level->save();
-        }
 
         foreach ($levelsSAT as $levelSAT) {
 

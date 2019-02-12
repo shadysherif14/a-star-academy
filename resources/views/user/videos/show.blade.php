@@ -74,6 +74,7 @@
                             <td> {{ $video->duration }} </td>
                         </tr>
 
+                        @if(!$video->isOverview())
                         <tr>
                             <td> 1 Time Price </td>
                             <td> {{ $video->one_price }} EGP </td>
@@ -83,6 +84,14 @@
                             <td> {{ $video->max_times }} Times Price </td>
                             <td> {{ $video->max_price }} EGP </td>
                         </tr>
+
+                        @if($accessRemaining)
+                        <tr>
+                            <td> Remaining Access Times </td>
+                            <td> {{ $accessRemaining . ' ' . str_plural('Time', $accessRemaining) }}  </td>
+                        </tr>
+                        @endif
+                        @endif
 
                     </tbody>
                 </table>

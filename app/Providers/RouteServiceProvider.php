@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Video;
-use App\Course;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 

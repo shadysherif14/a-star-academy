@@ -4,11 +4,21 @@
 @if ($errors->get('customMessage') && $errors->get('errorOwner'))
 <!-- LINE BREAK -->
 <div class="alert alert-danger text-white">
-    Your account already logged in, you can either <a href="#" id="logOutAll" data-error-owner="{{$errors->get('errorOwner')[0]}}"
-        class="font-underline text-white">logout all other devices and try login again</a> or ignore this message.
+    Your account already logged in, you can either 
+    <a href="#" id="logOutAll" data-error-owner="{{ $errors->first('errorOwner') }}" class="font-underline text-white">
+        logout all other devices and try login again
+    </a> 
+    or ignore this message.
 </div>
-<!-- LINE BREAK -->
 @endif
+
+@if($errors->get('blocked'))
+<div class="alert alert-danger text-white">
+    This account has been blocked if you have any inquiries about the blocking reason you can contact our customer service.
+</div>
+@endif
+
+<!-- LINE BREAK -->
 <form action="@yield('form-action')" method="POST">
 
     @csrf
@@ -20,11 +30,10 @@
     </h3>
 
     <div class="input-group">
-        <input type="text" class="form-control" name="login" placeholder="Email" value="{{ old('login') }}" />
+        <input type="text" class="form-control" name="login" placeholder="Username or Email" value="{{ old('login') }}" />
         <span class="input-group-addon">
-        <img src="{{ imageIcon('user') }}" alt="" class="icon">
-    </span>
-
+            <img src="{{ imageIcon('user') }}" alt="" class="icon">
+        </span>
     </div>
 
     <div class="input-group">
