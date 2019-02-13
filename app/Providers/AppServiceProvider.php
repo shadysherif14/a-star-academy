@@ -25,7 +25,6 @@ class AppServiceProvider extends ServiceProvider
             'courses' => 'App\Course',
             'videos' => 'App\Video',
         ]);
-
     }
 
     /**

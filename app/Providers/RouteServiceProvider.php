@@ -44,7 +44,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-
         $this->mapAuthRoutes();
 
         $this->mapAdminRoutes();
@@ -88,7 +87,6 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->instructorNamespace)
 
             ->group(base_path('routes/instructor.php'));
-
     }
 
     protected function mapUserRoutes()
@@ -98,7 +96,6 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->userNamespace)
 
             ->group(base_path('routes/user.php'));
-
     }
 
     /**

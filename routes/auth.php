@@ -11,14 +11,14 @@ Route::domain(config('app.url'))
         // Registration Routes...
         Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
         Route::post('register', 'RegisterController@register');
-
+        
+        Route::post('/validate-registration', 'RegisterController@validateBasicInformation')->name('register.validate');
         
         Route::post('/password/email', 'ForgotPasswordController@sendResetLinkEmail');
-        Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm');
         Route::post('/password/reset', 'ResetPasswordController@reset');
+        
+        Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm');
         Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
-
-        Route::post('/validate-registration', 'RegisterController@validateBasicInformation')->name('register.validate');
     });
 
 Route::domain('admin.' . config('app.url'))
@@ -32,11 +32,11 @@ Route::domain('admin.' . config('app.url'))
         Route::post('/login', 'LoginController@login');
         Route::any('/logout', 'LoginController@logout')->name('logout');
         
-        Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm');
         Route::post('/password/email', 'ForgotPasswordController@sendResetLinkEmail');
-        
-        Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
         Route::post('/password/reset', 'ResetPasswordController@reset');
+        
+        Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm');
+        Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
     });
 
 Route::domain('instructor.' . config('app.url'))
@@ -51,7 +51,8 @@ Route::domain('instructor.' . config('app.url'))
         Route::post('/logout', 'LoginController@logout')->name('logout');
 
         Route::post('/password/email', 'ForgotPasswordController@sendResetLinkEmail');
-        Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm');
         Route::post('/password/reset', 'ResetPasswordController@reset');
+
+        Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm');
         Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
     });
