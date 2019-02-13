@@ -273,6 +273,7 @@ $(document).on('click', '.floating-btn', function () {
         confirmButtonText: 'Send',
         showCancelButton: true
     }).then((result) => {
+        showLoaderModal('Sending your question...', 'This window will be closed automatically');
         let message = result.value;
         if (message) {
             CSRFToken()

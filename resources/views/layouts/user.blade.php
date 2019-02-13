@@ -9,6 +9,8 @@
 @stop @push('css')
 <link rel="stylesheet" href="{{ asset_path('css/user/main.css') }}"> 
 @endpush @push('scripts')
+
+<script src="{{ asset_path('/js/user/loader.js') }}"></script>
 <script src="{{ asset_path('js/user/home.js') }}"></script>
 
 @endpush

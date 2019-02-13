@@ -65,10 +65,3 @@
         </form>
     </div>
 </footer>
-
-@push('scripts')
-<script src="{{ asset_path('/js/user/loader.js') }}"></script>
-
-
-
-@endpush

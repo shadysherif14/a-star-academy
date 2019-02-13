@@ -473,7 +473,7 @@
   justify-content: center;
   -ms-flex-line-pack: center;
   align-content: center;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 #wrapper #plyr-wrapper #user-serial-overlay span {
