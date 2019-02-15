@@ -53,9 +53,17 @@ let subscriptionDuration = timeRemaining || player.duration * 1.5;
 
 if (player) {
     player.on('playing', () => {
-
+        
+        
+        if(subscriptionDuration == 0) {
+            subscriptionDuration = timeRemaining || player.duration * 1.5;   
+        }
+        
         if (videoAlertMessage && !isOverview && !timeRemaining) {
             player.pause();
+            if(subscriptionDuration == 0) {
+                window.reload();
+            }
             swal.fire({
                 'type': 'info',
                 'text': `Please notice that, if you start the video now you have only ${calculateDuration(subscriptionDuration)}, after that your subscription will be considered as invalid`,
@@ -273,9 +281,10 @@ $(document).on('click', '.floating-btn', function () {
         confirmButtonText: 'Send',
         showCancelButton: true
     }).then((result) => {
-        showLoaderModal('Sending your question...', 'This window will be closed automatically');
         let message = result.value;
         if (message) {
+            showLoaderModal('Sending your question...', 'This window will be closed automatically');
+
             CSRFToken()
             $.ajax({
                 type: "POST",

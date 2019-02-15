@@ -39,5 +39,6 @@ class Admin extends Authenticatable
 
         return secure_asset("storage/{$path}");
     }
+    
 
 }

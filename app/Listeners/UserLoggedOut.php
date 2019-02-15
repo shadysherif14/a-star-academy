@@ -27,6 +27,8 @@ class UserLoggedOut
     public function handle(LogoutEvent $event)
     {
         $user = $event->user;
-        $user->invalidateAllLogginSessions();
+        
+        
+        //$user->invalidateAllLogginSessions();
     }
 }

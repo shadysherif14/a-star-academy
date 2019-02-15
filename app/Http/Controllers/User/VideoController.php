@@ -35,8 +35,8 @@ class VideoController extends Controller
             ])->latest()->first();
 
             if ($subscription) {
-                $date = $subscription->subscription_end_date;
                 $accessRemaining = $subscription->max_watching_times - $subscription->watched_times;
+                $date = $subscription->subscription_end_date;
                 if ($date) {
                     $now = Carbon::now();
 

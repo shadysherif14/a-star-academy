@@ -9,7 +9,7 @@ function showLoaderModal(title, body) {
         html: `${body}`,
         allowOutsideClick: false,
         allowEscapeKey: false,
-        timer: 20000,
+        timer: 2000,
         onBeforeOpen: () => {
             swal.showLoading();
         },

@@ -2,9 +2,9 @@ $('#contact-us-form').on('submit', function (e) {
 
     e.preventDefault();
 
-    submitForm($(this), successCallback);
-
     showLoaderModal('Sending your message...', 'This window will be closed automatically');
+    
+    submitForm($(this), successCallback, errorCallback);
 
 });
 
@@ -26,4 +26,21 @@ const successCallback = (response) => {
         });
     }
     clearInterval(timerInterval)
+}
+
+
+const errorCallback = function (response, status, err, form) {
+
+    clearInterval(timerInterval);
+    
+    if (response.responseJSON) {
+
+        let errors = response.responseJSON.errors;
+
+        if (errors) {
+            displayErrors(errors);
+        }
+
+    }
+    
 }
