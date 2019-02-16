@@ -6,3 +6,5 @@
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset_path('css/app.css') }}">
+
+    <link rel="stylesheet" href="{{ asset_path('assets/plugins/waitMe/waitMe.css') }}" />

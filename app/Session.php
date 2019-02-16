@@ -15,12 +15,12 @@ class Session extends Model
         if (is_null($userID) || !$userID) {
             return null;
         }
-        return count(Session::where('user_id', $userID)->get()) ? 1 : 0 ;
+        return count(Session::where(['user_id'=> $userID,'user_type'=>'user'])->get()) ? 1 : 0 ;
     }
 
     // Delete All User's Sessions
     public static function deleteByUserID($userID)
     {
-        Session::where('user_id', $userID)->delete();
+        Session::where(['user_id'=> $userID,'user_type'=>'user'])->delete();
     }
 }

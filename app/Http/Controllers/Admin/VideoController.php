@@ -38,11 +38,7 @@ class VideoController extends Controller
 
         $breadcrumbArgument = $course;
 
-        $path = "public/$course->videosPath";
-
-        $videos = collect(Storage::files($path))->map(function ($video) use ($path) {
-            return str_after($video, "$path/");
-        });
+        $videos = $course->getCourseVideos();
 
         $data = compact('course', 'title', 'breadcrumbs', 'breadcrumbArgument', 'videos');
 
@@ -102,11 +98,7 @@ class VideoController extends Controller
 
         $course = $video->course;
 
-        $path = "public/$course->videosPath";
-
-        $videos = collect(Storage::files($path))->map(function ($video) use ($path) {
-            return str_after($video, "$path/");
-        });
+        $videos = $course->getCourseVideos();        
 
         $data = compact('video', 'course', 'videos', 'title', 'breadcrumbs', 'breadcrumbArgument');
 

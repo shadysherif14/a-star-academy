@@ -165,6 +165,8 @@ return [
          * My Service Providers...
          */
         App\Providers\PayableServiceProvider::class,
+        App\Providers\SessionServiceProvider::class,
+
     ],
 
     /*

@@ -32,7 +32,9 @@ class UserVideo extends Model
 
     public function getTypeAttribute()
     {
-        return is_null($this->max_watching_times) ? 'Unlimited' : 'Only Once';
+        $times = $this->max_watching_times;
+
+        return $times . ' ' . str_plural('Time', $times);
     }
 
     public function getCreatedAtAttribute($date)

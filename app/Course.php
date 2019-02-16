@@ -4,9 +4,10 @@ namespace App;
 
 use App\Video;
 use App\Traits\Routes;
-use Cog\Laravel\Love\Likeable\Models\Traits\Likeable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Cog\Laravel\Love\Likeable\Models\Traits\Likeable;
 use Cog\Contracts\Love\Likeable\Models\Likeable as LikeableContract;
 
 class Course extends Model implements LikeableContract
@@ -56,7 +57,7 @@ class Course extends Model implements LikeableContract
             ->withCount('subscriptions')
 
             ->orderBy('subscriptions_count', 'desc')
-            
+
             ->limit($limit);
     }
 
@@ -159,5 +160,24 @@ class Course extends Model implements LikeableContract
     public function overview()
     {
         return $this->videos()->whereOverview('1')->first();
+    }
+
+    public function getCourseVideos()
+    {
+        $uploadedVideos = $this->videos()->select('path')->get();
+
+        if ($uploadedVideos->count()) {
+            $uploadedVideos = $uploadedVideos->pluck('path')->map(function ($video) {
+                return str_after($video, asset("storage/{$this->videosPath}") . '/');
+            });
+        }
+
+        $path = "public/{$this->videosPath}";
+
+        $videos = collect(Storage::files($path))->map(function ($video) {
+            return str_after($video, "public/{$this->videosPath}/");
+        });
+
+        return $videos->diff($uploadedVideos);
     }
 }

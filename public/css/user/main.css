@@ -17,6 +17,10 @@ body {
   overflow-x: hidden;
 }
 
+.waitMe {
+    display: none !important;
+}
+
 .main-content {
   min-height: 90vh;
   padding: 10vh 0 1rem;

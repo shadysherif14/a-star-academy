@@ -36,6 +36,12 @@
                                     <strong>{{ $user->videos()->count() }} Subscriptions</strong>
                                 </td>
                             </tr>
+                             <tr>
+                                <td> Account Status </td>
+                                <td class="col-{{ $user->blocked ? 'red' : 'green'}}">
+                                    <strong>{{ $user->blocked ? 'Blocked' : 'Not-Blocked'}}</strong>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

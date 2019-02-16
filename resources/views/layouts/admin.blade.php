@@ -34,3 +34,11 @@
     </section>
 
 @stop
+
+
+@push('scripts')
+    <script> $("select").selectpicker('destroy', true); </script>    
+@endpush
+
+@push('css')
+@endpush

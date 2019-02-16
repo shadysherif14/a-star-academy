@@ -37,7 +37,7 @@ const filterLevelsBySchool = (school, levelID) => {
 
     levelSelect.parents('.form-group').removeClass('hidden');
 
-    reInitializeSelect('#level');
+    // reInitializeSelect('#level');
 }
 
 if (course.id) {
@@ -59,8 +59,6 @@ if (course.id) {
 
         $('#sub_system').removeClass('hidden');
     
-        console.log(course.sub_system);
-        
         let subSystemRadio = $(`input[name="sub_system"][value="${course.sub_system}"]`);
     
         subSystemRadio.prop('checked', true);

@@ -24,8 +24,7 @@
 
             <label for="name"> School System </label>
             
-            <select name="school" id="school" class="form-control" title="School System">
-
+            <select name="school" id="school" class="custom-select">
             @foreach($schools as $school)
                 @if($level->school === $school)
                     <option value="{{ $school }}" selected> {{ $school }} </option>

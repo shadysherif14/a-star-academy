@@ -46,6 +46,7 @@ $(function () {
 const player = new Plyr('#player');
 
 let videoAlertMessage = true;
+let pageReloaded = false;
 
 let counterIsRunning = timeRemaining ? true : false;
 
@@ -53,15 +54,13 @@ let subscriptionDuration = timeRemaining || player.duration * 1.5;
 
 if (player) {
     player.on('playing', () => {
-        
-        
-        if(subscriptionDuration == 0) {
-            subscriptionDuration = timeRemaining || player.duration * 1.5;   
+        if (subscriptionDuration == 0) {
+            subscriptionDuration = timeRemaining || player.duration * 1.5;
         }
-        
+
         if (videoAlertMessage && !isOverview && !timeRemaining) {
             player.pause();
-            if(subscriptionDuration == 0) {
+            if (subscriptionDuration == 0) {
                 window.reload();
             }
             swal.fire({
@@ -81,9 +80,6 @@ if (player) {
                         data: {
                             seconds: subscriptionDuration
                         },
-                        success: function (response) {
-                            console.log(response);
-                        }
                     });
                     videoAlertMessage = false;
                     player.play();
@@ -118,19 +114,42 @@ const calculateDuration = duration => {
 }
 
 setInterval(() => {
-
     if (!counterIsRunning) return;
 
-    subscriptionDuration--;
-
+    if (player.playing) {
+        subscriptionDuration--;
+    }
     if (subscriptionDuration < 1) {
-        location.reload()
+        if (!pageReloaded) {
+            pageReloaded = true;
+            CSRFToken();
+            $.ajax({
+                type: 'PUT',
+                url: $('#subscription-route').val(),
+                data: {
+                    seconds: subscriptionDuration
+                },
+            });
+            window.location.href = window.location.href;
+        }
     } else {
         $('.floating-btn-left').text(calculateDuration(subscriptionDuration)).css('display', 'flex');
     }
 
 
 }, 1000);
+
+setInterval(() => {
+    if (!counterIsRunning || player.paused) return;
+    CSRFToken();
+    $.ajax({
+        type: 'PUT',
+        url: $('#subscription-route').val(),
+        data: {
+            seconds: subscriptionDuration
+        },
+    });
+}, 60000);
 
 
 let images = [

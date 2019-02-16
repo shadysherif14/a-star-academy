@@ -44,10 +44,6 @@ $(document).on('click', '.filter', function (e) {
     );
 });
 
-$(document).ready(function () {
-    $('.selectpicker').selectpicker();
-});
-
 
 $(document).on('click', '#clear-search', function () {
 

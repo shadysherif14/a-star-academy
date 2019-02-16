@@ -53,9 +53,9 @@ class ProfileController extends Controller
 
             $avatar = $request->file('avatar');
 
-            $name = "{$user->username}.jpg";
+            $name = $user->username;
 
-            $user->avatar = $avatar->storeAs('images/avatars/original', $name, 'public');
+            $user->avatar = $avatar->storeAs('images/avatars/original', "$name.jpg", 'public');
 
             $path = 'images/avatars/cropped';
 
@@ -70,5 +70,4 @@ class ProfileController extends Controller
 
         return response()->json([]);
     }
-
 }

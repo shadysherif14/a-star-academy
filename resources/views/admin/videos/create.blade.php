@@ -27,7 +27,8 @@
 
                 <div class="form-group">
                     <label for="video"> Video </label>
-                    <select id="videos-list" name="video" title="Video" class="form-control">
+                    <select id="videos-list" name="video" class="custom-select">
+                        <option disabled selected> Video </option>
                     @foreach($videos as $video)
                         <option value="{{ $video }}"> {{ $video }} </option>
                     @endforeach

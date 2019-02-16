@@ -18,7 +18,6 @@
 
 
 @push('css')
-    <link rel="stylesheet" href="{{ asset_path('assets/plugins/waitMe/waitMe.css') }}" />
     <link rel="stylesheet" href="{{ asset_path('assets/plugins/bootstrap-fileinput/bootstrap-fileinput.css') }}" />
     <link rel="stylesheet" href="{{ asset_path('assets/plugins/bootstrap-select/css/bootstrap-select.css') }}" />
 @endpush

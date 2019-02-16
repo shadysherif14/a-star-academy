@@ -79,6 +79,10 @@ const submitForm = function (form, successCallback = defaultSuccess, errorCallba
 
     currentForm = form;
 
+    currentForm.waitMe({
+        effect: 'pulse',
+    });
+
     let hiddenMethod = form.find('input[name="_method"]').val();
 
     let method = (hiddenMethod === undefined) ? form.attr('method') : hiddenMethod;
@@ -105,6 +109,10 @@ const submitFileForm = function (form, successCallback = defaultSuccess, errorCa
     let formEl = $(form);
 
     currentForm = formEl;
+
+    currentForm.waitMe({
+        effect: 'pulse',
+    });
 
     let hiddenMethod = formEl.find('input[name="_method"]').val();
 
@@ -139,12 +147,12 @@ const submitFileForm = function (form, successCallback = defaultSuccess, errorCa
 const defaultSuccess = function (response) {
 
     if (response.redirect) {
-
         window.location = response.redirect;
-
     } else {
+        currentForm.waitMe('hide');
         swal.fire({
-            text: 'Data Updated Successfully',
+            'title': 'Great',
+            text: 'Data uploaded successfully',
             'type': 'success'
         });
     }
@@ -152,6 +160,13 @@ const defaultSuccess = function (response) {
 
 const defaultError = function (response, status, err, form) {
 
+    currentForm.waitMe('hide');
+
+    swal.fire({
+        'title': 'Oops',
+        text: 'Something went wrong',
+        'type': 'error'
+    });
     if (response.responseJSON) {
 
         let errors = response.responseJSON.errors;
@@ -159,7 +174,6 @@ const defaultError = function (response, status, err, form) {
         if (errors) {
             displayErrors(errors);
         }
-
     }
 }
 
@@ -215,6 +229,10 @@ $(document).on('click', '.delete', function () {
 
                             btn.parents('table').DataTable()
                         }
+                    }
+
+                    if (response.redirect) {
+                        window.location = response.redirect;
                     }
                 }
             });

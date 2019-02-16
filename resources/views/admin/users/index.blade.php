@@ -19,7 +19,7 @@
 
     <tbody>
         @foreach($users as $user)
-        <tr>
+         <tr class="row-{{ $user->blocked ? 'blocked' : 'unblocked' }}">
             <th> <img src="{{ $user->avatar }}" alt="" width="32"> </th>
             <td> <a href="{{ route('admin.users.show', $user) }}"> {{ $user->name }} </a> </td>
             <td> {{ $user->username }} </td>

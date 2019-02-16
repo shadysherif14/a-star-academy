@@ -1,8 +1,5 @@
 <?php
 
-use App\Course;
-use Illuminate\Support\Facades\Storage;
-
 Route::domain('admin.' . config('app.url'))
 
     ->name('admin.')

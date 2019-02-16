@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Auth\User;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Auth\Events\PasswordReset;
 
 class ResetPasswordController extends Controller
 {
@@ -26,7 +28,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -52,5 +54,19 @@ class ResetPasswordController extends Controller
         return view('auth.user.passwords.reset')->with(
             ['token' => $token, 'email' => $request->email]
         );
+    }
+    protected function resetPassword($user, $password)
+    {
+        $user->password = Hash::make($password);
+
+        $user->setRememberToken(Str::random(60));
+
+        $user->save();
+
+        event(new PasswordReset($user));
+
+        return redirect('/login');
+        // Stop auto login
+        //$this->guard()->login($user);
     }
 }

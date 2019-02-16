@@ -3,23 +3,16 @@ $(document).on('click', 'button.link', function () {
 });
 
 function reInitializeSelect(selector) {
-    $(selector).selectpicker('refresh');
+    return;
 }
 
 function refreshAllSelect() {
-    reInitializeSelect('select');
+    return;
 }
 
 $(document).ready(function () {
 
-    $('select').selectpicker({
-        actionsBox: true,
-        liveSearch: true,
-    });
-
-    $('select').addClass('show-tick');
-
-    $('select').selectpicker('setStyle', 'bg-transparent');
+    $("select").selectpicker('destroy', true);
 
     $('button').addClass('waves-effect waves-black');
 

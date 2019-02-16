@@ -10,7 +10,7 @@
         </video> @auth
         <input type="hidden" id="user-serial" value="{{ Auth::user()->serial }}">
         <input type="hidden" id="user-name" value="{{ Auth::user()->username }}">
-        <input type="hidden" id="subscription-route" value="{{ route('subscription.update.date', $video->id) }}"> @endauth
+        <input type="hidden" id="subscription-route" value="{{ route('update.remaining.time', $video->id) }}"> @endauth
         @if(!$video->isFirstVideo())
         <a href="{{ action('User\VideoController@show', $prevVideo) }}" class="btn btn-sm prev">
             <i class="typcn typcn-arrow-left-outline"></i>

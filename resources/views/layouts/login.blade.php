@@ -15,7 +15,8 @@
     
     @if($errors->get('blocked'))
     <div class="alert alert-danger text-white">
-        This account has been blocked if you have any inquiries about the blocking reason you can contact our customer service.
+            We've detected unusual activity from this account, we have blocked the account until administrator looks into it. If you have any inquiries about the blocking reason you can contact us directly at  support@astaracademy.net.
+
     </div>
     @endif
 

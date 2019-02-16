@@ -30,12 +30,16 @@ $('form').submit(function (e) {
 
     let $form = $(this);
 
+    $form.waitMe({
+        effect: 'pulse',
+    });
+
     let duration = Math.round(player.duration);
 
     $("#video-duration").val(duration);
     if (duration == 0) {
         submitForm($form);
-        return;        
+        return;
     }
 
     sessionVideoEl.load();
@@ -54,7 +58,6 @@ $('form').submit(function (e) {
         submitForm($form);
     }
 
-    // submitForm($form);
 
 });
 

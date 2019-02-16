@@ -54,6 +54,10 @@ class LoginController extends Controller
 
         $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
+        if($field == 'email') {
+            $login = strtolower($login);
+        }
+
         request()->merge([$field => $login]);
 
         return $field;

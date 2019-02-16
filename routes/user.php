@@ -5,7 +5,7 @@ Route::domain(config('app.url'))
     ->group(function () {
 
         Route::get('/', 'HomeController')->name('home');
-        
+
         Route::get('/courses', function () {
             return view('app.courses.index');
         });
@@ -21,7 +21,7 @@ Route::domain(config('app.url'))
         Route::post('{video}/payment-key', 'VideoController@paymentKey')->name('videos.payment-key');
 
         Route::post('quizzes/{video}', 'QuizController@store')->name('quizzes.store');
-        
+
         Route::post('like/{course}', 'LikeController@course')->name('like.courses');
 
         Route::post('profiles', 'ProfileController@update')->name('profiles.update')->middleware('auth');
@@ -32,12 +32,12 @@ Route::domain(config('app.url'))
 
             ->middleware('auth');
 
-        
-        Route::put('subscription-date/{videoID}', 'VideoController@updateSubscriptionEndDate')
-        
-        ->name('subscription.update.date')
-        
-        ->middleware('auth');
+
+        Route::put('remaining-time/{videoID}', 'VideoController@updateRemainingTime')
+
+            ->name('update.remaining.time')
+
+            ->middleware('auth');
 
         Route::any('/api/process-callback', 'VideoController@processedCallback');
 

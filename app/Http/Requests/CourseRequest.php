@@ -36,7 +36,7 @@ class CourseRequest extends FormRequest
 
             'name' => 'required',
 
-            'description' => 'required',
+            // 'description' => 'required',
             
             'school' => ['required', Rule::in($schools)],
             

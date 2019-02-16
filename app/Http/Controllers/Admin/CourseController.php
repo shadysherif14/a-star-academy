@@ -105,11 +105,7 @@ class CourseController extends Controller
 
         $data['breadcrumbArgument'] = $course;
 
-        $path = "public/$course->videosPath";
-
-        $videos = collect(Storage::files($path))->map(function ($video) use ($path) {
-            return str_after($video, "$path/");
-        });
+        $videos = $course->getCourseVideos();
 
         $data['videos'] = $videos;
 
@@ -145,6 +141,10 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         $course->delete();
+        
+        return response()->json([
+            'redirect' => route('admin.courses.index')    
+        ]);
     }
 
     private function persist(Request $request, Course $course)
@@ -207,4 +207,5 @@ class CourseController extends Controller
 
         return $data;
     }
+
 }

@@ -56,7 +56,10 @@ $(document).on('submit', '.block', function (e) {
                         'type': 'success',
                         'text': 'User has been blocked successfully'
                     });
-
+                    
+                    $form.parents('tr').removeClass('row-unblocked');
+                    $form.parents('tr').addClass('row-blocked');
+                    
                     $form.removeClass('block').addClass('unblock');
                     $form.find('button i').removeClass('fa-user-alt-slash').addClass('fa-user-alt');
                 }
@@ -78,9 +81,23 @@ $(document).on('submit', '.unblock', function (e) {
                 'type': 'success',
                 'text': 'User has been unblocked successfully'
             });
-
+            
+            $form.parents('tr').addClass('row-unblocked');
+            $form.parents('tr').removeClass('row-blocked');
+            
             $form.removeClass('unblock').addClass('block');
             $form.find('button i').removeClass('fa-user-alt').addClass('fa-user-alt-slash');
         }
     });
+});
+
+$(document).on('click', '#showAll', function (e) {
+    e.preventDefault();
+    $('table tr').slideDown();
+});
+
+$(document).on('click', '#showBlocked', function (e) {
+    e.preventDefault();
+    $('table tr').slideUp();
+    $('table tr.row-blocked').slideDown();
 });

@@ -21768,3 +21768,16 @@ figure div:nth-child(8):after {
   border-color: #000;
 }
 
+.row-blocked{
+    background: #ff3636;
+    color:#fff;
+}
+.row-blocked:hover{
+    background: #ff3636!important;
+    color:#fff!important;
+}
+
+.row-blocked a{
+    color:#fff;
+    text-decoration: underline;
+}

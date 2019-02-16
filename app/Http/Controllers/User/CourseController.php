@@ -20,7 +20,8 @@ class CourseController extends Controller
 
         if (Auth::check()) {
             $user = Auth::user();
-            $query = Course::whereLevelId($user->level_id);
+            $level = Level::select('school')->whereId($user->level_id)->first();
+            $query = Course::where('school', $level->school);
         }
         
         if($request->filled('school')) {
@@ -79,7 +80,7 @@ class CourseController extends Controller
     public function show(Course $course)
     {
 
-        if (Auth::check() && Auth::user()->level_id !== $course->level_id) {
+        if (Auth::check() && Auth::user()->level->school !== $course->level->school) {
 
             abort(404);
         }

@@ -24,32 +24,34 @@
 
             <div class="form-group">
                 <label for="instructor"> Instructor </label>
-                <select name="instructor" title="Instructor" id="instructor" class="form-control">
-                @foreach($instructors as $instructor)
+                <select name="instructor" id="instructor" class="custom-select">
+                    <option value="" disabled selected> Choose Instructor </option>
+                    @foreach($instructors as $instructor)
                     <option value="{{ $instructor->id }}"
                         {{ $course->instructor_id === $instructor->id ? 'selected' : '' }} > 
                         {{ $instructor->name }} 
                     </option>
-                @endforeach
+                    @endforeach
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="school"> School System </label>
-                <select name="school" id="school" class="form-control" title="School System">
-                @foreach($schools as $school)
+                <select name="school" id="school" class="custom-select" >
+                    <option value="" disabled selected> Choose School System </option>
+                    @foreach($schools as $school)
                     <option value="{{ $school }}"
                         {{ $course->school === $school ? 'selected' : '' }} >
                         {{ $school }} 
                     </option>
-                @endforeach
+                    @endforeach
                 </select>
 
             </div>
 
             <div class="form-group hidden">
                 <label for="level"> Level </label>
-                <select name="level" id="level" class="form-control" title="Choose Level"></select>
+                <select name="level" id="level" class="custom-select"></select>
             </div>
 
 

@@ -23,6 +23,14 @@ body {
   }
 }
 
+ul.errors {
+    list-style: none;
+}
+
+.waitMe {
+    display: none !important;
+}
+
 body .image {
   background-image: url("https://images.unsplash.com/photo-1477281765962-ef34e8bb0967?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=31e82f46b077da92e44712da8f71bc51&auto=format&fit=crop&w=632&q=80");
   background-position: center;

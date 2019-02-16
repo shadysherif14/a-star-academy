@@ -12,6 +12,7 @@
         <script src="{{ asset_path('libraries/js/init.js') }}"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+        <script src="{{ secure_asset('assets/plugins/waitMe/waitMe.js') }}"></script>
 
         <script type="text/javascript">
 

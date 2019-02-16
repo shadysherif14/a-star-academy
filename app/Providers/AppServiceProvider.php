@@ -25,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
             'courses' => 'App\Course',
             'videos' => 'App\Video',
         ]);
+        
+        $this->app->bind('path.public', function() {
+             return realpath(base_path().'/../public_html');
+        });
     }
 
     /**
